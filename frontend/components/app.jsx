@@ -4,6 +4,7 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
+import Splash from './splash';
 
 const App = () => {
   return (
@@ -11,7 +12,6 @@ const App = () => {
       <header className="inner-header">
         <h1>Hello</h1>
       </header>
-      <Modal />
       <Switch>
         <AuthRoute exact path="/" component={Splash} />
       </Switch>
