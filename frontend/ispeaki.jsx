@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import configureStore from './store/store';
 import Root from './components/root';
 
-document.addEventListener("DOMContentLoadded", () => {
+document.addEventListener("DOMContentLoaded", () => {
   const rootEle = document.getElementById('root');
   let store;
   if (window.currentUser) {

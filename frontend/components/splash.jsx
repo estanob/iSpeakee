@@ -10,6 +10,12 @@ const Splash = () => {
           Learn a new language today!
         </p>
       </div>
+      <footer>
+        © iSpeaki - 2021
+        Inspired by iTalki
+      </footer>
     </div>
   )
 }
+
+export default Splash;

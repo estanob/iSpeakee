@@ -4,7 +4,10 @@ import {
   Switch,
   Redirect
 } from "react-router-dom";
-import Splash from './splash';
+import { AuthRoute, ProtectedRoute } from '../util/route_util';
+import Splash from '../components/splash';
+import LoginFormContainer from './session_form/login_form_container';
+import SignupFormContainer from './session_form/sign_up_form_container';
 
 const App = () => {
   return (
@@ -14,6 +17,10 @@ const App = () => {
       </header>
       <Switch>
         <AuthRoute exact path="/" component={Splash} />
+        <AuthRoute path="/login" component={LoginFormContainer} />
+        <AuthRoute path="/signup" component={SignupFormContainer} />
+
+        <Redirect to="/404" />
       </Switch>
     </div>
   );

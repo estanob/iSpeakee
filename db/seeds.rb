@@ -18,7 +18,8 @@ user1 = User.create!(
 )
 
 user2 = User.create!(
-  first_name: "Rabbit",
+  first_name: "Rabbit",.
+  ..
   last_name: "Bunny",
   username: "bunnyrabbit262",
   password: "password123456"
