@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
-import HomeFeed from './home_feed';
+import HomeFeed from './dashboard';
 
 const mSTP = (state) => {
   debugger

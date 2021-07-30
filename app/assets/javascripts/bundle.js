@@ -222,7 +222,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _util_route_util__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../util/route_util */ "./frontend/util/route_util.jsx");
 /* harmony import */ var _components_navbar_navbar__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/navbar/navbar */ "./frontend/components/navbar/navbar.jsx");
-/* harmony import */ var _components_home_feed_home_feed_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/home_feed/home_feed_container */ "./frontend/components/home_feed/home_feed_container.js");
+/* harmony import */ var _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./dashboard/dashboard_container */ "./frontend/components/dashboard/dashboard_container.js");
 /* harmony import */ var _components_splash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/splash */ "./frontend/components/splash.jsx");
 /* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./session_form/login_form_container */ "./frontend/components/session_form/login_form_container.js");
 /* harmony import */ var _session_form_sign_up_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./session_form/sign_up_form_container */ "./frontend/components/session_form/sign_up_form_container.js");
@@ -239,8 +239,8 @@ var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
     className: "inner-header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_navbar_navbar__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
-    path: "/home",
-    component: _components_home_feed_home_feed_container__WEBPACK_IMPORTED_MODULE_4__["default"]
+    path: "/dashboard",
+    component: _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     exact: true,
     path: "/",
@@ -262,35 +262,20 @@ var App = function App() {
 
 /***/ }),
 
-/***/ "./frontend/components/home_feed/home_feed.jsx":
+/***/ "./frontend/components/dashboard/dashboard.jsx":
 /*!*****************************************************!*\
-  !*** ./frontend/components/home_feed/home_feed.jsx ***!
+  !*** ./frontend/components/dashboard/dashboard.jsx ***!
   \*****************************************************/
 /*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports) {
 
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-
-
-var HomeFeed = function HomeFeed(props) {
-  console.log("Home Page Props");
-  console.log(props);
-  var logout = props.logout;
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: logout
-  }, "Logout"));
-};
-
-/* harmony default export */ __webpack_exports__["default"] = (HomeFeed);
+throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/estanob/Desktop/iTalki/iTalki/frontend/components/dashboard/dashboard.jsx: Unterminated template. (14:12)\n\n\u001b[0m \u001b[90m 12 |\u001b[39m       \u001b[33m<\u001b[39m\u001b[33mbutton\u001b[39m onClick\u001b[33m=\u001b[39m{logout}\u001b[33m>\u001b[39m\u001b[33mLogout\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mbutton\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 13 |\u001b[39m       \u001b[33m<\u001b[39m\u001b[33mh3\u001b[39m\u001b[33m>\u001b[39m{\u001b[32m`ID: ${session}`\u001b[39m}\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mh3\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m       \u001b[33m<\u001b[39m\u001b[33mh2\u001b[39m\u001b[33m>\u001b[39m{\u001b[32m`</h2>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 15 |\u001b[39m \u001b[32m    </div>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 16 |\u001b[39m \u001b[32m  )\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 17 |\u001b[39m \u001b[32m};\u001b[39m\u001b[0m\n    at Object._raise (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:788:17)\n    at Object.raiseWithData (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:781:17)\n    at Object.raise (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:742:17)\n    at Object.readTmplToken (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:9374:20)\n    at Object.nextToken (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:8462:12)\n    at Object.next (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:8369:10)\n    at Object.parseTemplate (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:11696:10)\n    at Object.parseExprAtom (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:11283:21)\n    at Object.parseExprAtom (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5222:20)\n    at Object.parseExprSubscripts (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10914:23)\n    at Object.parseUpdate (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10894:21)\n    at Object.parseMaybeUnary (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10872:23)\n    at Object.parseExprOps (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10733:23)\n    at Object.parseMaybeConditional (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10707:23)\n    at Object.parseMaybeAssign (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10670:21)\n    at Object.parseExpressionBase (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10610:23)\n    at allowInAnd (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10604:39)\n    at Object.allowInAnd (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:12378:12)\n    at Object.parseExpression (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10604:17)\n    at Object.jsxParseExpressionContainer (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5072:31)\n    at Object.jsxParseElementAt (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5167:36)\n    at Object.jsxParseElementAt (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5152:32)\n    at Object.jsxParseElement (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5210:17)\n    at Object.parseExprAtom (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5217:19)\n    at Object.parseExprSubscripts (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10914:23)\n    at Object.parseUpdate (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10894:21)\n    at Object.parseMaybeUnary (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10872:23)\n    at Object.parseExprOps (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10733:23)\n    at Object.parseMaybeConditional (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10707:23)\n    at Object.parseMaybeAssign (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10670:21)");
 
 /***/ }),
 
-/***/ "./frontend/components/home_feed/home_feed_container.js":
+/***/ "./frontend/components/dashboard/dashboard_container.js":
 /*!**************************************************************!*\
-  !*** ./frontend/components/home_feed/home_feed_container.js ***!
+  !*** ./frontend/components/dashboard/dashboard_container.js ***!
   \**************************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -299,7 +284,7 @@ var HomeFeed = function HomeFeed(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _home_feed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./home_feed */ "./frontend/components/home_feed/home_feed.jsx");
+/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
 
 
 
@@ -319,7 +304,7 @@ var mDTP = function mDTP(dispatch) {
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_home_feed__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
