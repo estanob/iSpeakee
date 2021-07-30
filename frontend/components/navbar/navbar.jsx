@@ -1,6 +1,9 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
-const Navbar = () => {
+const Navbar = (props) => {
+  console.log("Navbar Props")
+  console.log(props)
   return (
     <div className="header-navbar">
       <div className="app-logo">
@@ -16,6 +19,12 @@ const Navbar = () => {
         <a href="https://angel.co/u/brandon-estano">
           AngelList
         </a>
+        <Link to="/login">
+          Login
+        </Link>
+        <Link to="/signup">
+          Sign up
+        </Link>
       </div>
     </div>
   )

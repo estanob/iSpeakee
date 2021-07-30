@@ -87,7 +87,7 @@ class SessionForm extends React.Component {
           }
           <div className="login_form" onClick={this.props.closeModal}>
             <h3>
-              {this.props.formType === 'login' ? 'Log in to 588PX' : 'Join 588PX'}
+              {this.props.formType === 'login' ? 'Log in to iSpeaki' : 'Join iSpeaki'}
             </h3>
             <br />
             {this.props.formType !== 'login' ? 
