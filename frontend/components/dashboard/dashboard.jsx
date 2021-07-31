@@ -11,7 +11,6 @@ const HomeFeed = (props) => {
       </h1>
       <button onClick={logout}>Logout</button>
       <h3>{`ID: ${session}`}</h3>
-      <h2>{`</h2>
     </div>
   )
 };

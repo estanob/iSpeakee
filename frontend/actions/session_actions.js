@@ -7,7 +7,7 @@ export const CLEAR_ERRORS = 'CLEAR_ERRORS';
 
 const demoUser = {
   username: "demo123", 
-  password: "123456"
+  password: "123456",
 };
 
 export const receiveCurrentUser = currentUser => {
@@ -19,7 +19,7 @@ export const receiveCurrentUser = currentUser => {
 
 export const logoutCurrentUser = () => {
   return {
-    type: LOGOUT_CURRENT_USER
+    type: LOGOUT_CURRENT_USER,
   };
 };
 
@@ -32,7 +32,7 @@ export const receiveErrors = errors => {
 
 export const clearErrors = () => {
   return {
-    type: CLEAR_ERRORS
+    type: CLEAR_ERRORS,
   };
 };
 

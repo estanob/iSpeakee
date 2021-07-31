@@ -115,6 +115,54 @@ var closeModal = function closeModal() {
 
 /***/ }),
 
+/***/ "./frontend/actions/profile_actions.js":
+/*!*********************************************!*\
+  !*** ./frontend/actions/profile_actions.js ***!
+  \*********************************************/
+/*! exports provided: RECEIVE_USER, RECEIVE_ALL_USERS, receiveUser, receiveAllUsers, fetchUser, fetchAllUsers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_USER", function() { return RECEIVE_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_USERS", function() { return RECEIVE_ALL_USERS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveUser", function() { return receiveUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllUsers", function() { return receiveAllUsers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllUsers", function() { return fetchAllUsers; });
+/* harmony import */ var _util_profile_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/profile_api_util */ "./frontend/util/profile_api_util.js");
+
+var RECEIVE_USER = 'RECEIVE_USER';
+var RECEIVE_ALL_USERS = 'RECEIVE_ALL_USERS';
+var receiveUser = function receiveUser(user) {
+  return {
+    type: RECEIVE_USER,
+    user: user
+  };
+};
+var receiveAllUsers = function receiveAllUsers(users) {
+  return {
+    type: RECEIVE_ALL_USERS,
+    users: users
+  };
+};
+var fetchUser = function fetchUser(userId) {
+  return function (dispatch) {
+    return _util_profile_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchUser"](userId).then(function (user) {
+      return dispatch(receiveUser(user));
+    });
+  };
+};
+var fetchAllUsers = function fetchAllUsers() {
+  return function (dispatch) {
+    return _util_profile_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllUsers"]().then(function (users) {
+      dispatch(receiveAllUsers(users));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/session_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/session_actions.js ***!
@@ -267,9 +315,25 @@ var App = function App() {
   !*** ./frontend/components/dashboard/dashboard.jsx ***!
   \*****************************************************/
 /*! exports provided: default */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
-throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index.js):\nSyntaxError: /Users/estanob/Desktop/iTalki/iTalki/frontend/components/dashboard/dashboard.jsx: Unterminated template. (14:12)\n\n\u001b[0m \u001b[90m 12 |\u001b[39m       \u001b[33m<\u001b[39m\u001b[33mbutton\u001b[39m onClick\u001b[33m=\u001b[39m{logout}\u001b[33m>\u001b[39m\u001b[33mLogout\u001b[39m\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mbutton\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 13 |\u001b[39m       \u001b[33m<\u001b[39m\u001b[33mh3\u001b[39m\u001b[33m>\u001b[39m{\u001b[32m`ID: ${session}`\u001b[39m}\u001b[33m<\u001b[39m\u001b[33m/\u001b[39m\u001b[33mh3\u001b[39m\u001b[33m>\u001b[39m\u001b[0m\n\u001b[0m\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 14 |\u001b[39m       \u001b[33m<\u001b[39m\u001b[33mh2\u001b[39m\u001b[33m>\u001b[39m{\u001b[32m`</h2>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m    |\u001b[39m             \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 15 |\u001b[39m \u001b[32m    </div>\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 16 |\u001b[39m \u001b[32m  )\u001b[39m\u001b[0m\n\u001b[0m \u001b[90m 17 |\u001b[39m \u001b[32m};\u001b[39m\u001b[0m\n    at Object._raise (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:788:17)\n    at Object.raiseWithData (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:781:17)\n    at Object.raise (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:742:17)\n    at Object.readTmplToken (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:9374:20)\n    at Object.nextToken (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:8462:12)\n    at Object.next (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:8369:10)\n    at Object.parseTemplate (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:11696:10)\n    at Object.parseExprAtom (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:11283:21)\n    at Object.parseExprAtom (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5222:20)\n    at Object.parseExprSubscripts (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10914:23)\n    at Object.parseUpdate (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10894:21)\n    at Object.parseMaybeUnary (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10872:23)\n    at Object.parseExprOps (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10733:23)\n    at Object.parseMaybeConditional (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10707:23)\n    at Object.parseMaybeAssign (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10670:21)\n    at Object.parseExpressionBase (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10610:23)\n    at allowInAnd (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10604:39)\n    at Object.allowInAnd (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:12378:12)\n    at Object.parseExpression (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10604:17)\n    at Object.jsxParseExpressionContainer (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5072:31)\n    at Object.jsxParseElementAt (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5167:36)\n    at Object.jsxParseElementAt (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5152:32)\n    at Object.jsxParseElement (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5210:17)\n    at Object.parseExprAtom (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:5217:19)\n    at Object.parseExprSubscripts (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10914:23)\n    at Object.parseUpdate (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10894:21)\n    at Object.parseMaybeUnary (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10872:23)\n    at Object.parseExprOps (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10733:23)\n    at Object.parseMaybeConditional (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10707:23)\n    at Object.parseMaybeAssign (/Users/estanob/Desktop/iTalki/iTalki/node_modules/@babel/parser/lib/index.js:10670:21)");
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var HomeFeed = function HomeFeed(props) {
+  console.log("Dashboard Props");
+  console.log(props);
+  var logout = props.logout,
+      session = props.session;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: logout
+  }, "Logout"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "ID: ".concat(session)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (HomeFeed);
 
 /***/ }),
 
@@ -283,8 +347,10 @@ throw new Error("Module build failed (from ./node_modules/babel-loader/lib/index
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
+
 
 
 
@@ -292,19 +358,23 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state) {
   debugger;
   return {
-    session: state.session.id
+    session: state.session.id,
+    users: state.entities.users ? Object.values(state.entities.users) : []
   };
 };
 
 var mDTP = function mDTP(dispatch) {
   return {
     logout: function logout() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
+    },
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__["fetchAllUsers"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -753,7 +823,8 @@ document.addEventListener("DOMContentLoaded", function () {
   if (window.currentUser) {
     var preloadedState = {
       entities: {
-        users: _defineProperty({}, window.currentUser.id, window.currentUser)
+        user: _defineProperty({}, window.currentUser.id, window.currentUser) // users: { [window.currentUser.id]: window.currentUser}
+
       },
       session: {
         id: window.currentUser.id
@@ -783,10 +854,13 @@ document.addEventListener("DOMContentLoaded", function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! redux */ "./node_modules/redux/es/redux.js");
 /* harmony import */ var _users_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./users_reducer */ "./frontend/reducers/users_reducer.js");
+/* harmony import */ var _profile_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_reducer */ "./frontend/reducers/profile_reducer.js");
+
 
 
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
-  users: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"]
+  user: _users_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
+  users: _profile_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -842,6 +916,43 @@ __webpack_require__.r(__webpack_exports__);
       return state;
   }
 });
+
+/***/ }),
+
+/***/ "./frontend/reducers/profile_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/profile_reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+
+
+var ProfileReducer = function ProfileReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var newState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_profile_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER"]:
+      debugger;
+      return action.user;
+
+    case _actions_profile_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_USERS"]:
+      debugger;
+      newState = Object.assign({}, action.users);
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ProfileReducer);
 
 /***/ }),
 
@@ -922,19 +1033,19 @@ var sessionReducer = function sessionReducer() {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/profile_actions */ "./frontend/actions/profile_actions.js");
 
 
 var UsersReducer = function UsersReducer() {
   var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
   var action = arguments.length > 1 ? arguments[1] : undefined;
   Object.freeze(state);
+  var newState = Object.assign({}, state);
 
   switch (action.type) {
-    case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      return Object.assign({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
+    case _actions_profile_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_USERS"]:
+      newState = Object.assign({}, action.users);
+      return newState;
 
     default:
       return state;
@@ -977,6 +1088,33 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/profile_api_util.js":
+/*!*******************************************!*\
+  !*** ./frontend/util/profile_api_util.js ***!
+  \*******************************************/
+/*! exports provided: fetchUser, fetchAllUsers */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUser", function() { return fetchUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchAllUsers", function() { return fetchAllUsers; });
+var fetchUser = function fetchUser(userId) {
+  return $.ajax({
+    url: "/api/users/".concat(userId),
+    method: 'GET'
+  });
+};
+var fetchAllUsers = function fetchAllUsers() {
+  debugger;
+  return $.ajax({
+    url: "/api/users",
+    method: 'GET'
+  });
+};
 
 /***/ }),
 
