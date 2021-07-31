@@ -1,5 +1,4 @@
 import * as ProfileAPIUtil from '../util/profile_api_util';
-
 export const RECEIVE_USER = 'RECEIVE_USER';
 export const RECEIVE_ALL_USERS = 'RECEIVE_ALL_USERS';
 
@@ -23,6 +22,7 @@ export const fetchUser = userId => dispatch => {
 };
 
 export const fetchAllUsers = () => dispatch => {
+  debugger
   return ProfileAPIUtil.fetchAllUsers()
     .then(users => {
       dispatch(receiveAllUsers(users))
