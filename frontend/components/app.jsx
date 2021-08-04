@@ -24,8 +24,8 @@ const App = () => {
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
 
-        <Route path='/404' />
-        <Redirect to="/404" />
+        {/* <Route path='/404' />
+        <Redirect to="/404" /> */}
       </Switch>
     </div>
   );

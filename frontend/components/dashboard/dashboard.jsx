@@ -3,7 +3,8 @@ import React from 'react';
 const Dashboard = (props) => {
   console.log("Dashboard Props")
   console.log(props)
-  const { logout, session, currentUser } = props;
+  let { logout, session, currentUser } = props;
+  currentUser = currentUser ? currentUser : {};
   return (
     <div>
       <h1>
