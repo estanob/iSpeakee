@@ -53,3 +53,11 @@ language3 = Language.create!(
 language4 = Language.create!(
   name: "Chinese (Cantonese)"
 )
+
+language5 = Language.create!(
+  name: "Chinese (Taiwanese)"
+)
+
+language6 = Language.create!(
+  name: "English"
+)

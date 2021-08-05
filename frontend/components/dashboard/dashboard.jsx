@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Dashboard = (props) => {
   console.log("Dashboard Props")
@@ -20,6 +21,9 @@ const Dashboard = (props) => {
         <div className="class-info">
           <h1>Upcoming Classes</h1>
           <h1>Teachers</h1>
+          <Link to="/languages">
+            Languages
+          </Link>
         </div>
       </div>
     </div>

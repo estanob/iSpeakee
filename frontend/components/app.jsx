@@ -10,6 +10,7 @@ import DashboardContainer from './dashboard/dashboard_container';
 import Splash from '../components/splash';
 import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/sign_up_form_container';
+import LanguageIndexContainer from './languages/index/language_index_container';
 
 const App = () => {
   return (
@@ -19,6 +20,8 @@ const App = () => {
       </header>
       <Switch>
         <ProtectedRoute path='/dashboard' component={DashboardContainer} />
+        {/* <ProtectedRoute path="/languages/:id" component={LanguageShowContainer} /> */}
+        <ProtectedRoute path="/languages" component={LanguageIndexContainer} />
         
         <AuthRoute exact path="/" component={Splash} />
         <AuthRoute path="/login" component={LoginFormContainer} />

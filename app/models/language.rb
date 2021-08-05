@@ -19,4 +19,6 @@ class Language < ApplicationRecord
   # has_many :language_teachers
 
   # has_many :language_students
+
+  # has_many :countries
 end
