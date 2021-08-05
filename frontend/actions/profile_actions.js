@@ -22,7 +22,6 @@ export const fetchUser = userId => dispatch => {
 };
 
 export const fetchAllUsers = () => dispatch => {
-  debugger
   return ProfileAPIUtil.fetchAllUsers()
     .then(users => {
       dispatch(receiveAllUsers(users))

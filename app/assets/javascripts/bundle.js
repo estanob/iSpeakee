@@ -155,7 +155,6 @@ var fetchUser = function fetchUser(userId) {
 };
 var fetchAllUsers = function fetchAllUsers() {
   return function (dispatch) {
-    debugger;
     return _util_profile_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchAllUsers"]().then(function (users) {
       dispatch(receiveAllUsers(users));
     });
@@ -352,38 +351,30 @@ var Dashboard = function Dashboard(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
-
+/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
+/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
 
 
 
 
 var mSTP = function mSTP(state) {
-  debugger;
   var session = state.session.id ? state.session.id : '';
-  var currentUser = session ? state.entities.user[session] : {};
-  debugger;
+  var currentUser = state.session.id && state.entities.user ? state.entities.user[state.session.id] : {};
   return {
     session: session,
-    currentUser: currentUser,
-    users: state.entities.users ? Object.values(state.entities.users) : []
+    currentUser: currentUser
   };
 };
 
 var mDTP = function mDTP(dispatch) {
   return {
     logout: function logout() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_2__["logout"])());
-    },
-    fetchAllUsers: function fetchAllUsers() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__["fetchAllUsers"])());
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -427,7 +418,9 @@ var Navbar = function Navbar(props) {
     className: "header-navbar"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "app-logo"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "iSpeaki 14 years")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
+    to: "/"
+  }, "iSpeaki 14 years"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-links"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "https://github.com/estanob"
@@ -878,7 +871,6 @@ document.addEventListener("DOMContentLoaded", function () {
   var store;
 
   if (window.currentUser) {
-    debugger;
     var preloadedState = {
       entities: {
         user: _defineProperty({}, window.currentUser.id, window.currentUser) // users: { [window.currentUser.id]: window.currentUser}
@@ -997,11 +989,9 @@ var ProfileReducer = function ProfileReducer() {
 
   switch (action.type) {
     case _actions_profile_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_USER"]:
-      debugger;
       return action.user;
 
     case _actions_profile_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_USERS"]:
-      debugger;
       newState = Object.assign({}, action.users);
       return newState;
 
@@ -1167,7 +1157,6 @@ var fetchUser = function fetchUser(userId) {
   });
 };
 var fetchAllUsers = function fetchAllUsers() {
-  debugger;
   return $.ajax({
     url: "/api/users",
     method: 'GET'
@@ -1251,7 +1240,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "logout", function() { return logout; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "signup", function() { return signup; });
 var login = function login(user) {
-  debugger;
   return $.ajax({
     method: 'POST',
     url: '/api/session',
@@ -1267,7 +1255,6 @@ var logout = function logout() {
   });
 };
 var signup = function signup(user) {
-  debugger;
   return $.ajax({
     method: 'POST',
     url: '/api/users',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 
 const Navbar = (props) => {
   console.log("Navbar Props")
@@ -33,7 +33,11 @@ const Navbar = (props) => {
   return (
     <div className="header-navbar">
       <div className="app-logo">
-        <h3>iSpeaki 14 years</h3>
+        <h3>
+          <NavLink to="/">
+            iSpeaki 14 years
+          </NavLink>
+        </h3>
       </div>
       <div className="navbar-links">
         <a href="https://github.com/estanob">

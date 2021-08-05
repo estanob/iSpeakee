@@ -9,6 +9,7 @@
 require 'open-uri'
 
 User.destroy_all
+Language.destroy_all
 
 user1 = User.create!(
   first_name: "Brandon",
@@ -36,4 +37,19 @@ user4 = User.create!(
   last_name: "User",
   username: "demo123",
   password: "123456"
+)
+
+language1 = Language.create!(
+  name: "Italian"
+)
+
+language2 = Language.create!(
+  name: "Spanish"
+)
+language3 = Language.create!(
+  name: "Chinese (Mandarin)"
+)
+
+language4 = Language.create!(
+  name: "Chinese (Cantonese)"
 )
