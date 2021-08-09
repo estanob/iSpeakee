@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { logout } from '../../actions/session_actions';
-import { fetchAllUsers } from '../../actions/profile_actions';
+import { fetchUser, fetchAllUsers } from '../../actions/profile_actions';
 import Dashboard from './dashboard';
 
 const mSTP = (state) => {
@@ -14,9 +14,10 @@ const mSTP = (state) => {
   };
 };
 
-const mDTP = dispatch => {
+const mDTP = (dispatch, ownProps) => {
   return {
     logout: () => dispatch(logout()),
+    fetchUser: () => dispatch(fetchUser(parseInt(ownProps.match.params.id))),
     fetchAllUsers: () => dispatch(fetchAllUsers())
   }
 }

@@ -142,6 +142,73 @@ var createLanguage = function createLanguage(language) {
 
 /***/ }),
 
+/***/ "./frontend/actions/language_to_student_actions.js":
+/*!*********************************************************!*\
+  !*** ./frontend/actions/language_to_student_actions.js ***!
+  \*********************************************************/
+/*! exports provided: RECEIVE_ALL_LANGUAGE_TO_STUDENTS, RECEIVE_LANGUAGE_TO_STUDENT, REMOVE_LANGUAGE_TO_STUDENT, receiveAllLanguageToStudents, receiveLanguageToStudent, removeLanguageToStudent, fetchLanguageToStudents, createLanguageToStudent, deleteLanguageToStudent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_LANGUAGE_TO_STUDENTS", function() { return RECEIVE_ALL_LANGUAGE_TO_STUDENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LANGUAGE_TO_STUDENT", function() { return RECEIVE_LANGUAGE_TO_STUDENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_LANGUAGE_TO_STUDENT", function() { return REMOVE_LANGUAGE_TO_STUDENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllLanguageToStudents", function() { return receiveAllLanguageToStudents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveLanguageToStudent", function() { return receiveLanguageToStudent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeLanguageToStudent", function() { return removeLanguageToStudent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLanguageToStudents", function() { return fetchLanguageToStudents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLanguageToStudent", function() { return createLanguageToStudent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLanguageToStudent", function() { return deleteLanguageToStudent; });
+/* harmony import */ var _util_language_to_student_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/language_to_student_api_util */ "./frontend/util/language_to_student_api_util.js");
+/* harmony import */ var _language_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./language_actions */ "./frontend/actions/language_actions.js");
+
+
+var RECEIVE_ALL_LANGUAGE_TO_STUDENTS = 'RECEIVE_ALL_LANGUAGE_TO_STUDENTS';
+var RECEIVE_LANGUAGE_TO_STUDENT = 'RECEIVE_LANGUAGE_TO_STUDENT';
+var REMOVE_LANGUAGE_TO_STUDENT = 'REMOVE_LANGUAGE_TO_STUDENT';
+var receiveAllLanguageToStudents = function receiveAllLanguageToStudents(languageToStudents) {
+  return {
+    type: RECEIVE_ALL_LANGUAGE_TO_STUDENTS,
+    languageToStudents: languageToStudents
+  };
+};
+var receiveLanguageToStudent = function receiveLanguageToStudent(languageToStudent) {
+  return {
+    type: RECEIVE_LANGUAGE_TO_STUDENT,
+    languageToStudent: languageToStudent
+  };
+};
+var removeLanguageToStudent = function removeLanguageToStudent(languageToStudent) {
+  return {
+    type: REMOVE_LANGUAGE_TO_STUDENT,
+    languageToStudent: languageToStudent
+  };
+};
+var fetchLanguageToStudents = function fetchLanguageToStudents() {
+  return function (dispatch) {
+    return _util_language_to_student_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchLanguageToStudents"]().then(function (languageToStudents) {
+      dispatch(receiveAllLanguageToStudents(languageToStudents));
+    });
+  };
+};
+var createLanguageToStudent = function createLanguageToStudent(languageToStudent) {
+  return function (dispatch) {
+    return _util_language_to_student_api_util__WEBPACK_IMPORTED_MODULE_0__["createLanguageToStudent"](languageToStudent).then(function (newLanguageToStudent) {
+      dispatch(receiveLanguageToStudent(newLanguageToStudent));
+    });
+  };
+};
+var deleteLanguageToStudent = function deleteLanguageToStudent(languageToStudent) {
+  return function (dispatch) {
+    return _util_language_to_student_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteLanguageToStudent"](languageToStudent).then(function () {
+      dispatch(removeLanguageToStudent(languageToStudent));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -332,6 +399,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_form_sign_up_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./session_form/sign_up_form_container */ "./frontend/components/session_form/sign_up_form_container.js");
 /* harmony import */ var _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./languages/index/language_index_container */ "./frontend/components/languages/index/language_index_container.js");
 /* harmony import */ var _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./languages/show/language_show_page_container */ "./frontend/components/languages/show/language_show_page_container.js");
+/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+
 
 
 
@@ -355,6 +424,9 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/languages",
     component: _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    path: "/user/:id",
+    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     exact: true,
     path: "/",
@@ -384,6 +456,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+
 
 
 
@@ -394,10 +468,12 @@ var Dashboard = function Dashboard(props) {
       logout = props.logout,
       session = props.session,
       currentUser = props.currentUser,
+      fetchUser = props.fetchUser,
       fetchAllUsers = props.fetchAllUsers;
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetchUser();
     fetchAllUsers();
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
@@ -448,10 +524,13 @@ var mSTP = function mSTP(state) {
   };
 };
 
-var mDTP = function mDTP(dispatch) {
+var mDTP = function mDTP(dispatch, ownProps) {
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
+    },
+    fetchUser: function fetchUser() {
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(parseInt(ownProps.match.params.id)));
     },
     fetchAllUsers: function fetchAllUsers() {
       return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllUsers"])());
@@ -720,6 +799,100 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_navbar__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profile.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/profile/profile.jsx ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var Profile = function Profile(props) {
+  console.log("Profile Page Props");
+  console.log(props);
+  var currentUser = props.currentUser,
+      languageToStudents = props.languageToStudents,
+      fetchLanguageToStudents = props.fetchLanguageToStudents,
+      fetchUser = props.fetchUser;
+  currentUser = currentUser ? currentUser : {};
+  languageToStudents = languageToStudents ? languageToStudents : [];
+  var studiedLanguages = currentUser.languagesLearning.map(function (language, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: i
+    }, "".concat(language.name));
+  });
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetchUser();
+    fetchLanguageToStudents();
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "own-profile"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "basic-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0 Posts 0 Following 0 Followers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "language-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lang-skills"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Language Skills"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, studiedLanguages)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Language Teachers")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Profile);
+
+/***/ }),
+
+/***/ "./frontend/components/profile/profile_container.js":
+/*!**********************************************************!*\
+  !*** ./frontend/components/profile/profile_container.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/language_to_student_actions */ "./frontend/actions/language_to_student_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+
+
+
+
+
+var mSTP = function mSTP(state) {
+  var languages = state.entities.languages ? Object.values(state.entities.languages) : [];
+  var languageToStudents = state.entities.languageToStudents ? Object.values(state.entities.languageToStudents) : [];
+  var currentUser = state.session.id && state.entities.user ? state.entities.user[state.session.id] : {};
+  return {
+    languages: languages,
+    languageToStudents: languageToStudents,
+    currentUser: currentUser
+  };
+};
+
+var mDTP = function mDTP(dispatch, ownProps) {
+  return {
+    fetchUser: function fetchUser() {
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(parseInt(ownProps.match.params.id)));
+    },
+    fetchLanguageToStudents: function fetchLanguageToStudents() {
+      return dispatch(Object(_actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_1__["fetchLanguageToStudents"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -1160,6 +1333,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _user_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./user_reducer */ "./frontend/reducers/user_reducer.js");
 /* harmony import */ var _profile_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_reducer */ "./frontend/reducers/profile_reducer.js");
 /* harmony import */ var _languages_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./languages_reducer */ "./frontend/reducers/languages_reducer.js");
+/* harmony import */ var _language_to_students_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./language_to_students_reducer */ "./frontend/reducers/language_to_students_reducer.js");
+
 
 
 
@@ -1167,7 +1342,8 @@ __webpack_require__.r(__webpack_exports__);
 var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   user: _user_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   users: _profile_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
-  languages: _languages_reducer__WEBPACK_IMPORTED_MODULE_3__["default"]
+  languages: _languages_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
+  languageToStudents: _language_to_students_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -1223,6 +1399,48 @@ __webpack_require__.r(__webpack_exports__);
       return state;
   }
 });
+
+/***/ }),
+
+/***/ "./frontend/reducers/language_to_students_reducer.js":
+/*!***********************************************************!*\
+  !*** ./frontend/reducers/language_to_students_reducer.js ***!
+  \***********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/language_to_student_actions */ "./frontend/actions/language_to_student_actions.js");
+
+
+var LanguageToStudentsReducer = function LanguageToStudentsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_LANGUAGE_TO_STUDENTS"]:
+      nextState = Object.assign({}, action.languageToStudents);
+      return nextState;
+
+    case _actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LANGUAGE_TO_STUDENT"]:
+      nextState[action.languageToStudent.id] = action.languageToStudent;
+      return nextState;
+
+    case _actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LANGUAGE_TO_STUDENT"]:
+      delete nextState[action.languageToStudentId];
+      return nextState;
+
+    default:
+      return state;
+  }
+
+  ;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (LanguageToStudentsReducer);
 
 /***/ }),
 
@@ -1464,6 +1682,50 @@ var createLanguage = function createLanguage(language) {
     url: "/api/languages",
     method: 'POST',
     data: language
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/language_to_student_api_util.js":
+/*!*******************************************************!*\
+  !*** ./frontend/util/language_to_student_api_util.js ***!
+  \*******************************************************/
+/*! exports provided: fetchLanguageToStudents, createLanguageToStudent, deleteLanguageToStudent, fetchLanguageToStudent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLanguageToStudents", function() { return fetchLanguageToStudents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLanguageToStudent", function() { return createLanguageToStudent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLanguageToStudent", function() { return deleteLanguageToStudent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLanguageToStudent", function() { return fetchLanguageToStudent; });
+var fetchLanguageToStudents = function fetchLanguageToStudents() {
+  return $.ajax({
+    url: "/api/language_to_students",
+    method: 'GET'
+  });
+};
+var createLanguageToStudent = function createLanguageToStudent(languageToStudent) {
+  return $.ajax({
+    url: "/api/language_to_students",
+    method: 'POST',
+    data: languageToStudent,
+    contentType: false,
+    processData: false
+  });
+};
+var deleteLanguageToStudent = function deleteLanguageToStudent(languageToStudent) {
+  return $.ajax({
+    url: "/api/language_to_students",
+    method: 'DELETE',
+    data: languageToStudent
+  });
+};
+var fetchLanguageToStudent = function fetchLanguageToStudent(id) {
+  return $.ajax({
+    url: "/api/language_to_students/".concat(id),
+    method: 'GET'
   });
 };
 

@@ -48,4 +48,15 @@ class User < ApplicationRecord
   def ensure_session_token
     self.session_token ||= SecureRandom.base64(64)
   end
+
+  has_many :language_to_students,
+    primary_key: :id,
+    foreign_key: :student_id,
+    class_name: :LanguageToStudent,
+    dependent: :destroy
+    
+  has_many :languages_learning,
+    through: :language_to_students,
+    source: :language,
+    dependent: :destroy
 end

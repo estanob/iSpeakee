@@ -1,14 +1,16 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { fetchUser } from '../../actions/profile_actions';
 
 const Dashboard = (props) => {
   console.log("Dashboard Props")
   console.log(props)
-  let { users, logout, session, currentUser, fetchAllUsers } = props;
+  let { users, logout, session, currentUser, fetchUser, fetchAllUsers } = props;
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
 
   useEffect(() => {
+    fetchUser()
     fetchAllUsers()
   }, []);
 

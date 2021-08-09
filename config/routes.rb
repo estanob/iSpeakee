@@ -6,5 +6,8 @@ Rails.application.routes.draw do
     resources :users, only: [:show, :create, :index]
     resource :session, only: [:create, :destroy]
     resources :languages, only: [:index, :show, :create]
+    resources :language_to_students, only: [:create, :index, :show]
   end
+
+  delete '/language_to_students', to: 'language_to_students#destroy'
 end

@@ -12,6 +12,7 @@ import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/sign_up_form_container';
 import LanguageIndexContainer from './languages/index/language_index_container';
 import LanguageShowContainer from './languages/show/language_show_page_container';
+import ProfileContainer from './profile/profile_container';
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
         <ProtectedRoute path='/dashboard' component={DashboardContainer} />
         <ProtectedRoute path="/languages/:id" component={LanguageShowContainer} />
         <ProtectedRoute path="/languages" component={LanguageIndexContainer} />
+        <ProtectedRoute path='/user/:id' component={ProfileContainer}/>
         
         <AuthRoute exact path="/" component={Splash} />
         <AuthRoute path="/login" component={LoginFormContainer} />
