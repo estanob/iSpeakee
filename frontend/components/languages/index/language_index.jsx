@@ -1,16 +1,33 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
-class LanguageIndex extends React.Component {
-  constructor(props) {
-    super(props)
-  }
+const LanguageIndex = props => {
+  console.log("Language index props:");
+  console.log(props);
 
-  render() {
+  useEffect(() => {
+    return props.fetchLanguages();
+  }, [])
+  
+  return (
     <div className="language-index">
-      <ul className="languages-ul">
-      </ul>
+      <h1>Hello</h1>
+      {/* <ul className="languages-ul">
+      </ul> */}
     </div>
-  }
-};
+  )
+}
+
+// class LanguageIndex extends React.Component {
+//   constructor(props) {
+//     super(props)
+//   }
+
+//   render() {
+//     <div className="language-index">
+//       <ul className="languages-ul">
+//       </ul>
+//     </div>
+//   }
+// };
 
 export default LanguageIndex;

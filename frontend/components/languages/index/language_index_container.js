@@ -3,8 +3,10 @@ import { fetchLanguages } from '../../../actions/language_actions';
 import LanguageIndex from './language_index';
 
 const mSTP = state => {
+  let languages = state.entities.languages ? state.entities.languages : [];
   return {
-    languages: state.entities.languages,
+    languages: languages,
+    session: state.session.id,
   };
 };
 
@@ -14,4 +16,4 @@ const mDTP = dispatch => {
   };
 };
 
-export default connect(mSTP)(mDTP)(LanguageIndex);
+export default connect(mSTP, mDTP)(LanguageIndex);
