@@ -1,0 +1,1 @@
+json.partial! "language_to_student", language_to_student: @language_to_student

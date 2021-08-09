@@ -25,6 +25,13 @@ const Dashboard = (props) => {
           <p>{`0 Posts 0 Following 0 Followers`}</p>
         </div>
         <div className="class-info">
+          <h1>Learning Language</h1>
+          <div className="languages-learning">
+            
+            <h3>
+              Completed Lessons
+            </h3>
+          </div>
           <h1>Upcoming Classes</h1>
           <h1>Teachers</h1>
           <Link to="/languages">

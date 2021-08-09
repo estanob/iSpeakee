@@ -10,6 +10,7 @@ require 'open-uri'
 
 User.destroy_all
 Language.destroy_all
+LanguageToStudent.destroy_all
 
 user1 = User.create!(
   first_name: "Brandon",
@@ -60,4 +61,38 @@ language5 = Language.create!(
 
 language6 = Language.create!(
   name: "English"
+)
+
+language7 = Language.create!(
+  name: "Portuguese"
+)
+
+languageToStudent1 = LanguageToStudent.create!(
+  language_id: language1.id,
+  student_id: user1.id
+)
+
+languageToStudent2 = LanguageToStudent.create!(
+  language_id: language2.id,
+  student_id: user1.id
+)
+
+languageToStudent3 = LanguageToStudent.create!(
+  language_id: language3.id,
+  student_id: user1.id
+)
+
+languageToStudent4 = LanguageToStudent.create!(
+  language_id: language4.id,
+  student_id: user1.id
+)
+
+languageToStudent5 = LanguageToStudent.create!(
+  language_id: language5.id,
+  student_id: user1.id
+)
+
+languageToStudent6 = LanguageToStudent.create!(
+  language_id: language7.id,
+  student_id: user1.id
 )
