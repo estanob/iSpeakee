@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 const LanguageIndex = props => {
   console.log("Language index props:");
@@ -6,7 +7,7 @@ const LanguageIndex = props => {
 
   let { languages, fetchLanguages } = props;
   
-  languages = languages ? languages : [languages];
+  languages = languages ? languages : [];
 
   useEffect(() => {
     fetchLanguages()
@@ -15,7 +16,9 @@ const LanguageIndex = props => {
   const languageList = languages.map((language, i) => {
     return (
       <li key={i}>
-        {language.name}
+        <Link style={{ textDecoration: 'none', color: 'black' }}>
+          {language.name}
+        </Link>
       </li>
     )
   });

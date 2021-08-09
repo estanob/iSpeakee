@@ -385,10 +385,16 @@ __webpack_require__.r(__webpack_exports__);
 var Dashboard = function Dashboard(props) {
   console.log("Dashboard Props");
   console.log(props);
-  var logout = props.logout,
+  var users = props.users,
+      logout = props.logout,
       session = props.session,
-      currentUser = props.currentUser;
+      currentUser = props.currentUser,
+      fetchAllUsers = props.fetchAllUsers;
   currentUser = currentUser ? currentUser : {};
+  users = users ? users : [];
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetchAllUsers();
+  }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: logout
   }, "Logout"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -417,7 +423,9 @@ var Dashboard = function Dashboard(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
+
 
 
 
@@ -425,9 +433,11 @@ __webpack_require__.r(__webpack_exports__);
 var mSTP = function mSTP(state) {
   var session = state.session.id ? state.session.id : '';
   var currentUser = state.session.id && state.entities.user ? state.entities.user[state.session.id] : {};
+  var users = state.entities.users ? Object.values(state.entities.users) : [];
   return {
     session: session,
-    currentUser: currentUser
+    currentUser: currentUser,
+    users: users
   };
 };
 
@@ -435,11 +445,14 @@ var mDTP = function mDTP(dispatch) {
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
+    },
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllUsers"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -454,6 +467,8 @@ var mDTP = function mDTP(dispatch) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 var LanguageIndex = function LanguageIndex(props) {
@@ -461,14 +476,19 @@ var LanguageIndex = function LanguageIndex(props) {
   console.log(props);
   var languages = props.languages,
       fetchLanguages = props.fetchLanguages;
-  languages = languages ? languages : [languages];
+  languages = languages ? languages : [];
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchLanguages();
   }, []);
   var languageList = languages.map(function (language, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: i
-    }, language.name);
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      style: {
+        textDecoration: 'none',
+        color: 'black'
+      }
+    }, language.name));
   });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "language-index"
@@ -1198,15 +1218,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_reducer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./session_reducer */ "./frontend/reducers/session_reducer.js");
 /* harmony import */ var _errors_errors_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./errors/errors_reducer */ "./frontend/reducers/errors/errors_reducer.js");
 /* harmony import */ var _entities_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./entities_reducer */ "./frontend/reducers/entities_reducer.js");
-/* harmony import */ var _languages_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./languages_reducer */ "./frontend/reducers/languages_reducer.js");
-
 
 
 
 
 var RootReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers"])({
   session: _session_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
-  languages: _languages_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
   entities: _entities_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   errors: _errors_errors_reducer__WEBPACK_IMPORTED_MODULE_2__["default"]
 });

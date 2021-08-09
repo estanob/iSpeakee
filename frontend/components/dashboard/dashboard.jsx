@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Dashboard = (props) => {
   console.log("Dashboard Props")
   console.log(props)
-  let { logout, session, currentUser } = props;
+  let { users, logout, session, currentUser, fetchAllUsers } = props;
   currentUser = currentUser ? currentUser : {};
+  users = users ? users : [];
+
+  useEffect(() => {
+    fetchAllUsers()
+  }, []);
+
   return (
     <div>
       <h1>
