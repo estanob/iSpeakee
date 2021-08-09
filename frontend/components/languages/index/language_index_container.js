@@ -3,7 +3,7 @@ import { fetchLanguages } from '../../../actions/language_actions';
 import LanguageIndex from './language_index';
 
 const mSTP = state => {
-  let languages = state.entities.languages ? state.entities.languages : [];
+  let languages = state.entities.languages ? Object.values(state.entities.languages) : [];
   return {
     languages: languages,
     session: state.session.id,

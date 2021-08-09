@@ -459,24 +459,23 @@ __webpack_require__.r(__webpack_exports__);
 var LanguageIndex = function LanguageIndex(props) {
   console.log("Language index props:");
   console.log(props);
+  var languages = props.languages,
+      fetchLanguages = props.fetchLanguages;
+  languages = languages ? languages : [languages];
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    return props.fetchLanguages();
+    fetchLanguages();
   }, []);
+  var languageList = languages.map(function (language, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: i
+    }, language.name);
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "language-index"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"));
-}; // class LanguageIndex extends React.Component {
-//   constructor(props) {
-//     super(props)
-//   }
-//   render() {
-//     <div className="language-index">
-//       <ul className="languages-ul">
-//       </ul>
-//     </div>
-//   }
-// };
-
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Our languages available for study"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "languages-ul"
+  }, languageList));
+};
 
 /* harmony default export */ __webpack_exports__["default"] = (LanguageIndex);
 
@@ -499,7 +498,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var mSTP = function mSTP(state) {
-  var languages = state.entities.languages ? state.entities.languages : [];
+  var languages = state.entities.languages ? Object.values(state.entities.languages) : [];
   return {
     languages: languages,
     session: state.session.id
@@ -1351,7 +1350,8 @@ var fetchLanguage = function fetchLanguage(languageId) {
 var createLanguage = function createLanguage(language) {
   return $.ajax({
     url: "/api/languages",
-    method: 'POST'
+    method: 'POST',
+    data: language
   });
 };
 

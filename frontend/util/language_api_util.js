@@ -16,5 +16,6 @@ export const createLanguage = language => {
   return $.ajax({
     url: `/api/languages`,
     method: 'POST',
+    data: language,
   });
 };
