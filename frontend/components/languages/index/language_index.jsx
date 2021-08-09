@@ -16,7 +16,7 @@ const LanguageIndex = props => {
   const languageList = languages.map((language, i) => {
     return (
       <li key={i}>
-        <Link style={{ textDecoration: 'none', color: 'black' }}>
+        <Link to={`/languages/${language.id}`} style={{ textDecoration: 'none', color: 'black' }}>
           {language.name}
         </Link>
       </li>
