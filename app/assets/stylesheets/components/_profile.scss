@@ -10,14 +10,37 @@
   flex: 1 1;
   flex-direction: row;
   margin: 0 auto;
+  padding-top: 30px;
   padding-bottom: 50px;
   align-items: flex-start;
+  height: 100vh;
+  min-height: 100vh;
 }
 
 .basic-info {
   width: 367px;
   padding: 30px;
+  margin-right: 20px;
   background-color: #fff;
+}
+
+.profile-teachers {
+  margin: 0 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+}
+
+.language-info {
+  background-color: #fff;
+}
+
+.language-info > h2 {
+  font-weight: 300;
+  line-height: 36px;
+  font-size: 23px;
+  text-align: center;
 }
 
 .lang-skills {

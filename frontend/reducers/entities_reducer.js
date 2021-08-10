@@ -3,12 +3,14 @@ import UserReducer from './user_reducer';
 import ProfileReducer from './profile_reducer';
 import LanguagesReducer from './languages_reducer';
 import LanguageToStudentsReducer from './language_to_students_reducer';
+import PostsReducer from './posts_reducer';
 
 const entitiesReducer = combineReducers({
   user: UserReducer,
   users: ProfileReducer,
   languages: LanguagesReducer,
   languageToStudents: LanguageToStudentsReducer,
+  posts: PostsReducer,
 })
 
 export default entitiesReducer;

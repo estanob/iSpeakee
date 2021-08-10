@@ -59,4 +59,9 @@ class User < ApplicationRecord
     through: :language_to_students,
     source: :language,
     dependent: :destroy
+
+  has_many :posts,
+    foreign_key: :creator_id,
+    class_name: :Post,
+    dependent: :destroy
 end

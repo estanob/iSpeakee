@@ -15,7 +15,7 @@ const Dashboard = (props) => {
   }, []);
 
   return (
-    <div>
+    <div style={{ width: '960px', margin: '0 auto' }}>
       <h1>
         Welcome!
       </h1>
@@ -29,13 +29,9 @@ const Dashboard = (props) => {
         <div className="class-info">
           <h1>Learning Language</h1>
           <div className="languages-learning">
-            
-            <h3>
-              Completed Lessons
-            </h3>
+            <h1>Upcoming Lesson</h1>
           </div>
-          <h1>Upcoming Classes</h1>
-          <h1>Teachers</h1>
+          <h1>My Teachers</h1>
           <Link to="/languages">
             Languages
           </Link>

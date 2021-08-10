@@ -11,6 +11,8 @@ require 'open-uri'
 User.destroy_all
 Language.destroy_all
 LanguageToStudent.destroy_all
+Post.destroy_all
+
 
 user1 = User.create!(
   first_name: "Brandon",
@@ -95,4 +97,19 @@ languageToStudent5 = LanguageToStudent.create!(
 languageToStudent6 = LanguageToStudent.create!(
   language_id: language7.id,
   student_id: user1.id
+)
+
+post1 = Post.create!(
+  creator_id: user1.id,
+  body: "哈囉我想要在iSpeaki這邊找一些中文老師。你們也可以跟我學英文"
+)
+
+post2 = Post.create!(
+  creator_id: user1.id,
+  body: 'Qué es la que hay"\n" Yo quiero practicar el español y al mismo tiempo te puedo enseñar el inglés'
+)
+
+post3 = Post.create!(
+  creator_id: user1.id,
+  body: "Ciao a tutti! Voglio praticare l'italiano e vi posso insegnare l'inglese"
 )

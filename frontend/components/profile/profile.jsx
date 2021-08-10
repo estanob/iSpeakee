@@ -5,11 +5,29 @@ const Profile = props => {
   console.log("Profile Page Props")
   console.log(props)
 
-  let { currentUser, languageToStudents, fetchLanguageToStudents, fetchUser } = props;
+  let { 
+    currentUser, 
+    languageToStudents, 
+    fetchLanguageToStudents, 
+    fetchUser, 
+  } = props;
+
   currentUser = currentUser ? currentUser : {};
   languageToStudents = languageToStudents ? languageToStudents : [];
+  let userPosts = currentUser.posts ? currentUser.posts : [];
 
-  const studiedLanguages = currentUser.languagesLearning.map((language, i) => {
+  userPosts = userPosts.map((post, i) => {
+    return (
+      <li key={i}>
+        {`${post.body}`}
+        <br/>
+        <p className="post-creation">{`${post.created_at}`}</p>
+      </li>
+    )
+  });
+
+  let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : {};
+  const studiedLanguages = currentLanguages.map((language, i) => {
     return (
       <li key={i} style={{ marginRight: '10px', marginBottom: '10px' }}>
         {`${language.name}`}
@@ -23,11 +41,17 @@ const Profile = props => {
   }, []);
   
   return (
-    <div className="profile-container">
+    <div className="profile-container" style={{ backgroundColor: '#fafafc' }}>
       <div className="own-profile">
         <div className="basic-info">
-          <h2>{`${currentUser.firstName} ${currentUser.lastName}`}</h2>
-          <p>{`0 Posts 0 Following 0 Followers`}</p>
+          <div className="personal-info">
+            <h2>{`${currentUser.firstName} ${currentUser.lastName}`}</h2>
+            <p>{`0 Posts 0 Following 0 Followers`}</p>
+          </div>
+          <div className="profile-teachers">
+            <p>Teachers</p>
+            <button>See all</button>
+          </div>
         </div>
         <div className="language-info">
           <h2>Profile</h2>
@@ -37,10 +61,17 @@ const Profile = props => {
               {studiedLanguages}
             </ul>
           </div>
+          <div className="posts">
+            <h2>Activity</h2>
+            <ul className="posts-ul">
+              {userPosts}
+            </ul>
+          </div>
         </div>
       </div>
       <footer>
         <h2>Language Teachers</h2>
+        <p>© iSpeaki - 2021</p>
       </footer>
     </div>
   )

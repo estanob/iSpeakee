@@ -238,6 +238,120 @@ var closeModal = function closeModal() {
 
 /***/ }),
 
+/***/ "./frontend/actions/post_actions.js":
+/*!******************************************!*\
+  !*** ./frontend/actions/post_actions.js ***!
+  \******************************************/
+/*! exports provided: RECEIVE_CURRENT_USER, RECEIVE_ALL_POSTS, RECEIVE_POST, REMOVE_POST, RECEIVE_POST_ERRORS, CLEAR_ERRORS, receiveCurrentUser, receiveErrors, clearErrors, fetchPosts, fetchPost, createPost, updatePost, deletePost */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_USER", function() { return RECEIVE_CURRENT_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_POSTS", function() { return RECEIVE_ALL_POSTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_POST", function() { return RECEIVE_POST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_POST", function() { return REMOVE_POST; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_POST_ERRORS", function() { return RECEIVE_POST_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentUser", function() { return receiveCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPost", function() { return fetchPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPost", function() { return createPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePost", function() { return updatePost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePost", function() { return deletePost; });
+/* harmony import */ var _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/post_api_util */ "./frontend/util/post_api_util.js");
+
+var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+var RECEIVE_ALL_POSTS = 'RECEIVE_ALL_POSTS';
+var RECEIVE_POST = 'RECEIVE_POST';
+var REMOVE_POST = 'REMOVE_POST';
+var RECEIVE_POST_ERRORS = 'RECEIVE_POST_ERRORS';
+var CLEAR_ERRORS = 'CLEAR_ERRORS';
+var receiveCurrentUser = function receiveCurrentUser(currentUser) {
+  return {
+    type: RECEIVE_CURRENT_USER,
+    currentUser: currentUser
+  };
+};
+
+var receivePosts = function receivePosts(posts) {
+  return {
+    type: RECEIVE_ALL_POSTS,
+    posts: posts
+  };
+};
+
+var receivePost = function receivePost(post) {
+  return {
+    type: RECEIVE_POST,
+    post: post
+  };
+};
+
+var removePost = function removePost(postId) {
+  return {
+    type: REMOVE_POST,
+    postId: postId
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_POST_ERRORS,
+    errors: errors
+  };
+};
+var clearErrors = function clearErrors() {
+  return {
+    type: CLEAR_ERRORS
+  };
+};
+var fetchPosts = function fetchPosts() {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPosts"]().then(function (posts) {
+      dispatch(receivePosts(posts));
+    });
+  };
+};
+var fetchPost = function fetchPost(postId) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchPost"](postId).then(function (post) {
+      return dispatch(receivePost(post));
+    });
+  };
+};
+var createPost = function createPost(post) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["createPost"](post).then(function (createPost) {
+      dispatch(receivePost(createPost));
+      dispatch(clearErrors());
+    }).fail(function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var updatePost = function updatePost(post) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["updatePost"](post).then(function (updatedPost) {
+      dispatch(receivePost(updatedPost));
+      dispatch(clearErrors());
+    }).fail(function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var deletePost = function deletePost(postId) {
+  return function (dispatch) {
+    return _util_post_api_util__WEBPACK_IMPORTED_MODULE_0__["deletePost"](postId).then(function () {
+      return dispatch(removePost(postId));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/profile_actions.js":
 /*!*********************************************!*\
   !*** ./frontend/actions/profile_actions.js ***!
@@ -476,7 +590,12 @@ var Dashboard = function Dashboard(props) {
     fetchUser();
     fetchAllUsers();
   }, []);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      width: '960px',
+      margin: '0 auto'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: logout
   }, "Logout"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "user-dashboard"
@@ -486,7 +605,7 @@ var Dashboard = function Dashboard(props) {
     className: "class-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Learning Language"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "languages-learning"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "Completed Lessons")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming Classes"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming Lesson")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/languages"
   }, "Languages"))));
 };
@@ -826,7 +945,16 @@ var Profile = function Profile(props) {
       fetchUser = props.fetchUser;
   currentUser = currentUser ? currentUser : {};
   languageToStudents = languageToStudents ? languageToStudents : [];
-  var studiedLanguages = currentUser.languagesLearning.map(function (language, i) {
+  var userPosts = currentUser.posts ? currentUser.posts : [];
+  userPosts = userPosts.map(function (post, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: i
+    }, "".concat(post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+      className: "post-creation"
+    }, "".concat(post.created_at)));
+  });
+  var currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : {};
+  var studiedLanguages = currentLanguages.map(function (language, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: i,
       style: {
@@ -840,12 +968,19 @@ var Profile = function Profile(props) {
     fetchLanguageToStudents();
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "profile-container"
+    className: "profile-container",
+    style: {
+      backgroundColor: '#fafafc'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "own-profile"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "basic-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "personal-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0 Posts 0 Following 0 Followers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "profile-teachers"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "See all"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "language-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lang-skills",
@@ -854,7 +989,11 @@ var Profile = function Profile(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Language Skills"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "lang-skills-ul"
-  }, studiedLanguages)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Language Teachers")));
+  }, studiedLanguages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "posts"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Activity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "posts-ul"
+  }, userPosts)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Language Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xA9 iSpeaki - 2021")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Profile);
@@ -1343,6 +1482,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_reducer */ "./frontend/reducers/profile_reducer.js");
 /* harmony import */ var _languages_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./languages_reducer */ "./frontend/reducers/languages_reducer.js");
 /* harmony import */ var _language_to_students_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./language_to_students_reducer */ "./frontend/reducers/language_to_students_reducer.js");
+/* harmony import */ var _posts_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./posts_reducer */ "./frontend/reducers/posts_reducer.js");
+
 
 
 
@@ -1352,7 +1493,8 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
   user: _user_reducer__WEBPACK_IMPORTED_MODULE_1__["default"],
   users: _profile_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   languages: _languages_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
-  languageToStudents: _language_to_students_reducer__WEBPACK_IMPORTED_MODULE_4__["default"]
+  languageToStudents: _language_to_students_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -1489,6 +1631,46 @@ var LanguagesReducer = function LanguagesReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LanguagesReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/posts_reducer.js":
+/*!********************************************!*\
+  !*** ./frontend/reducers/posts_reducer.js ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/post_actions */ "./frontend/actions/post_actions.js");
+
+
+var PostsReducer = function PostsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_POSTS"]:
+      nextState = Object.assign({}, action.posts);
+      return action.posts;
+
+    case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_POST"]:
+      nextState[action.post.id] = action.post;
+      return nextState;
+
+    case _actions_post_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_POST"]:
+      delete nextState[action.postId];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PostsReducer);
 
 /***/ }),
 
@@ -1735,6 +1917,59 @@ var fetchLanguageToStudent = function fetchLanguageToStudent(id) {
   return $.ajax({
     url: "/api/language_to_students/".concat(id),
     method: 'GET'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/post_api_util.js":
+/*!****************************************!*\
+  !*** ./frontend/util/post_api_util.js ***!
+  \****************************************/
+/*! exports provided: fetchPosts, fetchPost, createPost, updatePost, deletePost */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPosts", function() { return fetchPosts; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchPost", function() { return fetchPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createPost", function() { return createPost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updatePost", function() { return updatePost; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deletePost", function() { return deletePost; });
+var fetchPosts = function fetchPosts() {
+  return $.ajax({
+    url: '/api/posts',
+    method: 'GET'
+  });
+};
+var fetchPost = function fetchPost(postId) {
+  return $.ajax({
+    url: "/api/posts/".concat(postId),
+    method: 'GET'
+  });
+};
+var createPost = function createPost(post) {
+  return $.ajax({
+    url: "/api/posts",
+    method: 'POST',
+    data: post,
+    contentType: false,
+    processData: false
+  });
+};
+var updatePost = function updatePost(post) {
+  return $.ajax({
+    url: "/api/posts/".concat(post.id),
+    method: 'PATCH',
+    data: post,
+    contentType: false,
+    processData: false
+  });
+};
+var deletePost = function deletePost(postId) {
+  return $.ajax({
+    url: "/api/posts/".concat(postId),
+    method: 'DELETE'
   });
 };
 
