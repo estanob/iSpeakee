@@ -11,7 +11,7 @@ const Profile = props => {
 
   const studiedLanguages = currentUser.languagesLearning.map((language, i) => {
     return (
-      <li key={i}>
+      <li key={i} style={{ marginRight: '10px', marginBottom: '10px' }}>
         {`${language.name}`}
       </li>
     )
@@ -31,9 +31,11 @@ const Profile = props => {
         </div>
         <div className="language-info">
           <h2>Profile</h2>
-          <div className="lang-skills">
+          <div className="lang-skills" style={{ display: 'flex' }}>
             <h2>Language Skills</h2>
-            <ul>{studiedLanguages}</ul>
+            <ul className="lang-skills-ul">
+              {studiedLanguages}
+            </ul>
           </div>
         </div>
       </div>

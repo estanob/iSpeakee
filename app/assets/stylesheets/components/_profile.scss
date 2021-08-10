@@ -9,8 +9,25 @@
   position: relative;
   flex: 1 1;
   flex-direction: row;
+  margin: 0 auto;
+  padding-bottom: 50px;
+  align-items: flex-start;
+}
+
+.basic-info {
+  width: 367px;
+  padding: 30px;
+  background-color: #fff;
 }
 
 .lang-skills {
   display: flex;
+}
+
+.lang-skills-ul {
+  display: flex; 
+  flex-direction: row; 
+  justify-content: flex-start; 
+  align-items: center; 
+  flex-wrap: wrap 
 }
