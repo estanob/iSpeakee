@@ -1,5 +1,34 @@
 .user-dashboard {
   display: flex;
+  width: 1140px;
+  justify-content: center;
+  position: relative;
+  flex: 1 1;
+  flex-direction: row;
+  margin: 0 auto;
+  padding-top: 30px;
+  padding-bottom: 50px;
+  align-items: flex-start;
+  height: 100vh;
+  min-height: 100vh;
+}
+
+.acct-info {
+  max-width: 37.5%;
+  padding: 0 12px;
+}
+
+.lang-skills {
+  display: block;
+  max-width: 62.5%;
+}
+
+.skill-lesson-box {
+  display: flex;
+}
+
+.skill {
+  display: block;
 }
 
 .languages-learning {

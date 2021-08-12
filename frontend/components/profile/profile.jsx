@@ -21,7 +21,7 @@ const Profile = props => {
       <li key={i}>
         {`${post.body}`}
         <br/>
-        <p className="post-creation">{`${post.created_at}`}</p>
+        <Link to={`/post/${post.id}`} className="post-creation">{`${post.created_at}`}</Link>
       </li>
     )
   });
@@ -46,7 +46,7 @@ const Profile = props => {
         <div className="basic-info">
           <div className="personal-info">
             <h2>{`${currentUser.firstName} ${currentUser.lastName}`}</h2>
-            <p>{`0 Posts 0 Following 0 Followers`}</p>
+            <p>{`${userPosts.length} Posts 0 Following 0 Followers`}</p>
           </div>
           <div className="profile-teachers">
             <p>Teachers</p>

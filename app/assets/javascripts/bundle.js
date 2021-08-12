@@ -513,7 +513,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _session_form_sign_up_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./session_form/sign_up_form_container */ "./frontend/components/session_form/sign_up_form_container.js");
 /* harmony import */ var _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./languages/index/language_index_container */ "./frontend/components/languages/index/language_index_container.js");
 /* harmony import */ var _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./languages/show/language_show_page_container */ "./frontend/components/languages/show/language_show_page_container.js");
-/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+/* harmony import */ var _posts_post_show_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./posts/post_show_container */ "./frontend/components/posts/post_show_container.js");
+/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+
 
 
 
@@ -527,7 +529,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var App = function App() {
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'grid'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
     className: "inner-header"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_navbar_navbar_container__WEBPACK_IMPORTED_MODULE_3__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Switch"], null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/dashboard",
@@ -539,8 +545,11 @@ var App = function App() {
     path: "/languages",
     component: _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_8__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    path: "/post/:id",
+    component: _posts_post_show_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/user/:id",
-    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     exact: true,
     path: "/",
@@ -570,8 +579,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
-/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
-
 
 
 
@@ -584,26 +591,45 @@ var Dashboard = function Dashboard(props) {
       currentUser = props.currentUser,
       fetchUser = props.fetchUser,
       fetchAllUsers = props.fetchAllUsers;
+  session = session ? session : '';
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchAllUsers();
   }, []);
+  var currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : {};
+  var studiedLanguages = currentLanguages.map(function (language, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+      key: i,
+      style: {
+        marginRight: '10px',
+        marginBottom: '10px'
+      }
+    }, "".concat(language.name));
+  });
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       width: '960px',
       margin: '0 auto'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: logout
-  }, "Logout"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "user-dashboard"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "acct-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "ID: ".concat(session)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0 Posts 0 Following 0 Followers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "class-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Learning Language"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "ID: ".concat(session)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/user/".concat(session)
+  }, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(currentUser.posts.length, " Posts 0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "study-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lang-skills"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "skill-lesson-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "skill"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Learning Language"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "lang-skills-ul"
+  }, studiedLanguages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0 Completed Lessons"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "languages-learning"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming Lesson")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/languages"
@@ -921,6 +947,76 @@ var mDTP = function mDTP(dispatch) {
 
 /***/ }),
 
+/***/ "./frontend/components/posts/post_show.jsx":
+/*!*************************************************!*\
+  !*** ./frontend/components/posts/post_show.jsx ***!
+  \*************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var PostShow = function PostShow(props) {
+  console.log("Post Show Props");
+  console.log(props);
+  var post = props.post,
+      fetchPost = props.fetchPost;
+  post = post ? post : {};
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetchPost();
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "post-show-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(post.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "post-creation"
+  }, "".concat(post.created_at)));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PostShow);
+
+/***/ }),
+
+/***/ "./frontend/components/posts/post_show_container.js":
+/*!**********************************************************!*\
+  !*** ./frontend/components/posts/post_show_container.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/post_actions */ "./frontend/actions/post_actions.js");
+/* harmony import */ var _post_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./post_show */ "./frontend/components/posts/post_show.jsx");
+
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  var session = state.session.id ? state.session.id : '';
+  var post = state.entities.posts ? state.entities.posts[ownProps.match.params.id] : {};
+  return {
+    session: session,
+    post: post
+  };
+};
+
+var mDTP = function mDTP(dispatch, ownProps) {
+  return {
+    fetchPost: function fetchPost() {
+      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_1__["fetchPost"])(parseInt(ownProps.match.params.id)));
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_post_show__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/profile/profile.jsx":
 /*!*************************************************!*\
   !*** ./frontend/components/profile/profile.jsx ***!
@@ -949,7 +1045,8 @@ var Profile = function Profile(props) {
   userPosts = userPosts.map(function (post, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
       key: i
-    }, "".concat(post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    }, "".concat(post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/post/".concat(post.id),
       className: "post-creation"
     }, "".concat(post.created_at)));
   });
@@ -978,7 +1075,7 @@ var Profile = function Profile(props) {
     className: "basic-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "personal-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0 Posts 0 Following 0 Followers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(userPosts.length, " Posts 0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-teachers"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "See all"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "language-info"

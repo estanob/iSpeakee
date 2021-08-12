@@ -54,3 +54,14 @@
   align-items: center; 
   flex-wrap: wrap 
 }
+
+.posts > h2 {
+  font-weight: 300;
+  line-height: 36px;
+  font-size: 23px;
+  text-align: center;
+}
+
+.posts-ul {
+  justify-content: center;
+}
