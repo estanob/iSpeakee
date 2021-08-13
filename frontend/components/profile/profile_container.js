@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { fetchLanguages } from '../../actions/language_actions';
 import { fetchLanguageToStudents } from '../../actions/language_to_student_actions';
 import { fetchUser } from '../../actions/profile_actions';
 import Profile from './profile';
@@ -18,6 +19,7 @@ const mDTP = (dispatch, ownProps) => {
   return {
     fetchUser: () => dispatch(fetchUser(parseInt(ownProps.match.params.id))),
     fetchLanguageToStudents: () => dispatch(fetchLanguageToStudents()),
+    fetchLanguages: () => dispatch(fetchLanguages()),
   };
 };
 

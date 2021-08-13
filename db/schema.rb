@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_13_003049) do
+ActiveRecord::Schema.define(version: 2021_08_13_173218) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -20,9 +20,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_003049) do
     t.integer "followee_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["followee_id"], name: "index_follows_on_followee_id", unique: true
     t.index ["follower_id", "followee_id"], name: "index_follows_on_follower_id_and_followee_id", unique: true
-    t.index ["follower_id"], name: "index_follows_on_follower_id", unique: true
   end
 
   create_table "language_to_students", force: :cascade do |t|
@@ -30,6 +28,7 @@ ActiveRecord::Schema.define(version: 2021_08_13_003049) do
     t.integer "language_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "level", null: false
     t.index ["language_id", "student_id"], name: "index_language_to_students_on_language_id_and_student_id", unique: true
   end
 

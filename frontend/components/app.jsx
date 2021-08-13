@@ -26,7 +26,6 @@ const App = () => {
         <ProtectedRoute path="/languages/:id" component={LanguageShowContainer} />
         <ProtectedRoute path="/languages" component={LanguageIndexContainer} />
         <ProtectedRoute path="/post/:id" component={PostShowContainer} />
-        <ProtectedRoute path=""/>
         <ProtectedRoute path='/user/:id' component={ProfileContainer}/>
         
         <AuthRoute exact path="/" component={Splash} />
@@ -36,6 +35,11 @@ const App = () => {
         {/* <Route path='/404' />
         <Redirect to="/404" /> */}
       </Switch>
+      <footer>
+        © iSpeaki - 2021
+        <br />
+        Inspired by iTalki
+      </footer>
     </div>
   );
 };

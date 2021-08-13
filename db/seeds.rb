@@ -70,34 +70,70 @@ language7 = Language.create!(
   name: "Portuguese"
 )
 
+language8 = Language.create!(
+  name: "Japanese"
+)
+
+language9 = Language.create!(
+  name: "Filipino (Cebuano)"
+)
+
+language10 = Language.create!(
+  name: "Filipino (Tagalog)"
+)
+
 languageToStudent1 = LanguageToStudent.create!(
   language_id: language1.id,
-  student_id: user1.id
+  student_id: user1.id,
+  level: 2
 )
 
 languageToStudent2 = LanguageToStudent.create!(
   language_id: language2.id,
-  student_id: user1.id
+  student_id: user1.id,
+  level: 4
 )
 
 languageToStudent3 = LanguageToStudent.create!(
   language_id: language3.id,
-  student_id: user1.id
+  student_id: user1.id,
+  level: 4
 )
 
 languageToStudent4 = LanguageToStudent.create!(
   language_id: language4.id,
-  student_id: user1.id
+  student_id: user1.id,
+  level: 2
 )
 
 languageToStudent5 = LanguageToStudent.create!(
   language_id: language5.id,
-  student_id: user1.id
+  student_id: user1.id,
+  level: 1
 )
 
 languageToStudent6 = LanguageToStudent.create!(
   language_id: language7.id,
-  student_id: user1.id
+  student_id: user1.id,
+  level: 1
+)
+
+languageToStudent7 = LanguageToStudent.create!(
+  language_id: language8.id,
+  student_id: user1.id,
+  level: 2
+)
+
+languageToStudent8 = LanguageToStudent.create!(
+  language_id: language9.id,
+  student_id: user1.id,
+  level: 3
+)
+
+languageToStudent9 = LanguageToStudent.create!(
+  language_id: language10.id,
+  student_id: user1.id,
+  level: 3
 )
 
 post1 = Post.create!(

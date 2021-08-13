@@ -12,6 +12,7 @@ const Splash = () => {
       </div>
       <footer>
         © iSpeaki - 2021
+        <br />
         Inspired by iTalki
       </footer>
     </div>

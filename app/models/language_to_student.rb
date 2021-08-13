@@ -3,6 +3,7 @@
 # Table name: language_to_students
 #
 #  id          :bigint           not null, primary key
+#  level       :integer          not null
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
 #  language_id :integer          not null

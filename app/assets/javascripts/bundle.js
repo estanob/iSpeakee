@@ -86,6 +86,80 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/follow_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/follow_actions.js ***!
+  \********************************************/
+/*! exports provided: RECEIVE_ALL_FOLLOWS, RECEIVE_FOLLOW, REMOVE_FOLLOW, fetchFollow, fetchFollows, createFollow, deleteFollow */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_FOLLOWS", function() { return RECEIVE_ALL_FOLLOWS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_FOLLOW", function() { return RECEIVE_FOLLOW; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_FOLLOW", function() { return REMOVE_FOLLOW; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFollow", function() { return fetchFollow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFollows", function() { return fetchFollows; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFollow", function() { return createFollow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFollow", function() { return deleteFollow; });
+/* harmony import */ var _util_follow_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/follow_api_util */ "./frontend/util/follow_api_util.js");
+
+var RECEIVE_ALL_FOLLOWS = 'RECEIVE_ALL_FOLLOWS';
+var RECEIVE_FOLLOW = 'RECEIVE_FOLLOW';
+var REMOVE_FOLLOW = 'REMOVE_FOLLOW';
+
+var receiveFollows = function receiveFollows(follows) {
+  return {
+    type: RECEIVE_ALL_FOLLOWS,
+    follows: follows
+  };
+};
+
+var receiveFollow = function receiveFollow(follow) {
+  return {
+    type: RECEIVE_FOLLOW,
+    follow: follow
+  };
+};
+
+var removeFollow = function removeFollow(follow) {
+  return {
+    type: REMOVE_FOLLOW,
+    follow: follow
+  };
+};
+
+var fetchFollow = function fetchFollow(followId) {
+  return function (dispatch) {
+    return _util_follow_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchFollow"](followId).then(function (follow) {
+      dispatch(receiveFollow(follow));
+    });
+  };
+};
+var fetchFollows = function fetchFollows() {
+  return function (dispatch) {
+    return _util_follow_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchFollows"]().then(function (follows) {
+      dispatch(receiveFollows(follows));
+    });
+  };
+};
+var createFollow = function createFollow(follow) {
+  return function (dispatch) {
+    return _util_follow_api_util__WEBPACK_IMPORTED_MODULE_0__["createFollow"](follow).then(function (newFollow) {
+      dispatch(receiveFollow(newFollow));
+    });
+  };
+};
+var deleteFollow = function deleteFollow(follow) {
+  return function (dispatch) {
+    return _util_follow_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteFollow"](follow).then(function () {
+      return dispatch(removeFollow(follow));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/language_actions.js":
 /*!**********************************************!*\
   !*** ./frontend/actions/language_actions.js ***!
@@ -548,8 +622,6 @@ var App = function App() {
     path: "/post/:id",
     component: _posts_post_show_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
-    path: ""
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/user/:id",
     component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
@@ -562,7 +634,7 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     path: "/signup",
     component: _session_form_sign_up_form_container__WEBPACK_IMPORTED_MODULE_7__["default"]
-  })));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeaki - 2021", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Inspired by iTalki"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -858,6 +930,34 @@ var mDTP = function mDTP(dispatch, ownProps) {
 
 /***/ }),
 
+/***/ "./frontend/components/languages/studied_languages/studied_language.jsx":
+/*!******************************************************************************!*\
+  !*** ./frontend/components/languages/studied_languages/studied_language.jsx ***!
+  \******************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var StudiedLanguage = function StudiedLanguage(props) {
+  var language = props.language,
+      level = props.level;
+  language = language ? language : {};
+  level = level ? level : '';
+  console.log("Studied Language Props");
+  console.log(language);
+  console.log(level);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "".concat(language.name, " ").concat(level));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (StudiedLanguage);
+
+/***/ }),
+
 /***/ "./frontend/components/navbar/navbar.jsx":
 /*!***********************************************!*\
   !*** ./frontend/components/navbar/navbar.jsx ***!
@@ -1031,6 +1131,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../languages/studied_languages/studied_language */ "./frontend/components/languages/studied_languages/studied_language.jsx");
+
 
 
 
@@ -1040,9 +1142,12 @@ var Profile = function Profile(props) {
   var currentUser = props.currentUser,
       languageToStudents = props.languageToStudents,
       fetchLanguageToStudents = props.fetchLanguageToStudents,
-      fetchUser = props.fetchUser;
+      fetchUser = props.fetchUser,
+      languages = props.languages,
+      fetchLanguages = props.fetchLanguages;
   currentUser = currentUser ? currentUser : {};
   languageToStudents = languageToStudents ? languageToStudents : [];
+  languages = languages ? languages : [];
   var userPosts = currentUser.posts ? currentUser.posts : [];
   userPosts = userPosts.map(function (post, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1052,20 +1157,26 @@ var Profile = function Profile(props) {
       className: "post-creation"
     }, "".concat(post.created_at)));
   });
-  var currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : {};
-  var studiedLanguages = currentLanguages.map(function (language, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      key: i,
-      style: {
-        marginRight: '10px',
-        marginBottom: '10px'
+  var currentLanguages = currentUser.studiedLanguages ? currentUser.studiedLanguages : [];
+  var ownStudiedLanguages = [];
+  languages.map(function (language) {
+    currentLanguages.filter(function (lang, i) {
+      if (language.id === lang.id) {
+        ownStudiedLanguages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          language: language,
+          level: lang.level,
+          key: i
+        }));
       }
-    }, "".concat(language.name));
+    });
   });
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchLanguageToStudents();
+    fetchLanguages();
   }, []);
+  console.log("Own Studied Languages");
+  console.log(ownStudiedLanguages);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-container",
     style: {
@@ -1088,7 +1199,7 @@ var Profile = function Profile(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Language Skills"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "lang-skills-ul"
-  }, studiedLanguages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, ownStudiedLanguages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "posts"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Activity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "posts-ul"
@@ -1109,9 +1220,11 @@ var Profile = function Profile(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/language_to_student_actions */ "./frontend/actions/language_to_student_actions.js");
-/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
-/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+/* harmony import */ var _actions_language_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/language_actions */ "./frontend/actions/language_actions.js");
+/* harmony import */ var _actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/language_to_student_actions */ "./frontend/actions/language_to_student_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+
 
 
 
@@ -1131,15 +1244,18 @@ var mSTP = function mSTP(state) {
 var mDTP = function mDTP(dispatch, ownProps) {
   return {
     fetchUser: function fetchUser() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(parseInt(ownProps.match.params.id)));
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUser"])(parseInt(ownProps.match.params.id)));
     },
     fetchLanguageToStudents: function fetchLanguageToStudents() {
-      return dispatch(Object(_actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_1__["fetchLanguageToStudents"])());
+      return dispatch(Object(_actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLanguageToStudents"])());
+    },
+    fetchLanguages: function fetchLanguages() {
+      return dispatch(Object(_actions_language_actions__WEBPACK_IMPORTED_MODULE_1__["fetchLanguages"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 
@@ -1512,7 +1628,7 @@ var Splash = function Splash() {
     className: "splash-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "iSpeaki"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Learn a new language today!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeaki - 2021 Inspired by iTalki"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "iSpeaki"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Learn a new language today!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeaki - 2021", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Inspired by iTalki"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Splash);
@@ -1582,6 +1698,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _languages_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./languages_reducer */ "./frontend/reducers/languages_reducer.js");
 /* harmony import */ var _language_to_students_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./language_to_students_reducer */ "./frontend/reducers/language_to_students_reducer.js");
 /* harmony import */ var _posts_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./posts_reducer */ "./frontend/reducers/posts_reducer.js");
+/* harmony import */ var _follows_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./follows_reducer */ "./frontend/reducers/follows_reducer.js");
+
 
 
 
@@ -1593,7 +1711,8 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
   users: _profile_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   languages: _languages_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   languageToStudents: _language_to_students_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
-  posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_5__["default"]
+  posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
+  follows: _follows_reducer__WEBPACK_IMPORTED_MODULE_6__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -1649,6 +1768,46 @@ __webpack_require__.r(__webpack_exports__);
       return state;
   }
 });
+
+/***/ }),
+
+/***/ "./frontend/reducers/follows_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/follows_reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_follow_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/follow_actions */ "./frontend/actions/follow_actions.js");
+
+
+var FollowsReducer = function FollowsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_follow_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_FOLLOWS"]:
+      nextState = Object.assign({}, action.follows);
+      return action.follows;
+
+    case _actions_follow_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FOLLOW"]:
+      nextState[action.follow.id] = action.follow;
+      return nextState;
+
+    case _actions_follow_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_FOLLOW"]:
+      delete nextState[action.followId];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FollowsReducer);
 
 /***/ }),
 
@@ -1940,6 +2099,50 @@ var configureStore = function configureStore() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (configureStore);
+
+/***/ }),
+
+/***/ "./frontend/util/follow_api_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/follow_api_util.js ***!
+  \******************************************/
+/*! exports provided: fetchFollows, createFollow, deleteFollow, fetchFollow */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFollows", function() { return fetchFollows; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFollow", function() { return createFollow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFollow", function() { return deleteFollow; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFollow", function() { return fetchFollow; });
+var fetchFollows = function fetchFollows() {
+  return $.ajax({
+    url: "/api/follows",
+    method: 'GET'
+  });
+};
+var createFollow = function createFollow(follow) {
+  return $.ajax({
+    method: 'POST',
+    url: "api/follows/",
+    data: follow,
+    contentType: false,
+    processData: false
+  });
+};
+var deleteFollow = function deleteFollow(follow) {
+  return $.ajax({
+    url: "api/follows/",
+    method: 'DELETE',
+    data: follow
+  });
+};
+var fetchFollow = function fetchFollow(id) {
+  return $.ajax({
+    method: 'GET',
+    url: "api/follows/".concat(id)
+  });
+};
 
 /***/ }),
 

@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import StudiedLanguage from '../languages/studied_languages/studied_language';
 
 const Profile = props => {
   console.log("Profile Page Props")
@@ -10,10 +11,13 @@ const Profile = props => {
     languageToStudents, 
     fetchLanguageToStudents, 
     fetchUser, 
+    languages,
+    fetchLanguages,
   } = props;
 
   currentUser = currentUser ? currentUser : {};
   languageToStudents = languageToStudents ? languageToStudents : [];
+  languages = languages ? languages : [];
   let userPosts = currentUser.posts ? currentUser.posts : [];
 
   userPosts = userPosts.map((post, i) => {
@@ -21,25 +25,31 @@ const Profile = props => {
       <li key={i}>
         {`${post.body}`}
         <br/>
-        <Link to={`/post/${post.id}`} className="post-creation">{`${post.created_at}`}</Link>
+        <Link to={`/post/${post.id}`} className="post-creation">
+          {`${post.created_at}`}
+        </Link>
       </li>
     )
   });
 
-  let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : {};
-  const studiedLanguages = currentLanguages.map((language, i) => {
-    return (
-      <li key={i} style={{ marginRight: '10px', marginBottom: '10px' }}>
-        {`${language.name}`}
-      </li>
-    )
+  let currentLanguages = currentUser.studiedLanguages ? currentUser.studiedLanguages : [];
+  let ownStudiedLanguages = [];
+  languages.map((language) => {
+    currentLanguages.filter((lang, i) => {
+      if (language.id === lang.id) {
+        ownStudiedLanguages.push(<StudiedLanguage language={language} level={lang.level} key={i} />)
+      }
+    })
   });
 
   useEffect(() => {
     fetchUser()
     fetchLanguageToStudents()
+    fetchLanguages()
   }, []);
   
+  console.log("Own Studied Languages")
+  console.log(ownStudiedLanguages)
   return (
     <div className="profile-container" style={{ backgroundColor: '#fafafc' }}>
       <div className="own-profile">
@@ -59,7 +69,7 @@ const Profile = props => {
           <div className="lang-skills" style={{ display: 'flex' }}>
             <h2>Language Skills</h2>
             <ul className="lang-skills-ul">
-              {studiedLanguages}
+              {ownStudiedLanguages}
             </ul>
           </div>
           <div className="posts">
