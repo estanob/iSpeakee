@@ -951,7 +951,9 @@ var StudiedLanguage = function StudiedLanguage(props) {
   console.log("Studied Language Props");
   console.log(language);
   console.log(level);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, "".concat(language.name, " ").concat(level));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "studied-language-li"
+  }, "".concat(language.name, " ").concat(language.level));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StudiedLanguage);
@@ -1157,19 +1159,45 @@ var Profile = function Profile(props) {
       className: "post-creation"
     }, "".concat(post.created_at)));
   });
-  var currentLanguages = currentUser.studiedLanguages ? currentUser.studiedLanguages : [];
+  var currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : [];
   var ownStudiedLanguages = [];
-  languages.map(function (language) {
-    currentLanguages.filter(function (lang, i) {
-      if (language.id === lang.id) {
-        ownStudiedLanguages.push( /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__["default"], {
-          language: language,
-          level: lang.level,
-          key: i
-        }));
+  var currLangs = [];
+  currentLanguages.forEach(function (language) {
+    currLangs.push({
+      id: language.id,
+      level: language.level,
+      name: ''
+    });
+  });
+  languageToStudents.forEach(function (lTS) {
+    if (lTS.student_id === currentUser.id) {
+      currLangs.forEach(function (currLang) {
+        if (currLang.id === lTS.language_id) {
+          currLang.level = lTS.level;
+        }
+      });
+    }
+  });
+  languages.forEach(function (language) {
+    currLangs.forEach(function (currLang) {
+      if (currLang.id === language.id) {
+        currLang.name = language.name;
       }
     });
   });
+  console.log("Current Languages");
+  console.log(currentLanguages);
+  console.log("Current Language IDs");
+  console.log(currLangs);
+  ownStudiedLanguages = currLangs.map(function (language, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      language: language,
+      level: language.level,
+      key: i
+    });
+  });
+  console.log("2nd Current Language IDs");
+  console.log(currLangs);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchLanguageToStudents();

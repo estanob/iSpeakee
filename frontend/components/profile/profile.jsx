@@ -32,15 +32,45 @@ const Profile = props => {
     )
   });
 
-  let currentLanguages = currentUser.studiedLanguages ? currentUser.studiedLanguages : [];
+  let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : [];
   let ownStudiedLanguages = [];
-  languages.map((language) => {
-    currentLanguages.filter((lang, i) => {
-      if (language.id === lang.id) {
-        ownStudiedLanguages.push(<StudiedLanguage language={language} level={lang.level} key={i} />)
+  let currLangs = [];
+  currentLanguages.forEach(language => {
+    currLangs.push({ id: language.id, level: language.level, name: '' })
+  })
+
+  languageToStudents.forEach(lTS => {
+    if (lTS.student_id === currentUser.id) {
+      currLangs.forEach(currLang => {
+        if (currLang.id === lTS.language_id) {
+          currLang.level = lTS.level
+        }
+      })
+    }
+  })
+
+  languages.forEach(language => {
+    currLangs.forEach(currLang => {
+      if (currLang.id === language.id) {
+        currLang.name = language.name
       }
     })
-  });
+  })
+    
+  console.log("Current Languages")
+  console.log(currentLanguages)
+  console.log("Current Language IDs")
+  console.log(currLangs)
+
+  ownStudiedLanguages = currLangs.map((language, i) => {
+    return (
+      <StudiedLanguage language ={language} level={language.level} key={i} />
+    )
+  })
+
+  console.log("2nd Current Language IDs")
+  console.log(currLangs)
+
 
   useEffect(() => {
     fetchUser()
@@ -69,6 +99,7 @@ const Profile = props => {
           <div className="lang-skills" style={{ display: 'flex' }}>
             <h2>Language Skills</h2>
             <ul className="lang-skills-ul">
+              {/* {currLangs} */}
               {ownStudiedLanguages}
             </ul>
           </div>

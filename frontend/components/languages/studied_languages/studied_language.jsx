@@ -8,8 +8,8 @@ const StudiedLanguage = props => {
   console.log(language)
   console.log(level)
   return (
-    <li>
-      {`${language.name} ${level}`}
+    <li className="studied-language-li">
+      {`${language.name} ${language.level}`}
     </li>
   )
 }

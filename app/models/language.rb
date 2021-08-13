@@ -20,5 +20,11 @@ class Language < ApplicationRecord
 
   # has_many :language_students
 
+  has_many :language_to_students,
+    primary_key: :id,
+    foreign_key: :language_id,
+    class_name: :LanguageToStudent,
+    dependent: :destroy
+
   # has_many :countries
 end
