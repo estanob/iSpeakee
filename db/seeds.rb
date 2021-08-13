@@ -12,6 +12,7 @@ User.destroy_all
 Language.destroy_all
 LanguageToStudent.destroy_all
 Post.destroy_all
+Follow.destroy_all
 
 
 user1 = User.create!(
@@ -112,4 +113,29 @@ post2 = Post.create!(
 post3 = Post.create!(
   creator_id: user1.id,
   body: "Ciao a tutti! Voglio praticare l'italiano e vi posso insegnare l'inglese"
+)
+
+follow1 = Follow.create!(
+  followee_id: user1.id,
+  follower_id: user2.id
+)
+
+follow2 = Follow.create!(
+  followee_id: user1.id,
+  follower_id: user3.id
+)
+
+follow3 = Follow.create!(
+  followee_id: user1.id,
+  follower_id: user4.id
+)
+
+follow4 = Follow.create!(
+  followee_id: user2.id,
+  follower_id: user4.id
+)
+
+follow5 = Follow.create!(
+  followee_id: user3.id,
+  follower_id: user4.id
 )

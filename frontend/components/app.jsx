@@ -26,6 +26,7 @@ const App = () => {
         <ProtectedRoute path="/languages/:id" component={LanguageShowContainer} />
         <ProtectedRoute path="/languages" component={LanguageIndexContainer} />
         <ProtectedRoute path="/post/:id" component={PostShowContainer} />
+        <ProtectedRoute path=""/>
         <ProtectedRoute path='/user/:id' component={ProfileContainer}/>
         
         <AuthRoute exact path="/" component={Splash} />
