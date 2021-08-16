@@ -64,4 +64,12 @@ class User < ApplicationRecord
     foreign_key: :creator_id,
     class_name: :Post,
     dependent: :destroy
+
+  has_many :attended_lessons,
+    foreign_key: :student_id,
+    class_name: :Lesson
+
+  has_many :taught_lessons,
+    foreign_key: :teacher_id,
+    class_name: :Lesson
 end

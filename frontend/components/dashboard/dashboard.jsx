@@ -22,6 +22,16 @@ const Dashboard = (props) => {
     fetchAllUsers()
   }, []);
 
+  let currentTime = new Date().toLocaleString();
+  let numCompletedLessons = 0;
+  let userLessons = currentUser.attendedLessons ? currentUser.attendedLessons : [];
+  userLessons.forEach(lesson => {
+    debugger
+    if (lesson.when < currentTime) {
+      numCompletedLessons ++;
+    };
+  })
+  
   let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : {};
   const studiedLanguages = currentLanguages.map((language, i) => {
     return (
@@ -31,10 +41,12 @@ const Dashboard = (props) => {
     )
   });
 
+  debugger
   return (
     <div style={{ width: '960px', margin: '0 auto' }}>
       <div className="user-dashboard">
         <div className="acct-info">
+          <h2>{`Current Time and Date: ${currentTime}`}</h2>
           <h3>{`ID: ${session}`}</h3>
           <Link to={`/user/${session}`}>{`${currentUser.firstName} ${currentUser.lastName}`}</Link>
           <p>{`${currentUser.posts.length} Posts 0 Following 0 Followers`}</p>
@@ -48,7 +60,7 @@ const Dashboard = (props) => {
                   {studiedLanguages}
                 </ul>
               </div>
-              <p>{`0 Completed Lessons`}</p>
+              <p>{numCompletedLessons} Completed Lessons</p>
             </div>
           </div>
           <div className="languages-learning">

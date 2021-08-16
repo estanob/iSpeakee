@@ -215,17 +215,27 @@ follow7 = Follow.create!(
 lesson1 = Lesson.create!(
   student_id: user1.id,
   teacher_id: user5.id,
+  language_id: language2.id, # Spanish
   when: DateTime.new(2021, 8, 15, 15, 0, 0)
 )
 
 lesson2 = Lesson.create!(
   student_id: user1.id,
   teacher_id: user6.id,
+  language_id: language1.id, # Italian
   when: DateTime.new(2021, 8, 16, 14, 30, 0)
 )
 
 lesson3 = Lesson.create!(
   student_id: user1.id,
   teacher_id: user7.id,
+  language_id: language2.id, # Spanish
   when: DateTime.new(2021, 7, 17, 18, 0, 0)
+)
+
+lesson4 = Lesson.create!(
+  student_id: user5.id,
+  teacher_id: user1.id,
+  language_id: language6.id, # English
+  when: DateTime.new(2021, 8, 8, 15, 0, 0)
 )
