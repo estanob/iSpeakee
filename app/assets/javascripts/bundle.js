@@ -283,6 +283,80 @@ var deleteLanguageToStudent = function deleteLanguageToStudent(languageToStudent
 
 /***/ }),
 
+/***/ "./frontend/actions/lesson_actions.js":
+/*!********************************************!*\
+  !*** ./frontend/actions/lesson_actions.js ***!
+  \********************************************/
+/*! exports provided: RECEIVE_ALL_LESSONS, RECEIVE_LESSON, REMOVE_LESSON, fetchLesson, fetchLessons, createLesson, deleteLesson */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_LESSONS", function() { return RECEIVE_ALL_LESSONS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_LESSON", function() { return RECEIVE_LESSON; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_LESSON", function() { return REMOVE_LESSON; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLesson", function() { return fetchLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLessons", function() { return fetchLessons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLesson", function() { return createLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLesson", function() { return deleteLesson; });
+/* harmony import */ var _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/lesson_api_util */ "./frontend/util/lesson_api_util.js");
+
+var RECEIVE_ALL_LESSONS = 'RECEIVE_ALL_LESSONS';
+var RECEIVE_LESSON = 'RECEIVE_LESSON';
+var REMOVE_LESSON = 'REMOVE_LESSON';
+
+var receiveLessons = function receiveLessons(lessons) {
+  return {
+    type: RECEIVE_ALL_LESSONS,
+    lessons: lessons
+  };
+};
+
+var receiveLesson = function receiveLesson(lesson) {
+  return {
+    type: RECEIVE_LESSON,
+    lesson: lesson
+  };
+};
+
+var removeLesson = function removeLesson(lesson) {
+  return {
+    type: REMOVE_LESSON,
+    lesson: lesson
+  };
+};
+
+var fetchLesson = function fetchLesson(lessonId) {
+  return function (dispatch) {
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchLesson"](lessonId).then(function (lesson) {
+      dispatch(receiveLesson(lesson));
+    });
+  };
+};
+var fetchLessons = function fetchLessons() {
+  return function (dispatch) {
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchLessons"]().then(function (lessons) {
+      dispatch(receiveLessons(lessons));
+    });
+  };
+};
+var createLesson = function createLesson(lesson) {
+  return function (dispatch) {
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["createLesson"](lesson).then(function (newLesson) {
+      dispatch(receiveLesson(newLesson));
+    });
+  };
+};
+var deleteLesson = function deleteLesson(lesson) {
+  return function (dispatch) {
+    return _util_lesson_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteLesson"](lesson).then(function () {
+      return dispatch(removeLesson(lesson));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/modal_actions.js":
 /*!*******************************************!*\
   !*** ./frontend/actions/modal_actions.js ***!
@@ -585,10 +659,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_splash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/splash */ "./frontend/components/splash.jsx");
 /* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./session_form/login_form_container */ "./frontend/components/session_form/login_form_container.js");
 /* harmony import */ var _session_form_sign_up_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./session_form/sign_up_form_container */ "./frontend/components/session_form/sign_up_form_container.js");
-/* harmony import */ var _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./languages/index/language_index_container */ "./frontend/components/languages/index/language_index_container.js");
-/* harmony import */ var _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./languages/show/language_show_page_container */ "./frontend/components/languages/show/language_show_page_container.js");
-/* harmony import */ var _posts_post_show_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./posts/post_show_container */ "./frontend/components/posts/post_show_container.js");
-/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+/* harmony import */ var _lessons_index_lesson_index_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./lessons/index/lesson_index_container */ "./frontend/components/lessons/index/lesson_index_container.js");
+/* harmony import */ var _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./languages/index/language_index_container */ "./frontend/components/languages/index/language_index_container.js");
+/* harmony import */ var _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./languages/show/language_show_page_container */ "./frontend/components/languages/show/language_show_page_container.js");
+/* harmony import */ var _posts_post_show_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./posts/post_show_container */ "./frontend/components/posts/post_show_container.js");
+/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+
 
 
 
@@ -613,17 +689,20 @@ var App = function App() {
     path: "/dashboard",
     component: _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    path: "/lessons/:id",
+    component: _lessons_index_lesson_index_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/languages/:id",
-    component: _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/languages",
-    component: _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/post/:id",
-    component: _posts_post_show_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _posts_post_show_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/user/:id",
-    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     exact: true,
     path: "/",
@@ -660,7 +739,6 @@ var Dashboard = function Dashboard(props) {
   console.log("Dashboard Props");
   console.log(props);
   var users = props.users,
-      logout = props.logout,
       session = props.session,
       currentUser = props.currentUser,
       fetchUser = props.fetchUser,
@@ -676,8 +754,6 @@ var Dashboard = function Dashboard(props) {
   var numCompletedLessons = 0;
   var userLessons = currentUser.attendedLessons ? currentUser.attendedLessons : [];
   userLessons.forEach(function (lesson) {
-    debugger;
-
     if (lesson.when < currentTime) {
       numCompletedLessons++;
     }
@@ -694,7 +770,6 @@ var Dashboard = function Dashboard(props) {
       }
     }, "".concat(language.name));
   });
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       width: '960px',
@@ -704,7 +779,7 @@ var Dashboard = function Dashboard(props) {
     className: "user-dashboard"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "acct-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Current Time and Date: ".concat(currentTime)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "ID: ".concat(session)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, "ID: ".concat(session)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/user/".concat(session)
   }, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(currentUser.posts.length, " Posts 0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "study-info"
@@ -716,7 +791,11 @@ var Dashboard = function Dashboard(props) {
     className: "skill"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Learning Language"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "lang-skills-ul"
-  }, studiedLanguages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, numCompletedLessons, " Completed Lessons"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, studiedLanguages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "completed-lessons"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/lessons/".concat(session)
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, numCompletedLessons), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Completed Lessons"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "languages-learning"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming Lesson")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/languages"
@@ -737,10 +816,8 @@ var Dashboard = function Dashboard(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/session_actions */ "./frontend/actions/session_actions.js");
-/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
-/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
-
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
 
 
 
@@ -758,19 +835,16 @@ var mSTP = function mSTP(state) {
 
 var mDTP = function mDTP(dispatch, ownProps) {
   return {
-    logout: function logout() {
-      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
-    },
     fetchUser: function fetchUser() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(parseInt(ownProps.match.params.id)));
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__["fetchUser"])(parseInt(ownProps.match.params.id)));
     },
     fetchAllUsers: function fetchAllUsers() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllUsers"])());
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__["fetchAllUsers"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_2__["default"]));
 
 /***/ }),
 
@@ -965,6 +1039,94 @@ var StudiedLanguage = function StudiedLanguage(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StudiedLanguage);
+
+/***/ }),
+
+/***/ "./frontend/components/lessons/index/lesson_index.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/lessons/index/lesson_index.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var LessonIndex = function LessonIndex(props) {
+  console.log("Lesson Index Props");
+  console.log(props);
+  var session = props.session,
+      currentUser = props.currentUser,
+      users = props.users,
+      lessons = props.lessons,
+      fetchUser = props.fetchUser,
+      fetchAllUsers = props.fetchAllUsers,
+      fetchLessons = props.fetchLessons;
+  session = session ? session : '';
+  currentUser = currentUser ? currentUser : {};
+  users = users ? users : [];
+  lessons = lessons ? lessons : [];
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetchUser();
+    fetchAllUsers();
+    fetchLessons();
+  }, []);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (LessonIndex);
+
+/***/ }),
+
+/***/ "./frontend/components/lessons/index/lesson_index_container.js":
+/*!*********************************************************************!*\
+  !*** ./frontend/components/lessons/index/lesson_index_container.js ***!
+  \*********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_lesson_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/lesson_actions */ "./frontend/actions/lesson_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _lesson_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lesson_index */ "./frontend/components/lessons/index/lesson_index.jsx");
+
+
+
+
+
+var mSTP = function mSTP(state) {
+  var session = state.session.id ? state.session.id : '';
+  var currentUser = state.session.id && state.entities.user ? state.entities.user[state.session.id] : {};
+  var users = state.entities.users ? Object.values(state.entities.users) : [];
+  var lessons = state.entities.lessons ? Object.values(state.entities.lessons) : [];
+  return {
+    session: session,
+    currentUser: currentUser,
+    users: users,
+    lessons: lessons
+  };
+};
+
+var mDTP = function mDTP(dispatch, ownProps) {
+  return {
+    fetchUser: function fetchUser() {
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(parseInt(ownProps.match.params.id)));
+    },
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllUsers"])());
+    },
+    fetchLessons: function fetchLessons() {
+      return dispatch(Object(_actions_lesson_actions__WEBPACK_IMPORTED_MODULE_1__["fetchLessons"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_lesson_index__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -1724,8 +1886,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_reducer__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./profile_reducer */ "./frontend/reducers/profile_reducer.js");
 /* harmony import */ var _languages_reducer__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./languages_reducer */ "./frontend/reducers/languages_reducer.js");
 /* harmony import */ var _language_to_students_reducer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./language_to_students_reducer */ "./frontend/reducers/language_to_students_reducer.js");
-/* harmony import */ var _posts_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./posts_reducer */ "./frontend/reducers/posts_reducer.js");
-/* harmony import */ var _follows_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./follows_reducer */ "./frontend/reducers/follows_reducer.js");
+/* harmony import */ var _lessons_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lessons_reducer */ "./frontend/reducers/lessons_reducer.js");
+/* harmony import */ var _posts_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./posts_reducer */ "./frontend/reducers/posts_reducer.js");
+/* harmony import */ var _follows_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./follows_reducer */ "./frontend/reducers/follows_reducer.js");
+
 
 
 
@@ -1738,8 +1902,9 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
   users: _profile_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   languages: _languages_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   languageToStudents: _language_to_students_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
-  posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
-  follows: _follows_reducer__WEBPACK_IMPORTED_MODULE_6__["default"]
+  lessons: _lessons_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
+  posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
+  follows: _follows_reducer__WEBPACK_IMPORTED_MODULE_7__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -1916,6 +2081,46 @@ var LanguagesReducer = function LanguagesReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LanguagesReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/lessons_reducer.js":
+/*!**********************************************!*\
+  !*** ./frontend/reducers/lessons_reducer.js ***!
+  \**********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_lesson_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/lesson_actions */ "./frontend/actions/lesson_actions.js");
+
+
+var LessonsReducer = function LessonsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_LESSONS"]:
+      nextState = Object.assign({}, action.lessons);
+      return action.lessons;
+
+    case _actions_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_LESSON"]:
+      nextState[action.lesson.id] = action.lesson;
+      return nextState;
+
+    case _actions_lesson_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_LESSON"]:
+      delete nextState[action.lessonId];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (LessonsReducer);
 
 /***/ }),
 
@@ -2246,6 +2451,50 @@ var fetchLanguageToStudent = function fetchLanguageToStudent(id) {
   return $.ajax({
     url: "/api/language_to_students/".concat(id),
     method: 'GET'
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/lesson_api_util.js":
+/*!******************************************!*\
+  !*** ./frontend/util/lesson_api_util.js ***!
+  \******************************************/
+/*! exports provided: fetchLessons, createLesson, deleteLesson, fetchLesson */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLessons", function() { return fetchLessons; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLesson", function() { return createLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLesson", function() { return deleteLesson; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchLesson", function() { return fetchLesson; });
+var fetchLessons = function fetchLessons() {
+  return $.ajax({
+    url: "/api/lessons",
+    method: 'GET'
+  });
+};
+var createLesson = function createLesson(lesson) {
+  return $.ajax({
+    method: 'POST',
+    url: "api/lessons/",
+    data: lesson,
+    contentType: false,
+    processData: false
+  });
+};
+var deleteLesson = function deleteLesson(lesson) {
+  return $.ajax({
+    url: "api/lessons/",
+    method: 'DELETE',
+    data: lesson
+  });
+};
+var fetchLesson = function fetchLesson(id) {
+  return $.ajax({
+    method: 'GET',
+    url: "api/lessons/".concat(id)
   });
 };
 

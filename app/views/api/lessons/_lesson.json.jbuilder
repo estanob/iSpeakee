@@ -1,0 +1,1 @@
+json.extract! lesson, :id, :when, :language_id, :student_id, :teacher_id

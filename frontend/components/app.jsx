@@ -10,6 +10,7 @@ import DashboardContainer from './dashboard/dashboard_container';
 import Splash from '../components/splash';
 import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/sign_up_form_container';
+import LessonIndexContainer from './lessons/index/lesson_index_container';
 import LanguageIndexContainer from './languages/index/language_index_container';
 import LanguageShowContainer from './languages/show/language_show_page_container';
 import PostShowContainer from './posts/post_show_container';
@@ -23,6 +24,7 @@ const App = () => {
       </header>
       <Switch>
         <ProtectedRoute path='/dashboard' component={DashboardContainer} />
+        <ProtectedRoute path='/lessons/:id' component={LessonIndexContainer} />
         <ProtectedRoute path="/languages/:id" component={LanguageShowContainer} />
         <ProtectedRoute path="/languages" component={LanguageIndexContainer} />
         <ProtectedRoute path="/post/:id" component={PostShowContainer} />
