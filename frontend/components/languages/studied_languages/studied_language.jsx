@@ -1,12 +1,9 @@
 import React, { useEffect } from 'react';
 
 const StudiedLanguage = props => {
-  let { language, level } = props;
+  let { language } = props;
   language = language ? language : {};
-  level = level ? level : '';
-  console.log("Studied Language Props")
-  console.log(language)
-  console.log(level)
+
   return (
     <li className="studied-language-li">
       {`${language.name} ${language.level}`}

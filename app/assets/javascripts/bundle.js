@@ -944,13 +944,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var StudiedLanguage = function StudiedLanguage(props) {
-  var language = props.language,
-      level = props.level;
+  var language = props.language;
   language = language ? language : {};
-  level = level ? level : '';
-  console.log("Studied Language Props");
-  console.log(language);
-  console.log(level);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "studied-language-li"
   }, "".concat(language.name, " ").concat(language.level));
@@ -1185,26 +1180,17 @@ var Profile = function Profile(props) {
       }
     });
   });
-  console.log("Current Languages");
-  console.log(currentLanguages);
-  console.log("Current Language IDs");
-  console.log(currLangs);
   ownStudiedLanguages = currLangs.map(function (language, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__["default"], {
       language: language,
-      level: language.level,
       key: i
     });
   });
-  console.log("2nd Current Language IDs");
-  console.log(currLangs);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchLanguageToStudents();
     fetchLanguages();
   }, []);
-  console.log("Own Studied Languages");
-  console.log(ownStudiedLanguages);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-container",
     style: {

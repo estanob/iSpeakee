@@ -57,20 +57,11 @@ const Profile = props => {
     })
   })
     
-  console.log("Current Languages")
-  console.log(currentLanguages)
-  console.log("Current Language IDs")
-  console.log(currLangs)
-
   ownStudiedLanguages = currLangs.map((language, i) => {
     return (
-      <StudiedLanguage language ={language} level={language.level} key={i} />
+      <StudiedLanguage language ={language} key={i} />
     )
   })
-
-  console.log("2nd Current Language IDs")
-  console.log(currLangs)
-
 
   useEffect(() => {
     fetchUser()
@@ -78,8 +69,6 @@ const Profile = props => {
     fetchLanguages()
   }, []);
   
-  console.log("Own Studied Languages")
-  console.log(ownStudiedLanguages)
   return (
     <div className="profile-container" style={{ backgroundColor: '#fafafc' }}>
       <div className="own-profile">

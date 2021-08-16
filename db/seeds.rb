@@ -43,6 +43,27 @@ user4 = User.create!(
   password: "123456"
 )
 
+user5 = User.create!(
+  first_name: "Jean Carlos",
+  last_name: "Santiago Pérez",
+  username: "guaynaa",
+  password: "123456"
+)
+
+user6 = User.create!(
+  first_name: "Gabry",
+  last_name: "Ponte",
+  username: "gponte",
+  password: "123456"
+)
+
+user7 = User.create!(
+  first_name: "Luis",
+  last_name: "Fonsi",
+  username: "fonsiluis",
+  password: "123456"
+)
+
 language1 = Language.create!(
   name: "Italian"
 )
@@ -143,12 +164,17 @@ post1 = Post.create!(
 
 post2 = Post.create!(
   creator_id: user1.id,
-  body: 'Qué es la que hay"\n" Yo quiero practicar el español y al mismo tiempo te puedo enseñar el inglés'
+  body: 'Qué es la que hay"\n" Yo quiero practicar el español aquí en iSpeaki y al mismo tiempo te puedo enseñar el inglés'
 )
 
 post3 = Post.create!(
   creator_id: user1.id,
-  body: "Ciao a tutti! Voglio praticare l'italiano e vi posso insegnare l'inglese"
+  body: "Ciao a tutti! Voglio imparare e praticare l'italiano e vi posso insegnare l'inglese"
+)
+
+post4 = Post.create!(
+  creator_id: user5.id,
+  body: "Qué es la que hay corillo. Si uds quieren aprender el español aquí en iSpeaki escójanme para ser su profesor del español boricua"
 )
 
 follow1 = Follow.create!(
@@ -174,4 +200,32 @@ follow4 = Follow.create!(
 follow5 = Follow.create!(
   followee_id: user3.id,
   follower_id: user4.id
+)
+
+follow6 = Follow.create!(
+  followee_id: user1.id,
+  follower_id: user5.id
+)
+
+follow7 = Follow.create!(
+  followee_id: user5.id,
+  follower_id: user1.id
+)
+
+lesson1 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user5.id,
+  when: DateTime.new(2021, 8, 15, 15, 0, 0)
+)
+
+lesson2 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user6.id,
+  when: DateTime.new(2021, 8, 16, 14, 30, 0)
+)
+
+lesson3 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user7.id,
+  when: DateTime.new(2021, 7, 17, 18, 0, 0)
 )
