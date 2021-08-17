@@ -1209,7 +1209,7 @@ var LessonIndexItem = function LessonIndexItem(_ref) {
   function determineLessonStatus(lesson) {
     if (currentTime < lesson.when) {
       return "upcoming";
-    } else if (currentTime > lesson.when) {
+    } else if (currentTime > lesson.when && currentTime > lesson.end_time) {
       return "completed";
     }
   }

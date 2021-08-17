@@ -10,7 +10,7 @@ const LessonIndexItem = ({ lesson }) => {
   function determineLessonStatus(lesson) {
     if (currentTime < lesson.when) {
       return "upcoming"
-    } else if (currentTime > lesson.when) {
+    } else if (currentTime > lesson.when && currentTime > lesson.end_time) {
       return "completed"
     }
   }

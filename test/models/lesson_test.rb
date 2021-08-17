@@ -3,6 +3,7 @@
 # Table name: lessons
 #
 #  id          :bigint           not null, primary key
+#  end_time    :datetime
 #  when        :datetime
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
