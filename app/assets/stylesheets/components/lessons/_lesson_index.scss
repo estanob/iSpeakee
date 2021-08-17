@@ -1,0 +1,16 @@
+.lesson-index {
+  text-align: center;
+}
+
+.lesson-index-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.lesson-index-buttons > button {
+  color: #8c8c8c;
+}
+
+.lesson-index-buttons > button:hover {
+  color: black;
+}

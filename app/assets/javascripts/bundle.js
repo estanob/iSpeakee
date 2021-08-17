@@ -1094,12 +1094,10 @@ var LessonIndex = function LessonIndex(props) {
     if (lesson.student_id === session) userLessons.push(lesson);
   });
   userLessons = userLessons.map(function (lesson, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      clasName: "lesson-index-item",
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      lesson: lesson,
       key: i
-    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      lesson: lesson
-    }));
+    });
   });
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
@@ -1108,9 +1106,26 @@ var LessonIndex = function LessonIndex(props) {
   }, []);
   console.log("User Lessons");
   console.log(userLessons);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-index"
-  }, userLessons));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-index-buttons"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: lessonStatus === "all" ? 'lesson-tab-selected' : '',
+    onClick: function onClick() {
+      return setLessonStatus('all');
+    }
+  }, "All"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: lessonStatus === "upcoming" ? 'lesson-tab-selected' : '',
+    onClick: function onClick() {
+      return setLessonStatus('upcoming');
+    }
+  }, "Upcoming"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: lessonStatus === "completed" ? 'lesson-tab-selected' : '',
+    onClick: function onClick() {
+      return setLessonStatus('completed');
+    }
+  }, "Completed")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, userLessons));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LessonIndex);
@@ -1182,8 +1197,21 @@ __webpack_require__.r(__webpack_exports__);
 var LessonIndexItem = function LessonIndexItem(_ref) {
   var lesson = _ref.lesson;
   lesson = lesson ? lesson : {};
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "individual-lesson"
+  console.log("Lesson Index Item: { Lesson }");
+  console.log(lesson);
+  var currentTime = new Date().toLocaleString();
+
+  function determineLessonStatus(lesson) {
+    if (currentTime < lesson.when) {
+      return "upcoming";
+    } else if (currentTime > lesson.when) {
+      return "completed";
+    }
+  }
+
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "individual-lesson",
+    id: determineLessonStatus(lesson)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, lesson.when));
 };
 

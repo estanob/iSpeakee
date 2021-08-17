@@ -26,9 +26,7 @@ const LessonIndex = props => {
 
   userLessons = userLessons.map((lesson, i) => {
     return (
-      <li clasName="lesson-index-item" key={i}>
-        <LessonIndexItem lesson={lesson} />
-      </li>
+      <LessonIndexItem lesson={lesson} key={i} />
     )
   });
 
@@ -41,9 +39,26 @@ const LessonIndex = props => {
   console.log("User Lessons")
   console.log(userLessons)
   return (
-    <div>
+    <div className="lesson-index">
       <h1>Hello</h1>
-      <ul className="lesson-index">{userLessons}</ul>
+      <div className="lesson-index-buttons">
+        <button
+          className={lessonStatus === "all" ? 'lesson-tab-selected' : ''}
+          onClick={() => setLessonStatus('all')}>
+            All
+        </button>
+        <button 
+          className={lessonStatus === "upcoming" ? 'lesson-tab-selected' : ''} 
+          onClick={() => setLessonStatus('upcoming')}>
+            Upcoming
+        </button>
+        <button 
+          className={lessonStatus === "completed" ? 'lesson-tab-selected' : ''} 
+          onClick={() => setLessonStatus('completed')}>
+            Completed
+        </button>
+      </div>
+      <ul>{userLessons}</ul>
     </div>
   )
 };
