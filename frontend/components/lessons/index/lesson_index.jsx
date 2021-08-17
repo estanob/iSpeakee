@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import LessonIndexItem from '../index_item/lesson_index_item';
 
-const LessonIndex = props => {
+export default function LessonIndex (props) {
   console.log("Lesson Index Props")
   console.log(props)
   let [lessonStatus, setLessonStatus] = useState('all')
@@ -62,5 +62,3 @@ const LessonIndex = props => {
     </div>
   )
 };
-
-export default LessonIndex;

@@ -14,3 +14,8 @@
 .lesson-index-buttons > button:hover {
   color: black;
 }
+
+.lesson-tab-selected {
+  color: black!important;
+  box-shadow: #ff554b 0px -2px inset;
+}
