@@ -40,7 +40,6 @@ export default function LessonIndex (props) {
   console.log(userLessons)
   return (
     <div className="lesson-index">
-      <h1>Hello</h1>
       <div className="lesson-index-buttons">
         <button
           className={lessonStatus === "all" ? 'lesson-tab-selected' : ''}
@@ -58,7 +57,12 @@ export default function LessonIndex (props) {
             Completed
         </button>
       </div>
-      <ul>{userLessons}</ul>
+      <div className="lessons-and-filter">
+        <ul className="lessons-ul">{userLessons}</ul>
+        <div className="lesson-filter">
+          <h1>Lesson Filter will go here</h1>
+        </div>
+      </div>
     </div>
   )
 };

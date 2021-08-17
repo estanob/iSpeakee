@@ -16,11 +16,12 @@ const LessonIndexItem = ({ lesson }) => {
   }
 
   return (
-    <li className="individual-lesson" id={determineLessonStatus(lesson)}>
-      <p>
-        {lesson.when}
-      </p>
-    </li>
+    <div className="lesson-index-item">
+      <div id={determineLessonStatus(lesson)}></div>
+      <li className="individual-lesson">
+        <p>{lesson.when}</p>
+      </li>
+    </div>
   )
 }
 
