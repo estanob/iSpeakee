@@ -1204,21 +1204,24 @@ var LessonIndexItem = function LessonIndexItem(_ref) {
   lesson = lesson ? lesson : {};
   console.log("Lesson Index Item: { Lesson }");
   console.log(lesson);
-  var currentTime = new Date().toLocaleString();
-  var currentTimeAsString = new Date().toDateString();
-  var currentTimeAsISO = new Date().toISOString();
-  var currentTimeAsLocaleTimeString = new Date().toLocaleTimeString();
-  console.log("Time as string", currentTimeAsString);
-  console.log("Time as ISO", currentTimeAsISO);
-  console.log("Locale Time string", currentTimeAsLocaleTimeString);
+  var currentDate = new Date().toLocaleDateString();
+  var currentTime = new Date().toLocaleTimeString();
+  var lessonStartTime = new Date(lesson.when).toLocaleTimeString();
+  var lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
+  var lessonStartDate = new Date(lesson.when).toLocaleDateString();
+  var lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
   var lessonStatus = '';
 
-  function determineLessonStatus(lesson) {
-    if (currentTime < lesson.when) {
+  function determineLessonStatus() {
+    debugger;
+
+    if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
       lessonStatus = "Upcoming Lesson";
+      debugger;
       return "upcoming";
-    } else if (currentTime > lesson.when && currentTime > lesson.end_time) {
+    } else if (currentDate > lessonEndDate && currentTime > lessonEndTime) {
       lessonStatus = "Completed";
+      debugger;
       return "completed";
     }
   }
