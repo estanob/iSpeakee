@@ -1120,7 +1120,7 @@ function LessonIndex(props) {
     onClick: function onClick() {
       return setLessonStatus('upcoming');
     }
-  }, "Upcoming"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, "Upcoming \u2022 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: lessonStatus === "completed" ? 'lesson-tab-selected' : '',
     onClick: function onClick() {
       return setLessonStatus('completed');
@@ -1207,20 +1207,25 @@ var LessonIndexItem = function LessonIndexItem(_ref) {
   var currentTime = new Date().toLocaleString();
 
   function determineLessonStatus(lesson) {
+    debugger;
+
     if (currentTime < lesson.when) {
+      debugger;
       return "upcoming";
     } else if (currentTime > lesson.when && currentTime > lesson.end_time) {
+      debugger;
       return "completed";
     }
   }
 
+  var lessonTime = new Date(lesson.when).toLocaleString();
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-index-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: determineLessonStatus(lesson)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "individual-lesson"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, lesson.when)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, lessonTime)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LessonIndexItem);

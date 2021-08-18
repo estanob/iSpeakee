@@ -157,6 +157,18 @@ languageToStudent9 = LanguageToStudent.create!(
   level: 3
 )
 
+languageToStudent10 = LanguageToStudent.create!(
+  language_id: language6.id,
+  student_id: user5.id,
+  level: 3
+)
+
+languageToStudent11 = LanguageToStudent.create!(
+  language_id: language6.id,
+  student_id: user7.id,
+  level: 6
+)
+
 post1 = Post.create!(
   creator_id: user1.id,
   body: "哈囉我想要在iSpeaki這邊找一些中文老師。你們也可以跟我學英文"
@@ -242,4 +254,52 @@ lesson4 = Lesson.create!(
   language_id: language6.id, # English
   when: DateTime.new(2021, 8, 8, 15, 0, 0),
   end_time: DateTime.new(2021, 8, 8, 16, 0, 0)
+)
+
+lesson5 = Lesson.create!(
+  student_id: user5.id,
+  teacher_id: user1.id,
+  language_id: language6.id, # English
+  when: DateTime.new(2021, 12, 25, 16, 0, 0),
+  end_time: DateTime.new(2021, 8, 8, 17, 30, 0)
+)
+
+lesson6 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user5.id,
+  language_id: language2.id, # Spanish
+  when: DateTime.new(2021, 12, 26, 0, 0, 0),
+  end_time: DateTime.new(2021, 12, 12, 1, 30, 0)
+)
+
+lesson7 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user5.id,
+  language_id: language2.id, # Spanish
+  when: DateTime.new(2021, 11, 18, 18, 0, 0),
+  end_time: DateTime.new(2021, 11, 18, 19, 0, 0)
+)
+
+lesson8 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user5.id,
+  language_id: language2.id, # Spanish
+  when: DateTime.new(2021, 11, 1, 2, 0, 0),
+  end_time: DateTime.new(2021, 11, 1, 3, 30, 0)
+)
+
+lesson9 = Lesson.create!(
+  student_id: user5.id,
+  teacher_id: user1.id,
+  language_id: language6.id, # English
+  when: DateTime.new(2021, 11, 1, 5, 0, 0),
+  end_time: DateTime.new(2021, 11, 1, 5, 30, 0)
+)
+
+lesson10 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user7.id,
+  language_id: language2.id, # Spanish
+  when: DateTime.new(2021, 9, 15, 15, 0, 0),
+  end_time: DateTime.new(2021, 9, 15, 16, 00, 0)
 )

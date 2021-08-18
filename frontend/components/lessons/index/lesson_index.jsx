@@ -49,7 +49,7 @@ export default function LessonIndex (props) {
         <button 
           className={lessonStatus === "upcoming" ? 'lesson-tab-selected' : ''} 
           onClick={() => setLessonStatus('upcoming')}>
-            Upcoming
+            {`Upcoming • `}
         </button>
         <button 
           className={lessonStatus === "completed" ? 'lesson-tab-selected' : ''} 
