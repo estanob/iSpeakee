@@ -6,24 +6,34 @@ const LessonIndexItem = ({ lesson }) => {
   console.log(lesson)
 
   let currentTime = new Date().toLocaleString();
+  let currentTimeAsString = new Date().toDateString();
+  let currentTimeAsISO = new Date().toISOString();
+  let currentTimeAsLocaleTimeString = new Date().toLocaleTimeString();
+  
+  console.log("Time as string", currentTimeAsString)
+  console.log("Time as ISO", currentTimeAsISO)
+  console.log("Locale Time string", currentTimeAsLocaleTimeString)
+  
+  let lessonStatus = '';
   
   function determineLessonStatus(lesson) {
-    debugger
     if (currentTime < lesson.when) {
-      debugger
+      lessonStatus = "Upcoming Lesson"
       return "upcoming"
     } else if (currentTime > lesson.when && currentTime > lesson.end_time) {
-      debugger
+      lessonStatus = "Completed"
       return "completed"
     }
   }
 
   let lessonTime = new Date(lesson.when).toLocaleString();
 
+  debugger
   return (
     <div className="lesson-index-item">
       <div id={determineLessonStatus(lesson)}></div>
       <li className="individual-lesson">
+        <h1>{lessonStatus}</h1>
         <p>{lessonTime}</p>
       </li>
     </div>

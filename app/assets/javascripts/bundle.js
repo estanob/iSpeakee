@@ -1205,27 +1205,33 @@ var LessonIndexItem = function LessonIndexItem(_ref) {
   console.log("Lesson Index Item: { Lesson }");
   console.log(lesson);
   var currentTime = new Date().toLocaleString();
+  var currentTimeAsString = new Date().toDateString();
+  var currentTimeAsISO = new Date().toISOString();
+  var currentTimeAsLocaleTimeString = new Date().toLocaleTimeString();
+  console.log("Time as string", currentTimeAsString);
+  console.log("Time as ISO", currentTimeAsISO);
+  console.log("Locale Time string", currentTimeAsLocaleTimeString);
+  var lessonStatus = '';
 
   function determineLessonStatus(lesson) {
-    debugger;
-
     if (currentTime < lesson.when) {
-      debugger;
+      lessonStatus = "Upcoming Lesson";
       return "upcoming";
     } else if (currentTime > lesson.when && currentTime > lesson.end_time) {
-      debugger;
+      lessonStatus = "Completed";
       return "completed";
     }
   }
 
   var lessonTime = new Date(lesson.when).toLocaleString();
+  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-index-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: determineLessonStatus(lesson)
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "individual-lesson"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, lessonTime)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, lessonStatus), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, lessonTime)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LessonIndexItem);
