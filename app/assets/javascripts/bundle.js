@@ -1084,14 +1084,29 @@ function LessonIndex(props) {
       lessons = props.lessons,
       fetchUser = props.fetchUser,
       fetchAllUsers = props.fetchAllUsers,
-      fetchLessons = props.fetchLessons;
+      fetchLessons = props.fetchLessons,
+      currentDate = props.currentDate,
+      currentTime = props.currentTime;
   session = session ? session : '';
+  currentDate = currentDate ? currentDate : '';
+  currentTime = currentTime ? currentTime : '';
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
   lessons = lessons ? lessons : [];
   var userLessons = [];
   lessons.forEach(function (lesson) {
     if (lesson.student_id === session) userLessons.push(lesson);
+  });
+  var numUpcomingLessons = 0;
+  userLessons.forEach(function (lesson) {
+    var lessonDate = new Date(lesson.when).toLocaleDateString();
+    var lessonTime = new Date(lesson.when).toLocaleTimeString();
+
+    if (lessonDate > currentDate) {
+      numUpcomingLessons++;
+    } else if (lessonDate === currentDate && lessonTime > currentTime) {
+      numUpcomingLessons++;
+    }
   });
   userLessons = userLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1120,7 +1135,7 @@ function LessonIndex(props) {
     onClick: function onClick() {
       return setLessonStatus('upcoming');
     }
-  }, "Upcoming \u2022 "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+  }, "Upcoming \u2022 ".concat(numUpcomingLessons)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: lessonStatus === "completed" ? 'lesson-tab-selected' : '',
     onClick: function onClick() {
       return setLessonStatus('completed');
@@ -1164,7 +1179,9 @@ var mSTP = function mSTP(state) {
     session: session,
     currentUser: currentUser,
     users: users,
-    lessons: lessons
+    lessons: lessons,
+    currentDate: new Date().toLocaleDateString(),
+    currentTime: new Date().toLocaleTimeString()
   };
 };
 
@@ -1213,25 +1230,20 @@ var LessonIndexItem = function LessonIndexItem(_ref) {
   var lessonStatus = '';
 
   function determineLessonStatus() {
-    debugger;
-
     if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
       lessonStatus = "Upcoming Lesson";
-      debugger;
       return "upcoming";
     } else if (currentDate > lessonEndDate && currentTime > lessonEndTime) {
       lessonStatus = "Completed";
-      debugger;
       return "completed";
     }
   }
 
   var lessonTime = new Date(lesson.when).toLocaleString();
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-index-item"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    id: determineLessonStatus(lesson)
+    id: determineLessonStatus()
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "individual-lesson"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, lessonStatus), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, lessonTime)));

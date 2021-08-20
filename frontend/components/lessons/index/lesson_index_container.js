@@ -13,6 +13,8 @@ const mSTP = state => {
     currentUser: currentUser,
     users: users,
     lessons: lessons,
+    currentDate: new Date().toLocaleDateString(),
+    currentTime: new Date().toLocaleTimeString(),
   };
 };
 

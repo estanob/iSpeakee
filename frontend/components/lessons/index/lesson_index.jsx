@@ -13,9 +13,13 @@ export default function LessonIndex (props) {
     fetchUser,
     fetchAllUsers,
     fetchLessons,
+    currentDate,
+    currentTime,
   } = props;
 
   session = session ? session : '';
+  currentDate = currentDate ? currentDate : '';
+  currentTime = currentTime ? currentTime : '';
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
   lessons = lessons ? lessons : [];
@@ -23,6 +27,18 @@ export default function LessonIndex (props) {
   lessons.forEach(lesson => {
     if (lesson.student_id === session) userLessons.push(lesson)
   });
+
+  let numUpcomingLessons = 0;
+
+  userLessons.forEach(lesson => {
+    const lessonDate = new Date(lesson.when).toLocaleDateString();
+    const lessonTime = new Date(lesson.when).toLocaleTimeString();
+    if (lessonDate > currentDate) {
+      numUpcomingLessons++
+    } else if (lessonDate === currentDate && lessonTime > currentTime) {
+      numUpcomingLessons++
+    }
+  })
 
   userLessons = userLessons.map((lesson, i) => {
     return (
@@ -49,7 +65,7 @@ export default function LessonIndex (props) {
         <button 
           className={lessonStatus === "upcoming" ? 'lesson-tab-selected' : ''} 
           onClick={() => setLessonStatus('upcoming')}>
-            {`Upcoming • `}
+            {`Upcoming • ${numUpcomingLessons}`}
         </button>
         <button 
           className={lessonStatus === "completed" ? 'lesson-tab-selected' : ''} 

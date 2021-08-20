@@ -64,6 +64,13 @@ user7 = User.create!(
   password: "123456"
 )
 
+user8 = User.create!(
+  first_name: "Señorita",
+  last_name: "Yanyi",
+  username: "missyanyi",
+  password: "123456"
+)
+
 language1 = Language.create!(
   name: "Italian"
 )
@@ -261,7 +268,7 @@ lesson5 = Lesson.create!(
   teacher_id: user1.id,
   language_id: language6.id, # English
   when: DateTime.new(2021, 12, 25, 16, 0, 0),
-  end_time: DateTime.new(2021, 8, 8, 17, 30, 0)
+  end_time: DateTime.new(2021, 12, 25, 17, 30, 0)
 )
 
 lesson6 = Lesson.create!(
@@ -269,7 +276,7 @@ lesson6 = Lesson.create!(
   teacher_id: user5.id,
   language_id: language2.id, # Spanish
   when: DateTime.new(2021, 12, 26, 0, 0, 0),
-  end_time: DateTime.new(2021, 12, 12, 1, 30, 0)
+  end_time: DateTime.new(2021, 12, 26, 1, 30, 0)
 )
 
 lesson7 = Lesson.create!(
@@ -302,4 +309,20 @@ lesson10 = Lesson.create!(
   language_id: language2.id, # Spanish
   when: DateTime.new(2021, 9, 15, 15, 0, 0),
   end_time: DateTime.new(2021, 9, 15, 16, 00, 0)
+)
+
+lesson11 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user8.id,
+  language_id: language2.id, # Spanish
+  when: DateTime.new(2021, 9, 20, 15, 0, 0),
+  end_time: DateTime.new(2021, 9, 20, 16, 00, 0)
+)
+
+lesson12 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user8.id,
+  language_id: language2.id, # Spanish
+  when: DateTime.new(2021, 9, 27, 15, 0, 0),
+  end_time: DateTime.new(2021, 9, 27, 16, 00, 0)
 )

@@ -15,25 +15,22 @@ const LessonIndexItem = ({ lesson }) => {
   let lessonStatus = '';
   
   function determineLessonStatus() {
-    debugger
     if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
       lessonStatus = "Upcoming Lesson"
-      debugger
       return "upcoming"
     } else if (currentDate > lessonEndDate && currentTime > lessonEndTime) {
       lessonStatus = "Completed"
-      debugger
       return "completed"
     }
   }
 
   let lessonTime = new Date(lesson.when).toLocaleString();
 
-  debugger
   return (
     <div className="lesson-index-item">
-      <div id={determineLessonStatus(lesson)}></div>
+      <div id={determineLessonStatus()}></div>
       <li className="individual-lesson">
+        {/* <h1>{whichLessonStatus}</h1> */}
         <h1>{lessonStatus}</h1>
         <p>{lessonTime}</p>
       </li>
