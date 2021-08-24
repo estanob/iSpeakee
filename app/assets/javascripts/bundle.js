@@ -235,8 +235,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createLanguageToStudent", function() { return createLanguageToStudent; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteLanguageToStudent", function() { return deleteLanguageToStudent; });
 /* harmony import */ var _util_language_to_student_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/language_to_student_api_util */ "./frontend/util/language_to_student_api_util.js");
-/* harmony import */ var _language_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./language_actions */ "./frontend/actions/language_actions.js");
-
 
 var RECEIVE_ALL_LANGUAGE_TO_STUDENTS = 'RECEIVE_ALL_LANGUAGE_TO_STUDENTS';
 var RECEIVE_LANGUAGE_TO_STUDENT = 'RECEIVE_LANGUAGE_TO_STUDENT';
@@ -641,6 +639,71 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/teacher_to_student_actions.js":
+/*!********************************************************!*\
+  !*** ./frontend/actions/teacher_to_student_actions.js ***!
+  \********************************************************/
+/*! exports provided: RECEIVE_ALL_TEACHER_TO_STUDENTS, RECEIVE_TEACHER_TO_STUDENT, REMOVE_TEACHER_TO_STUDENT, receiveAllTeacherToStudents, receiveTeacherToStudent, removeTeacherToStudent, fetchTeacherToStudents, createTeacherToStudent, deleteTeacherToStudent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_TEACHER_TO_STUDENTS", function() { return RECEIVE_ALL_TEACHER_TO_STUDENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TEACHER_TO_STUDENT", function() { return RECEIVE_TEACHER_TO_STUDENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_TEACHER_TO_STUDENT", function() { return REMOVE_TEACHER_TO_STUDENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveAllTeacherToStudents", function() { return receiveAllTeacherToStudents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveTeacherToStudent", function() { return receiveTeacherToStudent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "removeTeacherToStudent", function() { return removeTeacherToStudent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTeacherToStudents", function() { return fetchTeacherToStudents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTeacherToStudent", function() { return createTeacherToStudent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTeacherToStudent", function() { return deleteTeacherToStudent; });
+/* harmony import */ var _util_teacher_to_student_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/teacher_to_student_api_util */ "./frontend/util/teacher_to_student_api_util.js");
+
+var RECEIVE_ALL_TEACHER_TO_STUDENTS = 'RECEIVE_ALL_TEACHER_TO_STUDENTS';
+var RECEIVE_TEACHER_TO_STUDENT = 'RECEIVE_TEACHER_TO_STUDENT';
+var REMOVE_TEACHER_TO_STUDENT = 'REMOVE_TEACHER_TO_STUDENT';
+var receiveAllTeacherToStudents = function receiveAllTeacherToStudents(teacherToStudents) {
+  return {
+    type: RECEIVE_ALL_TEACHER_TO_STUDENTS,
+    teacherToStudents: teacherToStudents
+  };
+};
+var receiveTeacherToStudent = function receiveTeacherToStudent(teacherToStudent) {
+  return {
+    type: RECEIVE_TEACHER_TO_STUDENT,
+    teacherToStudent: teacherToStudent
+  };
+};
+var removeTeacherToStudent = function removeTeacherToStudent(teacherToStudent) {
+  return {
+    type: REMOVE_TEACHER_TO_STUDENT,
+    teacherToStudent: teacherToStudent
+  };
+};
+var fetchTeacherToStudents = function fetchTeacherToStudents() {
+  return function (dispatch) {
+    return _util_teacher_to_student_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchTeacherToStudents"]().then(function (teacherToStudents) {
+      dispatch(receiveAllTeacherToStudents(teacherToStudents));
+    });
+  };
+};
+var createTeacherToStudent = function createTeacherToStudent(teacherToStudent) {
+  return function (dispatch) {
+    return _util_teacher_to_student_api_util__WEBPACK_IMPORTED_MODULE_0__["createTeacherToStudent"](teacherToStudent).then(function (newTeacherToStudent) {
+      dispatch(receiveTeacherToStudent(newTeacherToStudent));
+    });
+  };
+};
+var deleteTeacherToStudent = function deleteTeacherToStudent(teacherToStudent) {
+  return function (dispatch) {
+    return _util_teacher_to_student_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteTeacherToStudent"](teacherToStudent).then(function () {
+      dispatch(removeTeacherToStudent(teacherToStudent));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/components/app.jsx":
 /*!*************************************!*\
   !*** ./frontend/components/app.jsx ***!
@@ -742,23 +805,31 @@ var Dashboard = function Dashboard(props) {
       session = props.session,
       currentUser = props.currentUser,
       fetchUser = props.fetchUser,
-      fetchAllUsers = props.fetchAllUsers;
+      fetchAllUsers = props.fetchAllUsers,
+      currentDate = props.currentDate,
+      currentTime = props.currentTime;
   session = session ? session : '';
+  currentDate = currentDate ? currentDate : '';
+  currentTime = currentTime ? currentTime : '';
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchAllUsers();
   }, []);
-  var currentTime = new Date().toLocaleString();
   var numCompletedLessons = 0;
   var userLessons = currentUser.attendedLessons ? currentUser.attendedLessons : [];
   userLessons.forEach(function (lesson) {
-    if (lesson.when < currentTime) {
+    var lessonDate = new Date(lesson.when).toLocaleDateString();
+    var lessonTime = new Date(lesson.when).toLocaleTimeString();
+    var lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
+    var lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
+
+    if (lessonDate < currentDate) {
+      numCompletedLessons++;
+    } else if (lessonEndDate <= currentDate && lessonEndTime < currentTime) {
       numCompletedLessons++;
     }
-
-    ;
   });
   var currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : {};
   var studiedLanguages = currentLanguages.map(function (language, i) {
@@ -829,7 +900,9 @@ var mSTP = function mSTP(state) {
   return {
     session: session,
     currentUser: currentUser,
-    users: users
+    users: users,
+    currentDate: new Date().toLocaleDateString(),
+    currentTime: new Date().toLocaleTimeString()
   };
 };
 
@@ -1110,6 +1183,8 @@ function LessonIndex(props) {
   });
   userLessons = userLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      currentDate: currentDate,
+      currentTime: currentTime,
       lesson: lesson,
       key: i
     });
@@ -1216,13 +1291,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 
-var LessonIndexItem = function LessonIndexItem(_ref) {
-  var lesson = _ref.lesson;
+var LessonIndexItem = function LessonIndexItem(props) {
+  var lesson = props.lesson,
+      currentDate = props.currentDate,
+      currentTime = props.currentTime;
   lesson = lesson ? lesson : {};
+  console.log("Lesson Index Item Props");
+  console.log(props);
   console.log("Lesson Index Item: { Lesson }");
   console.log(lesson);
-  var currentDate = new Date().toLocaleDateString();
-  var currentTime = new Date().toLocaleTimeString();
   var lessonStartTime = new Date(lesson.when).toLocaleTimeString();
   var lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
   var lessonStartDate = new Date(lesson.when).toLocaleDateString();
@@ -1230,10 +1307,11 @@ var LessonIndexItem = function LessonIndexItem(_ref) {
   var lessonStatus = '';
 
   function determineLessonStatus() {
-    if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
+    if (currentDate < lessonStartDate) {
+      // if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
       lessonStatus = "Upcoming Lesson";
       return "upcoming";
-    } else if (currentDate > lessonEndDate && currentTime > lessonEndTime) {
+    } else if (currentDate > lessonEndDate) {
       lessonStatus = "Completed";
       return "completed";
     }
@@ -2012,6 +2090,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lessons_reducer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lessons_reducer */ "./frontend/reducers/lessons_reducer.js");
 /* harmony import */ var _posts_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./posts_reducer */ "./frontend/reducers/posts_reducer.js");
 /* harmony import */ var _follows_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./follows_reducer */ "./frontend/reducers/follows_reducer.js");
+/* harmony import */ var _teacher_to_students_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./teacher_to_students_reducer */ "./frontend/reducers/teacher_to_students_reducer.js");
+
 
 
 
@@ -2025,6 +2105,7 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
   users: _profile_reducer__WEBPACK_IMPORTED_MODULE_2__["default"],
   languages: _languages_reducer__WEBPACK_IMPORTED_MODULE_3__["default"],
   languageToStudents: _language_to_students_reducer__WEBPACK_IMPORTED_MODULE_4__["default"],
+  teacherToStudents: _teacher_to_students_reducer__WEBPACK_IMPORTED_MODULE_8__["default"],
   lessons: _lessons_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
   posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
   follows: _follows_reducer__WEBPACK_IMPORTED_MODULE_7__["default"]
@@ -2387,6 +2468,48 @@ var sessionReducer = function sessionReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (sessionReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/teacher_to_students_reducer.js":
+/*!**********************************************************!*\
+  !*** ./frontend/reducers/teacher_to_students_reducer.js ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_teacher_to_student_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/teacher_to_student_actions */ "./frontend/actions/teacher_to_student_actions.js");
+
+
+var TeacherToStudentsReducer = function TeacherToStudentsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_teacher_to_student_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_TEACHER_TO_STUDENTS"]:
+      nextState = Object.assign({}, action.teacherToStudents);
+      return nextState;
+
+    case _actions_teacher_to_student_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TEACHER_TO_STUDENT"]:
+      nextState[action.teacherToStudent.id] = action.teacherToStudent;
+      return nextState;
+
+    case _actions_teacher_to_student_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_TEACHER_TO_STUDENT"]:
+      delete nextState[action.teacherToStudentId];
+      return nextState;
+
+    default:
+      return state;
+  }
+
+  ;
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TeacherToStudentsReducer);
 
 /***/ }),
 
@@ -2798,6 +2921,50 @@ var signup = function signup(user) {
     data: {
       user: user
     }
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/teacher_to_student_api_util.js":
+/*!******************************************************!*\
+  !*** ./frontend/util/teacher_to_student_api_util.js ***!
+  \******************************************************/
+/*! exports provided: fetchTeacherToStudents, createTeacherToStudent, deleteTeacherToStudent, fetchTeacherToStudent */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTeacherToStudents", function() { return fetchTeacherToStudents; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTeacherToStudent", function() { return createTeacherToStudent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTeacherToStudent", function() { return deleteTeacherToStudent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTeacherToStudent", function() { return fetchTeacherToStudent; });
+var fetchTeacherToStudents = function fetchTeacherToStudents() {
+  return $.ajax({
+    url: "/api/teacher_to_students",
+    method: 'GET'
+  });
+};
+var createTeacherToStudent = function createTeacherToStudent(teacherToStudent) {
+  return $.ajax({
+    url: "/api/teacher_to_students",
+    method: 'POST',
+    data: teacherToStudent,
+    contentType: false,
+    processData: false
+  });
+};
+var deleteTeacherToStudent = function deleteTeacherToStudent(teacherToStudent) {
+  return $.ajax({
+    url: "/api/teacher_to_students",
+    method: 'DELETE',
+    data: teacherToStudent
+  });
+};
+var fetchTeacherToStudent = function fetchTeacherToStudent(id) {
+  return $.ajax({
+    url: "/api/teacher_to_students/".concat(id),
+    method: 'GET'
   });
 };
 

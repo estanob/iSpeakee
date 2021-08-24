@@ -42,7 +42,11 @@ export default function LessonIndex (props) {
 
   userLessons = userLessons.map((lesson, i) => {
     return (
-      <LessonIndexItem lesson={lesson} key={i} />
+      <LessonIndexItem 
+        currentDate={currentDate} 
+        currentTime={currentTime} 
+        lesson={lesson} 
+        key={i} />
     )
   });
 

@@ -1,0 +1,1 @@
+json.partial! "teacher_to_student", teacher_to_student: @teacher_to_student

@@ -1,5 +1,4 @@
 import * as LanguageToStudentAPIUtil from '../util/language_to_student_api_util';
-import { RECEIVE_ALL_LANGUAGES } from './language_actions';
 
 export const RECEIVE_ALL_LANGUAGE_TO_STUDENTS = 'RECEIVE_ALL_LANGUAGE_TO_STUDENTS';
 export const RECEIVE_LANGUAGE_TO_STUDENT = 'RECEIVE_LANGUAGE_TO_STUDENT';

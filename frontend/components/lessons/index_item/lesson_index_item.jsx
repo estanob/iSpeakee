@@ -1,12 +1,13 @@
 import React from 'react';
 
-const LessonIndexItem = ({ lesson }) => {
+const LessonIndexItem = props => {
+  let { lesson, currentDate, currentTime } = props;
   lesson = lesson ? lesson : {};
+  console.log("Lesson Index Item Props")
+  console.log(props)
   console.log("Lesson Index Item: { Lesson }")
   console.log(lesson)
 
-  let currentDate = new Date().toLocaleDateString();
-  let currentTime = new Date().toLocaleTimeString();
   let lessonStartTime = new Date(lesson.when).toLocaleTimeString();
   let lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
   let lessonStartDate = new Date(lesson.when).toLocaleDateString();
@@ -15,10 +16,11 @@ const LessonIndexItem = ({ lesson }) => {
   let lessonStatus = '';
   
   function determineLessonStatus() {
-    if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
+    if (currentDate < lessonStartDate) {
+    // if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
       lessonStatus = "Upcoming Lesson"
       return "upcoming"
-    } else if (currentDate > lessonEndDate && currentTime > lessonEndTime) {
+    } else if (currentDate > lessonEndDate) {
       lessonStatus = "Completed"
       return "completed"
     }

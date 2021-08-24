@@ -9,10 +9,14 @@ const Dashboard = (props) => {
     session, 
     currentUser, 
     fetchUser, 
-    fetchAllUsers 
+    fetchAllUsers,
+    currentDate,
+    currentTime,
   } = props;
 
   session = session ? session : '';
+  currentDate = currentDate ? currentDate : '';
+  currentTime = currentTime ? currentTime : '';
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
 
@@ -21,13 +25,18 @@ const Dashboard = (props) => {
     fetchAllUsers()
   }, []);
 
-  let currentTime = new Date().toLocaleString();
   let numCompletedLessons = 0;
   let userLessons = currentUser.attendedLessons ? currentUser.attendedLessons : [];
   userLessons.forEach(lesson => {
-    if (lesson.when < currentTime) {
-      numCompletedLessons ++;
-    };
+    const lessonDate = new Date(lesson.when).toLocaleDateString();
+    const lessonTime = new Date(lesson.when).toLocaleTimeString();
+    const lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
+    const lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
+    if (lessonDate < currentDate) {
+      numCompletedLessons++
+    } else if (lessonEndDate <= currentDate && lessonEndTime < currentTime) {
+      numCompletedLessons++
+    }
   })
   
   let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : {};

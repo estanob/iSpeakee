@@ -10,6 +10,8 @@ const mSTP = (state) => {
     session: session,
     currentUser: currentUser,
     users: users,
+    currentDate: new Date().toLocaleDateString(),
+    currentTime: new Date().toLocaleTimeString(),
   };
 };
 
