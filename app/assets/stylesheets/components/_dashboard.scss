@@ -18,6 +18,11 @@
   padding: 0 12px;
 }
 
+.profile-link {
+  text-decoration: none;
+  color: black;
+}
+
 .lang-skills {
   display: block;
   max-width: 62.5%;
@@ -31,6 +36,16 @@
   display: block;
 }
 
+.completed-lessons-link {
+  text-decoration: none;
+  color: black;
+}
+
 .languages-learning {
   display: flex;
+}
+
+.languages-link {
+  text-decoration: none;
+  color: black;
 }

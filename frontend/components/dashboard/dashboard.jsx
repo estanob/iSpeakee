@@ -27,6 +27,7 @@ const Dashboard = (props) => {
 
   let numCompletedLessons = 0;
   let userLessons = currentUser.attendedLessons ? currentUser.attendedLessons : [];
+
   userLessons.forEach(lesson => {
     const lessonDate = new Date(lesson.when).toLocaleDateString();
     const lessonTime = new Date(lesson.when).toLocaleTimeString();
@@ -53,7 +54,9 @@ const Dashboard = (props) => {
       <div className="user-dashboard">
         <div className="acct-info">
           <h3>{`ID: ${session}`}</h3>
-          <Link to={`/user/${session}`}>{`${currentUser.firstName} ${currentUser.lastName}`}</Link>
+          <Link to={`/user/${session}`} className="profile-link">
+            {`${currentUser.firstName} ${currentUser.lastName}`}
+          </Link>
           <p>{`${currentUser.posts.length} Posts 0 Following 0 Followers`}</p>
         </div>
         <div className="study-info">
@@ -66,7 +69,7 @@ const Dashboard = (props) => {
                 </ul>
               </div>
               <div className="completed-lessons">
-                <Link to={`/lessons/${session}`}>
+                <Link to={`/lessons/${session}`} className="completed-lessons-link">
                   <p>{numCompletedLessons}</p>
                   <span>Completed Lessons</span>
                 </Link>
@@ -77,7 +80,7 @@ const Dashboard = (props) => {
             <h1>Upcoming Lesson</h1>
           </div>
           <h1>My Teachers</h1>
-          <Link to="/languages">
+          <Link to="/languages" className="languages-link">
             Languages
           </Link>
         </div>

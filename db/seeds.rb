@@ -326,3 +326,43 @@ lesson12 = Lesson.create!(
   when: DateTime.new(2021, 9, 27, 15, 0, 0),
   end_time: DateTime.new(2021, 9, 27, 16, 00, 0)
 )
+
+teacherToStudent1 = TeacherToStudent.create!(
+  student_id: user1.id,
+  teacher_id: user5.id
+)
+
+teacherToStudent2 = TeacherToStudent.create!(
+  student_id: user1.id,
+  teacher_id: user6.id
+)
+
+teacherToStudent3 = TeacherToStudent.create!(
+  student_id: user1.id,
+  teacher_id: user7.id
+)
+
+teacherToStudent4 = TeacherToStudent.create!(
+  student_id: user1.id,
+  teacher_id: user8.id
+)
+
+teacherToStudent5 = TeacherToStudent.create!(
+  student_id: user4.id,
+  teacher_id: user5.id
+)
+
+teacherToStudent6 = TeacherToStudent.create!(
+  student_id: user4.id,
+  teacher_id: user6.id
+)
+
+teacherToStudent7 = TeacherToStudent.create!(
+  student_id: user4.id,
+  teacher_id: user7.id
+)
+
+teacherToStudent8 = TeacherToStudent.create!(
+  student_id: user4.id,
+  teacher_id: user8.id
+)

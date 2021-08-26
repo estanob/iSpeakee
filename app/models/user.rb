@@ -72,4 +72,20 @@ class User < ApplicationRecord
   has_many :taught_lessons,
     foreign_key: :teacher_id,
     class_name: :Lesson
+
+  has_many :outward_teacher_to_students,
+    foreign_key: :student_id,
+    class_name: :TeacherToStudent
+    
+  has_many :inward_teacher_to_students,
+    foreign_key: :teacher_id,
+    class_name: :TeacherToStudent
+
+  has_many :students,
+    through: :outward_teacher_to_students,
+    source: :student
+
+  has_many :teachers,
+    through: :inward_teacher_to_students,
+    source: :teacher
 end

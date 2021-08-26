@@ -6,3 +6,5 @@ json.studiedLanguages user.language_to_students
 json.posts user.posts
 json.attendedLessons user.attended_lessons
 json.taughtLessons user.taught_lessons
+json.teachers user.outward_teacher_to_students
+json.students user.inward_teacher_to_students 
