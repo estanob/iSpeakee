@@ -69,7 +69,7 @@ const Dashboard = (props) => {
                 </ul>
               </div>
               <div className="completed-lessons">
-                <Link to={`/lessons/${session}`} className="completed-lessons-link">
+                <Link to="/lessons/" className="completed-lessons-link">
                   <p>{numCompletedLessons}</p>
                   <span>Completed Lessons</span>
                 </Link>

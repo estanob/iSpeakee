@@ -722,11 +722,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_splash__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/splash */ "./frontend/components/splash.jsx");
 /* harmony import */ var _session_form_login_form_container__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./session_form/login_form_container */ "./frontend/components/session_form/login_form_container.js");
 /* harmony import */ var _session_form_sign_up_form_container__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./session_form/sign_up_form_container */ "./frontend/components/session_form/sign_up_form_container.js");
-/* harmony import */ var _lessons_index_lesson_index_container__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./lessons/index/lesson_index_container */ "./frontend/components/lessons/index/lesson_index_container.js");
-/* harmony import */ var _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./languages/index/language_index_container */ "./frontend/components/languages/index/language_index_container.js");
-/* harmony import */ var _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./languages/show/language_show_page_container */ "./frontend/components/languages/show/language_show_page_container.js");
-/* harmony import */ var _posts_post_show_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./posts/post_show_container */ "./frontend/components/posts/post_show_container.js");
-/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+/* harmony import */ var _lessons_show_lesson_show__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./lessons/show/lesson_show */ "./frontend/components/lessons/show/lesson_show.jsx");
+/* harmony import */ var _lessons_index_lesson_index_container__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./lessons/index/lesson_index_container */ "./frontend/components/lessons/index/lesson_index_container.js");
+/* harmony import */ var _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./languages/index/language_index_container */ "./frontend/components/languages/index/language_index_container.js");
+/* harmony import */ var _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./languages/show/language_show_page_container */ "./frontend/components/languages/show/language_show_page_container.js");
+/* harmony import */ var _posts_post_show_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./posts/post_show_container */ "./frontend/components/posts/post_show_container.js");
+/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+
 
 
 
@@ -753,19 +755,22 @@ var App = function App() {
     component: _dashboard_dashboard_container__WEBPACK_IMPORTED_MODULE_4__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/lessons/:id",
-    component: _lessons_index_lesson_index_container__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _lessons_show_lesson_show__WEBPACK_IMPORTED_MODULE_8__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    path: "/lessons",
+    component: _lessons_index_lesson_index_container__WEBPACK_IMPORTED_MODULE_9__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/languages/:id",
-    component: _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_10__["default"]
+    component: _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_11__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/languages",
-    component: _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_9__["default"]
+    component: _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_10__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/post/:id",
-    component: _posts_post_show_container__WEBPACK_IMPORTED_MODULE_11__["default"]
+    component: _posts_post_show_container__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/user/:id",
-    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_12__["default"]
+    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_13__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     exact: true,
     path: "/",
@@ -866,7 +871,7 @@ var Dashboard = function Dashboard(props) {
   }, studiedLanguages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "completed-lessons"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-    to: "/lessons/".concat(session),
+    to: "/lessons/",
     className: "completed-lessons-link"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, numCompletedLessons), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Completed Lessons"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "languages-learning"
@@ -1292,6 +1297,8 @@ var mDTP = function mDTP(dispatch, ownProps) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 
 var LessonIndexItem = function LessonIndexItem(props) {
@@ -1299,6 +1306,8 @@ var LessonIndexItem = function LessonIndexItem(props) {
       currentDate = props.currentDate,
       currentTime = props.currentTime;
   lesson = lesson ? lesson : {};
+  currentDate = currentDate ? currentDate : '';
+  currentTime = currentTime ? currentTime : '';
   console.log("Lesson Index Item Props");
   console.log(props);
   console.log("Lesson Index Item: { Lesson }");
@@ -1310,19 +1319,20 @@ var LessonIndexItem = function LessonIndexItem(props) {
   var lessonStatus = '';
 
   function determineLessonStatus() {
-    if (currentDate < lessonStartDate) {
+    if (currentDate < lessonStartDate || currentDate === lessonStartDate && currentTime < lessonStartTime) {
       // if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
       lessonStatus = "Upcoming Lesson";
       return "upcoming";
-    } else if (currentDate > lessonEndDate) {
+    } else if (currentDate > lessonEndDate || currentDate === lessonEndDate && currentTime > lessonEndTime) {
       lessonStatus = "Completed";
       return "completed";
     }
   }
 
   var lessonTime = new Date(lesson.when).toLocaleString();
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "lesson-index-item"
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "lesson-index-item",
+    to: "/lessons/".concat(lesson.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: determineLessonStatus()
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -1331,6 +1341,27 @@ var LessonIndexItem = function LessonIndexItem(props) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LessonIndexItem);
+
+/***/ }),
+
+/***/ "./frontend/components/lessons/show/lesson_show.jsx":
+/*!**********************************************************!*\
+  !*** ./frontend/components/lessons/show/lesson_show.jsx ***!
+  \**********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var LessonShow = function LessonShow(props) {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "HELLO WORLD"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (LessonShow);
 
 /***/ }),
 

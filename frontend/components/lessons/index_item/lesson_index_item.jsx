@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const LessonIndexItem = props => {
   let { lesson, currentDate, currentTime } = props;
   lesson = lesson ? lesson : {};
+  currentDate = currentDate ? currentDate : '';
+  currentTime = currentTime ? currentTime : '';
   console.log("Lesson Index Item Props")
   console.log(props)
   console.log("Lesson Index Item: { Lesson }")
@@ -16,11 +19,11 @@ const LessonIndexItem = props => {
   let lessonStatus = '';
   
   function determineLessonStatus() {
-    if (currentDate < lessonStartDate) {
+    if ((currentDate < lessonStartDate) || (currentDate === lessonStartDate && currentTime < lessonStartTime)) {
     // if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
       lessonStatus = "Upcoming Lesson"
       return "upcoming"
-    } else if (currentDate > lessonEndDate) {
+    } else if ((currentDate > lessonEndDate) || (currentDate === lessonEndDate && currentTime > lessonEndTime)) {
       lessonStatus = "Completed"
       return "completed"
     }
@@ -29,14 +32,14 @@ const LessonIndexItem = props => {
   let lessonTime = new Date(lesson.when).toLocaleString();
 
   return (
-    <div className="lesson-index-item">
+    <Link className="lesson-index-item" to={`/lessons/${lesson.id}`}>
       <div id={determineLessonStatus()}></div>
       <li className="individual-lesson">
         {/* <h1>{whichLessonStatus}</h1> */}
         <h1>{lessonStatus}</h1>
         <p>{lessonTime}</p>
       </li>
-    </div>
+    </Link>
   )
 }
 
