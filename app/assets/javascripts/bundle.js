@@ -1406,7 +1406,11 @@ var Navbar = function Navbar(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "app-logo"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["NavLink"], {
-    to: "/"
+    to: "/",
+    style: {
+      textDecoration: 'none',
+      color: 'black'
+    }
   }, "iSpeaki 14 years"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-links"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
@@ -1473,16 +1477,24 @@ var PostShow = function PostShow(props) {
   console.log("Post Show Props");
   console.log(props);
   var post = props.post,
-      fetchPost = props.fetchPost;
+      fetchPost = props.fetchPost,
+      fetchAllUsers = props.fetchAllUsers;
   post = post ? post : {};
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchPost();
+    fetchAllUsers();
   }, []);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "post-show-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(post.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "post-content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "post-text"
+  }, "".concat(post.body)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "post-creation"
-  }, "".concat(post.created_at)));
+  }, "".concat(post.created_at))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "post-creator-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "HELLO")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PostShow);
@@ -1500,17 +1512,22 @@ var PostShow = function PostShow(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/post_actions */ "./frontend/actions/post_actions.js");
-/* harmony import */ var _post_show__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./post_show */ "./frontend/components/posts/post_show.jsx");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _post_show__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post_show */ "./frontend/components/posts/post_show.jsx");
+
 
 
 
 
 var mSTP = function mSTP(state, ownProps) {
+  debugger;
   var session = state.session.id ? state.session.id : '';
   var post = state.entities.posts ? state.entities.posts[ownProps.match.params.id] : {};
+  var creator = post && state.entities.users ? state.entities.users[post.creator_id] : {};
   return {
     session: session,
-    post: post
+    post: post,
+    creator: creator
   };
 };
 
@@ -1518,11 +1535,14 @@ var mDTP = function mDTP(dispatch, ownProps) {
   return {
     fetchPost: function fetchPost() {
       return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_1__["fetchPost"])(parseInt(ownProps.match.params.id)));
+    },
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllUsers"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_post_show__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_post_show__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
