@@ -18,9 +18,56 @@
   padding: 0 12px;
 }
 
+.user {
+  padding: 16px 24px;
+}
+
+.user-id {
+  font-size: 12px;
+  line-height: 18px;
+  color: #8c8c8c;
+  background: #f2f2f6;
+  padding: 4px 8px;
+  display: -webkit-flex;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 4px;
+}
+
 .profile-link {
   text-decoration: none;
   color: black;
+}
+
+.dashboard-wallet-balance {
+  padding: 16px 24px;
+}
+
+.refer-a-friend {
+  padding: 16px 24px;
+}
+
+.language-test {
+  padding: 16px 24px;
+}
+
+.download-ispeaki {
+  padding: 16px 24px;
+}
+
+.left-title {
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #333;
+  margin-bottom: 4px;
+}
+
+.left-content {
+  color: #8c8c8c;
+  font-size: 14px;
+  line-height: 18px;
 }
 
 .lang-skills {

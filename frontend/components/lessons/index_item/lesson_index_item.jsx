@@ -6,10 +6,6 @@ const LessonIndexItem = props => {
   lesson = lesson ? lesson : {};
   currentDate = currentDate ? currentDate : '';
   currentTime = currentTime ? currentTime : '';
-  console.log("Lesson Index Item Props")
-  console.log(props)
-  console.log("Lesson Index Item: { Lesson }")
-  console.log(lesson)
 
   let lessonStartTime = new Date(lesson.when).toLocaleTimeString();
   let lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
@@ -37,7 +33,7 @@ const LessonIndexItem = props => {
       <li className="individual-lesson">
         {/* <h1>{whichLessonStatus}</h1> */}
         <h1>{lessonStatus}</h1>
-        <p>{lessonTime}</p>
+        <p stye={{ textDecoration: 'none' }}>{lessonTime}</p>
       </li>
     </Link>
   )

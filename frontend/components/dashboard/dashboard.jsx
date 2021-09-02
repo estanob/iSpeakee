@@ -33,9 +33,7 @@ const Dashboard = (props) => {
     const lessonTime = new Date(lesson.when).toLocaleTimeString();
     const lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
     const lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
-    if (lessonDate < currentDate) {
-      numCompletedLessons++
-    } else if (lessonEndDate <= currentDate && lessonEndTime < currentTime) {
+    if ((lessonDate < currentDate) || (lessonEndDate <= currentDate && lessonEndTime < currentTime)) {
       numCompletedLessons++
     }
   })
@@ -53,11 +51,42 @@ const Dashboard = (props) => {
     <div style={{ width: '960px', margin: '0 auto' }}>
       <div className="user-dashboard">
         <div className="acct-info">
-          <h3>{`ID: ${session}`}</h3>
-          <Link to={`/user/${session}`} className="profile-link">
-            {`${currentUser.firstName} ${currentUser.lastName}`}
-          </Link>
-          <p>{`${currentUser.posts.length} Posts 0 Following 0 Followers`}</p>
+          <div className="user">
+            <h3 className="user-id">{`ID: ${session}`}</h3>
+            <Link to={`/user/${session}`} className="profile-link">
+              {`${currentUser.firstName} ${currentUser.lastName}`}
+            </Link>
+            <p>{`${currentUser.posts.length} Posts 0 Following 0 Followers`}</p>
+          </div>
+          <div className="dashboard-wallet-balance">
+            <span className="dashboard-ispeaki-balance left-title">
+              ispeaki Balance
+            </span>
+          </div>
+          <div className="refer-a-friend left-title">
+            <span>
+              Refer a Friend
+            </span>
+            <p className="left-content">
+              Get a friend involved and earn up to $30 ispeaki Credits per referral
+            </p>
+          </div>
+          <div className="language-test left-title">
+            <span>
+              ispeaki Language Test
+            </span>
+            <p className="left-content">
+              Test Your Language Level
+            </p>
+          </div>
+          <div className="download-ispeaki left-title">
+            <span>
+              Download the ispeaki App
+            </span>
+            <p className="left-content">
+              Learn languages, anytime, anywhere.
+            </p>
+          </div>
         </div>
         <div className="study-info">
           <div className="lang-skills">
