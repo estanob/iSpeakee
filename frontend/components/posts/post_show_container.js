@@ -4,14 +4,13 @@ import { fetchAllUsers } from '../../actions/profile_actions'
 import PostShow from './post_show';
 
 const mSTP = ( state, ownProps ) => {
-  debugger
   let session = state.session.id ? state.session.id : '';
   let post = state.entities.posts ? state.entities.posts[ownProps.match.params.id] : {};
-  let creator = (post && state.entities.users) ? state.entities.users[post.creator_id] : {};
+  let users = state.entities.users ? Object.values(state.entities.users) : [];
   return {
     session: session,
     post: post,
-    creator: creator,
+    users: users,
   };
 };
 

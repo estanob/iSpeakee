@@ -70,7 +70,7 @@ const Profile = props => {
   }, []);
   
   return (
-    <div className="profile-container" style={{ backgroundColor: '#fafafc' }}>
+    <div className="profile-container">
       <div className="own-profile">
         <div className="basic-info">
           <div className="personal-info">

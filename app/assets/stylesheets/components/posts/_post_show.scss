@@ -2,12 +2,15 @@
   display: flex;
   justify-content: center;
   padding: 10px;
+  background-color: #fafafc;
+  min-height: 85vh;
 }
 
 .post-content {
   max-width: 66.6666666666666666667%;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: 12px;
+  margin-right: 12px;
+  background-color: white;
 }
 
 .post-text {
@@ -23,6 +26,6 @@
 
 .post-creator-info {
   max-width: 33.33333333333333333%;
-  padding-left: 12px;
-  padding-right: 12px;
+  padding: 12px;
+  background-color: white;
 }
