@@ -37,12 +37,6 @@ export default function LessonIndex (props) {
     if (currentDate < lessonStartDate || (currentDate === lessonStartDate && currentTime < lessonStartTime)) {
       upcomingLessons.push(lesson)
     }
-    // if ((lessonDate > currentDate) || (lessonDate === currentDate && lessonTime > currentTime)) {
-    //   numUpcomingLessons++;
-    //   upcomingLessons.push(lesson);
-    // } else if (lessonDate >= currentDate && lessonTime < currentTime) {
-    //   completedLessons.push(lesson);
-    // }
   })
 
   userLessons.filter(lesson => {
@@ -52,7 +46,9 @@ export default function LessonIndex (props) {
       completedLessons.push(lesson)
     }
   })
-
+  
+  userLessons = [].concat(upcomingLessons, completedLessons)
+  
   userLessons = userLessons.map((lesson, i) => {
     return (
       <LessonIndexItem 

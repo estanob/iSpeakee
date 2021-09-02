@@ -746,7 +746,8 @@ __webpack_require__.r(__webpack_exports__);
 var App = function App() {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
-      display: 'grid'
+      display: 'grid',
+      backgroundColor: '#fafafc'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", {
     className: "inner-header"
@@ -781,7 +782,7 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     path: "/signup",
     component: _session_form_sign_up_form_container__WEBPACK_IMPORTED_MODULE_7__["default"]
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeaki - 2021", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Inspired by iTalki"));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeakee - 2021", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Inspired by iTalki"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (App);
@@ -854,27 +855,27 @@ var Dashboard = function Dashboard(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "acct-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "user"
+    className: "user info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", {
     className: "user-id"
   }, "ID: ".concat(session)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/user/".concat(session),
     className: "profile-link"
   }, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(currentUser.posts.length, " Posts 0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "dashboard-wallet-balance"
+    className: "dashboard-wallet-balance info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "dashboard-ispeaki-balance left-title"
-  }, "ispeaki Balance")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "refer-a-friend left-title"
+    className: "dashboard-ispeakee-balance left-title"
+  }, "ispeakee Balance")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "refer-a-friend left-title info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Refer a Friend"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "left-content"
-  }, "Get a friend involved and earn up to $30 ispeaki Credits per referral")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "language-test left-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "ispeaki Language Test"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, "Get a friend involved and earn up to $30 ispeakee Credits per referral")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "language-test left-title info-box box-shadow"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "ispeakee Language Test"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "left-content"
   }, "Test Your Language Level")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "download-ispeaki left-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Download the ispeaki App"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "download-ispeakee left-title info-box box-shadow"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Download the ispeakee App"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "left-content"
   }, "Learn languages, anytime, anywhere."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "study-info"
@@ -1207,13 +1208,7 @@ function LessonIndex(props) {
 
     if (currentDate < lessonStartDate || currentDate === lessonStartDate && currentTime < lessonStartTime) {
       upcomingLessons.push(lesson);
-    } // if ((lessonDate > currentDate) || (lessonDate === currentDate && lessonTime > currentTime)) {
-    //   numUpcomingLessons++;
-    //   upcomingLessons.push(lesson);
-    // } else if (lessonDate >= currentDate && lessonTime < currentTime) {
-    //   completedLessons.push(lesson);
-    // }
-
+    }
   });
   userLessons.filter(function (lesson) {
     var lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
@@ -1223,6 +1218,7 @@ function LessonIndex(props) {
       completedLessons.push(lesson);
     }
   });
+  userLessons = [].concat(upcomingLessons, completedLessons);
   userLessons = userLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
       currentDate: currentDate,
@@ -1390,7 +1386,6 @@ var LessonIndexItem = function LessonIndexItem(props) {
 
   function determineLessonStatus() {
     if (currentDate < lessonStartDate || currentDate === lessonStartDate && currentTime < lessonStartTime) {
-      // if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
       lessonStatus = "Upcoming Lesson";
       return "upcoming";
     } else if (currentDate > lessonEndDate || currentDate === lessonEndDate && currentTime > lessonEndTime) {
@@ -1407,11 +1402,7 @@ var LessonIndexItem = function LessonIndexItem(props) {
     id: determineLessonStatus()
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "individual-lesson"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, lessonStatus), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
-    stye: {
-      textDecoration: 'none'
-    }
-  }, lessonTime)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, lessonStatus), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, lessonTime)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LessonIndexItem);
@@ -1485,7 +1476,7 @@ var Navbar = function Navbar(props) {
       textDecoration: 'none',
       color: 'black'
     }
-  }, "iSpeaki 14 years"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "iSpeakee 14 years"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "navbar-links"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "https://github.com/estanob"
@@ -1707,13 +1698,13 @@ var Profile = function Profile(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "own-profile"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "basic-info"
+    className: "basic-info info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "personal-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(userPosts.length, " Posts 0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "User ID: ".concat(currentUser.id)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-teachers"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "See all"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "language-info"
+    className: "language-info info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lang-skills",
     style: {
@@ -1725,7 +1716,7 @@ var Profile = function Profile(props) {
     className: "posts"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Activity"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "posts-ul"
-  }, userPosts)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Language Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xA9 iSpeaki - 2021")));
+  }, userPosts)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Language Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xA9 iSpeakee - 2021")));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Profile);
@@ -2024,7 +2015,7 @@ var SessionForm = /*#__PURE__*/function (_React$Component) {
       }, err), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "login_form",
         onClick: this.props.closeModal
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.formType === 'login' ? 'Log in to iSpeaki' : 'Join iSpeaki'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), this.props.formType !== 'login' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, this.props.formType === 'login' ? 'Log in to iSpeakee' : 'Join iSpeakee'), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), this.props.formType !== 'login' ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "First Name:", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
         type: "text",
         onClick: this.props.closeModal,
         value: this.state.firstName,
@@ -2150,7 +2141,7 @@ var Splash = function Splash() {
     className: "splash-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "iSpeaki"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Learn a new language today!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeaki - 2021", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Inspired by iTalki"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "iSpeakee"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Learn a new language today!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeakee - 2021", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Inspired by iTalki"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Splash);

@@ -5,13 +5,13 @@ const Splash = () => {
   return (
     <div className="splash-body">
       <div className="splash-header">
-        <h1>iSpeaki</h1>
+        <h1>iSpeakee</h1>
         <p>
           Learn a new language today!
         </p>
       </div>
       <footer>
-        © iSpeaki - 2021
+        © iSpeakee - 2021
         <br />
         Inspired by iTalki
       </footer>

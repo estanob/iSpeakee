@@ -35,7 +35,7 @@ const Navbar = (props) => {
       <div className="app-logo">
         <h3>
           <NavLink to="/" style={{ textDecoration: 'none', color: 'black' }}>
-            iSpeaki 14 years
+            iSpeakee 14 years
           </NavLink>
         </h3>
       </div>

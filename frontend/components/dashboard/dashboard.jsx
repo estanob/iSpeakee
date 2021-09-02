@@ -51,37 +51,37 @@ const Dashboard = (props) => {
     <div style={{ width: '960px', margin: '0 auto' }}>
       <div className="user-dashboard">
         <div className="acct-info">
-          <div className="user">
+          <div className="user info-box box-shadow">
             <h3 className="user-id">{`ID: ${session}`}</h3>
             <Link to={`/user/${session}`} className="profile-link">
               {`${currentUser.firstName} ${currentUser.lastName}`}
             </Link>
             <p>{`${currentUser.posts.length} Posts 0 Following 0 Followers`}</p>
           </div>
-          <div className="dashboard-wallet-balance">
-            <span className="dashboard-ispeaki-balance left-title">
-              ispeaki Balance
+          <div className="dashboard-wallet-balance info-box box-shadow">
+            <span className="dashboard-ispeakee-balance left-title">
+              ispeakee Balance
             </span>
           </div>
-          <div className="refer-a-friend left-title">
+          <div className="refer-a-friend left-title info-box box-shadow">
             <span>
               Refer a Friend
             </span>
             <p className="left-content">
-              Get a friend involved and earn up to $30 ispeaki Credits per referral
+              Get a friend involved and earn up to $30 ispeakee Credits per referral
             </p>
           </div>
-          <div className="language-test left-title">
+          <div className="language-test left-title info-box box-shadow">
             <span>
-              ispeaki Language Test
+              ispeakee Language Test
             </span>
             <p className="left-content">
               Test Your Language Level
             </p>
           </div>
-          <div className="download-ispeaki left-title">
+          <div className="download-ispeakee left-title info-box box-shadow">
             <span>
-              Download the ispeaki App
+              Download the ispeakee App
             </span>
             <p className="left-content">
               Learn languages, anytime, anywhere.

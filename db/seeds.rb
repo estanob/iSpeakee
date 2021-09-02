@@ -178,12 +178,12 @@ languageToStudent11 = LanguageToStudent.create!(
 
 post1 = Post.create!(
   creator_id: user1.id,
-  body: "哈囉我想要在iSpeaki這邊找一些中文老師。你們也可以跟我學英文"
+  body: "哈囉我想要在iSpeakee這邊找一些中文老師。你們也可以跟我學英文"
 )
 
 post2 = Post.create!(
   creator_id: user1.id,
-  body: 'Qué es la que hay"\n" Yo quiero practicar el español aquí en iSpeaki y al mismo tiempo te puedo enseñar el inglés'
+  body: 'Qué es la que hay"\n" Yo quiero practicar el español aquí en iSpeakee y al mismo tiempo te puedo enseñar el inglés'
 )
 
 post3 = Post.create!(
@@ -193,7 +193,7 @@ post3 = Post.create!(
 
 post4 = Post.create!(
   creator_id: user5.id,
-  body: "Qué es la que hay corillo. Si uds quieren aprender el español aquí en iSpeaki escójanme para ser su profesor del español boricua"
+  body: "Qué es la que hay corillo. Si uds quieren aprender el español aquí en iSpeakee escójanme para ser su profesor del español boricua"
 )
 
 follow1 = Follow.create!(

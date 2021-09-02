@@ -19,7 +19,7 @@ import ProfileContainer from './profile/profile_container';
 
 const App = () => {
   return (
-    <div style={{ display: 'grid' }}>
+    <div style={{ display: 'grid', backgroundColor: '#fafafc' }}>
       <header className="inner-header">
         <NavbarContainer />
       </header>
@@ -40,7 +40,7 @@ const App = () => {
         <Redirect to="/404" /> */}
       </Switch>
       <footer>
-        © iSpeaki - 2021
+        © iSpeakee - 2021
         <br />
         Inspired by iTalki
       </footer>

@@ -16,7 +16,6 @@ const LessonIndexItem = props => {
   
   function determineLessonStatus() {
     if ((currentDate < lessonStartDate) || (currentDate === lessonStartDate && currentTime < lessonStartTime)) {
-    // if (currentDate < lessonStartDate && currentTime < lessonStartTime) {
       lessonStatus = "Upcoming Lesson"
       return "upcoming"
     } else if ((currentDate > lessonEndDate) || (currentDate === lessonEndDate && currentTime > lessonEndTime)) {
@@ -31,9 +30,8 @@ const LessonIndexItem = props => {
     <Link className="lesson-index-item" to={`/lessons/${lesson.id}`}>
       <div id={determineLessonStatus()}></div>
       <li className="individual-lesson">
-        {/* <h1>{whichLessonStatus}</h1> */}
         <h1>{lessonStatus}</h1>
-        <p stye={{ textDecoration: 'none' }}>{lessonTime}</p>
+        <p>{lessonTime}</p>
       </li>
     </Link>
   )

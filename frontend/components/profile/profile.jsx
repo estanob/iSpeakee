@@ -72,7 +72,7 @@ const Profile = props => {
   return (
     <div className="profile-container">
       <div className="own-profile">
-        <div className="basic-info">
+        <div className="basic-info info-box box-shadow">
           <div className="personal-info">
             <h2>{`${currentUser.firstName} ${currentUser.lastName}`}</h2>
             <p>{`${userPosts.length} Posts 0 Following 0 Followers`}</p>
@@ -83,7 +83,7 @@ const Profile = props => {
             <button>See all</button>
           </div>
         </div>
-        <div className="language-info">
+        <div className="language-info info-box box-shadow">
           <h2>Profile</h2>
           <div className="lang-skills" style={{ display: 'flex' }}>
             <h2>Language Skills</h2>
@@ -102,7 +102,7 @@ const Profile = props => {
       </div>
       <footer>
         <h2>Language Teachers</h2>
-        <p>© iSpeaki - 2021</p>
+        <p>© iSpeakee - 2021</p>
       </footer>
     </div>
   )
