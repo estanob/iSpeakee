@@ -72,15 +72,20 @@
 
 .lang-skills {
   display: block;
-  max-width: 62.5%;
 }
 
 .skill-lesson-box {
   display: flex;
+  padding: 12px 24px;
 }
 
 .skill {
   display: block;
+  min-width: 66.6666666666%;
+}
+
+.completed-lessons {
+  min-width: 33.333333333%;
 }
 
 .completed-lessons-link {
@@ -90,9 +95,16 @@
 
 .languages-learning {
   display: flex;
+  padding: 12px 24px;
 }
 
 .languages-link {
+  display: flex;
   text-decoration: none;
   color: black;
+}
+
+.my-teachers {
+  display: flex;
+  padding: 12px 24px;
 }

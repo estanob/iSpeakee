@@ -4,11 +4,17 @@ import { Link } from 'react-router-dom';
 
 const ProfileDropdown = ({ logout, session }) => {
   session = session ? session : '';
+
   const triggerDropdown = () => {
     $('#profile-dropdown').toggleClass('trigger')
   };
+
+  const cancelDropdown = () => {
+    $('#profile-dropdown').removeClass('trigger')
+  };
+  
   return (
-    <div id="profile-pointer" onClick={triggerDropdown}>
+    <div id="profile-pointer" onMouseEnter={triggerDropdown} onMouseLeave={cancelDropdown}>
       <span className='user-pic'></span>
       <ul id="profile-dropdown">
         <li>

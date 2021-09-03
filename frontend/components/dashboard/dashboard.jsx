@@ -48,7 +48,7 @@ const Dashboard = (props) => {
   });
 
   return (
-    <div style={{ width: '960px', margin: '0 auto' }}>
+    <div style={{ margin: '0 auto' }}>
       <div className="user-dashboard">
         <div className="acct-info">
           <div className="user info-box box-shadow">
@@ -90,7 +90,7 @@ const Dashboard = (props) => {
         </div>
         <div className="study-info">
           <div className="lang-skills">
-            <div className="skill-lesson-box">
+            <div className="skill-lesson-box info-box box-shadow">
               <div className="skill">
                 <h1>Learning Language</h1>
                 <ul className="lang-skills-ul">
@@ -105,10 +105,12 @@ const Dashboard = (props) => {
               </div>
             </div>
           </div>
-          <div className="languages-learning">
+          <div className="languages-learning info-box box-shadow">
             <h1>Upcoming Lesson</h1>
           </div>
-          <h1>My Teachers</h1>
+          <div className="my-teachers info-box box-shadow">
+            <h1>My Teachers</h1>
+          </div>
           <Link to="/languages" className="languages-link">
             Languages
           </Link>

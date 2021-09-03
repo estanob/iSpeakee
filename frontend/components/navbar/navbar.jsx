@@ -15,9 +15,6 @@ const Navbar = (props) => {
           <ProfileDropdown
             logout={logout}
             session={session} />
-          <button onClick={logout}>
-            Logout
-          </button>
         </div>
       )
     } else {
