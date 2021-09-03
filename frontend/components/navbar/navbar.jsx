@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import ProfileDropdown from '../profile_dropdown';
 
 const Navbar = (props) => {
   console.log("Navbar Props")
@@ -11,6 +12,9 @@ const Navbar = (props) => {
     if (session) {
       return (
         <div>
+          <ProfileDropdown
+            logout={logout}
+            session={session} />
           <button onClick={logout}>
             Logout
           </button>
@@ -51,23 +55,6 @@ const Navbar = (props) => {
         </a>
         {loggedIn()}
       </div>
-      {/* <div className="navbar-links">
-        <a href="https://github.com/estanob">
-          Github
-        </a>
-        <a href="https://linkedin.com/in/estanob">
-          LinkedIn
-        </a>
-        <a href="https://angel.co/u/brandon-estano">
-          AngelList
-        </a>
-        <Link to="/login">
-          Login
-        </Link>
-        <Link to="/signup">
-          Sign up
-        </Link>
-      </div> */}
     </div>
   )
 };

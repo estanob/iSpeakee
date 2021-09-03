@@ -83,17 +83,19 @@ const Profile = props => {
             <button>See all</button>
           </div>
         </div>
-        <div className="language-info info-box box-shadow">
-          <h2>Profile</h2>
-          <div className="lang-skills" style={{ display: 'flex' }}>
-            <h2>Language Skills</h2>
-            <ul className="lang-skills-ul">
-              {/* {currLangs} */}
-              {ownStudiedLanguages}
-            </ul>
+        <div>
+          <div className="language-info info-box box-shadow">
+            <h2>Profile</h2>
+            <div className="lang-skills" style={{ display: 'flex' }}>
+              <h2>Language Skills</h2>
+              <ul className="lang-skills-ul">
+                {/* {currLangs} */}
+                {ownStudiedLanguages}
+              </ul>
+            </div>
           </div>
-          <div className="posts">
-            <h2>Activity</h2>
+          <div className="posts info-box box-shadow">
+            <h2>Activities</h2>
             <ul className="posts-ul">
               {userPosts}
             </ul>
