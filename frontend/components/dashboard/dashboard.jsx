@@ -56,7 +56,12 @@ const Dashboard = (props) => {
             <Link to={`/user/${session}`} className="profile-link">
               {`${currentUser.firstName} ${currentUser.lastName}`}
             </Link>
-            <p>{`${currentUser.posts.length} Posts 0 Following 0 Followers`}</p>
+            <div className="social-media-info">
+              <Link to={`/posts/${session}`} className="profile-link">
+                {`${currentUser.posts.length} Posts`}
+              </Link>
+              <p>{`0 Following 0 Followers`}</p>
+            </div>
           </div>
           <div className="dashboard-wallet-balance info-box box-shadow">
             <span className="dashboard-ispeakee-balance left-title">

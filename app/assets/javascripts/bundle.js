@@ -727,7 +727,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _languages_index_language_index_container__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./languages/index/language_index_container */ "./frontend/components/languages/index/language_index_container.js");
 /* harmony import */ var _languages_show_language_show_page_container__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./languages/show/language_show_page_container */ "./frontend/components/languages/show/language_show_page_container.js");
 /* harmony import */ var _posts_post_show_container__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./posts/post_show_container */ "./frontend/components/posts/post_show_container.js");
-/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+/* harmony import */ var _posts_index_post_index_container__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./posts/index/post_index_container */ "./frontend/components/posts/index/post_index_container.js");
+/* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
+
 
 
 
@@ -770,8 +772,11 @@ var App = function App() {
     path: "/post/:id",
     component: _posts_post_show_container__WEBPACK_IMPORTED_MODULE_12__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    path: "/posts/:id",
+    component: _posts_index_post_index_container__WEBPACK_IMPORTED_MODULE_13__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/user/:id",
-    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_13__["default"]
+    component: _profile_profile_container__WEBPACK_IMPORTED_MODULE_14__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     exact: true,
     path: "/",
@@ -860,7 +865,12 @@ var Dashboard = function Dashboard(props) {
   }, "ID: ".concat(session)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/user/".concat(session),
     className: "profile-link"
-  }, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(currentUser.posts.length, " Posts 0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "social-media-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/posts/".concat(session),
+    className: "profile-link"
+  }, "".concat(currentUser.posts.length, " Posts")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "dashboard-wallet-balance info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "dashboard-ispeakee-balance left-title"
@@ -1526,6 +1536,86 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_navbar__WEBPACK_IMPORTED_MODULE_2__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/posts/index/post_index.jsx":
+/*!********************************************************!*\
+  !*** ./frontend/components/posts/index/post_index.jsx ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostIndex; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function PostIndex(props) {
+  var session = props.session,
+      currentUser = props.currentUser,
+      users = props.users,
+      posts = props.posts,
+      fetchUser = props.fetchUser,
+      fetchPosts = props.fetchPosts;
+  session = session ? session : '';
+  currentUser = currentUser ? currentUser : {};
+  users = users ? users : [];
+  posts = posts ? posts : [];
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetchUser();
+    fetchPosts();
+  }, []);
+  console.log("Props", props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"));
+}
+
+/***/ }),
+
+/***/ "./frontend/components/posts/index/post_index_container.js":
+/*!*****************************************************************!*\
+  !*** ./frontend/components/posts/index/post_index_container.js ***!
+  \*****************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/post_actions */ "./frontend/actions/post_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _post_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post_index */ "./frontend/components/posts/index/post_index.jsx");
+
+
+
+
+
+var mSTP = function mSTP(state) {
+  var session = state.session.id ? state.session.id : '';
+  var currentUser = state.session.id && state.entities.user ? state.entities.user[state.session.id] : {};
+  var users = state.entities.users ? Object.values(state.entities.users) : [];
+  var posts = state.entities.posts ? Object.values(state.entities.posts) : [];
+  return {
+    session: session,
+    currentUser: currentUser,
+    users: users,
+    posts: posts
+  };
+};
+
+var mDTP = function mDTP(dispatch, ownProps) {
+  return {
+    fetchUser: function fetchUser() {
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(parseInt(ownProps.match.params.id)));
+    },
+    fetchPosts: function fetchPosts() {
+      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_1__["fetchPosts"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_post_index__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
