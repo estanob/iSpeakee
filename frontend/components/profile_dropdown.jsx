@@ -18,6 +18,11 @@ const ProfileDropdown = ({ logout, session }) => {
       <span className='user-pic'></span>
       <ul id="profile-dropdown">
         <li>
+          <Link to="/lessons" className="dropdown-link">
+            My Lessons
+          </Link>
+        </li>
+        <li>
           <Link to={`/user/${session}`} className='dropdown-link'>Profile</Link>
         </li>
         <br/>
