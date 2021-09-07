@@ -1228,6 +1228,12 @@ function LessonIndex(props) {
       completedLessons.push(lesson);
     }
   });
+  upcomingLessons.sort(function (a, b) {
+    return a.when < b.when ? -1 : 1;
+  });
+  completedLessons.sort(function (a, b) {
+    return a.when > b.when ? -1 : 1;
+  });
   userLessons = [].concat(upcomingLessons, completedLessons);
   userLessons = userLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
@@ -1306,7 +1312,9 @@ function LessonIndex(props) {
     className: "lessons-ul"
   }, lessonIndexContent()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-filter"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Lesson Filter will go here"))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Lesson Filter will go here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "filter-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filters")))));
 }
 ;
 

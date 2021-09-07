@@ -46,6 +46,9 @@ export default function LessonIndex (props) {
     }
   })
   
+  upcomingLessons.sort((a, b) => (a.when < b.when) ? -1 : 1)
+  completedLessons.sort((a, b) => (a.when > b.when) ? -1 : 1)
+
   userLessons = [].concat(upcomingLessons, completedLessons)
   
   userLessons = userLessons.map((lesson, i) => {
@@ -132,6 +135,9 @@ export default function LessonIndex (props) {
         </ul>
         <div className="lesson-filter">
           <h1>Lesson Filter will go here</h1>
+          <div className="filter-box">
+            <h1>Filters</h1>
+          </div>
         </div>
       </div>
     </div>
