@@ -1,24 +1,21 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const LessonIndexItem = props => {
-  let { lesson, currentDate, currentTime } = props;
+  let { lesson, currentDate } = props;
   lesson = lesson ? lesson : {};
   currentDate = currentDate ? currentDate : '';
-  currentTime = currentTime ? currentTime : '';
 
-  let lessonStartTime = new Date(lesson.when).toLocaleTimeString();
-  let lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
-  let lessonStartDate = new Date(lesson.when).toLocaleDateString();
-  let lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
+  let lessonStartTime = new Date(lesson.when);
+  let lessonEndTime = new Date(lesson.end_time);
 
   let lessonStatus = '';
   
   function determineLessonStatus() {
-    if ((currentDate < lessonStartDate) || (currentDate === lessonStartDate && currentTime < lessonStartTime)) {
+    if (currentDate < lessonStartTime) {
       lessonStatus = "Upcoming Lesson"
       return "upcoming"
-    } else if ((currentDate > lessonEndDate) || (currentDate === lessonEndDate && currentTime > lessonEndTime)) {
+    } else if (currentDate > lessonEndTime) {
       lessonStatus = "Completed"
       return "completed"
     }

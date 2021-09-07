@@ -29,20 +29,19 @@ export default function LessonIndex (props) {
     if (lesson.student_id === session) userLessons.push(lesson)
   });
 
+  let dateNow = new Date();
   let numUpcomingLessons = 0;
 
   userLessons.filter(lesson => {
-    const lessonStartDate = new Date(lesson.when).toLocaleDateString();
-    const lessonStartTime = new Date(lesson.when).toLocaleTimeString();
-    if (currentDate < lessonStartDate || (currentDate === lessonStartDate && currentTime < lessonStartTime)) {
+    const lessonTime = new Date (lesson.when);
+    if (dateNow < lessonTime) {
       upcomingLessons.push(lesson)
     }
   })
 
   userLessons.filter(lesson => {
-    const lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
-    const lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
-    if (currentDate > lessonEndDate || (currentDate === lessonEndDate && currentTime > lessonEndTime)) {
+    const lessonEndTime = new Date (lesson.end_time);
+    if (dateNow > lessonEndTime) {
       completedLessons.push(lesson)
     }
   })
@@ -52,8 +51,7 @@ export default function LessonIndex (props) {
   userLessons = userLessons.map((lesson, i) => {
     return (
       <LessonIndexItem 
-        currentDate={currentDate} 
-        currentTime={currentTime} 
+        currentDate={new Date ()} 
         lesson={lesson} 
         key={i} />
     )
@@ -62,8 +60,7 @@ export default function LessonIndex (props) {
   upcomingLessons = upcomingLessons.map((lesson, i) => {
     return (
       <LessonIndexItem 
-        currentDate={currentDate} 
-        currentTime={currentTime} 
+        currentDate={new Date ()} 
         lesson={lesson} 
         key={i} />
     )
@@ -72,8 +69,7 @@ export default function LessonIndex (props) {
   completedLessons = completedLessons.map((lesson, i) => {
     return (
       <LessonIndexItem 
-        currentDate={currentDate} 
-        currentTime={currentTime} 
+        currentDate={new Date ()} 
         lesson={lesson} 
         key={i} />
     )

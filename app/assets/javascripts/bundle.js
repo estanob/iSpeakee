@@ -1212,44 +1212,40 @@ function LessonIndex(props) {
   lessons.forEach(function (lesson) {
     if (lesson.student_id === session) userLessons.push(lesson);
   });
+  var dateNow = new Date();
   var numUpcomingLessons = 0;
   userLessons.filter(function (lesson) {
-    var lessonStartDate = new Date(lesson.when).toLocaleDateString();
-    var lessonStartTime = new Date(lesson.when).toLocaleTimeString();
+    var lessonTime = new Date(lesson.when);
 
-    if (currentDate < lessonStartDate || currentDate === lessonStartDate && currentTime < lessonStartTime) {
+    if (dateNow < lessonTime) {
       upcomingLessons.push(lesson);
     }
   });
   userLessons.filter(function (lesson) {
-    var lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
-    var lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
+    var lessonEndTime = new Date(lesson.end_time);
 
-    if (currentDate > lessonEndDate || currentDate === lessonEndDate && currentTime > lessonEndTime) {
+    if (dateNow > lessonEndTime) {
       completedLessons.push(lesson);
     }
   });
   userLessons = [].concat(upcomingLessons, completedLessons);
   userLessons = userLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      currentDate: currentDate,
-      currentTime: currentTime,
+      currentDate: new Date(),
       lesson: lesson,
       key: i
     });
   });
   upcomingLessons = upcomingLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      currentDate: currentDate,
-      currentTime: currentTime,
+      currentDate: new Date(),
       lesson: lesson,
       key: i
     });
   });
   completedLessons = completedLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
-      currentDate: currentDate,
-      currentTime: currentTime,
+      currentDate: new Date(),
       lesson: lesson,
       key: i
     });
@@ -1384,22 +1380,18 @@ __webpack_require__.r(__webpack_exports__);
 
 var LessonIndexItem = function LessonIndexItem(props) {
   var lesson = props.lesson,
-      currentDate = props.currentDate,
-      currentTime = props.currentTime;
+      currentDate = props.currentDate;
   lesson = lesson ? lesson : {};
   currentDate = currentDate ? currentDate : '';
-  currentTime = currentTime ? currentTime : '';
-  var lessonStartTime = new Date(lesson.when).toLocaleTimeString();
-  var lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
-  var lessonStartDate = new Date(lesson.when).toLocaleDateString();
-  var lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
+  var lessonStartTime = new Date(lesson.when);
+  var lessonEndTime = new Date(lesson.end_time);
   var lessonStatus = '';
 
   function determineLessonStatus() {
-    if (currentDate < lessonStartDate || currentDate === lessonStartDate && currentTime < lessonStartTime) {
+    if (currentDate < lessonStartTime) {
       lessonStatus = "Upcoming Lesson";
       return "upcoming";
-    } else if (currentDate > lessonEndDate || currentDate === lessonEndDate && currentTime > lessonEndTime) {
+    } else if (currentDate > lessonEndTime) {
       lessonStatus = "Completed";
       return "completed";
     }
@@ -1437,26 +1429,49 @@ var LessonShow = function LessonShow(props) {
   var session = props.session,
       lesson = props.lesson,
       users = props.users,
+      languages = props.languages,
       fetchLesson = props.fetchLesson,
-      fetchAllUsers = props.fetchAllUsers;
+      fetchAllUsers = props.fetchAllUsers,
+      fetchLanguages = props.fetchLanguages;
   session = session ? session : '';
   lesson = lesson ? lesson : {};
   users = users ? users : [];
+  languages = languages ? languages : [];
+  var lessonDate = new Date(lesson.when).toLocaleDateString();
   var teacher = users.find(function (user) {
     if (lesson.teacher_id === user.id) return user;
   });
+  var language = languages.find(function (language) {
+    if (lesson.language_id === language.id) return language;
+  });
   teacher = teacher ? teacher : {};
+  language = language ? language : {};
   console.log("Teacher for this lesson: ", teacher);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchLesson();
     fetchAllUsers();
+    fetchLanguages();
   }, []);
   console.log("Lesson Show Props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-details"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "HELLO WORLD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your teacher will be: ".concat(teacher.firstName, " ").concat(teacher.lastName))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "HELLO WORLD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "lesson-date"
+  }, "".concat(lessonDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "teacher-name"
+  }, "".concat(teacher.firstName, " ").concat(teacher.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "teacher-label"
+  }, "Teacher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-details lesson-body-padding"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "course-detail"
+  }, "Language"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(language.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "course-detail"
+  }, "Duration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-body-padding lesson-communication"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Communication Tool"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-other-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-status"
@@ -1481,9 +1496,11 @@ var LessonShow = function LessonShow(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_lesson_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/lesson_actions */ "./frontend/actions/lesson_actions.js");
-/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
-/* harmony import */ var _lesson_show__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./lesson_show */ "./frontend/components/lessons/show/lesson_show.jsx");
+/* harmony import */ var _actions_language_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/language_actions */ "./frontend/actions/language_actions.js");
+/* harmony import */ var _actions_lesson_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/lesson_actions */ "./frontend/actions/lesson_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _lesson_show__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./lesson_show */ "./frontend/components/lessons/show/lesson_show.jsx");
+
 
 
 
@@ -1493,25 +1510,30 @@ var mSTP = function mSTP(state, ownProps) {
   var session = state.session ? state.session.id : '';
   var lesson = state.entities.lessons ? state.entities.lessons[ownProps.match.params.id] : {};
   var users = state.entities.users ? Object.values(state.entities.users) : [];
+  var languages = state.entities.languages ? Object.values(state.entities.languages) : [];
   return {
     session: session,
     lesson: lesson,
-    users: users
+    users: users,
+    languages: languages
   };
 };
 
 var mDTP = function mDTP(dispatch, ownProps) {
   return {
     fetchLesson: function fetchLesson() {
-      return dispatch(Object(_actions_lesson_actions__WEBPACK_IMPORTED_MODULE_1__["fetchLesson"])(parseInt(ownProps.match.params.id)));
+      return dispatch(Object(_actions_lesson_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLesson"])(parseInt(ownProps.match.params.id)));
     },
     fetchAllUsers: function fetchAllUsers() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllUsers"])());
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAllUsers"])());
+    },
+    fetchLanguages: function fetchLanguages() {
+      return dispatch(Object(_actions_language_actions__WEBPACK_IMPORTED_MODULE_1__["fetchLanguages"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_lesson_show__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_lesson_show__WEBPACK_IMPORTED_MODULE_4__["default"]));
 
 /***/ }),
 
