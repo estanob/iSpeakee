@@ -26,14 +26,12 @@ const Dashboard = (props) => {
   }, []);
 
   let numCompletedLessons = 0;
+  const timeNow = new Date ();
   let userLessons = currentUser.attendedLessons ? currentUser.attendedLessons : [];
 
   userLessons.forEach(lesson => {
-    const lessonDate = new Date(lesson.when).toLocaleDateString();
-    const lessonTime = new Date(lesson.when).toLocaleTimeString();
-    const lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
-    const lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
-    if ((lessonDate < currentDate) || (lessonEndDate <= currentDate && lessonEndTime < currentTime)) {
+    const lessonEnd = new Date (lesson.end_time);
+    if (lessonEnd > timeNow) {
       numCompletedLessons++
     }
   })

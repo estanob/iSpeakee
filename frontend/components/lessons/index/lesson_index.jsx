@@ -54,6 +54,8 @@ export default function LessonIndex (props) {
   userLessons = userLessons.map((lesson, i) => {
     return (
       <LessonIndexItem 
+        users={users}
+        fetchAllUsers={fetchAllUsers}
         currentDate={new Date ()} 
         lesson={lesson} 
         key={i} />
@@ -63,6 +65,8 @@ export default function LessonIndex (props) {
   upcomingLessons = upcomingLessons.map((lesson, i) => {
     return (
       <LessonIndexItem 
+        users={users}
+        fetchAllUsers={fetchAllUsers}
         currentDate={new Date ()} 
         lesson={lesson} 
         key={i} />
@@ -72,6 +76,8 @@ export default function LessonIndex (props) {
   completedLessons = completedLessons.map((lesson, i) => {
     return (
       <LessonIndexItem 
+        users={users}
+        fetchAllUsers={fetchAllUsers}
         currentDate={new Date ()} 
         lesson={lesson} 
         key={i} />

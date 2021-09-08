@@ -6,15 +6,23 @@ const LessonShow = props => {
     lesson,
     users,
     languages,
+    daysOfWeek,
     fetchLesson,
     fetchAllUsers,
     fetchLanguages,
   } = props;
   
+  useEffect(() => {
+    fetchLesson()
+    fetchAllUsers()
+    fetchLanguages()
+  }, [])
+
   session = session ? session : '';
   lesson = lesson ? lesson : {};
   users = users ? users : [];
   languages = languages ? languages : [];
+  daysOfWeek = daysOfWeek ? daysOfWeek : [];
   
   let lessonDate = new Date(lesson.when).toLocaleDateString();
 
@@ -31,19 +39,34 @@ const LessonShow = props => {
 
   console.log("Teacher for this lesson: ", teacher)
 
-  useEffect(() => {
-    fetchLesson()
-    fetchAllUsers()
-    fetchLanguages()
-  }, [])
+  let dayOfTheWeek = daysOfWeek[new Date (lessonDate).getDay()];
+  let lessonStartHour = new Date (lesson.when).getHours();
+  let lessonStartMinute = new Date (lesson.when).getMinutes();
+  let lessonEndHour = new Date (lesson.end_time).getHours();
+  let lessonEndMinute = new Date (lesson.end_time).getMinutes();
+  
+  lessonStartHour = lessonStartHour ? lessonStartHour : '';
+  lessonStartMinute = lessonStartMinute ? lessonStartMinute : '';
+  lessonEndHour = lessonEndHour ? lessonEndHour : '';
+  lessonEndMinute = lessonEndMinute ? lessonEndMinute : '';
+  
+  const lessonDuration = new Date (lesson.end_time) - new Date (lesson.when);
   
   console.log("Lesson Show Props", props)
   return (
     <div className="lesson-show-container">
       <div className="lesson-show-details">
         <h1>HELLO WORLD</h1>
-        <span className="lesson-date">{`${lessonDate}`}</span>
+        <div>
+          <span className="lesson-date">{`${dayOfTheWeek}, ${lessonDate}`}</span>
+          <span>{`Lesson ID: ${lesson.id}`}</span>
+        </div>
         <p className="teacher-name">{`${teacher.firstName} ${teacher.lastName}`}</p>
+        <div className="lesson-show-time">
+          <span></span>
+          <span>/</span>
+          <span></span>
+        </div>
         <span className="teacher-label">Teacher</span>
         <div className="lesson-details lesson-body-padding">
           <div>
@@ -52,7 +75,7 @@ const LessonShow = props => {
           </div>
           <div>
             <span className="course-detail">Duration</span>
-            <p></p>
+            <p>{`${(lessonDuration / 60000).toString()} minutes`}</p>
           </div>
         </div>
         <div className="lesson-body-padding lesson-communication">

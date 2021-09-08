@@ -829,14 +829,12 @@ var Dashboard = function Dashboard(props) {
     fetchAllUsers();
   }, []);
   var numCompletedLessons = 0;
+  var timeNow = new Date();
   var userLessons = currentUser.attendedLessons ? currentUser.attendedLessons : [];
   userLessons.forEach(function (lesson) {
-    var lessonDate = new Date(lesson.when).toLocaleDateString();
-    var lessonTime = new Date(lesson.when).toLocaleTimeString();
-    var lessonEndDate = new Date(lesson.end_time).toLocaleDateString();
-    var lessonEndTime = new Date(lesson.end_time).toLocaleTimeString();
+    var lessonEnd = new Date(lesson.end_time);
 
-    if (lessonDate < currentDate || lessonEndDate <= currentDate && lessonEndTime < currentTime) {
+    if (lessonEnd > timeNow) {
       numCompletedLessons++;
     }
   });
@@ -1237,6 +1235,8 @@ function LessonIndex(props) {
   userLessons = [].concat(upcomingLessons, completedLessons);
   userLessons = userLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      users: users,
+      fetchAllUsers: fetchAllUsers,
       currentDate: new Date(),
       lesson: lesson,
       key: i
@@ -1244,6 +1244,8 @@ function LessonIndex(props) {
   });
   upcomingLessons = upcomingLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      users: users,
+      fetchAllUsers: fetchAllUsers,
       currentDate: new Date(),
       lesson: lesson,
       key: i
@@ -1251,6 +1253,8 @@ function LessonIndex(props) {
   });
   completedLessons = completedLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      users: users,
+      fetchAllUsers: fetchAllUsers,
       currentDate: new Date(),
       lesson: lesson,
       key: i
@@ -1387,13 +1391,19 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LessonIndexItem = function LessonIndexItem(props) {
-  var lesson = props.lesson,
+  var users = props.users,
+      lesson = props.lesson,
       currentDate = props.currentDate;
+  users = users ? users : [];
   lesson = lesson ? lesson : {};
   currentDate = currentDate ? currentDate : '';
   var lessonStartTime = new Date(lesson.when);
   var lessonEndTime = new Date(lesson.end_time);
   var lessonStatus = '';
+  var teacher = users.find(function (user) {
+    if (lesson.teacher_id === user.id) return user;
+  });
+  teacher = teacher ? teacher : {};
 
   function determineLessonStatus() {
     if (currentDate < lessonStartTime) {
@@ -1406,6 +1416,7 @@ var LessonIndexItem = function LessonIndexItem(props) {
   }
 
   var lessonTime = new Date(lesson.when).toLocaleString();
+  console.log("Lesson Index Item Props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "lesson-index-item",
     to: "/lessons/".concat(lesson.id)
@@ -1413,7 +1424,15 @@ var LessonIndexItem = function LessonIndexItem(props) {
     id: determineLessonStatus()
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "individual-lesson"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, lessonStatus), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, lessonTime)));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, lessonStatus), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'flex'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "less-idx-itm-time-info"
+  }, lessonTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "less-idx-itm-teacher-name"
+  }, "@".concat(teacher.username)))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LessonIndexItem);
@@ -1438,13 +1457,20 @@ var LessonShow = function LessonShow(props) {
       lesson = props.lesson,
       users = props.users,
       languages = props.languages,
+      daysOfWeek = props.daysOfWeek,
       fetchLesson = props.fetchLesson,
       fetchAllUsers = props.fetchAllUsers,
       fetchLanguages = props.fetchLanguages;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetchLesson();
+    fetchAllUsers();
+    fetchLanguages();
+  }, []);
   session = session ? session : '';
   lesson = lesson ? lesson : {};
   users = users ? users : [];
   languages = languages ? languages : [];
+  daysOfWeek = daysOfWeek ? daysOfWeek : [];
   var lessonDate = new Date(lesson.when).toLocaleDateString();
   var teacher = users.find(function (user) {
     if (lesson.teacher_id === user.id) return user;
@@ -1455,21 +1481,28 @@ var LessonShow = function LessonShow(props) {
   teacher = teacher ? teacher : {};
   language = language ? language : {};
   console.log("Teacher for this lesson: ", teacher);
-  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    fetchLesson();
-    fetchAllUsers();
-    fetchLanguages();
-  }, []);
+  var dayOfTheWeek = daysOfWeek[new Date(lessonDate).getDay()];
+  var lessonStartHour = new Date(lesson.when).getHours();
+  var lessonStartMinute = new Date(lesson.when).getMinutes();
+  var lessonEndHour = new Date(lesson.end_time).getHours();
+  var lessonEndMinute = new Date(lesson.end_time).getMinutes();
+  lessonStartHour = lessonStartHour ? lessonStartHour : '';
+  lessonStartMinute = lessonStartMinute ? lessonStartMinute : '';
+  lessonEndHour = lessonEndHour ? lessonEndHour : '';
+  lessonEndMinute = lessonEndMinute ? lessonEndMinute : '';
+  var lessonDuration = new Date(lesson.end_time) - new Date(lesson.when);
   console.log("Lesson Show Props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-details"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "HELLO WORLD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "HELLO WORLD"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "lesson-date"
-  }, "".concat(lessonDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, "".concat(dayOfTheWeek, ", ").concat(lessonDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Lesson ID: ".concat(lesson.id))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "teacher-name"
-  }, "".concat(teacher.firstName, " ").concat(teacher.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }, "".concat(teacher.firstName, " ").concat(teacher.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-show-time"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "/"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "teacher-label"
   }, "Teacher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-details lesson-body-padding"
@@ -1477,7 +1510,7 @@ var LessonShow = function LessonShow(props) {
     className: "course-detail"
   }, "Language"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(language.name))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "course-detail"
-  }, "Duration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Duration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat((lessonDuration / 60000).toString(), " minutes")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-body-padding lesson-communication"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Communication Tool"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-other-details"
@@ -1519,11 +1552,13 @@ var mSTP = function mSTP(state, ownProps) {
   var lesson = state.entities.lessons ? state.entities.lessons[ownProps.match.params.id] : {};
   var users = state.entities.users ? Object.values(state.entities.users) : [];
   var languages = state.entities.languages ? Object.values(state.entities.languages) : [];
+  var daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   return {
     session: session,
     lesson: lesson,
     users: users,
-    languages: languages
+    languages: languages,
+    daysOfWeek: daysOfWeek
   };
 };
 

@@ -9,11 +9,13 @@ const mSTP = (state, ownProps) => {
   let lesson = state.entities.lessons ? state.entities.lessons[ownProps.match.params.id] : {};
   let users = state.entities.users ? Object.values(state.entities.users) : [];
   let languages = state.entities.languages ? Object.values(state.entities.languages) : [];
+  let daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   return {
     session: session,
     lesson: lesson,
     users: users,
     languages: languages,
+    daysOfWeek: daysOfWeek,
   };
 };
 
