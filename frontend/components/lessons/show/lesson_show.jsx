@@ -1,9 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 const LessonShow = props => {
   let {
     session,
     lesson,
+    isLessonCompleted,
     users,
     languages,
     daysOfWeek,
@@ -12,53 +13,53 @@ const LessonShow = props => {
     fetchLanguages,
   } = props;
 
-  let [lessonStatus, setLessonStatus] = useState("upcoming");
-  let [lessonColor, setLessonColor] = useState('linear-gradient(270deg,#8be0c2,#00bbbf)');
-
-  session = session ? session : '';
-  lesson = lesson ? lesson : {};
-  users = users ? users : [];
-  languages = languages ? languages : [];
-  daysOfWeek = daysOfWeek ? daysOfWeek : [];
-  
-  function status () {
-    if (lessonStatus === 'upcoming') {
-      return <h1>Upcoming</h1>
-    } else if (lessonStatus === 'completed') {
-      return <h1>Completed</h1>
-    }
-  }
-  
-  let normalUpcomingDetails = 
-    <div>
-      <p>Your lesson is ready to begin at the scheduled time.</p>
-      <p>If you need to cancel or reschedule your lesson, make sure to read up on our cancellation and rescheduling policies first.</p>
-    </div>;
-
-  let sameDayDetails = 
-    <p>
-      {`Your lesson is confirmed for: ${lesson.when}. You are not allowed to cancel a lesosn within 24 hours of the scheduled lesson time.`}
-    </p>;
-
-  let completedDetails = 
-    <p>
-      The lesson has been completed. If there was a problem with the lesson, please email ispeakee with details.
-    </p>;
-  
-  function lessonDescription () {
-    if (lessonStatus === 'upcoming') {
-      return normalUpcomingDetails;
-    } else if (lessonStatus === 'completed') {
-      return completedDetails;
-    }
-  }
-  
   useEffect(() => {
     fetchLesson()
     fetchAllUsers()
     fetchLanguages()
   }, [])
 
+  session = session ? session : '';
+  lesson = lesson ? lesson : {};
+  isLessonCompleted = isLessonCompleted ? isLessonCompleted : false;
+  users = users ? users : [];
+  languages = languages ? languages : [];
+  daysOfWeek = daysOfWeek ? daysOfWeek : [];
+  
+  let lessonColor = !isLessonCompleted ? "linear-gradient(270deg,#8be0c2,#00bbbf)" : 'linear-gradient(270deg,#b9b9c3,#b9b9c3)';
+  
+  function status () {
+    if (!isLessonCompleted) {
+      return <h1 className="lesson-show-status-header">Upcoming</h1>
+    } else {
+      return <h1 className="lesson-show-status-header">Completed</h1>
+    }
+  }
+  
+  let normalUpcomingDetails = 
+    <div>
+      <p style={{ marginBottom: '10px', color: '#777', fontSize: '14px' }}>Your lesson is ready to begin at the scheduled time.</p>
+      <p style={{ color: '#777', fontSize: '14px' }}>If you need to cancel or reschedule your lesson, make sure to read up on our <p id="policies">cancellation and rescheduling policies</p> first.</p>
+    </div>;
+
+  let sameDayDetails = 
+    <p style={{ color: '#777', fontSize: '14px' }}>
+      {`Your lesson is confirmed for: ${lesson.when}. You are not allowed to cancel a lesosn within 24 hours of the scheduled lesson time.`}
+    </p>;
+
+  let completedDetails = 
+    <p style={{ color: '#777', fontSize: '14px' }}>
+      The lesson has been completed. If there was a problem with the lesson, please email ispeakee with details.
+    </p>;
+  
+  function lessonDescription () {
+    if (!isLessonCompleted) {
+      return normalUpcomingDetails;
+    } else if (isLessonCompleted) {
+      return completedDetails;
+    }
+  }
+  
   session = session ? session : '';
   lesson = lesson ? lesson : {};
   users = users ? users : [];
@@ -78,7 +79,6 @@ const LessonShow = props => {
   teacher = teacher ? teacher : {};
   language = language ? language : {};
 
-  console.log("Teacher for this lesson: ", teacher)
 
   let dayOfTheWeek = daysOfWeek[new Date (lessonDate).getDay()];
   let lessonStartHour = new Date (lesson.when).getHours();
@@ -94,6 +94,7 @@ const LessonShow = props => {
   const lessonDuration = new Date (lesson.end_time) - new Date (lesson.when);
   
   console.log("Lesson Show Props", props)
+  // debugger
   return (
     <div className="lesson-show-container">
       <div style={{ padding: '0 30px', display: 'flex' }}>
@@ -140,7 +141,6 @@ const LessonShow = props => {
             style={{ backgroundImage: lessonColor }}>
           </div>
           <div className="lesson-show-status info-box box-shadow">
-            <h1>Hello</h1>
             <>{status()}</>
             <>{lessonDescription()}</>
           </div>

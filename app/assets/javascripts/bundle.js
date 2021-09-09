@@ -1450,71 +1450,78 @@ var LessonIndexItem = function LessonIndexItem(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
-
-function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
-
-function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
-
-function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
-
-function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
-
-function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
-
 
 
 var LessonShow = function LessonShow(props) {
   var session = props.session,
       lesson = props.lesson,
+      isLessonCompleted = props.isLessonCompleted,
       users = props.users,
       languages = props.languages,
       daysOfWeek = props.daysOfWeek,
       fetchLesson = props.fetchLesson,
       fetchAllUsers = props.fetchAllUsers,
       fetchLanguages = props.fetchLanguages;
-
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("upcoming"),
-      _useState2 = _slicedToArray(_useState, 2),
-      lessonStatus = _useState2[0],
-      setLessonStatus = _useState2[1];
-
-  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('linear-gradient(270deg,#8be0c2,#00bbbf)'),
-      _useState4 = _slicedToArray(_useState3, 2),
-      lessonColor = _useState4[0],
-      setLessonColor = _useState4[1];
-
-  session = session ? session : '';
-  lesson = lesson ? lesson : {};
-  users = users ? users : [];
-  languages = languages ? languages : [];
-  daysOfWeek = daysOfWeek ? daysOfWeek : [];
-
-  function status() {
-    if (lessonStatus === 'upcoming') {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming");
-    } else if (lessonStatus === 'completed') {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Completed");
-    }
-  }
-
-  var normalUpcomingDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your lesson is ready to begin at the scheduled time."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "If you need to cancel or reschedule your lesson, make sure to read up on our cancellation and rescheduling policies first."));
-  var sameDayDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your lesson is confirmed for: ".concat(lesson.when, ". You are not allowed to cancel a lesosn within 24 hours of the scheduled lesson time."));
-  var completedDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "The lesson has been completed. If there was a problem with the lesson, please email ispeakee with details.");
-
-  function lessonDescription() {
-    if (lessonStatus === 'upcoming') {
-      return normalUpcomingDetails;
-    } else if (lessonStatus === 'completed') {
-      return completedDetails;
-    }
-  }
-
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchLesson();
     fetchAllUsers();
     fetchLanguages();
   }, []);
+  session = session ? session : '';
+  lesson = lesson ? lesson : {};
+  isLessonCompleted = isLessonCompleted ? isLessonCompleted : false;
+  users = users ? users : [];
+  languages = languages ? languages : [];
+  daysOfWeek = daysOfWeek ? daysOfWeek : [];
+  var lessonColor = !isLessonCompleted ? "linear-gradient(270deg,#8be0c2,#00bbbf)" : 'linear-gradient(270deg,#b9b9c3,#b9b9c3)';
+
+  function status() {
+    if (!isLessonCompleted) {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "lesson-show-status-header"
+      }, "Upcoming");
+    } else {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+        className: "lesson-show-status-header"
+      }, "Completed");
+    }
+  }
+
+  var normalUpcomingDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      marginBottom: '10px',
+      color: '#777',
+      fontSize: '14px'
+    }
+  }, "Your lesson is ready to begin at the scheduled time."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      color: '#777',
+      fontSize: '14px'
+    }
+  }, "If you need to cancel or reschedule your lesson, make sure to read up on our ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    id: "policies"
+  }, "cancellation and rescheduling policies"), " first."));
+  var sameDayDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      color: '#777',
+      fontSize: '14px'
+    }
+  }, "Your lesson is confirmed for: ".concat(lesson.when, ". You are not allowed to cancel a lesosn within 24 hours of the scheduled lesson time."));
+  var completedDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      color: '#777',
+      fontSize: '14px'
+    }
+  }, "The lesson has been completed. If there was a problem with the lesson, please email ispeakee with details.");
+
+  function lessonDescription() {
+    if (!isLessonCompleted) {
+      return normalUpcomingDetails;
+    } else if (isLessonCompleted) {
+      return completedDetails;
+    }
+  }
+
   session = session ? session : '';
   lesson = lesson ? lesson : {};
   users = users ? users : [];
@@ -1529,7 +1536,6 @@ var LessonShow = function LessonShow(props) {
   });
   teacher = teacher ? teacher : {};
   language = language ? language : {};
-  console.log("Teacher for this lesson: ", teacher);
   var dayOfTheWeek = daysOfWeek[new Date(lessonDate).getDay()];
   var lessonStartHour = new Date(lesson.when).getHours();
   var lessonStartMinute = new Date(lesson.when).getMinutes();
@@ -1540,7 +1546,8 @@ var LessonShow = function LessonShow(props) {
   lessonEndHour = lessonEndHour ? lessonEndHour : '';
   lessonEndMinute = lessonEndMinute ? lessonEndMinute : '';
   var lessonDuration = new Date(lesson.end_time) - new Date(lesson.when);
-  console.log("Lesson Show Props", props);
+  console.log("Lesson Show Props", props); // debugger
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1604,7 +1611,7 @@ var LessonShow = function LessonShow(props) {
     }
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-status info-box box-shadow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, status()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, lessonDescription())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, status()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, lessonDescription())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "language-test left-title info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "ispeakee Language Test"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "left-content"
@@ -1641,12 +1648,16 @@ var mSTP = function mSTP(state, ownProps) {
   var users = state.entities.users ? Object.values(state.entities.users) : [];
   var languages = state.entities.languages ? Object.values(state.entities.languages) : [];
   var daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var currentDate = new Date();
+  var lessonDate = lesson ? new Date(lesson.when) : {};
+  var isLessonCompleted = currentDate < lessonDate ? false : true;
   return {
     session: session,
     lesson: lesson,
     users: users,
     languages: languages,
-    daysOfWeek: daysOfWeek
+    daysOfWeek: daysOfWeek,
+    isLessonCompleted: isLessonCompleted
   };
 };
 

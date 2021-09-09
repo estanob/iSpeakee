@@ -7,8 +7,8 @@ const LessonIndexItem = props => {
   lesson = lesson ? lesson : {};
   currentDate = currentDate ? currentDate : '';
 
-  let lessonStartTime = new Date(lesson.when);
-  let lessonEndTime = new Date(lesson.end_time);
+  let lessonStartTime = new Date (lesson.when);
+  let lessonEndTime = new Date (lesson.end_time);
 
   let lessonStatus = '';
   let teacher = users.find(user => {
