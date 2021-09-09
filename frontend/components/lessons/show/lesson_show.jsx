@@ -35,7 +35,7 @@ const LessonShow = props => {
       return <h1 className="lesson-show-status-header">Completed</h1>
     }
   }
-  
+
   let normalUpcomingDetails = 
     <div>
       <p style={{ marginBottom: '10px', color: '#777', fontSize: '14px' }}>Your lesson is ready to begin at the scheduled time.</p>
@@ -81,41 +81,60 @@ const LessonShow = props => {
 
 
   let dayOfTheWeek = daysOfWeek[new Date (lessonDate).getDay()];
-  let lessonStartHour = new Date (lesson.when).getHours();
-  let lessonStartMinute = new Date (lesson.when).getMinutes();
-  let lessonEndHour = new Date (lesson.end_time).getHours();
-  let lessonEndMinute = new Date (lesson.end_time).getMinutes();
+  let lessonStart = new Date (lesson.when).toLocaleTimeString();
+  let lessonEnd = new Date (lesson.end_time).toLocaleTimeString();
   
-  lessonStartHour = lessonStartHour ? lessonStartHour : '';
-  lessonStartMinute = lessonStartMinute ? lessonStartMinute : '';
-  lessonEndHour = lessonEndHour ? lessonEndHour : '';
-  lessonEndMinute = lessonEndMinute ? lessonEndMinute : '';
+  lessonStart = lessonStart ? lessonStart : '';
+  lessonEnd = lessonEnd ? lessonEnd : '';
+
+  function convertStandardToMilitary (standardTime) {
+    const [time, modifier] = standardTime.split(" ");
+    let [hours, minutes, seconds] = time.split(":");
+    if (hours === "12") {
+      hours = "00";
+    };
+
+    if (modifier === "PM") {
+      hours = parseInt(hours, 10) + 12;
+    };
+
+    return `${hours}:${minutes}`;
+  };
   
   const lessonDuration = new Date (lesson.end_time) - new Date (lesson.when);
+  
+  const lineSeparator = <div id="line-separator"></div>
   
   console.log("Lesson Show Props", props)
   // debugger
   return (
     <div className="lesson-show-container">
       <div style={{ padding: '0 30px', display: 'flex' }}>
-        <div className="lesson-show-details">
+        <div className="lesson-show-details info-box box-shadow">
           <div className="lesson-status" style={{ backgroundImage: lessonColor }}>
             <div className="lesson-show-first-line">
               <div className="lesson-date">
                 <span>{`${dayOfTheWeek}, ${lessonDate}`}</span>
               </div>
-              <div style={{ alignItems: 'flex-end' }}>
-                <span>{`Lesson ID: ${lesson.id}`}</span>
+              <div className="lesson-show-id-tag">
+                <span style={{ color: '#b9b9c3' }}>{`Lesson ID: ${lesson.id}`}</span>
               </div>
             </div>
             <div className="lesson-show-time">
-              <span></span>
-              <span>/</span>
-              <span></span>
+              <span>{convertStandardToMilitary(lessonStart)}</span>
+              <span>{" / "}</span>
+              <span>{convertStandardToMilitary(lessonEnd)}</span>
             </div>
           </div>
-          <p className="teacher-name">{`${teacher.firstName} ${teacher.lastName}`}</p>
-          <span className="teacher-label">Teacher</span>
+          <div className="teacher-container">
+            <div>
+              <div>
+                <p className="teacher-name">{`${teacher.firstName} ${teacher.lastName}`}</p>
+                <span className="teacher-label">Teacher</span>
+                {lineSeparator}
+              </div>
+            </div>
+          </div>
           <div className="lesson-details lesson-body-padding" style={{ display: 'block' }}>
             <div style={{ display: 'flex', marginBottom: '12px' }}>
               <div style={{ marginRight: '12px' }}>
@@ -129,10 +148,12 @@ const LessonShow = props => {
             </div>
             <div>
               <span className="course-detail">Lesson Category</span>
+              {lineSeparator}
             </div>
           </div>
           <div className="lesson-body-padding lesson-communication">
             <h1>Communication Tool</h1>
+            {lineSeparator}
           </div>
         </div>
         <div className="lesson-other-details">

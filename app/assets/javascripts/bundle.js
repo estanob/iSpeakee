@@ -1450,6 +1450,18 @@ var LessonIndexItem = function LessonIndexItem(props) {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 var LessonShow = function LessonShow(props) {
@@ -1537,15 +1549,42 @@ var LessonShow = function LessonShow(props) {
   teacher = teacher ? teacher : {};
   language = language ? language : {};
   var dayOfTheWeek = daysOfWeek[new Date(lessonDate).getDay()];
-  var lessonStartHour = new Date(lesson.when).getHours();
-  var lessonStartMinute = new Date(lesson.when).getMinutes();
-  var lessonEndHour = new Date(lesson.end_time).getHours();
-  var lessonEndMinute = new Date(lesson.end_time).getMinutes();
-  lessonStartHour = lessonStartHour ? lessonStartHour : '';
-  lessonStartMinute = lessonStartMinute ? lessonStartMinute : '';
-  lessonEndHour = lessonEndHour ? lessonEndHour : '';
-  lessonEndMinute = lessonEndMinute ? lessonEndMinute : '';
+  var lessonStart = new Date(lesson.when).toLocaleTimeString();
+  var lessonEnd = new Date(lesson.end_time).toLocaleTimeString();
+  lessonStart = lessonStart ? lessonStart : '';
+  lessonEnd = lessonEnd ? lessonEnd : '';
+
+  function convertStandardToMilitary(standardTime) {
+    var _standardTime$split = standardTime.split(" "),
+        _standardTime$split2 = _slicedToArray(_standardTime$split, 2),
+        time = _standardTime$split2[0],
+        modifier = _standardTime$split2[1];
+
+    var _time$split = time.split(":"),
+        _time$split2 = _slicedToArray(_time$split, 3),
+        hours = _time$split2[0],
+        minutes = _time$split2[1],
+        seconds = _time$split2[2];
+
+    if (hours === "12") {
+      hours = "00";
+    }
+
+    ;
+
+    if (modifier === "PM") {
+      hours = parseInt(hours, 10) + 12;
+    }
+
+    ;
+    return "".concat(hours, ":").concat(minutes);
+  }
+
+  ;
   var lessonDuration = new Date(lesson.end_time) - new Date(lesson.when);
+  var lineSeparator = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "line-separator"
+  });
   console.log("Lesson Show Props", props); // debugger
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1556,7 +1595,7 @@ var LessonShow = function LessonShow(props) {
       display: 'flex'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "lesson-show-details"
+    className: "lesson-show-details info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-status",
     style: {
@@ -1567,16 +1606,20 @@ var LessonShow = function LessonShow(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-date"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "".concat(dayOfTheWeek, ", ").concat(lessonDate))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-show-id-tag"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     style: {
-      alignItems: 'flex-end'
+      color: '#b9b9c3'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Lesson ID: ".concat(lesson.id)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Lesson ID: ".concat(lesson.id)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-time"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "/"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, convertStandardToMilitary(lessonStart)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " / "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, convertStandardToMilitary(lessonEnd)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "teacher-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "teacher-name"
   }, "".concat(teacher.firstName, " ").concat(teacher.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "teacher-label"
-  }, "Teacher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Teacher"), lineSeparator))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-details lesson-body-padding",
     style: {
       display: 'block'
@@ -1600,9 +1643,9 @@ var LessonShow = function LessonShow(props) {
     className: "course-detail"
   }, "Duration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat((lessonDuration / 60000).toString(), " minutes")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "course-detail"
-  }, "Lesson Category"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Lesson Category"), lineSeparator)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-body-padding lesson-communication"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Communication Tool"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Communication Tool"), lineSeparator)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-other-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-other-top-color-bar",
