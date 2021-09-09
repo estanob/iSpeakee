@@ -1474,7 +1474,7 @@ var LessonShow = function LessonShow(props) {
       fetchAllUsers = props.fetchAllUsers,
       fetchLanguages = props.fetchLanguages;
 
-  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("upcomming"),
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])("upcoming"),
       _useState2 = _slicedToArray(_useState, 2),
       lessonStatus = _useState2[0],
       setLessonStatus = _useState2[1];
@@ -1483,6 +1483,32 @@ var LessonShow = function LessonShow(props) {
       _useState4 = _slicedToArray(_useState3, 2),
       lessonColor = _useState4[0],
       setLessonColor = _useState4[1];
+
+  session = session ? session : '';
+  lesson = lesson ? lesson : {};
+  users = users ? users : [];
+  languages = languages ? languages : [];
+  daysOfWeek = daysOfWeek ? daysOfWeek : [];
+
+  function status() {
+    if (lessonStatus === 'upcoming') {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming");
+    } else if (lessonStatus === 'completed') {
+      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Completed");
+    }
+  }
+
+  var normalUpcomingDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your lesson is ready to begin at the scheduled time."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "If you need to cancel or reschedule your lesson, make sure to read up on our cancellation and rescheduling policies first."));
+  var sameDayDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Your lesson is confirmed for: ".concat(lesson.when, ". You are not allowed to cancel a lesosn within 24 hours of the scheduled lesson time."));
+  var completedDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "The lesson has been completed. If there was a problem with the lesson, please email ispeakee with details.");
+
+  function lessonDescription() {
+    if (lessonStatus === 'upcoming') {
+      return normalUpcomingDetails;
+    } else if (lessonStatus === 'completed') {
+      return completedDetails;
+    }
+  }
 
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchLesson();
@@ -1517,6 +1543,11 @@ var LessonShow = function LessonShow(props) {
   console.log("Lesson Show Props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      padding: '0 30px',
+      display: 'flex'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -1567,12 +1598,17 @@ var LessonShow = function LessonShow(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Communication Tool"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-other-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "lesson-show-status"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-other-top-color-bar",
+    style: {
+      backgroundImage: lessonColor
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-show-status info-box box-shadow"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, status()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, lessonDescription())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "language-test left-title info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "ispeakee Language Test"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "left-content"
-  }, "Test Your Language Level"))));
+  }, "Test Your Language Level")))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LessonShow);
