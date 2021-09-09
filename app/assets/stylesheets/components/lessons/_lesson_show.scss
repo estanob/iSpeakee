@@ -8,6 +8,25 @@
   margin-right: 20px;
 }
 
+.lesson-status {
+  padding: 30px;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+}
+
+.lesson-status > div> div > span {
+  color: white;
+}
+
+.lesson-show-first-line {
+  display: flex;
+  justify-content: space-between;
+}
+
+.lesson-date {
+  align-items: flex-start;
+}
+
 .lesson-details {
   display: flex;
 }

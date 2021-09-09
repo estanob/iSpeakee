@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const LessonShow = props => {
   let {
@@ -11,6 +11,9 @@ const LessonShow = props => {
     fetchAllUsers,
     fetchLanguages,
   } = props;
+
+  let [lessonStatus, setLessonStatus] = useState("upcomming");
+  let [lessonColor, setLessonColor] = useState('linear-gradient(270deg,#8be0c2,#00bbbf)');
   
   useEffect(() => {
     fetchLesson()
@@ -56,26 +59,36 @@ const LessonShow = props => {
   return (
     <div className="lesson-show-container">
       <div className="lesson-show-details">
-        <h1>HELLO WORLD</h1>
-        <div>
-          <span className="lesson-date">{`${dayOfTheWeek}, ${lessonDate}`}</span>
-          <span>{`Lesson ID: ${lesson.id}`}</span>
+        <div className="lesson-status" style={{ backgroundImage: lessonColor }}>
+          <div className="lesson-show-first-line">
+            <div className="lesson-date">
+              <span>{`${dayOfTheWeek}, ${lessonDate}`}</span>
+            </div>
+            <div style={{ alignItems: 'flex-end' }}>
+              <span>{`Lesson ID: ${lesson.id}`}</span>
+            </div>
+          </div>
+          <div className="lesson-show-time">
+            <span></span>
+            <span>/</span>
+            <span></span>
+          </div>
         </div>
         <p className="teacher-name">{`${teacher.firstName} ${teacher.lastName}`}</p>
-        <div className="lesson-show-time">
-          <span></span>
-          <span>/</span>
-          <span></span>
-        </div>
         <span className="teacher-label">Teacher</span>
-        <div className="lesson-details lesson-body-padding">
-          <div>
-            <span className="course-detail">Language</span>
-            <p>{`${language.name}`}</p>
+        <div className="lesson-details lesson-body-padding" style={{ display: 'block' }}>
+          <div style={{ display: 'flex', marginBottom: '12px' }}>
+            <div style={{ marginRight: '12px' }}>
+              <span className="course-detail">Language</span>
+              <p>{`${language.name}`}</p>
+            </div>
+            <div style={{ marginRight: '12px' }}>
+              <span className="course-detail">Duration</span>
+              <p>{`${(lessonDuration / 60000).toString()} minutes`}</p>
+            </div>
           </div>
           <div>
-            <span className="course-detail">Duration</span>
-            <p>{`${(lessonDuration / 60000).toString()} minutes`}</p>
+            <span className="course-detail">Lesson Category</span>
           </div>
         </div>
         <div className="lesson-body-padding lesson-communication">
