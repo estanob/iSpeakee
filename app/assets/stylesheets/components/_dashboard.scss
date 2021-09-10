@@ -46,18 +46,27 @@
 
 .dashboard-wallet-balance {
   padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
 }
 
 .refer-a-friend {
   padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .language-test {
   padding: 16px 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .download-ispeakee {
   padding: 16px 24px;
+  display: flex;
 }
 
 .left-title {

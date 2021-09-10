@@ -7,7 +7,11 @@ const Dashboard = (props) => {
   let { 
     users, 
     session, 
-    currentUser, 
+    currentUser,
+    coinIcon, 
+    presentIcon,
+    testIcon,
+    iTalkiImg,
     fetchUser, 
     fetchAllUsers,
     currentDate,
@@ -18,6 +22,10 @@ const Dashboard = (props) => {
   currentDate = currentDate ? currentDate : '';
   currentTime = currentTime ? currentTime : '';
   currentUser = currentUser ? currentUser : {};
+  coinIcon = coinIcon ? coinIcon : {};
+  presentIcon = presentIcon ? presentIcon : {};
+  testIcon = testIcon ? testIcon : {};
+  iTalkiImg = iTalkiImg ? iTalkiImg : {};
   users = users ? users : [];
 
   useEffect(() => {
@@ -65,30 +73,40 @@ const Dashboard = (props) => {
             <span className="dashboard-ispeakee-balance left-title">
               ispeakee Balance
             </span>
+            <>{coinIcon}</>
           </div>
           <div className="refer-a-friend left-title info-box box-shadow">
-            <span>
-              Refer a Friend
-            </span>
-            <p className="left-content">
-              Get a friend involved and earn up to $30 ispeakee Credits per referral
-            </p>
+            <div style={{ display: 'block', width: '100%' }}>
+              <span className="left-title">
+                Refer a Friend
+              </span>
+              <p className="left-content">
+                Get a friend involved and earn up to $30 ispeakee Credits per referral
+              </p>
+            </div>
+            <>{presentIcon}</>
           </div>
           <div className="language-test left-title info-box box-shadow">
-            <span>
-              ispeakee Language Test
-            </span>
-            <p className="left-content">
-              Test Your Language Level
-            </p>
+            <div style={{ display: 'block' }}>
+              <span>
+                ispeakee Language Test
+              </span>
+              <p className="left-content">
+                Test Your Language Level
+              </p>
+            </div>
+            <>{testIcon}</>
           </div>
-          <div className="download-ispeakee left-title info-box box-shadow">
-            <span>
-              Download the ispeakee App
-            </span>
-            <p className="left-content">
-              Learn languages, anytime, anywhere.
-            </p>
+          <div className="download-ispeakee left-title info-box box-shadow" style={{ padding: '16px 24px 0' }}>
+            <div style={{ display: 'block' }}>
+              <span>
+                Download the ispeakee App
+              </span>
+              <p className="left-content">
+                Learn languages, anytime, anywhere.
+              </p>
+            </div>
+            <>{iTalkiImg}</>
           </div>
         </div>
         <div className="study-info">

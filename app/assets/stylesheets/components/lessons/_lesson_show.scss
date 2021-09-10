@@ -138,3 +138,35 @@
 #lesson-scheduled {
   padding: 0 0 36px;
 }
+
+.book-another-lesson {
+  width: 100%;
+  margin-top: 8px;
+  color: #4d4d4d;
+  background-color: white;
+  border-color: #d9d9d9;
+  outline: 0;
+  display: inline-block;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: .75px;
+  white-space: nowrap;
+  text-align: center;
+  text-transform: uppercase;
+  background-image: none;
+  border: 1px solid transparent;
+  box-shadow: none;
+  cursor: pointer;
+  transition: all .3s cubic-bezier(.645,.045,.355,1);
+  min-width: 80px;
+  height: 40px;
+  padding: 12px 16px;
+  font-size: 14px;
+  border-radius: 4px;
+}
+
+.book-another-lesson > div {
+  height: 14px;
+  display: flex;
+  justify-content: center;
+}

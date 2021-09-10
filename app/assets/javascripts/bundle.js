@@ -815,6 +815,10 @@ var Dashboard = function Dashboard(props) {
   var users = props.users,
       session = props.session,
       currentUser = props.currentUser,
+      coinIcon = props.coinIcon,
+      presentIcon = props.presentIcon,
+      testIcon = props.testIcon,
+      iTalkiImg = props.iTalkiImg,
       fetchUser = props.fetchUser,
       fetchAllUsers = props.fetchAllUsers,
       currentDate = props.currentDate,
@@ -823,6 +827,10 @@ var Dashboard = function Dashboard(props) {
   currentDate = currentDate ? currentDate : '';
   currentTime = currentTime ? currentTime : '';
   currentUser = currentUser ? currentUser : {};
+  coinIcon = coinIcon ? coinIcon : {};
+  presentIcon = presentIcon ? presentIcon : {};
+  testIcon = testIcon ? testIcon : {};
+  iTalkiImg = iTalkiImg ? iTalkiImg : {};
   users = users ? users : [];
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
@@ -872,19 +880,37 @@ var Dashboard = function Dashboard(props) {
     className: "dashboard-wallet-balance info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "dashboard-ispeakee-balance left-title"
-  }, "ispeakee Balance")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "ispeakee Balance"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, coinIcon)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "refer-a-friend left-title info-box box-shadow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Refer a Friend"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'block',
+      width: '100%'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "left-title"
+  }, "Refer a Friend"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "left-content"
-  }, "Get a friend involved and earn up to $30 ispeakee Credits per referral")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Get a friend involved and earn up to $30 ispeakee Credits per referral")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, presentIcon)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "language-test left-title info-box box-shadow"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'block'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "ispeakee Language Test"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "left-content"
-  }, "Test Your Language Level")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "download-ispeakee left-title info-box box-shadow"
+  }, "Test Your Language Level")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, testIcon)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "download-ispeakee left-title info-box box-shadow",
+    style: {
+      padding: '16px 24px 0'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'block'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Download the ispeakee App"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "left-content"
-  }, "Learn languages, anytime, anywhere."))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Learn languages, anytime, anywhere.")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, iTalkiImg))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "study-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lang-skills"
@@ -922,9 +948,12 @@ var Dashboard = function Dashboard(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
-/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _dashboard__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./dashboard */ "./frontend/components/dashboard/dashboard.jsx");
+
 
 
 
@@ -933,10 +962,79 @@ var mSTP = function mSTP(state) {
   var session = state.session.id ? state.session.id : '';
   var currentUser = state.session.id && state.entities.user ? state.entities.user[state.session.id] : {};
   var users = state.entities.users ? Object.values(state.entities.users) : [];
+  var coinIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    fill: "none",
+    height: "24",
+    viewBox: "0 0 24 24",
+    width: "24",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("mask", {
+    id: "prefix__a",
+    fill: "#000",
+    height: "15",
+    maskUnits: "userSpaceOnUse",
+    width: "7",
+    x: "8.4",
+    y: "4.4"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M8.4 4.4h7v15h-7z",
+    fill: "#fff"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    "clip-rule": "evenodd",
+    d: "M12.012 5.4a.5.5 0 01.5.5v.562a2.614 2.614 0 012.113 2.566.5.5 0 11-1 0c0-.89-.719-1.61-1.606-1.614H12.006A1.613 1.613 0 0010.4 9.028c0 .5.254.949.655 1.299.368.322.875.835 1.36 1.33l.205.21c.42.43.813.831 1.097 1.097.515.481.908 1.163.908 1.98 0 1.272-.909 2.331-2.113 2.565v.562a.5.5 0 11-1 0v-.562A2.613 2.613 0 019.4 14.943a.5.5 0 011 0c0 .888.716 1.608 1.602 1.613H12.023a1.613 1.613 0 001.602-1.613c0-.477-.228-.91-.59-1.248a40.847 40.847 0 01-1.133-1.132l-.2-.206c-.494-.504-.972-.986-1.306-1.277-.554-.485-.996-1.188-.996-2.052 0-1.272.909-2.332 2.112-2.566V5.9a.5.5 0 01.5-.5z",
+    "fill-rule": "evenodd"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    fill: "#333"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    "clip-rule": "evenodd",
+    d: "M12 2.75a9.25 9.25 0 100 18.5 9.25 9.25 0 000-18.5zM1.25 12C1.25 6.063 6.063 1.25 12 1.25S22.75 6.063 22.75 12 17.937 22.75 12 22.75 1.25 17.937 1.25 12z",
+    "fill-rule": "evenodd"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    "clip-rule": "evenodd",
+    d: "M12.012 5.4a.5.5 0 01.5.5v.562a2.614 2.614 0 012.113 2.566.5.5 0 11-1 0c0-.89-.719-1.61-1.606-1.614H12.006A1.613 1.613 0 0010.4 9.028c0 .5.254.949.655 1.299.368.322.875.835 1.36 1.33l.205.21c.42.43.813.831 1.097 1.097.515.481.908 1.163.908 1.98 0 1.272-.909 2.331-2.113 2.565v.562a.5.5 0 11-1 0v-.562A2.613 2.613 0 019.4 14.943a.5.5 0 011 0c0 .888.716 1.608 1.602 1.613H12.023a1.613 1.613 0 001.602-1.613c0-.477-.228-.91-.59-1.248a40.847 40.847 0 01-1.133-1.132l-.2-.206c-.494-.504-.972-.986-1.306-1.277-.554-.485-.996-1.188-.996-2.052 0-1.272.909-2.332 2.112-2.566V5.9a.5.5 0 01.5-.5z",
+    "fill-rule": "evenodd"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M12.512 6.462h-.25c0 .12.085.223.203.246zm-.493.952v-.25h-.002zm-.007 0l-.001.25h.003zm-.006 0l.002-.25h-.002zm-.951 2.913l-.165.188zm1.36 1.33l.18-.174zm.205.21l.179-.175zm1.097 1.097l-.17.183zm-1.205 4.545l-.047-.246a.25.25 0 00-.203.246zm-1 0h.25a.25.25 0 00-.202-.246zm.49-.952l-.002.25h.007zm.021 0l-.005.25h.007zm1.012-2.862l-.171.183zm0 0l-.171.182zm-1.133-1.132l.18-.174zm-.2-.205l.178-.175zm-1.306-1.278l.165-.189-.008-.006zm0 0l-.164.188.008.007zm1.116-4.618l.048.246a.25.25 0 00.202-.246zm1.25-.562a.75.75 0 00-.75-.75v.5a.25.25 0 01.25.25zm0 .562V5.9h-.5v.562zm2.113 2.566a2.864 2.864 0 00-2.315-2.811l-.095.49a2.364 2.364 0 011.91 2.32zm-.75.75a.75.75 0 00.75-.75h-.5a.25.25 0 01-.25.25zm-.75-.75c0 .414.336.75.75.75v-.5a.25.25 0 01-.25-.25zm-1.357-1.364c.75.003 1.357.613 1.357 1.364h.5c0-1.027-.83-1.86-1.856-1.864zm-.004 0h.006l-.003-.5h-.006zm-.01 0h.007l.003-.5h-.006zM10.65 9.028c0-.752.607-1.36 1.357-1.364l-.002-.5a1.863 1.863 0 00-1.855 1.864zm.57 1.11c-.362-.315-.57-.7-.57-1.11h-.5c0 .591.301 1.103.74 1.487zm1.374 1.345c-.483-.494-.997-1.014-1.375-1.344l-.329.376c.36.315.86.82 1.347 1.318zm.204.209l-.204-.209-.357.35.204.208zm1.09 1.09c-.28-.262-.667-.658-1.09-1.09l-.357.35c.419.428.816.834 1.106 1.105zm.987 2.161c0-.9-.434-1.645-.987-2.161l-.341.365c.477.446.828 1.065.828 1.796zm-2.315 2.811a2.863 2.863 0 002.315-2.81h-.5c0 1.15-.822 2.108-1.91 2.32zm-.298-.245v.562h.5v-.562zm0 .562a.25.25 0 01-.25.25v.5a.75.75 0 00.75-.75zm-.25.25a.25.25 0 01-.25-.25h-.5c0 .414.336.75.75.75zm-.25-.25v-.562h-.5v.562zM9.15 14.943c0 1.395.996 2.556 2.315 2.811l.095-.49a2.363 2.363 0 01-1.91-2.32zm.75-.75a.75.75 0 00-.75.75h.5a.25.25 0 01.25-.25zm.75.75a.75.75 0 00-.75-.75v.5a.25.25 0 01.25.25zm1.353 1.364a1.362 1.362 0 01-1.353-1.364h-.5c0 1.026.827 1.857 1.85 1.864zm.004.5h.005v-.5h-.016zm.005 0h.006l.01-.5h-.016zm1.363-1.864c0 .75-.605 1.359-1.353 1.364l.003.5a1.863 1.863 0 001.85-1.864zm-.511-1.065c.324.302.511.672.511 1.065h.5c0-.562-.269-1.056-.67-1.43zm0 0l.341-.366zm-1.14-1.14c.416.426.832.852 1.14 1.14l.341-.366a40.822 40.822 0 01-1.124-1.123zm-.202-.206l.202.206.357-.35-.201-.205zm-1.29-1.264c.324.284.795.758 1.29 1.264l.358-.35c-.492-.501-.977-.991-1.319-1.29zm.008.007l.313-.39zM9.15 9.028c0 .955.49 1.722 1.082 2.24l.329-.376c-.516-.451-.911-1.091-.911-1.864zm2.315-2.811a2.864 2.864 0 00-2.315 2.81h.5c0-1.15.821-2.108 1.91-2.32zm-.203-.317v.562h.5V5.9zm.75-.75a.75.75 0 00-.75.75h.5a.25.25 0 01.25-.25z",
+    mask: "url(#prefix__a)"
+  })));
+  var presentIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    height: "24",
+    viewBox: "0 0 24 24",
+    width: "24",
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "#333"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    "clip-rule": "evenodd",
+    d: "M6.25 5A3.25 3.25 0 0112 2.923a3.25 3.25 0 015.24 3.827H19a2.75 2.75 0 012.75 2.75v3a.75.75 0 01-.75.75h-.75v3.25a5.75 5.75 0 01-5.75 5.75h-10a.75.75 0 01-.75-.75v-8.25H3a.75.75 0 01-.75-.75v-3A2.75 2.75 0 015 6.75h1.76A3.235 3.235 0 016.25 5zM9.5 6.75h1.75V5A1.75 1.75 0 109.5 6.75zm3.25 0h1.75A1.75 1.75 0 1012.75 5zm1.75 1.5H5c-.69 0-1.25.56-1.25 1.25v2.25h16.5V9.5c0-.69-.56-1.25-1.25-1.25zm-9.25 12.5v-7.5h13.5v3.25a4.25 4.25 0 01-4.25 4.25z",
+    "fill-rule": "evenodd"
+  }));
+  var testIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    height: "24",
+    viewBox: "0 0 24 24",
+    width: "24",
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "#333"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    "clip-rule": "evenodd",
+    "fill-rule": "evenodd"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M3.25 5A2.75 2.75 0 016 2.25h12A2.75 2.75 0 0120.75 5v11A5.75 5.75 0 0115 21.75H4a.75.75 0 01-.75-.75zM6 3.75c-.69 0-1.25.56-1.25 1.25v15.25H15A4.25 4.25 0 0019.25 16V5c0-.69-.56-1.25-1.25-1.25z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M17.53 6.47a.75.75 0 010 1.06l-2.5 2.5a.75.75 0 01-1.06 0l-1-1a.75.75 0 011.06-1.06l.47.47 1.97-1.97a.75.75 0 011.06 0zM16.398 13.768a.75.75 0 00-1.06-1.06l-.708.706-.707-.707a.75.75 0 00-1.06 1.06l.706.708-.707.707a.75.75 0 101.06 1.06l.708-.707.707.708a.75.75 0 001.06-1.061l-.706-.707z"
+  })));
+  var iTalkiImg = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://scdn.italki.com/orion/static/media/downloadApp.f4457bad.png",
+    alt: "app download",
+    width: "68"
+  });
   return {
     session: session,
     currentUser: currentUser,
     users: users,
+    coinIcon: coinIcon,
+    presentIcon: presentIcon,
+    testIcon: testIcon,
+    iTalkiImg: iTalkiImg,
     currentDate: new Date().toLocaleDateString(),
     currentTime: new Date().toLocaleTimeString()
   };
@@ -945,15 +1043,15 @@ var mSTP = function mSTP(state) {
 var mDTP = function mDTP(dispatch, ownProps) {
   return {
     fetchUser: function fetchUser() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__["fetchUser"])(parseInt(ownProps.match.params.id)));
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(parseInt(ownProps.match.params.id)));
     },
     fetchAllUsers: function fetchAllUsers() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__["fetchAllUsers"])());
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllUsers"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_2__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_3__["default"]));
 
 /***/ }),
 
@@ -1467,6 +1565,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var LessonShow = function LessonShow(props) {
   var session = props.session,
       lesson = props.lesson,
+      messageIcon = props.messageIcon,
       isLessonCompleted = props.isLessonCompleted,
       users = props.users,
       languages = props.languages,
@@ -1482,6 +1581,7 @@ var LessonShow = function LessonShow(props) {
   }, []);
   session = session ? session : '';
   lesson = lesson ? lesson : {};
+  messageIcon = messageIcon ? messageIcon : {};
   isLessonCompleted = isLessonCompleted ? isLessonCompleted : false;
   users = users ? users : [];
   languages = languages ? languages : [];
@@ -1521,12 +1621,22 @@ var LessonShow = function LessonShow(props) {
       fontSize: '14px'
     }
   }, "Your lesson is confirmed for: ".concat(lesson.when, ". You are not allowed to cancel a lesosn within 24 hours of the scheduled lesson time."));
-  var completedDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  var completedDetails = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     style: {
       color: '#777',
       fontSize: '14px'
     }
-  }, "The lesson has been completed. If there was a problem with the lesson, please email ispeakee with details.");
+  }, "The lesson has been completed. If there was a problem with the lesson, please email ispeakee with details."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      boxSizing: 'border-box'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "book-another-lesson"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    style: {
+      textTransform: 'uppercase'
+    }
+  }, "Book another lesson")))));
 
   function lessonDescription() {
     if (!isLessonCompleted) {
@@ -1618,24 +1728,29 @@ var LessonShow = function LessonShow(props) {
   }, "Lesson ID: ".concat(lesson.id)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-time"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, convertStandardToMilitary(lessonStart)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, " / "), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, convertStandardToMilitary(lessonEnd)))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "teacher-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "teacher-container lesson-body-padding"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "teacher-name"
   }, "".concat(teacher.firstName, " ").concat(teacher.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "teacher-label"
-  }, "Teacher"), lineSeparator))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Teacher")), messageIcon), lineSeparator)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-details lesson-body-padding",
     style: {
       display: 'block'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lesson Title"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0 Lessons Taught"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       display: 'flex',
       marginBottom: '12px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
-      marginRight: '12px'
+      marginRight: '50px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "course-detail"
@@ -1713,11 +1828,14 @@ var LessonShow = function LessonShow(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_language_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/language_actions */ "./frontend/actions/language_actions.js");
-/* harmony import */ var _actions_lesson_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/lesson_actions */ "./frontend/actions/lesson_actions.js");
-/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
-/* harmony import */ var _lesson_show__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./lesson_show */ "./frontend/components/lessons/show/lesson_show.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_language_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/language_actions */ "./frontend/actions/language_actions.js");
+/* harmony import */ var _actions_lesson_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/lesson_actions */ "./frontend/actions/lesson_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _lesson_show__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./lesson_show */ "./frontend/components/lessons/show/lesson_show.jsx");
+
 
 
 
@@ -1731,12 +1849,24 @@ var mSTP = function mSTP(state, ownProps) {
   var languages = state.entities.languages ? Object.values(state.entities.languages) : [];
   var daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
   var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Saturday'];
+  var messageIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    height: "24",
+    viewBox: "0 0 24 24",
+    width: "24",
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "#333"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    "clip-rule": "evenodd",
+    d: "M13.9 2.25c4.593 0 8.35 3.75 8.35 8.34 0 3.4-1.849 5.85-4.214 7.652-2.349 1.79-5.29 3.009-7.658 3.954A.75.75 0 019.35 21.5v-2.604c-4.245-.382-7.6-3.97-7.6-8.306 0-4.59 3.757-8.34 8.35-8.34zm6.85 8.34c0-3.76-3.083-6.84-6.85-6.84h-3.8c-3.767 0-6.85 3.08-6.85 6.84 0 3.759 3.083 6.84 6.85 6.84a.75.75 0 01.75.75v2.208c2.121-.872 4.418-1.922 6.277-3.339 2.147-1.636 3.623-3.692 3.623-6.46zM8 12a1 1 0 100-2 1 1 0 000 2zm4 0a1 1 0 100-2 1 1 0 000 2zm5-1a1 1 0 11-2 0 1 1 0 012 0z",
+    "fill-rule": "evenodd"
+  }));
   var currentDate = new Date();
   var lessonDate = lesson ? new Date(lesson.when) : {};
   var isLessonCompleted = currentDate < lessonDate ? false : true;
   return {
     session: session,
     lesson: lesson,
+    messageIcon: messageIcon,
     users: users,
     languages: languages,
     daysOfWeek: daysOfWeek,
@@ -1748,18 +1878,18 @@ var mSTP = function mSTP(state, ownProps) {
 var mDTP = function mDTP(dispatch, ownProps) {
   return {
     fetchLesson: function fetchLesson() {
-      return dispatch(Object(_actions_lesson_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLesson"])(parseInt(ownProps.match.params.id)));
+      return dispatch(Object(_actions_lesson_actions__WEBPACK_IMPORTED_MODULE_3__["fetchLesson"])(parseInt(ownProps.match.params.id)));
     },
     fetchAllUsers: function fetchAllUsers() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAllUsers"])());
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_4__["fetchAllUsers"])());
     },
     fetchLanguages: function fetchLanguages() {
-      return dispatch(Object(_actions_language_actions__WEBPACK_IMPORTED_MODULE_1__["fetchLanguages"])());
+      return dispatch(Object(_actions_language_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLanguages"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_lesson_show__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_lesson_show__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 

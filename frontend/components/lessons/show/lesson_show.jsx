@@ -4,6 +4,7 @@ const LessonShow = props => {
   let {
     session,
     lesson,
+    messageIcon,
     isLessonCompleted,
     users,
     languages,
@@ -22,6 +23,7 @@ const LessonShow = props => {
 
   session = session ? session : '';
   lesson = lesson ? lesson : {};
+  messageIcon = messageIcon ? messageIcon : {};
   isLessonCompleted = isLessonCompleted ? isLessonCompleted : false;
   users = users ? users : [];
   languages = languages ? languages : [];
@@ -50,9 +52,18 @@ const LessonShow = props => {
     </p>;
 
   let completedDetails = 
-    <p style={{ color: '#777', fontSize: '14px' }}>
-      The lesson has been completed. If there was a problem with the lesson, please email ispeakee with details.
-    </p>;
+    <div>
+      <p style={{ color: '#777', fontSize: '14px' }}>
+        The lesson has been completed. If there was a problem with the lesson, please email ispeakee with details.
+      </p>
+      <div style={{ boxSizing: 'border-box' }}>
+        <button className="book-another-lesson">
+          <div>
+            <span style={{ textTransform: 'uppercase' }}>Book another lesson</span>
+          </div>
+        </button>
+      </div>
+    </div>;
   
   function lessonDescription () {
     if (!isLessonCompleted) {
@@ -64,7 +75,7 @@ const LessonShow = props => {
   
   const recordTime = lesson ? new Date (lesson.created_at).toLocaleTimeString() : {};
   const recordDate = lesson ? new Date (lesson.created_at).toLocaleDateString() : {};
-  
+
   session = session ? session : '';
   lesson = lesson ? lesson : {};
   users = users ? users : [];
@@ -131,18 +142,23 @@ const LessonShow = props => {
               <span>{convertStandardToMilitary(lessonEnd)}</span>
             </div>
           </div>
-          <div className="teacher-container">
+          <div className="teacher-container lesson-body-padding">
             <div>
-              <div>
-                <p className="teacher-name">{`${teacher.firstName} ${teacher.lastName}`}</p>
-                <span className="teacher-label">Teacher</span>
-                {lineSeparator}
+              <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+                <div>
+                  <p className="teacher-name">{`${teacher.firstName} ${teacher.lastName}`}</p>
+                  <span className="teacher-label">Teacher</span>
+                </div>
+                {messageIcon}
               </div>
+              {lineSeparator}
             </div>
           </div>
           <div className="lesson-details lesson-body-padding" style={{ display: 'block' }}>
+            <h2>Lesson Title</h2>
+            <p>{`0 Lessons Taught`}</p>
             <div style={{ display: 'flex', marginBottom: '12px' }}>
-              <div style={{ marginRight: '12px' }}>
+              <div style={{ marginRight: '50px' }}>
                 <span className="course-detail">Language</span>
                 <p>{`${language.name}`}</p>
               </div>
