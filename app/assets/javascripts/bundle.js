@@ -1471,6 +1471,7 @@ var LessonShow = function LessonShow(props) {
       users = props.users,
       languages = props.languages,
       daysOfWeek = props.daysOfWeek,
+      months = props.months,
       fetchLesson = props.fetchLesson,
       fetchAllUsers = props.fetchAllUsers,
       fetchLanguages = props.fetchLanguages;
@@ -1485,6 +1486,7 @@ var LessonShow = function LessonShow(props) {
   users = users ? users : [];
   languages = languages ? languages : [];
   daysOfWeek = daysOfWeek ? daysOfWeek : [];
+  months = months ? months : [];
   var lessonColor = !isLessonCompleted ? "linear-gradient(270deg,#8be0c2,#00bbbf)" : 'linear-gradient(270deg,#b9b9c3,#b9b9c3)';
 
   function status() {
@@ -1534,6 +1536,8 @@ var LessonShow = function LessonShow(props) {
     }
   }
 
+  var recordTime = lesson ? new Date(lesson.created_at).toLocaleTimeString() : {};
+  var recordDate = lesson ? new Date(lesson.created_at).toLocaleDateString() : {};
   session = session ? session : '';
   lesson = lesson ? lesson : {};
   users = users ? users : [];
@@ -1641,11 +1645,46 @@ var LessonShow = function LessonShow(props) {
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "course-detail"
-  }, "Duration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat((lessonDuration / 60000).toString(), " minutes")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+  }, "Duration"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat((lessonDuration / 60000).toString(), " minutes")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'grid'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "course-detail"
-  }, "Lesson Category"), lineSeparator)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "Lesson Category"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'flex'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    height: "24",
+    viewBox: "0 0 24 24",
+    width: "24",
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "#4D4D4D"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M13.282 7.476v9.2c0 .73-.262 1.324-.993 1.324-.275 0-.545-.085-.77-.246l-2.87-2.4H5.661A.663.663 0 015 14.69V9.396a.66.66 0 01.661-.661h2.986l2.872-2.337c.595-.425 1.224-.619 1.648-.023.16.225.115.826.115 1.101z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    stroke: "#4D4D4D",
+    strokeLinecap: "round",
+    strokeLinejoin: "round",
+    strokeWidth: "1.3"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M17 12h2M16.134 9l1.732-1M16.134 15l1.732 1"
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    id: "break-notice"
+  }, "Some teachers may include a 5 minute break in the lesson time")), lineSeparator)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-body-padding lesson-communication"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Communication Tool"), lineSeparator)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Communication Tool"), lineSeparator), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-body-padding feedback-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Feedback"), lineSeparator), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-body-padding records-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Records"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "records-ul"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    id: "lesson-scheduled"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "The lesson was scheduled. (Lesson ID: ".concat(lesson.id, ")")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "record-item-time"
+  }, "".concat(recordDate, " ").concat(convertStandardToMilitary(recordTime))))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-other-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-other-top-color-bar",
@@ -1691,6 +1730,7 @@ var mSTP = function mSTP(state, ownProps) {
   var users = state.entities.users ? Object.values(state.entities.users) : [];
   var languages = state.entities.languages ? Object.values(state.entities.languages) : [];
   var daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+  var months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'Saturday'];
   var currentDate = new Date();
   var lessonDate = lesson ? new Date(lesson.when) : {};
   var isLessonCompleted = currentDate < lessonDate ? false : true;
@@ -1700,6 +1740,7 @@ var mSTP = function mSTP(state, ownProps) {
     users: users,
     languages: languages,
     daysOfWeek: daysOfWeek,
+    months: months,
     isLessonCompleted: isLessonCompleted
   };
 };
