@@ -6,6 +6,7 @@ export default function PostIndex (props) {
     currentUser, 
     users, 
     posts, 
+    noPostIcon,
     fetchUser, 
     fetchPosts 
   } = props;
@@ -14,6 +15,7 @@ export default function PostIndex (props) {
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
   posts = posts ? posts : [];
+  noPostIcon = noPostIcon ? noPostIcon : [];
 
   useEffect(() => {
     fetchUser()

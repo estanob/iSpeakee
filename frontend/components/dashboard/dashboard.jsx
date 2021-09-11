@@ -120,8 +120,8 @@ const Dashboard = (props) => {
               </div>
               <div className="completed-lessons">
                 <Link to="/lessons/" className="completed-lessons-link">
-                  <p>{numCompletedLessons}</p>
-                  <span>Completed Lessons</span>
+                  <p className="completed-number">{numCompletedLessons}</p>
+                  <span className="completed-text">Completed Lessons</span>
                 </Link>
               </div>
             </div>

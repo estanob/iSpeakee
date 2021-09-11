@@ -9,6 +9,7 @@ const LessonShow = props => {
     users,
     languages,
     testIcon,
+    zoomIcon,
     daysOfWeek,
     months,
     fetchLesson,
@@ -26,6 +27,7 @@ const LessonShow = props => {
   lesson = lesson ? lesson : {};
   messageIcon = messageIcon ? messageIcon : {};
   testIcon = testIcon ? testIcon : {};
+  zoomIcon = zoomIcon ? zoomIcon : {};
   isLessonCompleted = isLessonCompleted ? isLessonCompleted : false;
   users = users ? users : [];
   languages = languages ? languages : [];

@@ -89,6 +89,7 @@
 
 .skill-lesson-box {
   display: flex;
+  align-items: center;
   padding: 12px 24px;
 }
 
@@ -99,6 +100,14 @@
 
 .completed-lessons {
   min-width: 33.333333333%;
+  flex: 1 1;
+  letter-spacing: .75px;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.3333;
+  color: #8c8c8c;
 }
 
 .completed-lessons-link {
@@ -120,4 +129,22 @@
 .my-teachers {
   display: flex;
   padding: 12px 24px;
+}
+
+.completed-number {
+  font-size: 24px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: #333;
+  text-align: right;
+}
+
+.completed-text {
+  letter-spacing: .75px;
+  text-align: right;
+  text-transform: uppercase;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 1.3333;
+  color: #8c8c8c;
 }

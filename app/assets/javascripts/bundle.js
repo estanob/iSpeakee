@@ -925,7 +925,11 @@ var Dashboard = function Dashboard(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/lessons/",
     className: "completed-lessons-link"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, numCompletedLessons), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Completed Lessons"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "completed-number"
+  }, numCompletedLessons), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "completed-text"
+  }, "Completed Lessons"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "languages-learning info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming Lesson")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "my-teachers info-box box-shadow"
@@ -980,19 +984,19 @@ var mSTP = function mSTP(state) {
     d: "M8.4 4.4h7v15h-7z",
     fill: "#fff"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    "clip-rule": "evenodd",
+    clipRule: "evenodd",
     d: "M12.012 5.4a.5.5 0 01.5.5v.562a2.614 2.614 0 012.113 2.566.5.5 0 11-1 0c0-.89-.719-1.61-1.606-1.614H12.006A1.613 1.613 0 0010.4 9.028c0 .5.254.949.655 1.299.368.322.875.835 1.36 1.33l.205.21c.42.43.813.831 1.097 1.097.515.481.908 1.163.908 1.98 0 1.272-.909 2.331-2.113 2.565v.562a.5.5 0 11-1 0v-.562A2.613 2.613 0 019.4 14.943a.5.5 0 011 0c0 .888.716 1.608 1.602 1.613H12.023a1.613 1.613 0 001.602-1.613c0-.477-.228-.91-.59-1.248a40.847 40.847 0 01-1.133-1.132l-.2-.206c-.494-.504-.972-.986-1.306-1.277-.554-.485-.996-1.188-.996-2.052 0-1.272.909-2.332 2.112-2.566V5.9a.5.5 0 01.5-.5z",
-    "fill-rule": "evenodd"
+    fillRule: "evenodd"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
     fill: "#333"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    "clip-rule": "evenodd",
+    clipRule: "evenodd",
     d: "M12 2.75a9.25 9.25 0 100 18.5 9.25 9.25 0 000-18.5zM1.25 12C1.25 6.063 6.063 1.25 12 1.25S22.75 6.063 22.75 12 17.937 22.75 12 22.75 1.25 17.937 1.25 12z",
-    "fill-rule": "evenodd"
+    fillRule: "evenodd"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    "clip-rule": "evenodd",
+    clipRule: "evenodd",
     d: "M12.012 5.4a.5.5 0 01.5.5v.562a2.614 2.614 0 012.113 2.566.5.5 0 11-1 0c0-.89-.719-1.61-1.606-1.614H12.006A1.613 1.613 0 0010.4 9.028c0 .5.254.949.655 1.299.368.322.875.835 1.36 1.33l.205.21c.42.43.813.831 1.097 1.097.515.481.908 1.163.908 1.98 0 1.272-.909 2.331-2.113 2.565v.562a.5.5 0 11-1 0v-.562A2.613 2.613 0 019.4 14.943a.5.5 0 011 0c0 .888.716 1.608 1.602 1.613H12.023a1.613 1.613 0 001.602-1.613c0-.477-.228-.91-.59-1.248a40.847 40.847 0 01-1.133-1.132l-.2-.206c-.494-.504-.972-.986-1.306-1.277-.554-.485-.996-1.188-.996-2.052 0-1.272.909-2.332 2.112-2.566V5.9a.5.5 0 01.5-.5z",
-    "fill-rule": "evenodd"
+    fillRule: "evenodd"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M12.512 6.462h-.25c0 .12.085.223.203.246zm-.493.952v-.25h-.002zm-.007 0l-.001.25h.003zm-.006 0l.002-.25h-.002zm-.951 2.913l-.165.188zm1.36 1.33l.18-.174zm.205.21l.179-.175zm1.097 1.097l-.17.183zm-1.205 4.545l-.047-.246a.25.25 0 00-.203.246zm-1 0h.25a.25.25 0 00-.202-.246zm.49-.952l-.002.25h.007zm.021 0l-.005.25h.007zm1.012-2.862l-.171.183zm0 0l-.171.182zm-1.133-1.132l.18-.174zm-.2-.205l.178-.175zm-1.306-1.278l.165-.189-.008-.006zm0 0l-.164.188.008.007zm1.116-4.618l.048.246a.25.25 0 00.202-.246zm1.25-.562a.75.75 0 00-.75-.75v.5a.25.25 0 01.25.25zm0 .562V5.9h-.5v.562zm2.113 2.566a2.864 2.864 0 00-2.315-2.811l-.095.49a2.364 2.364 0 011.91 2.32zm-.75.75a.75.75 0 00.75-.75h-.5a.25.25 0 01-.25.25zm-.75-.75c0 .414.336.75.75.75v-.5a.25.25 0 01-.25-.25zm-1.357-1.364c.75.003 1.357.613 1.357 1.364h.5c0-1.027-.83-1.86-1.856-1.864zm-.004 0h.006l-.003-.5h-.006zm-.01 0h.007l.003-.5h-.006zM10.65 9.028c0-.752.607-1.36 1.357-1.364l-.002-.5a1.863 1.863 0 00-1.855 1.864zm.57 1.11c-.362-.315-.57-.7-.57-1.11h-.5c0 .591.301 1.103.74 1.487zm1.374 1.345c-.483-.494-.997-1.014-1.375-1.344l-.329.376c.36.315.86.82 1.347 1.318zm.204.209l-.204-.209-.357.35.204.208zm1.09 1.09c-.28-.262-.667-.658-1.09-1.09l-.357.35c.419.428.816.834 1.106 1.105zm.987 2.161c0-.9-.434-1.645-.987-2.161l-.341.365c.477.446.828 1.065.828 1.796zm-2.315 2.811a2.863 2.863 0 002.315-2.81h-.5c0 1.15-.822 2.108-1.91 2.32zm-.298-.245v.562h.5v-.562zm0 .562a.25.25 0 01-.25.25v.5a.75.75 0 00.75-.75zm-.25.25a.25.25 0 01-.25-.25h-.5c0 .414.336.75.75.75zm-.25-.25v-.562h-.5v.562zM9.15 14.943c0 1.395.996 2.556 2.315 2.811l.095-.49a2.363 2.363 0 01-1.91-2.32zm.75-.75a.75.75 0 00-.75.75h.5a.25.25 0 01.25-.25zm.75.75a.75.75 0 00-.75-.75v.5a.25.25 0 01.25.25zm1.353 1.364a1.362 1.362 0 01-1.353-1.364h-.5c0 1.026.827 1.857 1.85 1.864zm.004.5h.005v-.5h-.016zm.005 0h.006l.01-.5h-.016zm1.363-1.864c0 .75-.605 1.359-1.353 1.364l.003.5a1.863 1.863 0 001.85-1.864zm-.511-1.065c.324.302.511.672.511 1.065h.5c0-.562-.269-1.056-.67-1.43zm0 0l.341-.366zm-1.14-1.14c.416.426.832.852 1.14 1.14l.341-.366a40.822 40.822 0 01-1.124-1.123zm-.202-.206l.202.206.357-.35-.201-.205zm-1.29-1.264c.324.284.795.758 1.29 1.264l.358-.35c-.492-.501-.977-.991-1.319-1.29zm.008.007l.313-.39zM9.15 9.028c0 .955.49 1.722 1.082 2.24l.329-.376c-.516-.451-.911-1.091-.911-1.864zm2.315-2.811a2.864 2.864 0 00-2.315 2.81h.5c0-1.15.821-2.108 1.91-2.32zm-.203-.317v.562h.5V5.9zm.75-.75a.75.75 0 00-.75.75h.5a.25.25 0 01.25-.25z",
     mask: "url(#prefix__a)"
@@ -1004,9 +1008,9 @@ var mSTP = function mSTP(state) {
     xmlns: "http://www.w3.org/2000/svg",
     fill: "#333"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    "clip-rule": "evenodd",
+    clipRule: "evenodd",
     d: "M6.25 5A3.25 3.25 0 0112 2.923a3.25 3.25 0 015.24 3.827H19a2.75 2.75 0 012.75 2.75v3a.75.75 0 01-.75.75h-.75v3.25a5.75 5.75 0 01-5.75 5.75h-10a.75.75 0 01-.75-.75v-8.25H3a.75.75 0 01-.75-.75v-3A2.75 2.75 0 015 6.75h1.76A3.235 3.235 0 016.25 5zM9.5 6.75h1.75V5A1.75 1.75 0 109.5 6.75zm3.25 0h1.75A1.75 1.75 0 1012.75 5zm1.75 1.5H5c-.69 0-1.25.56-1.25 1.25v2.25h16.5V9.5c0-.69-.56-1.25-1.25-1.25zm-9.25 12.5v-7.5h13.5v3.25a4.25 4.25 0 01-4.25 4.25z",
-    "fill-rule": "evenodd"
+    fillRule: "evenodd"
   }));
   var testIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     height: "24",
@@ -1015,8 +1019,8 @@ var mSTP = function mSTP(state) {
     xmlns: "http://www.w3.org/2000/svg",
     fill: "#333"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    "clip-rule": "evenodd",
-    "fill-rule": "evenodd"
+    clipRule: "evenodd",
+    fillRule: "evenodd"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M3.25 5A2.75 2.75 0 016 2.25h12A2.75 2.75 0 0120.75 5v11A5.75 5.75 0 0115 21.75H4a.75.75 0 01-.75-.75zM6 3.75c-.69 0-1.25.56-1.25 1.25v15.25H15A4.25 4.25 0 0019.25 16V5c0-.69-.56-1.25-1.25-1.25z"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
@@ -1570,6 +1574,7 @@ var LessonShow = function LessonShow(props) {
       users = props.users,
       languages = props.languages,
       testIcon = props.testIcon,
+      zoomIcon = props.zoomIcon,
       daysOfWeek = props.daysOfWeek,
       months = props.months,
       fetchLesson = props.fetchLesson,
@@ -1584,6 +1589,7 @@ var LessonShow = function LessonShow(props) {
   lesson = lesson ? lesson : {};
   messageIcon = messageIcon ? messageIcon : {};
   testIcon = testIcon ? testIcon : {};
+  zoomIcon = zoomIcon ? zoomIcon : {};
   isLessonCompleted = isLessonCompleted ? isLessonCompleted : false;
   users = users ? users : [];
   languages = languages ? languages : [];
@@ -1862,9 +1868,9 @@ var mSTP = function mSTP(state, ownProps) {
     xmlns: "http://www.w3.org/2000/svg",
     fill: "#333"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    "clip-rule": "evenodd",
+    clipRule: "evenodd",
     d: "M13.9 2.25c4.593 0 8.35 3.75 8.35 8.34 0 3.4-1.849 5.85-4.214 7.652-2.349 1.79-5.29 3.009-7.658 3.954A.75.75 0 019.35 21.5v-2.604c-4.245-.382-7.6-3.97-7.6-8.306 0-4.59 3.757-8.34 8.35-8.34zm6.85 8.34c0-3.76-3.083-6.84-6.85-6.84h-3.8c-3.767 0-6.85 3.08-6.85 6.84 0 3.759 3.083 6.84 6.85 6.84a.75.75 0 01.75.75v2.208c2.121-.872 4.418-1.922 6.277-3.339 2.147-1.636 3.623-3.692 3.623-6.46zM8 12a1 1 0 100-2 1 1 0 000 2zm4 0a1 1 0 100-2 1 1 0 000 2zm5-1a1 1 0 11-2 0 1 1 0 012 0z",
-    "fill-rule": "evenodd"
+    fillRule: "evenodd"
   }));
   var currentDate = new Date();
   var lessonDate = lesson ? new Date(lesson.when) : {};
@@ -1876,12 +1882,43 @@ var mSTP = function mSTP(state, ownProps) {
     xmlns: "http://www.w3.org/2000/svg",
     fill: "#333"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    "clip-rule": "evenodd",
-    "fill-rule": "evenodd"
+    clipRule: "evenodd",
+    fillRule: "evenodd"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M3.25 5A2.75 2.75 0 016 2.25h12A2.75 2.75 0 0120.75 5v11A5.75 5.75 0 0115 21.75H4a.75.75 0 01-.75-.75zM6 3.75c-.69 0-1.25.56-1.25 1.25v15.25H15A4.25 4.25 0 0019.25 16V5c0-.69-.56-1.25-1.25-1.25z"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M17.53 6.47a.75.75 0 010 1.06l-2.5 2.5a.75.75 0 01-1.06 0l-1-1a.75.75 0 011.06-1.06l.47.47 1.97-1.97a.75.75 0 011.06 0zM16.398 13.768a.75.75 0 00-1.06-1.06l-.708.706-.707-.707a.75.75 0 00-1.06 1.06l.706.708-.707.707a.75.75 0 101.06 1.06l.708-.707.707.708a.75.75 0 001.06-1.061l-.706-.707z"
+  })));
+  var zoomIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    width: "24",
+    height: "24",
+    viewBox: "0 0 24 24",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("rect", {
+    x: "3",
+    y: "3",
+    width: "18",
+    height: "18",
+    rx: "4",
+    fill: "#2D8CFF"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("mask", {
+    id: "zoom",
+    maskUnits: "userSpaceOnUse",
+    x: "6",
+    y: "8",
+    width: "12",
+    height: "8"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    fillRule: "evenodd",
+    clipRule: "evenodd",
+    d: "M6.022 9.133v4.335c0 .975.799 1.765 1.783 1.765h6.321c.18 0 .324-.143.324-.321v-4.335c0-.975-.799-1.765-1.782-1.765H6.346a.323.323 0 00-.324.321zm8.83 1.69l2.608-1.902c.228-.187.402-.144.402.2v5.81c0 .385-.217.342-.401.2l-2.61-1.903v-2.404z",
+    fill: "#fff"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    mask: "url(#zoom)"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M5.58 8.33h21.232v12.924H5.58V8.33z",
+    fill: "#fff"
   })));
   return {
     session: session,
@@ -1890,6 +1927,7 @@ var mSTP = function mSTP(state, ownProps) {
     users: users,
     languages: languages,
     testIcon: testIcon,
+    zoomIcon: zoomIcon,
     daysOfWeek: daysOfWeek,
     months: months,
     isLessonCompleted: isLessonCompleted
@@ -2030,12 +2068,14 @@ function PostIndex(props) {
       currentUser = props.currentUser,
       users = props.users,
       posts = props.posts,
+      noPostIcon = props.noPostIcon,
       fetchUser = props.fetchUser,
       fetchPosts = props.fetchPosts;
   session = session ? session : '';
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
   posts = posts ? posts : [];
+  noPostIcon = noPostIcon ? noPostIcon : [];
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchPosts();
@@ -2069,11 +2109,37 @@ var mSTP = function mSTP(state) {
   var currentUser = state.session.id && state.entities.user ? state.entities.user[state.session.id] : {};
   var users = state.entities.users ? Object.values(state.entities.users) : [];
   var posts = state.entities.posts ? Object.values(state.entities.posts) : [];
+  var noPostIcon = /*#__PURE__*/React.createElement("svg", {
+    width: "81",
+    height: "80",
+    viewBox: "0 0 81 80",
+    fill: "none",
+    xmlns: "http://www.w3.org/2000/svg"
+  }, /*#__PURE__*/React.createElement("path", {
+    "fill-rule": "evenodd",
+    "clip-rule": "evenodd",
+    d: "M80.5 40c0 22.091-17.909 40-40 40a39.833 39.833 0 01-25.155-8.898l.71-.71a38.84 38.84 0 0024.445 8.61c21.54 0 39.002-17.461 39.002-39.002a38.84 38.84 0 00-8.61-24.446l.71-.71A39.833 39.833 0 0180.5 40zM65.28 9.88A38.842 38.842 0 0040.5.998C18.959.998 1.498 18.459 1.498 40c0 9.41 3.332 18.043 8.882 24.78l-.709.71A39.837 39.837 0 01.5 40c0-22.092 17.908-40 40-40a39.837 39.837 0 0125.489 9.171l-.709.709z",
+    fill: "#BFBFBF"
+  }), /*#__PURE__*/React.createElement("path", {
+    "fill-rule": "evenodd",
+    "clip-rule": "evenodd",
+    d: "M28.75 36.824l-9.318 2.497a2 2 0 00-1.414 2.45l3.395 12.671.817-.816-3.246-12.114a1 1 0 01.707-1.225l9.059-2.428v-1.035zm15.148 22.57a.998.998 0 01-.65.55l-17.065 4.572a1 1 0 01-1.225-.707l-.637-2.379-.817.817.488 1.82a2 2 0 002.45 1.415l17.065-4.573a2 2 0 001.439-1.515h-1.048z",
+    fill: "#BFBFBF"
+  }), /*#__PURE__*/React.createElement("path", {
+    "fill-rule": "evenodd",
+    "clip-rule": "evenodd",
+    d: "M55.855 20h-25.11a2 2 0 00-2 2v25.11l1-1V22a1 1 0 011-1h24.11l1-1zm5.376 4.52l1-1v33.874a2 2 0 01-2 2H30.746a2 2 0 01-2-2v-.388l1-1v1.389a1 1 0 001 1H60.23a1 1 0 001-1V24.52z",
+    fill: "#BFBFBF"
+  }), /*#__PURE__*/React.createElement("path", {
+    d: "M72.249 7.848a.499.499 0 11.705.706L9.136 72.374a.499.499 0 11-.706-.706L72.25 7.848z",
+    fill: "#BFBFBF"
+  }));
   return {
     session: session,
     currentUser: currentUser,
     users: users,
-    posts: posts
+    posts: posts,
+    noPostIcon: noPostIcon
   };
 };
 
@@ -2433,8 +2499,8 @@ var ProfileDropdown = function ProfileDropdown(_ref) {
     fill: "#333333",
     xmlns: "http://www.w3.org/2000/svg"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
-    "fill-rule": "evenodd",
-    "clip-rule": "evenodd",
+    fillRule: "evenodd",
+    clipRule: "evenodd",
     d: "M3.75 5.5C3.75 4.80964 4.30964 4.25 5 4.25H11C11.4142 4.25 11.75 3.91421 11.75 3.5C11.75 3.08579 11.4142 2.75 11 2.75H5C3.48122 2.75 2.25 3.98122 2.25 5.5V20.5C2.25 20.9142 2.58579 21.25 3 21.25H11C11.4142 21.25 11.75 20.9142 11.75 20.5C11.75 20.0858 11.4142 19.75 11 19.75H3.75V5.5ZM15.4697 6.46967C15.7626 6.17678 16.2374 6.17678 16.5303 6.46967L21.5303 11.4697C21.6022 11.5416 21.6565 11.6245 21.6931 11.7129C21.7298 11.8013 21.75 11.8983 21.75 12C21.75 12.1919 21.6768 12.3839 21.5303 12.5303L16.5303 17.5303C16.2374 17.8232 15.7626 17.8232 15.4697 17.5303C15.1768 17.2374 15.1768 16.7626 15.4697 16.4697L19.1893 12.75H9C8.58579 12.75 8.25 12.4142 8.25 12C8.25 11.5858 8.58579 11.25 9 11.25H19.1893L15.4697 7.53033C15.1768 7.23744 15.1768 6.76256 15.4697 6.46967Z"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Logout"))));
 };
