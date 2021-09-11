@@ -8,6 +8,7 @@ const LessonShow = props => {
     isLessonCompleted,
     users,
     languages,
+    testIcon,
     daysOfWeek,
     months,
     fetchLesson,
@@ -24,6 +25,7 @@ const LessonShow = props => {
   session = session ? session : '';
   lesson = lesson ? lesson : {};
   messageIcon = messageIcon ? messageIcon : {};
+  testIcon = testIcon ? testIcon : {};
   isLessonCompleted = isLessonCompleted ? isLessonCompleted : false;
   users = users ? users : [];
   languages = languages ? languages : [];
@@ -211,6 +213,7 @@ const LessonShow = props => {
             <>{lessonDescription()}</>
           </div>
           <div className="language-test left-title info-box box-shadow">
+            <div style={{ display: 'block' }}>
               <span>
                 ispeakee Language Test
               </span>
@@ -218,6 +221,8 @@ const LessonShow = props => {
                 Test Your Language Level
               </p>
             </div>
+            {testIcon}
+          </div>
         </div>
       </div>
     </div>
