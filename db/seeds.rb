@@ -19,56 +19,80 @@ user1 = User.create!(
   first_name: "Brandon",
   last_name: "Estaño",
   username: "estanob",
-  password: "password123456"
+  password: "password123456",
+  display_name: "Brandon 伯龍"
 )
 
 user2 = User.create!(
   first_name: "Rabbit",
   last_name: "Bunny",
   username: "bunnyrabbit262",
-  password: "password123456"
+  password: "password123456",
+  display_name: ""
 )
 
 user3 = User.create!(
   first_name: "Software",
   last_name: "Engineer",
   username: "swe888",
-  password: "password123456"
+  password: "password123456",
+  display_name: "SWE"
 )
 
 user4 = User.create!(
   first_name: "Demo",
   last_name: "User",
   username: "demo123",
-  password: "123456"
+  password: "123456",
+  display_name: "Demo Guest"
 )
 
 user5 = User.create!(
   first_name: "Jean Carlos",
   last_name: "Santiago Pérez",
   username: "guaynaa",
-  password: "123456"
+  password: "123456",
+  display_name: "GUAYNAA"
 )
 
 user6 = User.create!(
   first_name: "Gabry",
   last_name: "Ponte",
   username: "gponte",
-  password: "123456"
+  password: "123456",
+  display_name: ""
 )
 
 user7 = User.create!(
   first_name: "Luis",
   last_name: "Fonsi",
   username: "fonsiluis",
-  password: "123456"
+  password: "123456",
+  display_name: ""
 )
 
 user8 = User.create!(
   first_name: "Señorita",
   last_name: "Yanyi",
   username: "missyanyi",
-  password: "123456"
+  password: "123456",
+  display_name: "Señorita Yanyi"
+)
+
+user9 = User.create!(
+  first_name: "Jay",
+  last_name: "Chou",
+  username: "zhoujielun",
+  password: "123456",
+  display_name: "周杰倫"
+)
+
+user10 = User.create!(
+  first_name: "Muscle",
+  last_name: "Guy",
+  username: "jianrengaiyi",
+  password: "123456",
+  display_name: "健仁蓋伊"
 )
 
 language1 = Language.create!(
@@ -174,6 +198,12 @@ languageToStudent11 = LanguageToStudent.create!(
   language_id: language6.id,
   student_id: user7.id,
   level: 6
+)
+
+languageToStudent11 = LanguageToStudent.create!(
+  language_id: language6.id,
+  student_id: user1.id,
+  level: 7
 )
 
 post1 = Post.create!(
@@ -365,4 +395,54 @@ teacherToStudent7 = TeacherToStudent.create!(
 teacherToStudent8 = TeacherToStudent.create!(
   student_id: user4.id,
   teacher_id: user8.id
+)
+
+teacherToStudent9 = TeacherToStudent.create!(
+  student_id: user1.id,
+  teacher_id: user9.id
+)
+
+teacherToStudent10 = TeacherToStudent.create!(
+  student_id: user1.id,
+  teacher_id: user10.id
+)
+
+studiedLanguage1 = StudiedLanguage.create!(
+  student_id: user1.id,
+  language_id: language1.id,
+)
+
+studiedLanguage2 = StudiedLanguage.create!(
+  student_id: user1.id,
+  language_id: language2.id,
+)
+
+studiedLanguage3 = StudiedLanguage.create!(
+  student_id: user1.id,
+  language_id: language3.id,
+)
+
+studiedLanguage4 = StudiedLanguage.create!(
+  student_id: user1.id,
+  language_id: language7.id,
+)
+
+studiedLanguage5 = StudiedLanguage.create!(
+  student_id: user4.id,
+  language_id: language1.id,
+)
+
+studiedLanguage6 = StudiedLanguage.create!(
+  student_id: user4.id,
+  language_id: language3.id,
+)
+
+studiedLanguage7 = StudiedLanguage.create!(
+  student_id: user4.id,
+  language_id: language4.id,
+)
+
+studiedLanguage8 = StudiedLanguage.create!(
+  student_id: user4.id,
+  language_id: language7.id,
 )

@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id              :bigint           not null, primary key
+#  display_name    :string
 #  first_name      :string           not null
 #  last_name       :string
 #  password_digest :string           not null

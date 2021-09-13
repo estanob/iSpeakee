@@ -113,7 +113,7 @@ const Dashboard = (props) => {
           <div className="lang-skills">
             <div className="skill-lesson-box info-box box-shadow">
               <div className="skill">
-                <h1>Learning Language</h1>
+                <h1 className="learning-language">Learning Language</h1>
                 <ul className="lang-skills-ul">
                   {studiedLanguages}
                 </ul>
