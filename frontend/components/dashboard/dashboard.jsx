@@ -53,6 +53,8 @@ const Dashboard = (props) => {
     )
   });
 
+  let userName = currentUser.display_name ? <p className="display-name">{`${currentUser.display_name}`}</p> : <p className="display-name">{`${currentUser.firstName} ${currentUser.lastName}`}</p>;
+
   return (
     <div style={{ margin: '0 auto' }}>
       <div className="user-dashboard">
@@ -60,7 +62,7 @@ const Dashboard = (props) => {
           <div className="user info-box box-shadow">
             <h3 className="user-id">{`ID: ${session}`}</h3>
             <Link to={`/user/${session}`} className="profile-link">
-              {`${currentUser.firstName} ${currentUser.lastName}`}
+              {userName}
             </Link>
             <div className="social-media-info">
               <Link to={`/posts/${session}`} className="profile-link">

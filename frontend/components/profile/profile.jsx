@@ -8,6 +8,8 @@ const Profile = props => {
 
   let { 
     currentUser, 
+    lineSeparator,
+    miniRedLine,
     languageToStudents, 
     fetchLanguageToStudents, 
     fetchUser, 
@@ -18,6 +20,8 @@ const Profile = props => {
   currentUser = currentUser ? currentUser : {};
   languageToStudents = languageToStudents ? languageToStudents : [];
   languages = languages ? languages : [];
+  lineSeparator = lineSeparator ? lineSeparator : {};
+  miniRedLine = miniRedLine ? miniRedLine : {};
   let userPosts = currentUser.posts ? currentUser.posts : [];
 
   userPosts = userPosts.map((post, i) => {
@@ -26,18 +30,29 @@ const Profile = props => {
         {`${post.body}`}
         <br/>
         <Link to={`/post/${post.id}`} className="post-creation">
-          {`${post.created_at}`}
+          {`${new Date (post.created_at).toLocaleString()}`}
         </Link>
       </li>
     )
   });
 
   let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : [];
-  let ownStudiedLanguages = [];
+  console.log("Current Languages before map", currentLanguages)
+  let ownLanguages = [];
+  let studiedLanguages = [];
+  let languageIds = [];
   let currLangs = [];
   currentLanguages.forEach(language => {
     currLangs.push({ id: language.id, level: language.level, name: '' })
   })
+
+  languages.forEach(language => {
+    currLangs.forEach(curLang => {
+      if (language.id === curLang.id) curLang.name = language.name
+    })
+  })
+
+  console.log("Curr Langs after adding language name", currLangs)
 
   languageToStudents.forEach(lTS => {
     if (lTS.student_id === currentUser.id) {
@@ -49,19 +64,41 @@ const Profile = props => {
     }
   })
 
-  languages.forEach(language => {
-    currLangs.forEach(currLang => {
-      if (currLang.id === language.id) {
-        currLang.name = language.name
-      }
-    })
-  })
-    
-  ownStudiedLanguages = currLangs.map((language, i) => {
+  ownLanguages = currentLanguages.map((language, i) => {
     return (
-      <StudiedLanguage language ={language} key={i} />
+      <StudiedLanguage languages={languages} languageToStudent={language} key={i} />
     )
   })
+  
+  console.log("Own Languages", ownLanguages)
+  
+  let userStudiedLanguages = currentUser.studiedLanguages ? currentUser.studiedLanguages : [];
+  console.log("User Studied Langauges", userStudiedLanguages)
+  userStudiedLanguages.forEach(language => {
+    languageIds.push(language.language_id)
+  })
+
+  console.log("currLangs", currLangs)
+  // studiedLanguages = currLangs.forEach(lang => languageIds.includes(lang.id))
+
+  console.log("Language IDs", languageIds)
+
+  // currLangs.forEach((language) => {
+  //   if (languageIds.)
+  // })  
+  
+  // studiedLanguages = currLangs.filter((language, i) => {
+  //   if (languageIds.includes(language.id)) {
+  //     return (
+  //       <StudiedLanguage language={language} key={i} />
+  //     )
+  //   }
+  // })
+  
+  console.log("studied languages", studiedLanguages)
+
+  console.log("Current Languages", currentLanguages)
+
 
   useEffect(() => {
     fetchUser()
@@ -86,13 +123,21 @@ const Profile = props => {
         <div>
           <div className="language-info info-box box-shadow">
             <h2>Profile</h2>
+            {lineSeparator}
+            {miniRedLine}
             <div className="lang-skills" style={{ display: 'flex' }}>
               <h2>Language Skills</h2>
               <ul className="lang-skills-ul">
                 {/* {currLangs} */}
-                {ownStudiedLanguages}
+                {ownLanguages}
               </ul>
             </div>
+            {/* <div className="studied-languages">
+              <h2>Learning Language</h2>
+              <ul className="lang-skills-ul">
+                {}
+              </ul>
+            </div> */}
           </div>
           <div className="posts info-box box-shadow">
             <h2>Activities</h2>

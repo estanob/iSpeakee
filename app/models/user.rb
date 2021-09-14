@@ -89,4 +89,9 @@ class User < ApplicationRecord
   has_many :teachers,
     through: :inward_teacher_to_students,
     source: :teacher
+
+  has_many :studied_languages,
+    foreign_key: :student_id,
+    class_name: :StudiedLanguage,
+    dependent: :destroy
 end

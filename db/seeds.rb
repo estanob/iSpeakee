@@ -72,7 +72,7 @@ user7 = User.create!(
 )
 
 user8 = User.create!(
-  first_name: "Señorita",
+  first_name: "Yanyi",
   last_name: "Yanyi",
   username: "missyanyi",
   password: "123456",
@@ -143,13 +143,13 @@ languageToStudent1 = LanguageToStudent.create!(
 languageToStudent2 = LanguageToStudent.create!(
   language_id: language2.id,
   student_id: user1.id,
-  level: 4
+  level: 5
 )
 
 languageToStudent3 = LanguageToStudent.create!(
   language_id: language3.id,
   student_id: user1.id,
-  level: 4
+  level: 5
 )
 
 languageToStudent4 = LanguageToStudent.create!(

@@ -1,0 +1,1 @@
+json.extract! studied_language, :id, :student_id, :language_id

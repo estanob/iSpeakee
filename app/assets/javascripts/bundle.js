@@ -856,6 +856,11 @@ var Dashboard = function Dashboard(props) {
       }
     }, "".concat(language.name));
   });
+  var userName = currentUser.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "display-name"
+  }, "".concat(currentUser.display_name)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "display-name"
+  }, "".concat(currentUser.firstName, " ").concat(currentUser.lastName));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       margin: '0 auto'
@@ -871,7 +876,7 @@ var Dashboard = function Dashboard(props) {
   }, "ID: ".concat(session)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/user/".concat(session),
     className: "profile-link"
-  }, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, userName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "social-media-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/posts/".concat(session),
@@ -1244,11 +1249,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var StudiedLanguage = function StudiedLanguage(props) {
-  var language = props.language;
-  language = language ? language : {};
+  var languageToStudent = props.languageToStudent,
+      languages = props.languages;
+  languageToStudent = languageToStudent ? languageToStudent : {};
+  languages = languages ? languages : [];
+  var targetLanguage = languages.find(function (language) {
+    return language.id === languageToStudent.language_id;
+  });
+  targetLanguage = targetLanguage ? targetLanguage : {};
+  console.log("Studied Language Props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "studied-language-li"
-  }, "".concat(language.name, " ").concat(language.level));
+  }, "".concat(targetLanguage.name, " ").concat(languageToStudent.level));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StudiedLanguage);
@@ -2274,6 +2286,8 @@ var Profile = function Profile(props) {
   console.log("Profile Page Props");
   console.log(props);
   var currentUser = props.currentUser,
+      lineSeparator = props.lineSeparator,
+      miniRedLine = props.miniRedLine,
       languageToStudents = props.languageToStudents,
       fetchLanguageToStudents = props.fetchLanguageToStudents,
       fetchUser = props.fetchUser,
@@ -2282,6 +2296,8 @@ var Profile = function Profile(props) {
   currentUser = currentUser ? currentUser : {};
   languageToStudents = languageToStudents ? languageToStudents : [];
   languages = languages ? languages : [];
+  lineSeparator = lineSeparator ? lineSeparator : {};
+  miniRedLine = miniRedLine ? miniRedLine : {};
   var userPosts = currentUser.posts ? currentUser.posts : [];
   userPosts = userPosts.map(function (post, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -2289,10 +2305,13 @@ var Profile = function Profile(props) {
     }, "".concat(post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
       to: "/post/".concat(post.id),
       className: "post-creation"
-    }, "".concat(post.created_at)));
+    }, "".concat(new Date(post.created_at).toLocaleString())));
   });
   var currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : [];
-  var ownStudiedLanguages = [];
+  console.log("Current Languages before map", currentLanguages);
+  var ownLanguages = [];
+  var studiedLanguages = [];
+  var languageIds = [];
   var currLangs = [];
   currentLanguages.forEach(function (language) {
     currLangs.push({
@@ -2301,6 +2320,12 @@ var Profile = function Profile(props) {
       name: ''
     });
   });
+  languages.forEach(function (language) {
+    currLangs.forEach(function (curLang) {
+      if (language.id === curLang.id) curLang.name = language.name;
+    });
+  });
+  console.log("Curr Langs after adding language name", currLangs);
   languageToStudents.forEach(function (lTS) {
     if (lTS.student_id === currentUser.id) {
       currLangs.forEach(function (currLang) {
@@ -2310,19 +2335,34 @@ var Profile = function Profile(props) {
       });
     }
   });
-  languages.forEach(function (language) {
-    currLangs.forEach(function (currLang) {
-      if (currLang.id === language.id) {
-        currLang.name = language.name;
-      }
-    });
-  });
-  ownStudiedLanguages = currLangs.map(function (language, i) {
+  ownLanguages = currentLanguages.map(function (language, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__["default"], {
-      language: language,
+      languages: languages,
+      languageToStudent: language,
       key: i
     });
   });
+  console.log("Own Languages", ownLanguages);
+  var userStudiedLanguages = currentUser.studiedLanguages ? currentUser.studiedLanguages : [];
+  console.log("User Studied Langauges", userStudiedLanguages);
+  userStudiedLanguages.forEach(function (language) {
+    languageIds.push(language.language_id);
+  });
+  console.log("currLangs", currLangs); // studiedLanguages = currLangs.forEach(lang => languageIds.includes(lang.id))
+
+  console.log("Language IDs", languageIds); // currLangs.forEach((language) => {
+  //   if (languageIds.)
+  // })  
+  // studiedLanguages = currLangs.filter((language, i) => {
+  //   if (languageIds.includes(language.id)) {
+  //     return (
+  //       <StudiedLanguage language={language} key={i} />
+  //     )
+  //   }
+  // })
+
+  console.log("studied languages", studiedLanguages);
+  console.log("Current Languages", currentLanguages);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchLanguageToStudents();
@@ -2340,14 +2380,14 @@ var Profile = function Profile(props) {
     className: "profile-teachers"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "See all"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "language-info info-box box-shadow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Profile"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Profile"), lineSeparator, miniRedLine, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lang-skills",
     style: {
       display: 'flex'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Language Skills"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "lang-skills-ul"
-  }, ownStudiedLanguages))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, ownLanguages))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "posts info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Activities"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "posts-ul"
@@ -2367,11 +2407,14 @@ var Profile = function Profile(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_language_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/language_actions */ "./frontend/actions/language_actions.js");
-/* harmony import */ var _actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/language_to_student_actions */ "./frontend/actions/language_to_student_actions.js");
-/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
-/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_language_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/language_actions */ "./frontend/actions/language_actions.js");
+/* harmony import */ var _actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/language_to_student_actions */ "./frontend/actions/language_to_student_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _profile__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./profile */ "./frontend/components/profile/profile.jsx");
+
 
 
 
@@ -2382,28 +2425,36 @@ var mSTP = function mSTP(state) {
   var languages = state.entities.languages ? Object.values(state.entities.languages) : [];
   var languageToStudents = state.entities.languageToStudents ? Object.values(state.entities.languageToStudents) : [];
   var currentUser = state.session.id && state.entities.user ? state.entities.user[state.session.id] : {};
+  var lineSeparator = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "line-separator"
+  });
+  var miniRedLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "redbar"
+  });
   return {
     languages: languages,
     languageToStudents: languageToStudents,
-    currentUser: currentUser
+    currentUser: currentUser,
+    lineSeparator: lineSeparator,
+    miniRedLine: miniRedLine
   };
 };
 
 var mDTP = function mDTP(dispatch, ownProps) {
   return {
     fetchUser: function fetchUser() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUser"])(parseInt(ownProps.match.params.id)));
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_4__["fetchUser"])(parseInt(ownProps.match.params.id)));
     },
     fetchLanguageToStudents: function fetchLanguageToStudents() {
-      return dispatch(Object(_actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLanguageToStudents"])());
+      return dispatch(Object(_actions_language_to_student_actions__WEBPACK_IMPORTED_MODULE_3__["fetchLanguageToStudents"])());
     },
     fetchLanguages: function fetchLanguages() {
-      return dispatch(Object(_actions_language_actions__WEBPACK_IMPORTED_MODULE_1__["fetchLanguages"])());
+      return dispatch(Object(_actions_language_actions__WEBPACK_IMPORTED_MODULE_2__["fetchLanguages"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_profile__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 
