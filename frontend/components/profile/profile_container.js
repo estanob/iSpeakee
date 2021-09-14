@@ -11,12 +11,27 @@ const mSTP = state => {
   let currentUser = (state.session.id && state.entities.user) ? state.entities.user[state.session.id] : {};
   let lineSeparator = <div id="line-separator"></div>;
   let miniRedLine = <div id="redbar"></div>;
+  let beginnerLevelA1 = 
+    <span className="language-level-indicator-box" gap="5">
+      <span className="language-level-container" placement="bottom">
+        <span className="language-level-reference">
+          <div style={{ boxSizing: 'border-box' }}>
+            <span className="level grey-level-color"></span>
+            <span className="level grey-level-color"></span>
+            <span className="level grey-level-color"></span>
+            <span className="level grey-level-color"></span>
+            <span className="level grey-level-color"></span>
+          </div>
+        </span>
+      </span>
+    </span>;
   return {
     languages: languages,
     languageToStudents: languageToStudents,
     currentUser: currentUser,
     lineSeparator: lineSeparator,
     miniRedLine: miniRedLine,
+    beginnerLevelA1: beginnerLevelA1,
   };
 };
 

@@ -10,6 +10,7 @@ const Profile = props => {
     currentUser, 
     lineSeparator,
     miniRedLine,
+    beginnerLevelA1,
     languageToStudents, 
     fetchLanguageToStudents, 
     fetchUser, 
@@ -22,6 +23,7 @@ const Profile = props => {
   languages = languages ? languages : [];
   lineSeparator = lineSeparator ? lineSeparator : {};
   miniRedLine = miniRedLine ? miniRedLine : {};
+  beginnerLevelA1 = beginnerLevelA1 ? beginnerLevelA1 : {};
   let userPosts = currentUser.posts ? currentUser.posts : [];
 
   userPosts = userPosts.map((post, i) => {
@@ -39,9 +41,10 @@ const Profile = props => {
   let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : [];
   console.log("Current Languages before map", currentLanguages)
   let ownLanguages = [];
-  let studiedLanguages = [];
+  let studiedLanguagesToStudent = [];
   let languageIds = [];
   let currLangs = [];
+  let learningLanguageArray = [];
   currentLanguages.forEach(language => {
     currLangs.push({ id: language.id, level: language.level, name: '' })
   })
@@ -66,39 +69,37 @@ const Profile = props => {
 
   ownLanguages = currentLanguages.map((language, i) => {
     return (
-      <StudiedLanguage languages={languages} languageToStudent={language} key={i} />
+      <StudiedLanguage languages={languages} languageToStudent={language} beginnerLevel={beginnerLevelA1} key={i} />
     )
   })
   
   console.log("Own Languages", ownLanguages)
   
   let userStudiedLanguages = currentUser.studiedLanguages ? currentUser.studiedLanguages : [];
-  console.log("User Studied Langauges", userStudiedLanguages)
   userStudiedLanguages.forEach(language => {
     languageIds.push(language.language_id)
   })
+  console.log("User Studied Langauges", userStudiedLanguages)
 
   console.log("currLangs", currLangs)
-  // studiedLanguages = currLangs.forEach(lang => languageIds.includes(lang.id))
+
+  currentLanguages.filter(curLang => {
+    if (languageIds.includes(curLang.language_id)) {
+      studiedLanguagesToStudent.push(curLang)
+    }
+  })
+  
+  learningLanguageArray = studiedLanguagesToStudent.map((language, i) => {
+    return (
+      <StudiedLanguage languages={languages} languageToStudent={language} beginnerLevel={beginnerLevelA1} key={i} />
+    )
+  })
+
+  console.log("Studied Languages To Student", studiedLanguagesToStudent)
 
   console.log("Language IDs", languageIds)
 
-  // currLangs.forEach((language) => {
-  //   if (languageIds.)
-  // })  
-  
-  // studiedLanguages = currLangs.filter((language, i) => {
-  //   if (languageIds.includes(language.id)) {
-  //     return (
-  //       <StudiedLanguage language={language} key={i} />
-  //     )
-  //   }
-  // })
-  
-  console.log("studied languages", studiedLanguages)
-
   console.log("Current Languages", currentLanguages)
-
 
   useEffect(() => {
     fetchUser()
@@ -132,12 +133,13 @@ const Profile = props => {
                 {ownLanguages}
               </ul>
             </div>
-            {/* <div className="studied-languages">
+            <div className="studied-languages">
               <h2>Learning Language</h2>
+              {beginnerLevelA1}
               <ul className="lang-skills-ul">
-                {}
+                {learningLanguageArray}
               </ul>
-            </div> */}
+            </div>
           </div>
           <div className="posts info-box box-shadow">
             <h2>Activities</h2>
