@@ -11,10 +11,14 @@ const mSTP = state => {
   let currentUser = (state.session.id && state.entities.user) ? state.entities.user[state.session.id] : {};
   let lineSeparator = <div id="line-separator"></div>;
   let miniRedLine = <div id="redbar"></div>;
+  let beginnerLevelDescription = 
+    <span className="beginner-description hidden">
+      A1: Beginner
+    </span>;
   let beginnerLevelA1 = 
     <span className="language-level-indicator-box" gap="5">
       <span className="language-level-container" placement="bottom">
-        <span className="language-level-reference">
+        <span className="language-level-reference" onMouseEnter={() => beginnerLevelDescription.props.className = 'beginner-description'}>
           <div style={{ boxSizing: 'border-box' }}>
             <span className="level grey-level-color"></span>
             <span className="level grey-level-color"></span>
@@ -25,11 +29,8 @@ const mSTP = state => {
         </span>
       </span>
     </span>;
-  let beginnerLevelDescription = 
-    <span className="beginner-description">
-      A1: Beginner
-    </span>;
-  
+
+  debugger
   return {
     languages: languages,
     languageToStudents: languageToStudents,
@@ -38,6 +39,7 @@ const mSTP = state => {
     miniRedLine: miniRedLine,
     beginnerLevelA1: beginnerLevelA1,
     beginnerLevelDescription: beginnerLevelDescription,
+    hovered: false,
   };
 };
 

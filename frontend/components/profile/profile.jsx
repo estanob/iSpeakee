@@ -12,6 +12,7 @@ const Profile = props => {
     miniRedLine,
     beginnerLevelA1,
     beginnerLevelDescription,
+    hovered,
     languageToStudents, 
     fetchLanguageToStudents, 
     fetchUser, 
@@ -26,6 +27,7 @@ const Profile = props => {
   miniRedLine = miniRedLine ? miniRedLine : {};
   beginnerLevelA1 = beginnerLevelA1 ? beginnerLevelA1 : {};
   beginnerLevelDescription = beginnerLevelDescription ? beginnerLevelDescription : {};
+  hovered = hovered ? hovered : false;
   let userPosts = currentUser.posts ? currentUser.posts : [];
 
   userPosts = userPosts.map((post, i) => {
@@ -71,7 +73,7 @@ const Profile = props => {
 
   ownLanguages = currentLanguages.map((language, i) => {
     return (
-      <StudiedLanguage languages={languages} languageToStudent={language} beginnerLevel={beginnerLevelA1} beginnerDescription={beginnerLevelDescription} key={i} />
+      <StudiedLanguage languages={languages} languageToStudent={language} beginnerLevel={beginnerLevelA1} beginnerDescription={beginnerLevelDescription} hovered={hovered} key={i} />
     )
   })
   
@@ -93,7 +95,7 @@ const Profile = props => {
   
   learningLanguageArray = studiedLanguagesToStudent.map((language, i) => {
     return (
-      <StudiedLanguage languages={languages} languageToStudent={language} beginnerLevel={beginnerLevelA1} beginnerDescription={beginnerLevelDescription} key={i} />
+      <StudiedLanguage languages={languages} languageToStudent={language} beginnerLevel={beginnerLevelA1} beginnerDescription={beginnerLevelDescription} hovered={hovered} key={i} />
     )
   })
 
