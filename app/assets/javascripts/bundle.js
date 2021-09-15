@@ -1263,9 +1263,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var StudiedLanguage = function StudiedLanguage(props) {
   var languageToStudent = props.languageToStudent,
       languages = props.languages,
-      beginnerLevel = props.beginnerLevel,
-      beginnerDescription = props.beginnerDescription,
-      hovered = props.hovered;
+      levelDescriptions = props.levelDescriptions;
 
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
       _useState2 = _slicedToArray(_useState, 2),
@@ -1274,14 +1272,11 @@ var StudiedLanguage = function StudiedLanguage(props) {
 
   languageToStudent = languageToStudent ? languageToStudent : {};
   languages = languages ? languages : [];
-  beginnerLevel = beginnerLevel ? beginnerLevel : {};
-  beginnerDescription = beginnerDescription ? beginnerDescription : {};
+  levelDescriptions = levelDescriptions ? levelDescriptions : [];
   var targetLanguage = languages.find(function (language) {
     return language.id === languageToStudent.language_id;
   });
   targetLanguage = targetLanguage ? targetLanguage : {};
-  var levelIndicator = languageToStudent.level === 1 ? beginnerLevel : '';
-  var levelDescription = languageToStudent.level === 1 ? beginnerDescription : '';
   var beginnerExplanation = hoverStatus ? 'beginner-description' : 'beginner-description hidden';
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "studied-language-li",
@@ -1322,7 +1317,7 @@ var StudiedLanguage = function StudiedLanguage(props) {
     className: "level grey-level-color"
   }))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: beginnerExplanation
-  }, "A1: Beginner")));
+  }, levelDescriptions[languageToStudent.level - 1])));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StudiedLanguage);
@@ -2350,9 +2345,7 @@ var Profile = function Profile(props) {
   var currentUser = props.currentUser,
       lineSeparator = props.lineSeparator,
       miniRedLine = props.miniRedLine,
-      beginnerLevelA1 = props.beginnerLevelA1,
-      beginnerLevelDescription = props.beginnerLevelDescription,
-      hovered = props.hovered,
+      levelDescriptions = props.levelDescriptions,
       languageToStudents = props.languageToStudents,
       fetchLanguageToStudents = props.fetchLanguageToStudents,
       fetchUser = props.fetchUser,
@@ -2363,9 +2356,7 @@ var Profile = function Profile(props) {
   languages = languages ? languages : [];
   lineSeparator = lineSeparator ? lineSeparator : {};
   miniRedLine = miniRedLine ? miniRedLine : {};
-  beginnerLevelA1 = beginnerLevelA1 ? beginnerLevelA1 : {};
-  beginnerLevelDescription = beginnerLevelDescription ? beginnerLevelDescription : {};
-  hovered = hovered ? hovered : false;
+  levelDescriptions = levelDescriptions ? levelDescriptions : [];
   var userPosts = currentUser.posts ? currentUser.posts : [];
   userPosts = userPosts.map(function (post, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -2408,9 +2399,7 @@ var Profile = function Profile(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__["default"], {
       languages: languages,
       languageToStudent: language,
-      beginnerLevel: beginnerLevelA1,
-      beginnerDescription: beginnerLevelDescription,
-      hovered: hovered,
+      levelDescriptions: levelDescriptions,
       key: i
     });
   });
@@ -2430,9 +2419,7 @@ var Profile = function Profile(props) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__["default"], {
       languages: languages,
       languageToStudent: language,
-      beginnerLevel: beginnerLevelA1,
-      beginnerDescription: beginnerLevelDescription,
-      hovered: hovered,
+      levelDescriptions: levelDescriptions,
       key: i
     });
   });
@@ -2511,35 +2498,7 @@ var mSTP = function mSTP(state) {
   var miniRedLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "redbar"
   });
-  var beginnerLevelDescription = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "beginner-description hidden"
-  }, "A1: Beginner");
-  var beginnerLevelA1 = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "language-level-indicator-box",
-    gap: "5"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "language-level-container",
-    placement: "bottom"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "language-level-reference",
-    onMouseEnter: function onMouseEnter() {
-      return beginnerLevelDescription.props.className = 'beginner-description';
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      boxSizing: 'border-box'
-    }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "level grey-level-color"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "level grey-level-color"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "level grey-level-color"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "level grey-level-color"
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    className: "level grey-level-color"
-  })))));
+  var levelDescriptions = ["A1: Beginner", "A2: Elementary", "B1: Intermediate", "B2: Upper Intermediate", "C1: Advanced", "C2: Proficient", "Native"];
   debugger;
   return {
     languages: languages,
@@ -2547,9 +2506,7 @@ var mSTP = function mSTP(state) {
     currentUser: currentUser,
     lineSeparator: lineSeparator,
     miniRedLine: miniRedLine,
-    beginnerLevelA1: beginnerLevelA1,
-    beginnerLevelDescription: beginnerLevelDescription,
-    hovered: false
+    levelDescriptions: levelDescriptions
   };
 };
 

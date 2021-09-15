@@ -1,20 +1,16 @@
 import React, { useState } from 'react';
 
 const StudiedLanguage = props => {
-  let { languageToStudent, languages, beginnerLevel, beginnerDescription, hovered } = props;
+  let { languageToStudent, languages, /*beginnerLevel, beginnerDescription,*/ levelDescriptions } = props;
   let [hoverStatus, setHoverStatus] = useState(false);
 
   languageToStudent = languageToStudent ? languageToStudent : {};
   languages = languages ? languages : [];
-  beginnerLevel = beginnerLevel ? beginnerLevel : {};
-  beginnerDescription = beginnerDescription ? beginnerDescription : {};
+  levelDescriptions = levelDescriptions ? levelDescriptions : [];
   
   let targetLanguage = languages.find(language => language.id === languageToStudent.language_id);
   targetLanguage = targetLanguage ? targetLanguage : {};
 
-  let levelIndicator = languageToStudent.level === 1 ? beginnerLevel : '';
-  let levelDescription = languageToStudent.level === 1 ? beginnerDescription : '';
-  
   let beginnerExplanation = hoverStatus ? 'beginner-description' : 'beginner-description hidden';
   
   return (
@@ -35,7 +31,7 @@ const StudiedLanguage = props => {
           </span>
         </span>
         <span className={beginnerExplanation}>
-          A1: Beginner
+          {levelDescriptions[languageToStudent.level - 1]}
         </span>
 
 
