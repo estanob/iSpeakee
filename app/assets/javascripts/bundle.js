@@ -1251,21 +1251,28 @@ __webpack_require__.r(__webpack_exports__);
 var StudiedLanguage = function StudiedLanguage(props) {
   var languageToStudent = props.languageToStudent,
       languages = props.languages,
-      beginnerLevel = props.beginnerLevel;
+      beginnerLevel = props.beginnerLevel,
+      beginnerDescription = props.beginnerDescription;
   languageToStudent = languageToStudent ? languageToStudent : {};
   languages = languages ? languages : [];
   beginnerLevel = beginnerLevel ? beginnerLevel : {};
+  beginnerDescription = beginnerDescription ? beginnerDescription : {};
   var targetLanguage = languages.find(function (language) {
     return language.id === languageToStudent.language_id;
   });
   targetLanguage = targetLanguage ? targetLanguage : {};
   var levelIndicator = languageToStudent.level === 1 ? beginnerLevel : '';
+  var levelDescription = languageToStudent.level === 1 ? beginnerDescription : '';
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "studied-language-li",
     style: {
       display: 'flex'
     }
-  }, "".concat(targetLanguage.name), levelIndicator);
+  }, "".concat(targetLanguage.name), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'block'
+    }
+  }, levelIndicator, levelDescription));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (StudiedLanguage);
@@ -2294,6 +2301,7 @@ var Profile = function Profile(props) {
       lineSeparator = props.lineSeparator,
       miniRedLine = props.miniRedLine,
       beginnerLevelA1 = props.beginnerLevelA1,
+      beginnerLevelDescription = props.beginnerLevelDescription,
       languageToStudents = props.languageToStudents,
       fetchLanguageToStudents = props.fetchLanguageToStudents,
       fetchUser = props.fetchUser,
@@ -2305,6 +2313,7 @@ var Profile = function Profile(props) {
   lineSeparator = lineSeparator ? lineSeparator : {};
   miniRedLine = miniRedLine ? miniRedLine : {};
   beginnerLevelA1 = beginnerLevelA1 ? beginnerLevelA1 : {};
+  beginnerLevelDescription = beginnerLevelDescription ? beginnerLevelDescription : {};
   var userPosts = currentUser.posts ? currentUser.posts : [];
   userPosts = userPosts.map(function (post, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
@@ -2348,6 +2357,7 @@ var Profile = function Profile(props) {
       languages: languages,
       languageToStudent: language,
       beginnerLevel: beginnerLevelA1,
+      beginnerDescription: beginnerLevelDescription,
       key: i
     });
   });
@@ -2368,6 +2378,7 @@ var Profile = function Profile(props) {
       languages: languages,
       languageToStudent: language,
       beginnerLevel: beginnerLevelA1,
+      beginnerDescription: beginnerLevelDescription,
       key: i
     });
   });
@@ -2400,7 +2411,7 @@ var Profile = function Profile(props) {
     className: "lang-skills-ul"
   }, ownLanguages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "studied-languages"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Learning Language"), beginnerLevelA1, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Learning Language"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "lang-skills-ul"
   }, learningLanguageArray))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "posts info-box box-shadow"
@@ -2469,13 +2480,17 @@ var mSTP = function mSTP(state) {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "level grey-level-color"
   })))));
+  var beginnerLevelDescription = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "beginner-description"
+  }, "A1: Beginner");
   return {
     languages: languages,
     languageToStudents: languageToStudents,
     currentUser: currentUser,
     lineSeparator: lineSeparator,
     miniRedLine: miniRedLine,
-    beginnerLevelA1: beginnerLevelA1
+    beginnerLevelA1: beginnerLevelA1,
+    beginnerLevelDescription: beginnerLevelDescription
   };
 };
 

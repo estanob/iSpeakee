@@ -11,6 +11,7 @@ const Profile = props => {
     lineSeparator,
     miniRedLine,
     beginnerLevelA1,
+    beginnerLevelDescription,
     languageToStudents, 
     fetchLanguageToStudents, 
     fetchUser, 
@@ -24,6 +25,7 @@ const Profile = props => {
   lineSeparator = lineSeparator ? lineSeparator : {};
   miniRedLine = miniRedLine ? miniRedLine : {};
   beginnerLevelA1 = beginnerLevelA1 ? beginnerLevelA1 : {};
+  beginnerLevelDescription = beginnerLevelDescription ? beginnerLevelDescription : {};
   let userPosts = currentUser.posts ? currentUser.posts : [];
 
   userPosts = userPosts.map((post, i) => {
@@ -69,7 +71,7 @@ const Profile = props => {
 
   ownLanguages = currentLanguages.map((language, i) => {
     return (
-      <StudiedLanguage languages={languages} languageToStudent={language} beginnerLevel={beginnerLevelA1} key={i} />
+      <StudiedLanguage languages={languages} languageToStudent={language} beginnerLevel={beginnerLevelA1} beginnerDescription={beginnerLevelDescription} key={i} />
     )
   })
   
@@ -91,7 +93,7 @@ const Profile = props => {
   
   learningLanguageArray = studiedLanguagesToStudent.map((language, i) => {
     return (
-      <StudiedLanguage languages={languages} languageToStudent={language} beginnerLevel={beginnerLevelA1} key={i} />
+      <StudiedLanguage languages={languages} languageToStudent={language} beginnerLevel={beginnerLevelA1} beginnerDescription={beginnerLevelDescription} key={i} />
     )
   })
 
@@ -135,7 +137,6 @@ const Profile = props => {
             </div>
             <div className="studied-languages">
               <h2>Learning Language</h2>
-              {beginnerLevelA1}
               <ul className="lang-skills-ul">
                 {learningLanguageArray}
               </ul>

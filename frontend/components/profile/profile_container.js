@@ -25,6 +25,11 @@ const mSTP = state => {
         </span>
       </span>
     </span>;
+  let beginnerLevelDescription = 
+    <span className="beginner-description">
+      A1: Beginner
+    </span>;
+  
   return {
     languages: languages,
     languageToStudents: languageToStudents,
@@ -32,6 +37,7 @@ const mSTP = state => {
     lineSeparator: lineSeparator,
     miniRedLine: miniRedLine,
     beginnerLevelA1: beginnerLevelA1,
+    beginnerLevelDescription: beginnerLevelDescription,
   };
 };
 
