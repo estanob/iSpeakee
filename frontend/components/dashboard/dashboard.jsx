@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import StudiedLanguage from '../languages/studied_languages/studied_language';
 
 const Dashboard = (props) => {
   let { 
@@ -36,6 +37,9 @@ const Dashboard = (props) => {
   languageToStudents = languageToStudents ? languageToStudents : [];
   lessons = lessons ? lessons : [];
   levelDescriptions = levelDescriptions ? levelDescriptions : [];
+  let languageIds = [];
+  let studiedLanguagesToStudent = [];
+  let learningLanguageArr = [];
   console.log("Dashboard Props", props)
 
   useEffect(() => {
@@ -58,13 +62,31 @@ const Dashboard = (props) => {
   })
   
   let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : [];
-  const studiedLanguages = currentLanguages.map((language, i) => {
-    return (
-      <li key={i} style={{ marginRight: '10px', marginBottom: '10px' }}>
-        {`${language.name}`}
-      </li>
-    )
+
+  let userStudiedLanguages =currentUser.studiedLanguages ?currentUser.studiedLanguages : [];
+  userStudiedLanguages.forEach(language => {
+    languageIds.push(language.language_id)
   });
+
+  console.log("Pushed to language ids: ", languageIds)
+
+  currentLanguages.filter(curLang => {
+    if (languageIds.includes(curLang.language_id)) {
+      studiedLanguagesToStudent.push(curLang)
+    }
+  })
+
+  studiedLanguagesToStudent.sort((a, b) => (a.level > b.level) ? -1 : 1);
+
+  learningLanguageArr = studiedLanguagesToStudent.map((language, i) => {
+    return (
+      <StudiedLanguage 
+        languages={languages}
+        languageToStudent={language}
+        levelDescriptions={levelDescriptions}
+        key={i} />
+    )
+  })
 
   let userName = currentUser.display_name ? <p className="display-name">{`${currentUser.display_name}`}</p> : <p className="display-name">{`${currentUser.firstName} ${currentUser.lastName}`}</p>;
 
@@ -130,7 +152,7 @@ const Dashboard = (props) => {
               <div className="skill">
                 <h1 className="learning-language">Learning Language</h1>
                 <ul className="lang-skills-ul">
-                  {studiedLanguages}
+                  {learningLanguageArr}
                 </ul>
               </div>
               <div className="completed-lessons">

@@ -806,6 +806,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+/* harmony import */ var _languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../languages/studied_languages/studied_language */ "./frontend/components/languages/studied_languages/studied_language.jsx");
+
 
 
 
@@ -841,6 +843,9 @@ var Dashboard = function Dashboard(props) {
   languageToStudents = languageToStudents ? languageToStudents : [];
   lessons = lessons ? lessons : [];
   levelDescriptions = levelDescriptions ? levelDescriptions : [];
+  var languageIds = [];
+  var studiedLanguagesToStudent = [];
+  var learningLanguageArr = [];
   console.log("Dashboard Props", props);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
@@ -860,14 +865,26 @@ var Dashboard = function Dashboard(props) {
     }
   });
   var currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : [];
-  var studiedLanguages = currentLanguages.map(function (language, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-      key: i,
-      style: {
-        marginRight: '10px',
-        marginBottom: '10px'
-      }
-    }, "".concat(language.name));
+  var userStudiedLanguages = currentUser.studiedLanguages ? currentUser.studiedLanguages : [];
+  userStudiedLanguages.forEach(function (language) {
+    languageIds.push(language.language_id);
+  });
+  console.log("Pushed to language ids: ", languageIds);
+  currentLanguages.filter(function (curLang) {
+    if (languageIds.includes(curLang.language_id)) {
+      studiedLanguagesToStudent.push(curLang);
+    }
+  });
+  studiedLanguagesToStudent.sort(function (a, b) {
+    return a.level > b.level ? -1 : 1;
+  });
+  learningLanguageArr = studiedLanguagesToStudent.map(function (language, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      languages: languages,
+      languageToStudent: language,
+      levelDescriptions: levelDescriptions,
+      key: i
+    });
   });
   var userName = currentUser.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "display-name"
@@ -940,7 +957,7 @@ var Dashboard = function Dashboard(props) {
     className: "learning-language"
   }, "Learning Language"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "lang-skills-ul"
-  }, studiedLanguages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, learningLanguageArr)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "completed-lessons"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/lessons/",
