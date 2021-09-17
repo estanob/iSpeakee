@@ -2,18 +2,23 @@ import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const Dashboard = (props) => {
-  console.log("Dashboard Props")
-  console.log(props)
   let { 
     users, 
+    languages,
+    lessons,
+    languageToStudents,
     session, 
     currentUser,
     coinIcon, 
     presentIcon,
     testIcon,
     iTalkiImg,
+    levelDescriptions,
     fetchUser, 
     fetchAllUsers,
+    fetchLanguages,
+    fetchLanguageToStudents,
+    fetchLessons,
     currentDate,
     currentTime,
   } = props;
@@ -27,10 +32,18 @@ const Dashboard = (props) => {
   testIcon = testIcon ? testIcon : {};
   iTalkiImg = iTalkiImg ? iTalkiImg : {};
   users = users ? users : [];
+  languages = languages ? languages : [];
+  languageToStudents = languageToStudents ? languageToStudents : [];
+  lessons = lessons ? lessons : [];
+  levelDescriptions = levelDescriptions ? levelDescriptions : [];
+  console.log("Dashboard Props", props)
 
   useEffect(() => {
     fetchUser()
     fetchAllUsers()
+    fetchLanguages()
+    fetchLanguageToStudents()
+    fetchLessons()
   }, []);
 
   let numCompletedLessons = 0;
@@ -44,7 +57,7 @@ const Dashboard = (props) => {
     }
   })
   
-  let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : {};
+  let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : [];
   const studiedLanguages = currentLanguages.map((language, i) => {
     return (
       <li key={i} style={{ marginRight: '10px', marginBottom: '10px' }}>

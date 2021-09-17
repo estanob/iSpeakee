@@ -49,8 +49,18 @@
   display: flex;
 }
 
-.lang-skills > h2 {
+.language-list-title {
+  margin-top: 4px;
   margin-right: 15px;
+  white-space: nowrap;
+  font-size: 11px;
+  color: #777;
+  text-transform: uppercase;
+  font-weight: 400;
+}
+
+.studied-languages {
+  display: flex;
 }
 
 .lang-skills-ul {
@@ -99,6 +109,14 @@
 
 .grey-level-color {
   background-color: hsla(0,0%,80%,.5);
+}
+
+.light-red-level-color {
+  background-color: rgba(255,67,56,.5);
+}
+
+.red-level-color {
+  background-color: #ff4338;
 }
 
 .beginner-description {

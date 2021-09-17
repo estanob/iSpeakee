@@ -67,6 +67,9 @@ const Profile = props => {
     }
   })
 
+  currentLanguages.sort((a, b) => (a.level > b.level) ? -1 : 1);
+  studiedLanguagesToStudent.sort((a, b) => (a.level > b.level) ? -1 : 1);
+
   ownLanguages = currentLanguages.map((language, i) => {
     return (
       <StudiedLanguage languages={languages} languageToStudent={language} levelDescriptions={levelDescriptions} key={i} />
@@ -127,14 +130,14 @@ const Profile = props => {
             {lineSeparator}
             {miniRedLine}
             <div className="lang-skills" style={{ display: 'flex' }}>
-              <h2>Language Skills</h2>
+              <h2 className="language-list-title">Language Skills</h2>
               <ul className="lang-skills-ul">
                 {/* {currLangs} */}
                 {ownLanguages}
               </ul>
             </div>
             <div className="studied-languages">
-              <h2>Learning Language</h2>
+              <h2 className="language-list-title">Learning Language</h2>
               <ul className="lang-skills-ul">
                 {learningLanguageArray}
               </ul>

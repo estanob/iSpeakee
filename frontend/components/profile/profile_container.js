@@ -11,9 +11,17 @@ const mSTP = state => {
   let currentUser = (state.session.id && state.entities.user) ? state.entities.user[state.session.id] : {};
   let lineSeparator = <div id="line-separator"></div>;
   let miniRedLine = <div id="redbar"></div>;
-  let levelDescriptions = ["A1: Beginner", "A2: Elementary", "B1: Intermediate", "B2: Upper Intermediate", "C1: Advanced", "C2: Proficient", "Native"];
+  let levelDescriptions = 
+    [
+      "A1: Beginner", 
+      "A2: Elementary", 
+      "B1: Intermediate", 
+      "B2: Upper Intermediate", 
+      "C1: Advanced", 
+      "C2: Proficient", 
+      "Native"
+    ];
 
-  debugger
   return {
     languages: languages,
     languageToStudents: languageToStudents,
