@@ -807,6 +807,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../languages/studied_languages/studied_language */ "./frontend/components/languages/studied_languages/studied_language.jsx");
+/* harmony import */ var _teachers_teacher_index_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../teachers/teacher_index_item */ "./frontend/components/teachers/teacher_index_item.jsx");
+
 
 
 
@@ -820,6 +822,7 @@ var Dashboard = function Dashboard(props) {
       currentUser = props.currentUser,
       coinIcon = props.coinIcon,
       presentIcon = props.presentIcon,
+      bookLessonIcon = props.bookLessonIcon,
       testIcon = props.testIcon,
       iTalkiImg = props.iTalkiImg,
       levelDescriptions = props.levelDescriptions,
@@ -836,6 +839,7 @@ var Dashboard = function Dashboard(props) {
   currentUser = currentUser ? currentUser : {};
   coinIcon = coinIcon ? coinIcon : {};
   presentIcon = presentIcon ? presentIcon : {};
+  bookLessonIcon = bookLessonIcon ? bookLessonIcon : {};
   testIcon = testIcon ? testIcon : {};
   iTalkiImg = iTalkiImg ? iTalkiImg : {};
   users = users ? users : [];
@@ -886,6 +890,27 @@ var Dashboard = function Dashboard(props) {
       key: i
     });
   });
+  var userTeacherArr = [];
+  var teacherRelations = currentUser.teachers ? currentUser.teachers : [];
+  teacherRelations.forEach(function (relation) {
+    users.find(function (user) {
+      if (user.id === relation.teacher_id) {
+        userTeacherArr.push(user);
+      }
+    });
+  });
+  console.log("User Teacher Arr Did it work?", userTeacherArr);
+  userTeacherArr = userTeacherArr.map(function (teacher, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_teachers_teacher_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
+      teacher: teacher,
+      bookLessonIcon: bookLessonIcon,
+      key: i
+    });
+  });
+  userTeacherArr = userTeacherArr.sort(function () {
+    return Math.random() - 0.5;
+  });
+  console.log("Teacher arr after shuffle", userTeacherArr);
   var userName = currentUser.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "display-name"
   }, "".concat(currentUser.display_name)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -970,7 +995,11 @@ var Dashboard = function Dashboard(props) {
     className: "languages-learning info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming Lesson")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "my-teachers info-box box-shadow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My Teachers")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "learning-language"
+  }, "My Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "three-random-teachers"
+  }, userTeacherArr.slice(0, 3))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/languages",
     className: "languages-link"
   }, "Languages"))));
@@ -1077,6 +1106,30 @@ var mSTP = function mSTP(state) {
     alt: "app download",
     width: "68"
   });
+  var bookLessonIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    "class": "teacher-item-right"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    "class": "tooltip-container-box",
+    gap: "5"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    "class": "tooltip-container",
+    placement: "bottom"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    "class": "tooltip-reference"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
+    height: "24",
+    viewBox: "0 0 24 24",
+    width: "24",
+    xmlns: "http://www.w3.org/2000/svg",
+    fill: "#4D4D4D"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
+    "clip-rule": "evenodd",
+    "fill-rule": "evenodd"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M16 1.75a.75.75 0 01.75.75v.75H19A2.75 2.75 0 0121.75 6v10A5.75 5.75 0 0116 21.75H3a.75.75 0 01-.75-.75V6A2.75 2.75 0 015 3.25h2.25V2.5a.75.75 0 011.5 0v.75h6.5V2.5a.75.75 0 01.75-.75zm-8.75 3v.75a.75.75 0 001.5 0v-.75h6.5v.75a.75.75 0 001.5 0v-.75H19c.69 0 1.25.56 1.25 1.25v2.75H3.75V6c0-.69.56-1.25 1.25-1.25zm-3.5 5.5h16.5V16A4.25 4.25 0 0116 20.25H3.75z"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
+    d: "M12.75 13.068c0-.452-.336-.818-.75-.818s-.75.366-.75.818V14.5H9.818c-.452 0-.818.336-.818.75s.366.75.818.75h1.432v1.432c0 .452.336.818.75.818s.75-.366.75-.818V16h1.432c.452 0 .818-.336.818-.75s-.366-.75-.818-.75H12.75z"
+  })))))));
   var levelDescriptions = ["A1: Beginner", "A2: Elementary", "B1: Intermediate", "B2: Upper Intermediate", "C1: Advanced", "C2: Proficient", "Native"];
   return {
     session: session,
@@ -1089,6 +1142,7 @@ var mSTP = function mSTP(state) {
     presentIcon: presentIcon,
     testIcon: testIcon,
     iTalkiImg: iTalkiImg,
+    bookLessonIcon: bookLessonIcon,
     levelDescriptions: levelDescriptions,
     currentDate: new Date().toLocaleDateString(),
     currentTime: new Date().toLocaleTimeString()
@@ -3119,6 +3173,39 @@ var Splash = function Splash() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Splash);
+
+/***/ }),
+
+/***/ "./frontend/components/teachers/teacher_index_item.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/teachers/teacher_index_item.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var TeacherIndexItem = function TeacherIndexItem(props) {
+  var teacher = props.teacher,
+      bookLessonIcon = props.bookLessonIcon;
+  teacher = teacher ? teacher : {};
+  bookLessonIcon = bookLessonIcon ? bookLessonIcon : {};
+  console.log("Teacher Index Item Props", props);
+  var teacherName = teacher.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "teacher-li-name"
+  }, "".concat(teacher.display_name)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "teacher-li-name"
+  }, "".concat(teacher.firstName, " ").concat(teacher.lastName));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "teacher-index-li"
+  }, teacherName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, bookLessonIcon));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TeacherIndexItem);
 
 /***/ }),
 

@@ -138,8 +138,12 @@
 }
 
 .my-teachers {
-  display: flex;
+  display: grid;
   padding: 12px 24px;
+}
+
+.three-random-teachers {
+  display: grid;
 }
 
 .completed-number {

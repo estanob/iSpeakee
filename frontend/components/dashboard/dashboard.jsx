@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import StudiedLanguage from '../languages/studied_languages/studied_language';
+import TeacherIndexItem from '../teachers/teacher_index_item';
 
 const Dashboard = (props) => {
   let { 
@@ -12,6 +13,7 @@ const Dashboard = (props) => {
     currentUser,
     coinIcon, 
     presentIcon,
+    bookLessonIcon,
     testIcon,
     iTalkiImg,
     levelDescriptions,
@@ -30,6 +32,7 @@ const Dashboard = (props) => {
   currentUser = currentUser ? currentUser : {};
   coinIcon = coinIcon ? coinIcon : {};
   presentIcon = presentIcon ? presentIcon : {};
+  bookLessonIcon = bookLessonIcon ? bookLessonIcon : {};
   testIcon = testIcon ? testIcon : {};
   iTalkiImg = iTalkiImg ? iTalkiImg : {};
   users = users ? users : [];
@@ -87,6 +90,28 @@ const Dashboard = (props) => {
         key={i} />
     )
   })
+
+  let userTeacherArr = [];
+  let teacherRelations = currentUser.teachers ? currentUser.teachers : [];
+  teacherRelations.forEach(relation => {
+    users.find(user => {
+      if (user.id === relation.teacher_id) {
+        userTeacherArr.push(user)
+      }
+    })
+  })
+
+  console.log("User Teacher Arr Did it work?", userTeacherArr)
+  
+  userTeacherArr = userTeacherArr.map((teacher, i) => {
+    return (
+      <TeacherIndexItem teacher={teacher} bookLessonIcon={bookLessonIcon} key={i} />
+    )
+  })
+
+  userTeacherArr = userTeacherArr.sort(() => Math.random() - 0.5)
+
+  console.log("Teacher arr after shuffle", userTeacherArr)
 
   let userName = currentUser.display_name ? <p className="display-name">{`${currentUser.display_name}`}</p> : <p className="display-name">{`${currentUser.firstName} ${currentUser.lastName}`}</p>;
 
@@ -167,7 +192,10 @@ const Dashboard = (props) => {
             <h1>Upcoming Lesson</h1>
           </div>
           <div className="my-teachers info-box box-shadow">
-            <h1>My Teachers</h1>
+            <h1 className="learning-language">My Teachers</h1>
+            <ul className="three-random-teachers">
+              {userTeacherArr.slice(0, 3)}
+            </ul>
           </div>
           <Link to="/languages" className="languages-link">
             Languages
