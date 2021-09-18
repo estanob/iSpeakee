@@ -1,8 +1,10 @@
 import React from 'react';
 
 const TeacherIndexItem = props => {
-  let { teacher, bookLessonIcon } = props;
+  let { teacher, lineSeparator, bookLessonIcon } = props;
+
   teacher = teacher ? teacher : {};
+  lineSeparator = lineSeparator ? lineSeparator : {};
   bookLessonIcon = bookLessonIcon ? bookLessonIcon : {};
   console.log("Teacher Index Item Props", props)
 
@@ -10,8 +12,11 @@ const TeacherIndexItem = props => {
   
   return (
     <li className="teacher-index-li">
-      {teacherName}
-      <>{bookLessonIcon}</>
+      <div style={{ display: 'flex', justifyContent: 'space-between' }}>
+        {teacherName}
+        <>{bookLessonIcon}</>
+      </div>
+      {lineSeparator}
     </li>
   )
 }

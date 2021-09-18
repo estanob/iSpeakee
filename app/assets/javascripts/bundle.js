@@ -807,7 +807,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../languages/studied_languages/studied_language */ "./frontend/components/languages/studied_languages/studied_language.jsx");
-/* harmony import */ var _teachers_teacher_index_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../teachers/teacher_index_item */ "./frontend/components/teachers/teacher_index_item.jsx");
+/* harmony import */ var _teachers_my_teachers_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../teachers/my_teachers_index */ "./frontend/components/teachers/my_teachers_index.jsx");
+/* harmony import */ var _teachers_teacher_index_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../teachers/teacher_index_item */ "./frontend/components/teachers/teacher_index_item.jsx");
+
 
 
 
@@ -826,6 +828,7 @@ var Dashboard = function Dashboard(props) {
       testIcon = props.testIcon,
       iTalkiImg = props.iTalkiImg,
       levelDescriptions = props.levelDescriptions,
+      lineSeparator = props.lineSeparator,
       fetchUser = props.fetchUser,
       fetchAllUsers = props.fetchAllUsers,
       fetchLanguages = props.fetchLanguages,
@@ -842,6 +845,7 @@ var Dashboard = function Dashboard(props) {
   bookLessonIcon = bookLessonIcon ? bookLessonIcon : {};
   testIcon = testIcon ? testIcon : {};
   iTalkiImg = iTalkiImg ? iTalkiImg : {};
+  lineSeparator = lineSeparator ? lineSeparator : {};
   users = users ? users : [];
   languages = languages ? languages : [];
   languageToStudents = languageToStudents ? languageToStudents : [];
@@ -900,17 +904,6 @@ var Dashboard = function Dashboard(props) {
     });
   });
   console.log("User Teacher Arr Did it work?", userTeacherArr);
-  userTeacherArr = userTeacherArr.map(function (teacher, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_teachers_teacher_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
-      teacher: teacher,
-      bookLessonIcon: bookLessonIcon,
-      key: i
-    });
-  });
-  userTeacherArr = userTeacherArr.sort(function () {
-    return Math.random() - 0.5;
-  });
-  console.log("Teacher arr after shuffle", userTeacherArr);
   var userName = currentUser.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "display-name"
   }, "".concat(currentUser.display_name)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -995,11 +988,16 @@ var Dashboard = function Dashboard(props) {
     className: "languages-learning info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming Lesson")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "my-teachers info-box box-shadow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
-    className: "learning-language"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
+    href: "",
+    className: "my-teachers-title"
   }, "My Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "three-random-teachers"
-  }, userTeacherArr.slice(0, 3))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_teachers_my_teachers_index__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    teachers: userTeacherArr,
+    lineSeparator: lineSeparator,
+    bookLessonIcon: bookLessonIcon
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/languages",
     className: "languages-link"
   }, "Languages"))));
@@ -1107,15 +1105,15 @@ var mSTP = function mSTP(state) {
     width: "68"
   });
   var bookLessonIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    "class": "teacher-item-right"
+    className: "teacher-itemRight"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    "class": "tooltip-container-box",
+    className: "tooltip-container-box",
     gap: "5"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    "class": "tooltip-container",
+    className: "tooltip-container",
     placement: "bottom"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
-    "class": "tooltip-reference"
+    className: "tooltipReference"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     height: "24",
     viewBox: "0 0 24 24",
@@ -1123,13 +1121,16 @@ var mSTP = function mSTP(state) {
     xmlns: "http://www.w3.org/2000/svg",
     fill: "#4D4D4D"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("g", {
-    "clip-rule": "evenodd",
-    "fill-rule": "evenodd"
+    clipRule: "evenodd",
+    fillRule: "evenodd"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M16 1.75a.75.75 0 01.75.75v.75H19A2.75 2.75 0 0121.75 6v10A5.75 5.75 0 0116 21.75H3a.75.75 0 01-.75-.75V6A2.75 2.75 0 015 3.25h2.25V2.5a.75.75 0 011.5 0v.75h6.5V2.5a.75.75 0 01.75-.75zm-8.75 3v.75a.75.75 0 001.5 0v-.75h6.5v.75a.75.75 0 001.5 0v-.75H19c.69 0 1.25.56 1.25 1.25v2.75H3.75V6c0-.69.56-1.25 1.25-1.25zm-3.5 5.5h16.5V16A4.25 4.25 0 0116 20.25H3.75z"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M12.75 13.068c0-.452-.336-.818-.75-.818s-.75.366-.75.818V14.5H9.818c-.452 0-.818.336-.818.75s.366.75.818.75h1.432v1.432c0 .452.336.818.75.818s.75-.366.75-.818V16h1.432c.452 0 .818-.336.818-.75s-.366-.75-.818-.75H12.75z"
   })))))));
+  var lineSeparator = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "line-separator"
+  });
   var levelDescriptions = ["A1: Beginner", "A2: Elementary", "B1: Intermediate", "B2: Upper Intermediate", "C1: Advanced", "C2: Proficient", "Native"];
   return {
     session: session,
@@ -1144,6 +1145,7 @@ var mSTP = function mSTP(state) {
     iTalkiImg: iTalkiImg,
     bookLessonIcon: bookLessonIcon,
     levelDescriptions: levelDescriptions,
+    lineSeparator: lineSeparator,
     currentDate: new Date().toLocaleDateString(),
     currentTime: new Date().toLocaleTimeString()
   };
@@ -3176,6 +3178,48 @@ var Splash = function Splash() {
 
 /***/ }),
 
+/***/ "./frontend/components/teachers/my_teachers_index.jsx":
+/*!************************************************************!*\
+  !*** ./frontend/components/teachers/my_teachers_index.jsx ***!
+  \************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _teacher_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./teacher_index_item */ "./frontend/components/teachers/teacher_index_item.jsx");
+
+
+
+var MyTeachersIndex = function MyTeachersIndex(props) {
+  var teachers = props.teachers,
+      lineSeparator = props.lineSeparator,
+      bookLessonIcon = props.bookLessonIcon;
+  teachers = teachers ? teachers : [];
+  lineSeparator = lineSeparator ? lineSeparator : {};
+  bookLessonIcon = bookLessonIcon ? bookLessonIcon : {};
+  console.log("My Teachers Index Props", props);
+  console.log("MyTeachersIndex Teachers", teachers);
+  teachers = teachers.map(function (teacher, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_teacher_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      teacher: teacher,
+      lineSeparator: lineSeparator,
+      bookLessonIcon: bookLessonIcon,
+      key: i
+    });
+  });
+  teachers = teachers.sort(function () {
+    return Math.random() - 0.5;
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, teachers.slice(0, 3));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (MyTeachersIndex);
+
+/***/ }),
+
 /***/ "./frontend/components/teachers/teacher_index_item.jsx":
 /*!*************************************************************!*\
   !*** ./frontend/components/teachers/teacher_index_item.jsx ***!
@@ -3191,8 +3235,10 @@ __webpack_require__.r(__webpack_exports__);
 
 var TeacherIndexItem = function TeacherIndexItem(props) {
   var teacher = props.teacher,
+      lineSeparator = props.lineSeparator,
       bookLessonIcon = props.bookLessonIcon;
   teacher = teacher ? teacher : {};
+  lineSeparator = lineSeparator ? lineSeparator : {};
   bookLessonIcon = bookLessonIcon ? bookLessonIcon : {};
   console.log("Teacher Index Item Props", props);
   var teacherName = teacher.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -3202,7 +3248,12 @@ var TeacherIndexItem = function TeacherIndexItem(props) {
   }, "".concat(teacher.firstName, " ").concat(teacher.lastName));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "teacher-index-li"
-  }, teacherName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, bookLessonIcon));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    }
+  }, teacherName, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, bookLessonIcon)), lineSeparator);
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TeacherIndexItem);
@@ -38792,59 +38843,59 @@ function isPlainObject(obj) {
   return Object.getPrototypeOf(obj) === proto;
 }
 
+// Inlined / shortened version of `kindOf` from https://github.com/jonschlinkert/kind-of
+function miniKindOf(val) {
+  if (val === void 0) return 'undefined';
+  if (val === null) return 'null';
+  var type = typeof val;
+
+  switch (type) {
+    case 'boolean':
+    case 'string':
+    case 'number':
+    case 'symbol':
+    case 'function':
+      {
+        return type;
+      }
+  }
+
+  if (Array.isArray(val)) return 'array';
+  if (isDate(val)) return 'date';
+  if (isError(val)) return 'error';
+  var constructorName = ctorName(val);
+
+  switch (constructorName) {
+    case 'Symbol':
+    case 'Promise':
+    case 'WeakMap':
+    case 'WeakSet':
+    case 'Map':
+    case 'Set':
+      return constructorName;
+  } // other
+
+
+  return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
+}
+
+function ctorName(val) {
+  return typeof val.constructor === 'function' ? val.constructor.name : null;
+}
+
+function isError(val) {
+  return val instanceof Error || typeof val.message === 'string' && val.constructor && typeof val.constructor.stackTraceLimit === 'number';
+}
+
+function isDate(val) {
+  if (val instanceof Date) return true;
+  return typeof val.toDateString === 'function' && typeof val.getDate === 'function' && typeof val.setDate === 'function';
+}
+
 function kindOf(val) {
   var typeOfVal = typeof val;
 
   if (true) {
-    // Inlined / shortened version of `kindOf` from https://github.com/jonschlinkert/kind-of
-    function miniKindOf(val) {
-      if (val === void 0) return 'undefined';
-      if (val === null) return 'null';
-      var type = typeof val;
-
-      switch (type) {
-        case 'boolean':
-        case 'string':
-        case 'number':
-        case 'symbol':
-        case 'function':
-          {
-            return type;
-          }
-      }
-
-      if (Array.isArray(val)) return 'array';
-      if (isDate(val)) return 'date';
-      if (isError(val)) return 'error';
-      var constructorName = ctorName(val);
-
-      switch (constructorName) {
-        case 'Symbol':
-        case 'Promise':
-        case 'WeakMap':
-        case 'WeakSet':
-        case 'Map':
-        case 'Set':
-          return constructorName;
-      } // other
-
-
-      return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
-    }
-
-    function ctorName(val) {
-      return typeof val.constructor === 'function' ? val.constructor.name : null;
-    }
-
-    function isError(val) {
-      return val instanceof Error || typeof val.message === 'string' && val.constructor && typeof val.constructor.stackTraceLimit === 'number';
-    }
-
-    function isDate(val) {
-      if (val instanceof Date) return true;
-      return typeof val.toDateString === 'function' && typeof val.getDate === 'function' && typeof val.setDate === 'function';
-    }
-
     typeOfVal = miniKindOf(val);
   }
 

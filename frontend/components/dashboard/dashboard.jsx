@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import StudiedLanguage from '../languages/studied_languages/studied_language';
+import MyTeachersIndex from '../teachers/my_teachers_index';
 import TeacherIndexItem from '../teachers/teacher_index_item';
 
 const Dashboard = (props) => {
@@ -17,6 +18,7 @@ const Dashboard = (props) => {
     testIcon,
     iTalkiImg,
     levelDescriptions,
+    lineSeparator,
     fetchUser, 
     fetchAllUsers,
     fetchLanguages,
@@ -35,6 +37,7 @@ const Dashboard = (props) => {
   bookLessonIcon = bookLessonIcon ? bookLessonIcon : {};
   testIcon = testIcon ? testIcon : {};
   iTalkiImg = iTalkiImg ? iTalkiImg : {};
+  lineSeparator = lineSeparator ? lineSeparator : {};
   users = users ? users : [];
   languages = languages ? languages : [];
   languageToStudents = languageToStudents ? languageToStudents : [];
@@ -103,16 +106,6 @@ const Dashboard = (props) => {
 
   console.log("User Teacher Arr Did it work?", userTeacherArr)
   
-  userTeacherArr = userTeacherArr.map((teacher, i) => {
-    return (
-      <TeacherIndexItem teacher={teacher} bookLessonIcon={bookLessonIcon} key={i} />
-    )
-  })
-
-  userTeacherArr = userTeacherArr.sort(() => Math.random() - 0.5)
-
-  console.log("Teacher arr after shuffle", userTeacherArr)
-
   let userName = currentUser.display_name ? <p className="display-name">{`${currentUser.display_name}`}</p> : <p className="display-name">{`${currentUser.firstName} ${currentUser.lastName}`}</p>;
 
   return (
@@ -192,9 +185,12 @@ const Dashboard = (props) => {
             <h1>Upcoming Lesson</h1>
           </div>
           <div className="my-teachers info-box box-shadow">
-            <h1 className="learning-language">My Teachers</h1>
+            <a href="" className="my-teachers-title">My Teachers</a>
             <ul className="three-random-teachers">
-              {userTeacherArr.slice(0, 3)}
+              <MyTeachersIndex 
+                teachers={userTeacherArr} 
+                lineSeparator={lineSeparator} 
+                bookLessonIcon={bookLessonIcon} />
             </ul>
           </div>
           <Link to="/languages" className="languages-link">
