@@ -17,6 +17,7 @@ import LanguageShowContainer from './languages/show/language_show_page_container
 import PostShowContainer from './posts/post_show_container';
 import PostIndexContainer from './posts/index/post_index_container';
 import ProfileContainer from './profile/profile_container';
+import TeacherIndexContainer from './teachers/teachers_page/teacher_index_container';
 
 const App = () => {
   return (
@@ -32,6 +33,7 @@ const App = () => {
         <ProtectedRoute path="/languages" component={LanguageIndexContainer} />
         <ProtectedRoute path="/post/:id" component={PostShowContainer} />
         <ProtectedRoute path="/posts/:id" component={PostIndexContainer} />
+        <ProtectedRoute path="/contacts/teacher" component={TeacherIndexContainer} />
         <ProtectedRoute path='/user/:id' component={ProfileContainer}/>
         
         <AuthRoute exact path="/" component={Splash} />

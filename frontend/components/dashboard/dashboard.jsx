@@ -185,7 +185,9 @@ const Dashboard = (props) => {
             <h1>Upcoming Lesson</h1>
           </div>
           <div className="my-teachers info-box box-shadow">
-            <a href="" className="my-teachers-title">My Teachers</a>
+            <div id="my-teachers-container">
+              <button className="my-teachers-title">My Teachers</button>
+            </div>
             <ul className="three-random-teachers">
               <MyTeachersIndex 
                 teachers={userTeacherArr} 
