@@ -1,0 +1,1 @@
+json.partial! 'teacher_profile', teacher_profile: @teacher_profile

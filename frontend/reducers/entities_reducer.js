@@ -7,6 +7,7 @@ import LessonsReducer from './lessons_reducer';
 import PostsReducer from './posts_reducer';
 import FollowsReducer from './follows_reducer';
 import TeacherToStudentsReducer from './teacher_to_students_reducer';
+import TeacherProfilesReducer from './teacher_profiles_reducer';
 
 const entitiesReducer = combineReducers({
   user: UserReducer,
@@ -17,6 +18,7 @@ const entitiesReducer = combineReducers({
   lessons: LessonsReducer,
   posts: PostsReducer,
   follows: FollowsReducer,
+  teacherProfiles: TeacherProfilesReducer,
 })
 
 export default entitiesReducer;

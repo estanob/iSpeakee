@@ -6,17 +6,20 @@ export default function TeacherIndex (props) {
     session,
     users,
     teacherToStudents,
+    teacherProfiles,
     bookLessonIcon,
     horizontalThreeDots,
     verticalThreeDots,
     miniRedLine,
     fetchUsers,
     fetchTeacherToStudents,
+    fetchTeacherProfiles,
   } = props;
 
   useEffect(() => {
     fetchUsers()
     fetchTeacherToStudents()
+    fetchTeacherProfiles()
   }, [])
 
   let myTeachers = [];
@@ -25,6 +28,7 @@ export default function TeacherIndex (props) {
   session = session ? session : '';
   users = users ? users : [];
   teacherToStudents = teacherToStudents ? teacherToStudents : [];
+  teacherProfiles = teacherProfiles ? teacherProfiles : [];
   bookLessonIcon = bookLessonIcon ? bookLessonIcon : {};
   horizontalThreeDots = horizontalThreeDots ? horizontalThreeDots : {};
   verticalThreeDots = verticalThreeDots ? verticalThreeDots : {};

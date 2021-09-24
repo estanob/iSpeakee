@@ -639,6 +639,88 @@ var logout = function logout() {
 
 /***/ }),
 
+/***/ "./frontend/actions/teacher_profile_actions.js":
+/*!*****************************************************!*\
+  !*** ./frontend/actions/teacher_profile_actions.js ***!
+  \*****************************************************/
+/*! exports provided: RECEIVE_ALL_TEACHER_PROFILES, RECEIVE_TEACHER_PROFILE, REMOVE_TEACHER_PROFILE, fetchTeacherProfiles, fetchTeacherProfile, createTeacherProfile, updateTeacherProfile, deleteTeacherProfile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_TEACHER_PROFILES", function() { return RECEIVE_ALL_TEACHER_PROFILES; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_TEACHER_PROFILE", function() { return RECEIVE_TEACHER_PROFILE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_TEACHER_PROFILE", function() { return REMOVE_TEACHER_PROFILE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTeacherProfiles", function() { return fetchTeacherProfiles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTeacherProfile", function() { return fetchTeacherProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTeacherProfile", function() { return createTeacherProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTeacherProfile", function() { return updateTeacherProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTeacherProfile", function() { return deleteTeacherProfile; });
+/* harmony import */ var _util_teacher_profile_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/teacher_profile_api_util */ "./frontend/util/teacher_profile_api_util.js");
+
+var RECEIVE_ALL_TEACHER_PROFILES = 'RECEIVE_ALL_TEACHER_PROFILES';
+var RECEIVE_TEACHER_PROFILE = 'RECEIVE_TEACHER_PROFILE';
+var REMOVE_TEACHER_PROFILE = 'REMOVE_TEACHER_PROFILE';
+
+var receiveTeacherProfiles = function receiveTeacherProfiles(teacherProfiles) {
+  return {
+    type: RECEIVE_ALL_TEACHER_PROFILES,
+    teacherProfiles: teacherProfiles
+  };
+};
+
+var receiveTeacherProfile = function receiveTeacherProfile(teacherProfile) {
+  return {
+    type: RECEIVE_TEACHER_PROFILE,
+    teacherProfile: teacherProfile
+  };
+};
+
+var removeTeacherProfile = function removeTeacherProfile(teacherProfileId) {
+  return {
+    type: REMOVE_TEACHER_PROFILE,
+    teacherProfileId: teacherProfileId
+  };
+};
+
+var fetchTeacherProfiles = function fetchTeacherProfiles() {
+  return function (dispatch) {
+    return _util_teacher_profile_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchTeacherProfiles"]().then(function (teacherProfiles) {
+      dispatch(receiveTeacherProfiles(teacherProfiles));
+    });
+  };
+};
+var fetchTeacherProfile = function fetchTeacherProfile(teacherProfileId) {
+  return function (dispatch) {
+    return _util_teacher_profile_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchTeacherProfile"](teacherProfileId).then(function (teacherProfile) {
+      return dispatch(receiveTeacherProfile(teacherProfile));
+    });
+  };
+};
+var createTeacherProfile = function createTeacherProfile(teacherProfile) {
+  return function (dispatch) {
+    return _util_teacher_profile_api_util__WEBPACK_IMPORTED_MODULE_0__["createTeacherProfile"](teacherProfile).then(function (newProfile) {
+      return dispatch(receiveTeacherProfile(newProfile));
+    });
+  };
+};
+var updateTeacherProfile = function updateTeacherProfile(teacherProfile) {
+  return function (dispatch) {
+    return _util_teacher_profile_api_util__WEBPACK_IMPORTED_MODULE_0__["updateTeacherProfile"](teacherProfile).then(function (updatedTeacherProfile) {
+      return dispatch(receiveTeacherProfile(updatedTeacherProfile));
+    });
+  };
+};
+var deleteTeacherProfile = function deleteTeacherProfile(teacherProfileId) {
+  return function (dispatch) {
+    return _util_teacher_profile_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteTeacherProfile"](teacherProfileId).then(function () {
+      return dispatch(removeTeacherProfile(teacherProfileId));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/teacher_to_student_actions.js":
 /*!********************************************************!*\
   !*** ./frontend/actions/teacher_to_student_actions.js ***!
@@ -2622,13 +2704,13 @@ var Profile = function Profile(props) {
       display: 'flex'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-    className: "language-list-title"
+    className: "language-title"
   }, "Language Skills"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "lang-skills-ul"
   }, ownLanguages)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "studied-languages"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", {
-    className: "language-list-title"
+    className: "language-title"
   }, "Learning Language"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "lang-skills-ul"
   }, learningLanguageArray))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3288,21 +3370,25 @@ function TeacherIndex(props) {
   var session = props.session,
       users = props.users,
       teacherToStudents = props.teacherToStudents,
+      teacherProfiles = props.teacherProfiles,
       bookLessonIcon = props.bookLessonIcon,
       horizontalThreeDots = props.horizontalThreeDots,
       verticalThreeDots = props.verticalThreeDots,
       miniRedLine = props.miniRedLine,
       fetchUsers = props.fetchUsers,
-      fetchTeacherToStudents = props.fetchTeacherToStudents;
+      fetchTeacherToStudents = props.fetchTeacherToStudents,
+      fetchTeacherProfiles = props.fetchTeacherProfiles;
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUsers();
     fetchTeacherToStudents();
+    fetchTeacherProfiles();
   }, []);
   var myTeachers = [];
   var teacherIds = [];
   session = session ? session : '';
   users = users ? users : [];
   teacherToStudents = teacherToStudents ? teacherToStudents : [];
+  teacherProfiles = teacherProfiles ? teacherProfiles : [];
   bookLessonIcon = bookLessonIcon ? bookLessonIcon : {};
   horizontalThreeDots = horizontalThreeDots ? horizontalThreeDots : {};
   verticalThreeDots = verticalThreeDots ? verticalThreeDots : {};
@@ -3363,7 +3449,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
 /* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
 /* harmony import */ var _actions_teacher_to_student_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/teacher_to_student_actions */ "./frontend/actions/teacher_to_student_actions.js");
-/* harmony import */ var _teacher_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./teacher_index */ "./frontend/components/teachers/teachers_page/teacher_index.jsx");
+/* harmony import */ var _actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../../actions/teacher_profile_actions */ "./frontend/actions/teacher_profile_actions.js");
+/* harmony import */ var _teacher_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./teacher_index */ "./frontend/components/teachers/teachers_page/teacher_index.jsx");
+
 
 
 
@@ -3374,6 +3462,7 @@ var mSTP = function mSTP(state) {
   var session = state.session.id ? state.session.id : '';
   var users = state.entities.users ? Object.values(state.entities.users) : [];
   var teacherToStudents = state.entities.teacherToStudents ? Object.values(state.entities.teacherToStudents) : [];
+  var teacherProfiles = state.entities.teacherProfiles ? Object.values(state.entities.teacherProfiles) : [];
   var bookLessonIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-itemRight"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
@@ -3443,6 +3532,7 @@ var mSTP = function mSTP(state) {
     session: session,
     users: users,
     teacherToStudents: teacherToStudents,
+    teacherProfiles: teacherProfiles,
     bookLessonIcon: bookLessonIcon,
     horizontalThreeDots: horizontalThreeDots,
     verticalThreeDots: verticalThreeDots,
@@ -3457,11 +3547,14 @@ var mDTP = function mDTP(dispatch, ownProps) {
     },
     fetchTeacherToStudents: function fetchTeacherToStudents() {
       return dispatch(Object(_actions_teacher_to_student_actions__WEBPACK_IMPORTED_MODULE_3__["fetchTeacherToStudents"])());
+    },
+    fetchTeacherProfiles: function fetchTeacherProfiles() {
+      return dispatch(Object(_actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_4__["fetchTeacherProfiles"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_teacher_index__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_teacher_index__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 
@@ -3506,19 +3599,39 @@ function TeacherIndexPageItem(props) {
     className: "teacher-li-name"
   }, "".concat(teacher.firstName, " ").concat(teacher.lastName));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
-    className: "teacher-index-li info-box",
+    className: "teacher-card info-box",
     style: {
       transition: 'all .25s ease-in'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-details"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "teacher-lessons"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "teacher-lesson-count"
+  }, "".concat(teacher.taughtLessons.length, " LESSONS"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-description"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, teacherName), redLine, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Also Speaks"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hourly rate from")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, teacherName), redLine, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "language-title"
+  }, "Teaches"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "language-title"
+  }, "Also Speaks"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      marginBottom: '13px'
+    }
+  }, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "language-title"
+  }, "Hourly rate from")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-li-buttons"
   }, bookLesson, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: function onClick() {
       return setButton();
+    },
+    style: {
+      width: "36px",
+      height: "36px",
+      background: 'none',
+      borderRadius: '0px'
     }
   }, dotsButton))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
@@ -3598,6 +3711,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _posts_reducer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./posts_reducer */ "./frontend/reducers/posts_reducer.js");
 /* harmony import */ var _follows_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./follows_reducer */ "./frontend/reducers/follows_reducer.js");
 /* harmony import */ var _teacher_to_students_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./teacher_to_students_reducer */ "./frontend/reducers/teacher_to_students_reducer.js");
+/* harmony import */ var _teacher_profiles_reducer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./teacher_profiles_reducer */ "./frontend/reducers/teacher_profiles_reducer.js");
+
 
 
 
@@ -3615,7 +3730,8 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
   teacherToStudents: _teacher_to_students_reducer__WEBPACK_IMPORTED_MODULE_8__["default"],
   lessons: _lessons_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
   posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
-  follows: _follows_reducer__WEBPACK_IMPORTED_MODULE_7__["default"]
+  follows: _follows_reducer__WEBPACK_IMPORTED_MODULE_7__["default"],
+  teacherProfiles: _teacher_profiles_reducer__WEBPACK_IMPORTED_MODULE_9__["default"]
 });
 /* harmony default export */ __webpack_exports__["default"] = (entitiesReducer);
 
@@ -3975,6 +4091,46 @@ var sessionReducer = function sessionReducer() {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (sessionReducer);
+
+/***/ }),
+
+/***/ "./frontend/reducers/teacher_profiles_reducer.js":
+/*!*******************************************************!*\
+  !*** ./frontend/reducers/teacher_profiles_reducer.js ***!
+  \*******************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/teacher_profile_actions */ "./frontend/actions/teacher_profile_actions.js");
+
+
+var TeacherProfilesReducer = function TeacherProfilesReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_TEACHER_PROFILES"]:
+      nextState = Object.assign({}, action.teacherProfiles);
+      return action.teacherProfiles;
+
+    case _actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_TEACHER_PROFILE"]:
+      nextState[action.teacherProfile.id] = action.teacherProfile;
+      return nextState;
+
+    case _actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_TEACHER_PROFILE"]:
+      delete nextState[action.teacherProfileId];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TeacherProfilesReducer);
 
 /***/ }),
 
@@ -4428,6 +4584,60 @@ var signup = function signup(user) {
     data: {
       user: user
     }
+  });
+};
+
+/***/ }),
+
+/***/ "./frontend/util/teacher_profile_api_util.js":
+/*!***************************************************!*\
+  !*** ./frontend/util/teacher_profile_api_util.js ***!
+  \***************************************************/
+/*! exports provided: fetchTeacherProfiles, fetchTeacherProfile, createTeacherProfile, updateTeacherProfile, deleteTeacherProfile */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTeacherProfiles", function() { return fetchTeacherProfiles; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchTeacherProfile", function() { return fetchTeacherProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createTeacherProfile", function() { return createTeacherProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTeacherProfile", function() { return updateTeacherProfile; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTeacherProfile", function() { return deleteTeacherProfile; });
+var fetchTeacherProfiles = function fetchTeacherProfiles() {
+  debugger;
+  return $.ajax({
+    url: '/api/teacher_profiles',
+    method: 'GET'
+  });
+};
+var fetchTeacherProfile = function fetchTeacherProfile(teacherProfileId) {
+  return $.ajax({
+    url: "/api/teacher_profiles/".concat(teacherProfileId),
+    method: 'GET'
+  });
+};
+var createTeacherProfile = function createTeacherProfile(teacherProfile) {
+  return $.ajax({
+    url: "/api/teacher_profiles",
+    method: 'POST',
+    data: teacherProfile,
+    contentType: false,
+    processData: false
+  });
+};
+var updateTeacherProfile = function updateTeacherProfile(teacherProfile) {
+  return $.ajax({
+    url: "/api/teacher_profiles/".concat(teacherProfile.id),
+    method: 'PATCH',
+    data: teacherProfile,
+    contentType: false,
+    processData: false
+  });
+};
+var deleteTeacherProfile = function deleteTeacherProfile(teacherProfileId) {
+  return $.ajax({
+    url: "/api/teacher_profiles/".concat(teacherProfileId),
+    method: 'DELETE'
   });
 };
 

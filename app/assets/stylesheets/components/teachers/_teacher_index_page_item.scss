@@ -1,5 +1,16 @@
+.teacher-lessons {
+  padding: 0 12px;
+}
+
+.teacher-lesson-count {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 13px;
+}
+
 .teacher-index-li {
-  display: flex;
+  display: grid;
 }
 
 .teacher-details {

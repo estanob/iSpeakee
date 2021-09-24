@@ -1,5 +1,9 @@
-.teacher-index-li {
-  display: grid;
+.teacher-card {
+  display: flex;
+  border-radius: 6px;
+  margin-bottom: 20px;
+  box-shadow: 0 2px 12px black;
+  transition: all .25s ease-in;
 }
 
 .teacher-li-name {

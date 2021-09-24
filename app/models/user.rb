@@ -94,4 +94,8 @@ class User < ApplicationRecord
     foreign_key: :student_id,
     class_name: :StudiedLanguage,
     dependent: :destroy
+
+  has_one :teacher_profile,
+    foreign_key: :teacher_id,
+    class_name: :User
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
     resources :languages, only: [:index, :show, :create]
     resources :language_to_students, only: [:create, :index, :show]
     resources :teacher_to_students, only: [:create, :index, :show]
+    resources :teacher_profiles, only: [:create, :index, :update, :show]
     resources :follows, only: [:index, :create, :show]
     resources :lessons, only: [:index, :create, :show]
     resources :posts, only: [:index, :show, :create, :update, :destroy]
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
 
   delete '/language_to_students', to: 'language_to_students#destroy'
   delete '/teacher_to_students', to: 'teacher_to_students#destroy'
+  delete '/teacher_profiles', to: 'teacher_profiles#destroy'
   delete '/follows', to: 'follows#destroy'
   delete '/lessons', to: 'lessons#destroy'
 end
