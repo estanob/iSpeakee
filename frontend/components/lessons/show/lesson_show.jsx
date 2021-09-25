@@ -126,7 +126,6 @@ const LessonShow = props => {
   const lineSeparator = <div id="line-separator"></div>
   
   console.log("Lesson Show Props", props)
-  // debugger
   return (
     <div className="lesson-show-container">
       <div style={{ padding: '0 30px', display: 'flex' }}>

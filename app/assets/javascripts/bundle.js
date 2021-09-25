@@ -2027,8 +2027,7 @@ var LessonShow = function LessonShow(props) {
   var lineSeparator = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "line-separator"
   });
-  console.log("Lesson Show Props", props); // debugger
-
+  console.log("Lesson Show Props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3409,6 +3408,7 @@ function TeacherIndex(props) {
   myTeachers = myTeachers.map(function (teacher, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_teacher_index_page_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
       teacher: teacher,
+      teacherProfiles: teacherProfiles,
       bookLesson: bookLessonIcon,
       horizontalDots: horizontalThreeDots,
       verticalDots: verticalThreeDots,
@@ -3573,17 +3573,24 @@ __webpack_require__.r(__webpack_exports__);
 
 function TeacherIndexPageItem(props) {
   var teacher = props.teacher,
+      teacherProfiles = props.teacherProfiles,
       bookLesson = props.bookLesson,
       horizontalDots = props.horizontalDots,
       verticalDots = props.verticalDots,
       redLine = props.redLine;
   teacher = teacher ? teacher : {};
+  teacherProfiles = teacherProfiles ? teacherProfiles : {};
   bookLesson = bookLesson ? bookLesson : {};
   horizontalDots = horizontalDots ? horizontalDots : {};
   verticalDots = verticalDots ? verticalDots : {};
   redLine = redLine ? redLine : {};
   console.log("Teacher Index Page Item Props: ", props);
   var dotsButton = horizontalDots;
+  var teacherProfile = teacherProfiles.find(function (profile) {
+    return profile.teacher_id === teacher.id;
+  });
+  teacherProfile = teacherProfile ? teacherProfile : {};
+  console.log("Teacher Profile", teacherProfile);
 
   function setButton() {
     if (dotsButton === verticalDots) {
@@ -3634,12 +3641,8 @@ function TeacherIndexPageItem(props) {
       borderRadius: '0px'
     }
   }, dotsButton))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      background: 'black',
-      height: '50px',
-      width: '50px'
-    }
-  }));
+    className: "teacher-info"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Intro"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, teacherProfile.about_me))));
 }
 ;
 
@@ -4604,7 +4607,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateTeacherProfile", function() { return updateTeacherProfile; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteTeacherProfile", function() { return deleteTeacherProfile; });
 var fetchTeacherProfiles = function fetchTeacherProfiles() {
-  debugger;
   return $.ajax({
     url: '/api/teacher_profiles',
     method: 'GET'

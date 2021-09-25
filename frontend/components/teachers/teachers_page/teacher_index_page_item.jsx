@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 export default function TeacherIndexPageItem (props) {
   let { 
     teacher,
+    teacherProfiles,
     bookLesson,
     horizontalDots,
     verticalDots,
@@ -10,6 +11,7 @@ export default function TeacherIndexPageItem (props) {
   } = props;
   
   teacher = teacher ? teacher : {};
+  teacherProfiles = teacherProfiles ? teacherProfiles : {};
   bookLesson = bookLesson ? bookLesson : {};
   horizontalDots = horizontalDots ? horizontalDots : {};
   verticalDots = verticalDots ? verticalDots : {};
@@ -18,6 +20,10 @@ export default function TeacherIndexPageItem (props) {
 
   let dotsButton = horizontalDots;
 
+  let teacherProfile = teacherProfiles.find(profile => profile.teacher_id === teacher.id);
+  teacherProfile = teacherProfile ? teacherProfile : {};
+  
+  console.log("Teacher Profile", teacherProfile)
   function setButton () {
     if (dotsButton === verticalDots) {
       dotsButton = horizontalDots;
@@ -50,7 +56,12 @@ export default function TeacherIndexPageItem (props) {
           </button>
         </div>
       </div>
-      <div style={{ background: 'black', height: '50px', width: '50px' }}></div>
+      <div className="teacher-info">
+        <h1>Intro</h1>
+        <p>
+          <span>{teacherProfile.about_me}</span>
+        </p>
+      </div>
     </li>
   )
 };

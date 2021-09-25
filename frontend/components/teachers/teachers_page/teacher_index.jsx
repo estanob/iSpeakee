@@ -54,6 +54,7 @@ export default function TeacherIndex (props) {
     return (
       <TeacherIndexPageItem 
         teacher={teacher} 
+        teacherProfiles={teacherProfiles} 
         bookLesson={bookLessonIcon} 
         horizontalDots={horizontalThreeDots}
         verticalDots={verticalThreeDots}

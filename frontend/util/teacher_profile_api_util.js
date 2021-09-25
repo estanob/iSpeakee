@@ -1,5 +1,4 @@
 export const fetchTeacherProfiles = () => {
-  debugger
   return $.ajax({
     url: '/api/teacher_profiles',
     method: 'GET',
