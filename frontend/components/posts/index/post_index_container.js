@@ -1,6 +1,7 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { fetchPosts } from '../../../actions/post_actions';
-import { fetchUser } from '../../../actions/profile_actions';
+import { fetchAllUsers, fetchUser } from '../../../actions/profile_actions';
 import PostIndex from './post_index';
 
 const mSTP = state => {
@@ -21,6 +22,7 @@ const mSTP = state => {
 const mDTP = (dispatch, ownProps) => {
   return {
     fetchUser: () => dispatch(fetchUser(parseInt(ownProps.match.params.id))),
+    fetchAllUsers: () => dispatch(fetchAllUsers()),
     fetchPosts: () => dispatch(fetchPosts()),
   };
 };

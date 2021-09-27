@@ -2387,6 +2387,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return PostIndex; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _post_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./post_index_item */ "./frontend/components/posts/index/post_index_item.jsx");
+
 
 function PostIndex(props) {
   var session = props.session,
@@ -2395,18 +2397,35 @@ function PostIndex(props) {
       posts = props.posts,
       noPostIcon = props.noPostIcon,
       fetchUser = props.fetchUser,
+      fetchAllUsers = props.fetchAllUsers,
       fetchPosts = props.fetchPosts;
   session = session ? session : '';
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
   posts = posts ? posts : [];
-  noPostIcon = noPostIcon ? noPostIcon : [];
+  noPostIcon = noPostIcon ? noPostIcon : {};
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
+    fetchAllUsers();
     fetchPosts();
   }, []);
-  console.log("Props", props);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Hello"));
+  var ownPosts = posts.filter(function (post) {
+    return post.creator_id === session;
+  });
+  console.log("Post Index Props", props);
+  console.log("Own Posts", ownPosts);
+  var postList = ownPosts.map(function (post, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_post_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      post: post,
+      key: i,
+      users: users
+    });
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "post-index-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Posts"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "post-index-ul info-box"
+  }, postList));
 }
 
 /***/ }),
@@ -2420,10 +2439,13 @@ function PostIndex(props) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/post_actions */ "./frontend/actions/post_actions.js");
-/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
-/* harmony import */ var _post_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./post_index */ "./frontend/components/posts/index/post_index.jsx");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_post_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/post_actions */ "./frontend/actions/post_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _post_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./post_index */ "./frontend/components/posts/index/post_index.jsx");
+
 
 
 
@@ -2434,28 +2456,28 @@ var mSTP = function mSTP(state) {
   var currentUser = state.session.id && state.entities.user ? state.entities.user[state.session.id] : {};
   var users = state.entities.users ? Object.values(state.entities.users) : [];
   var posts = state.entities.posts ? Object.values(state.entities.posts) : [];
-  var noPostIcon = /*#__PURE__*/React.createElement("svg", {
+  var noPostIcon = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("svg", {
     width: "81",
     height: "80",
     viewBox: "0 0 81 80",
     fill: "none",
     xmlns: "http://www.w3.org/2000/svg"
-  }, /*#__PURE__*/React.createElement("path", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     "fill-rule": "evenodd",
     "clip-rule": "evenodd",
     d: "M80.5 40c0 22.091-17.909 40-40 40a39.833 39.833 0 01-25.155-8.898l.71-.71a38.84 38.84 0 0024.445 8.61c21.54 0 39.002-17.461 39.002-39.002a38.84 38.84 0 00-8.61-24.446l.71-.71A39.833 39.833 0 0180.5 40zM65.28 9.88A38.842 38.842 0 0040.5.998C18.959.998 1.498 18.459 1.498 40c0 9.41 3.332 18.043 8.882 24.78l-.709.71A39.837 39.837 0 01.5 40c0-22.092 17.908-40 40-40a39.837 39.837 0 0125.489 9.171l-.709.709z",
     fill: "#BFBFBF"
-  }), /*#__PURE__*/React.createElement("path", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     "fill-rule": "evenodd",
     "clip-rule": "evenodd",
     d: "M28.75 36.824l-9.318 2.497a2 2 0 00-1.414 2.45l3.395 12.671.817-.816-3.246-12.114a1 1 0 01.707-1.225l9.059-2.428v-1.035zm15.148 22.57a.998.998 0 01-.65.55l-17.065 4.572a1 1 0 01-1.225-.707l-.637-2.379-.817.817.488 1.82a2 2 0 002.45 1.415l17.065-4.573a2 2 0 001.439-1.515h-1.048z",
     fill: "#BFBFBF"
-  }), /*#__PURE__*/React.createElement("path", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     "fill-rule": "evenodd",
     "clip-rule": "evenodd",
     d: "M55.855 20h-25.11a2 2 0 00-2 2v25.11l1-1V22a1 1 0 011-1h24.11l1-1zm5.376 4.52l1-1v33.874a2 2 0 01-2 2H30.746a2 2 0 01-2-2v-.388l1-1v1.389a1 1 0 001 1H60.23a1 1 0 001-1V24.52z",
     fill: "#BFBFBF"
-  }), /*#__PURE__*/React.createElement("path", {
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("path", {
     d: "M72.249 7.848a.499.499 0 11.705.706L9.136 72.374a.499.499 0 11-.706-.706L72.25 7.848z",
     fill: "#BFBFBF"
   }));
@@ -2471,15 +2493,56 @@ var mSTP = function mSTP(state) {
 var mDTP = function mDTP(dispatch, ownProps) {
   return {
     fetchUser: function fetchUser() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(parseInt(ownProps.match.params.id)));
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__["fetchUser"])(parseInt(ownProps.match.params.id)));
+    },
+    fetchAllUsers: function fetchAllUsers() {
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_3__["fetchAllUsers"])());
     },
     fetchPosts: function fetchPosts() {
-      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_1__["fetchPosts"])());
+      return dispatch(Object(_actions_post_actions__WEBPACK_IMPORTED_MODULE_2__["fetchPosts"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_post_index__WEBPACK_IMPORTED_MODULE_3__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_post_index__WEBPACK_IMPORTED_MODULE_4__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/posts/index/post_index_item.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/posts/index/post_index_item.jsx ***!
+  \*************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+
+var PostIndexItem = function PostIndexItem(props) {
+  var post = props.post,
+      users = props.users;
+  post = post ? post : {};
+  users = users ? users : [];
+  var creator = users.find(function (user) {
+    if (post.creator_id === user.id) return user;
+  });
+  creator = creator ? creator : {};
+  console.log("Creator", creator);
+  var creatorName = creator.display_name ? creator.display_name : "".concat(creator.firstName, " ").concat(creator.lastName);
+  creatorName = creatorName ? creatorName : {};
+  var postDate = new Date(post.created_at).toLocaleString();
+  console.log("Post Index Item Props", props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    className: "post-index-item-li"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, creatorName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, postDate));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (PostIndexItem);
 
 /***/ }),
 
@@ -3399,7 +3462,9 @@ var TeacherShow = function TeacherShow(props) {
     className: "teacher-about info-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-details"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, teacherName), redLine, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "teacher-show-titles"
+  }, teacherName), redLine, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-teaches"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "TEACHES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HELLO")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-also-speaks"
@@ -3407,11 +3472,31 @@ var TeacherShow = function TeacherShow(props) {
     className: "teacher-about-me"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "about-me-title"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "About Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ispeakee teacher since ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, teacherProfile.about_me), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Me as a Teacher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, teacherProfile.me_as_teacher), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My Lessons & Teaching Style"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, teacherProfile.lessons_teaching_style))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "teacher-show-titles"
+  }, "About Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ispeakee teacher since ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      marginBottom: '40px'
+    }
+  }, teacherProfile.about_me), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "teacher-show-titles"
+  }, "Me as a Teacher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      marginBottom: '40px'
+    }
+  }, teacherProfile.me_as_teacher), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+    className: "teacher-show-titles"
+  }, "My Lessons & Teaching Style"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      marginBottom: '40px'
+    }
+  }, teacherProfile.lessons_teaching_style))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-lesson-management"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-booking info-box"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "BOOK LESSON"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "CONTACT TEACHER"))));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Lessons"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "book-lesson-red"
+  }, "BOOK LESSON"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "CONTACT TEACHER"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (TeacherShow);
