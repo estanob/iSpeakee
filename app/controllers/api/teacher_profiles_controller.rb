@@ -30,6 +30,6 @@ class Api::TeacherProfilesController < ApplicationController
   private
 
   def teacher_profile_params
-    params.require(:teacher_profile).permit(:id, :teacher_id, :about_me, :me_as_teacher, :lessons_teaching_style)
+    params.require(:teacher_profile).permit(:teacher_id, :about_me, :me_as_teacher, :lessons_teaching_style)
   end
 end

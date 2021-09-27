@@ -6,7 +6,8 @@ export const fetchTeacherProfiles = () => {
 };
 
 export const fetchTeacherProfile = teacherProfileId => {
-  return $.ajax({
+  debugger
+  return $.ajax({ 
     url: `/api/teacher_profiles/${teacherProfileId}`,
     method: 'GET',
   });

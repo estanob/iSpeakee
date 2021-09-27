@@ -692,6 +692,7 @@ var fetchTeacherProfiles = function fetchTeacherProfiles() {
 };
 var fetchTeacherProfile = function fetchTeacherProfile(teacherProfileId) {
   return function (dispatch) {
+    debugger;
     return _util_teacher_profile_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchTeacherProfile"](teacherProfileId).then(function (teacherProfile) {
       return dispatch(receiveTeacherProfile(teacherProfile));
     });
@@ -812,6 +813,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _posts_index_post_index_container__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./posts/index/post_index_container */ "./frontend/components/posts/index/post_index_container.js");
 /* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
 /* harmony import */ var _teachers_teachers_page_teacher_index_container__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./teachers/teachers_page/teacher_index_container */ "./frontend/components/teachers/teachers_page/teacher_index_container.js");
+/* harmony import */ var _teachers_teacher_show_teacher_show_container__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./teachers/teacher_show/teacher_show_container */ "./frontend/components/teachers/teacher_show/teacher_show_container.js");
+
 
 
 
@@ -858,6 +861,9 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/posts/:id",
     component: _posts_index_post_index_container__WEBPACK_IMPORTED_MODULE_13__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
+    path: "/teacher/:id",
+    component: _teachers_teacher_show_teacher_show_container__WEBPACK_IMPORTED_MODULE_16__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["ProtectedRoute"], {
     path: "/contacts/teacher",
     component: _teachers_teachers_page_teacher_index_container__WEBPACK_IMPORTED_MODULE_15__["default"]
@@ -3350,6 +3356,119 @@ var TeacherIndexItem = function TeacherIndexItem(props) {
 
 /***/ }),
 
+/***/ "./frontend/components/teachers/teacher_show/teacher_show.jsx":
+/*!********************************************************************!*\
+  !*** ./frontend/components/teachers/teacher_show/teacher_show.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var TeacherShow = function TeacherShow(props) {
+  var teacher = props.teacher,
+      fetchTeacher = props.fetchTeacher,
+      redLine = props.redLine,
+      teacherProfiles = props.teacherProfiles,
+      fetchTeacherProfiles = props.fetchTeacherProfiles;
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetchTeacher();
+    fetchTeacherProfiles();
+  }, []);
+  console.log("teacher show props", props);
+  teacher = teacher ? teacher : {};
+  teacherProfiles = teacherProfiles ? teacherProfiles : [];
+  redLine = redLine ? redLine : {};
+  var teacherProfile = teacherProfiles.find(function (profile) {
+    if (profile.teacher_id === teacher.id) return profile;
+  });
+  teacherProfile = teacherProfile ? teacherProfile : {};
+  var teacherName = teacher.display_name ? teacher.display_name : "".concat(teacher.firstName, " ").concat(teacher.lastName);
+  var lineSeparator = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "line-separator"
+  });
+  console.log("Teacher Profile", teacherProfile);
+  debugger;
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "teacher-show-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "teacher-about info-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "teacher-details"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, teacherName), redLine, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "teacher-teaches"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "TEACHES"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HELLO")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "teacher-also-speaks"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ALSO SPEAKS"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "HELLO"))), lineSeparator, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "teacher-about-me"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "about-me-title"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "About Me"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "ispeakee teacher since ")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, teacherProfile.about_me), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Me as a Teacher"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, teacherProfile.me_as_teacher), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "My Lessons & Teaching Style"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, teacherProfile.lessons_teaching_style))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "teacher-lesson-management"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-booking info-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "BOOK LESSON"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "CONTACT TEACHER"))));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (TeacherShow);
+
+/***/ }),
+
+/***/ "./frontend/components/teachers/teacher_show/teacher_show_container.js":
+/*!*****************************************************************************!*\
+  !*** ./frontend/components/teachers/teacher_show/teacher_show_container.js ***!
+  \*****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../actions/teacher_profile_actions */ "./frontend/actions/teacher_profile_actions.js");
+/* harmony import */ var _teacher_show__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./teacher_show */ "./frontend/components/teachers/teacher_show/teacher_show.jsx");
+
+
+
+
+
+
+var mSTP = function mSTP(state, ownProps) {
+  var session = state.session.id ? state.session.id : '';
+  var teacherProfiles = state.entities.teacherProfiles ? Object.values(state.entities.teacherProfiles) : [];
+  var teacher = state.entities.users ? state.entities.users : {};
+  var redLine = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "redbar"
+  });
+  return {
+    session: session,
+    teacher: teacher,
+    teacherProfiles: teacherProfiles,
+    redLine: redLine
+  };
+};
+
+var mDTP = function mDTP(dispatch, ownProps) {
+  return {
+    fetchTeacher: function fetchTeacher() {
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(parseInt(ownProps.match.params.id)));
+    },
+    fetchTeacherProfiles: function fetchTeacherProfiles() {
+      return dispatch(Object(_actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_3__["fetchTeacherProfiles"])());
+    }
+  };
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_teacher_show__WEBPACK_IMPORTED_MODULE_4__["default"]));
+
+/***/ }),
+
 /***/ "./frontend/components/teachers/teachers_page/teacher_index.jsx":
 /*!**********************************************************************!*\
   !*** ./frontend/components/teachers/teachers_page/teacher_index.jsx ***!
@@ -3570,6 +3689,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return TeacherIndexPageItem; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
 
 function TeacherIndexPageItem(props) {
   var teacher = props.teacher,
@@ -3618,7 +3739,9 @@ function TeacherIndexPageItem(props) {
     className: "teacher-lesson-count"
   }, "".concat(teacher.taughtLessons.length, " LESSONS"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-description"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h3", null, teacherName), redLine, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/teacher/".concat(teacher.id)
+  }, teacherName), redLine, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "language-title"
   }, "Teaches"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", {
     className: "language-title"
@@ -4613,6 +4736,7 @@ var fetchTeacherProfiles = function fetchTeacherProfiles() {
   });
 };
 var fetchTeacherProfile = function fetchTeacherProfile(teacherProfileId) {
+  debugger;
   return $.ajax({
     url: "/api/teacher_profiles/".concat(teacherProfileId),
     method: 'GET'

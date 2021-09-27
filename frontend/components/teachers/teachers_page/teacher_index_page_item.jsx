@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 
 export default function TeacherIndexPageItem (props) {
   let { 
@@ -42,7 +43,7 @@ export default function TeacherIndexPageItem (props) {
           </p>
         </div>
         <div className="teacher-description">
-          <h3>{teacherName}</h3>
+          <Link to={`/teacher/${teacher.id}`}>{teacherName}</Link>
           {redLine}
           <h1 className="language-title">Teaches</h1>
           <h1 className="language-title">Also Speaks</h1>
