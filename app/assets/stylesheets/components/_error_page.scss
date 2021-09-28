@@ -1,0 +1,36 @@
+.error-page {
+  display: flex;
+  flex-direction: row;
+  padding-top: 24px;
+  min-width: 768px;
+  justify-content: center;
+}
+
+.error-description {
+  display: flex;
+  flex-direction: column;
+}
+
+.error-description > h1 {
+  font-size: 160px;
+  line-height: 180px;
+  color: #333;
+  text-align: center;
+}
+
+.error-description > p {
+  text-align: left;
+  color: #8c8c8c;
+  margin-top: 8px;
+  font-size: 16px;
+}
+
+.error-description >h2 {
+  margin-top: 32px;
+}
+
+.error-page > img {
+  width: 100%;
+  height: auto;
+  margin: auto;
+}

@@ -19,6 +19,7 @@ import PostIndexContainer from './posts/index/post_index_container';
 import ProfileContainer from './profile/profile_container';
 import TeacherIndexContainer from './teachers/teachers_page/teacher_index_container';
 import TeacherShowContainer from './teachers/teacher_show/teacher_show_container';
+import ErrorPage from './error_page';
 
 const App = () => {
   return (
@@ -42,8 +43,8 @@ const App = () => {
         <AuthRoute path="/login" component={LoginFormContainer} />
         <AuthRoute path="/signup" component={SignupFormContainer} />
 
-        {/* <Route path='/404' />
-        <Redirect to="/404" /> */}
+        <Route path='/404' component={ErrorPage} />
+        <Redirect to="/404" />
       </Switch>
       <footer>
         © iSpeakee - 2021

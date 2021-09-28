@@ -814,6 +814,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _profile_profile_container__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./profile/profile_container */ "./frontend/components/profile/profile_container.js");
 /* harmony import */ var _teachers_teachers_page_teacher_index_container__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./teachers/teachers_page/teacher_index_container */ "./frontend/components/teachers/teachers_page/teacher_index_container.js");
 /* harmony import */ var _teachers_teacher_show_teacher_show_container__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./teachers/teacher_show/teacher_show_container */ "./frontend/components/teachers/teacher_show/teacher_show_container.js");
+/* harmony import */ var _error_page__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./error_page */ "./frontend/components/error_page.jsx");
+
 
 
 
@@ -880,6 +882,11 @@ var App = function App() {
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
     path: "/signup",
     component: _session_form_sign_up_form_container__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
+    path: "/404",
+    component: _error_page__WEBPACK_IMPORTED_MODULE_17__["default"]
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Redirect"], {
+    to: "/404"
   })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeakee - 2021", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Inspired by iTalki"));
 };
 
@@ -1266,6 +1273,37 @@ var mDTP = function mDTP(dispatch, ownProps) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_1__["connect"])(mSTP, mDTP)(_dashboard__WEBPACK_IMPORTED_MODULE_6__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/error_page.jsx":
+/*!********************************************!*\
+  !*** ./frontend/components/error_page.jsx ***!
+  \********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var ErrorPage = function ErrorPage() {
+  var errorImg = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    datasrc: "https://scdn.italki.com/ng/static/image/not_found_pic_svg.svg",
+    alt: "",
+    className: "m-auto w-4/5 md:w-full lg:w-full lazyloaded",
+    src: "https://scdn.italki.com/ng/static/image/not_found_pic_svg.svg"
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "error-page"
+  }, errorImg, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "error-description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "404"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Oops! The page you requested could not be found."), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Check out the links below instead:")));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (ErrorPage);
 
 /***/ }),
 
@@ -2537,9 +2575,17 @@ var PostIndexItem = function PostIndexItem(props) {
   creatorName = creatorName ? creatorName : {};
   var postDate = new Date(post.created_at).toLocaleString();
   console.log("Post Index Item Props", props);
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/post/".concat(post.id),
+    style: {
+      textDecoration: 'none',
+      color: "black"
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "post-index-item-li"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, creatorName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, postDate));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, creatorName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, post.body), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    className: "post-date"
+  }, postDate)));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (PostIndexItem);

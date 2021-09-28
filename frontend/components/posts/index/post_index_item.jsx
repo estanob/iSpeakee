@@ -17,11 +17,14 @@ const PostIndexItem = props => {
   let postDate = new Date (post.created_at).toLocaleString();
   console.log("Post Index Item Props", props)
   return (
-    <li className="post-index-item-li">
-      <h1>{creatorName}</h1>
-      <p>{post.body}</p>
-      <span>{postDate}</span>
-    </li>
+    <Link to={`/post/${post.id}`}
+      style={{ textDecoration: 'none', color: "black" }} >
+      <li className="post-index-item-li">
+        <h1>{creatorName}</h1>
+        <p>{post.body}</p>
+        <span className="post-date">{postDate}</span>
+      </li>
+    </Link>
   );
 };
 
