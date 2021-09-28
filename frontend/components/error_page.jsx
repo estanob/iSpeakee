@@ -10,7 +10,9 @@ const ErrorPage = () => {
     </img>;
   return (
     <div className="error-page">
-      {errorImg}
+      <div className="error-img-container">
+        {errorImg}
+      </div>
       <div className="error-description">
         <h1>404</h1>
         <p>Oops! The page you requested could not be found.</p>
