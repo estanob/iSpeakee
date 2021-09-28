@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import StudiedLanguage from '../languages/studied_languages/studied_language';
+import FeedbackIndexContainer from '../feedback/feedback_index_container';
 
 const Profile = props => {
   console.log("Profile Page Props")
@@ -143,6 +144,7 @@ const Profile = props => {
               </ul>
             </div>
           </div>
+          <><FeedbackIndexContainer /></>
           <div className="posts info-box box-shadow">
             <h2>Activities</h2>
             <ul className="posts-ul">

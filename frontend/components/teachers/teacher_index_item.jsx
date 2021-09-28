@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const TeacherIndexItem = props => {
   let { teacher, lineSeparator, bookLessonIcon } = props;
@@ -13,8 +14,10 @@ const TeacherIndexItem = props => {
   return (
     <li className="teacher-index-li">
       <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-        {teacherName}
-        <>{bookLessonIcon}</>
+        <Link to={`/teacher/${teacher.id}`} style={{ border: 'none', background: 'none', textDecoration: 'none' }}>
+          {teacherName}
+        </Link>
+        <div className="book-lesson-icon">{bookLessonIcon}</div>
       </div>
       {lineSeparator}
     </li>

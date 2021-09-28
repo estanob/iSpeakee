@@ -15,6 +15,7 @@ const Dashboard = (props) => {
     coinIcon, 
     presentIcon,
     bookLessonIcon,
+    teacherArrow,
     testIcon,
     iTalkiImg,
     levelDescriptions,
@@ -38,6 +39,7 @@ const Dashboard = (props) => {
   testIcon = testIcon ? testIcon : {};
   iTalkiImg = iTalkiImg ? iTalkiImg : {};
   lineSeparator = lineSeparator ? lineSeparator : {};
+  teacherArrow = teacherArrow ? teacherArrow : {};
   users = users ? users : [];
   languages = languages ? languages : [];
   languageToStudents = languageToStudents ? languageToStudents : [];
@@ -62,7 +64,7 @@ const Dashboard = (props) => {
 
   userLessons.forEach(lesson => {
     const lessonEnd = new Date (lesson.end_time);
-    if (lessonEnd > timeNow) {
+    if (lessonEnd < timeNow) {
       numCompletedLessons++
     }
   })
@@ -186,7 +188,10 @@ const Dashboard = (props) => {
           </div>
           <div className="my-teachers info-box box-shadow">
             <div id="my-teachers-container">
-              <button className="my-teachers-title">My Teachers</button>
+              <Link to="/contacts/teacher">
+                <button className="my-teachers-title">My Teachers</button>
+                {teacherArrow}
+              </Link>
             </div>
             <ul className="three-random-teachers">
               <MyTeachersIndex 

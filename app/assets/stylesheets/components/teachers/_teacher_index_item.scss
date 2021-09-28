@@ -12,3 +12,9 @@
   line-height: 1.5;
   color: #333;
 }
+
+.book-lesson-icon:hover {
+  filter: brightness(50%);
+  background: black;
+  border-radius: 30px;
+}
