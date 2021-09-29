@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_22_191558) do
+ActiveRecord::Schema.define(version: 2021_09_28_234515) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "feedback_comments", force: :cascade do |t|
+    t.integer "teacher_id", null: false
+    t.integer "student_id", null: false
+    t.integer "lesson_id", null: false
+    t.date "date_written", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["teacher_id", "student_id", "lesson_id"], name: "feedback_index", unique: true
+  end
 
   create_table "follows", force: :cascade do |t|
     t.bigint "follower_id", null: false

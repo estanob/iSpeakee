@@ -17,6 +17,7 @@ Lesson.destroy_all
 TeacherToStudent.destroy_all
 StudiedLanguage.destroy_all
 TeacherProfile.destroy_all
+FeedbackComment.destroy_all
 
 user1 = User.create!(
   first_name: "Brandon",
@@ -360,6 +361,22 @@ lesson12 = Lesson.create!(
   end_time: DateTime.new(2021, 9, 27, 16, 00, 0)
 )
 
+lesson13 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user5.id,
+  language_id: language2.id, # Spanish
+  when: DateTime.new(2021, 6, 20, 16, 30, 0),
+  end_time: DateTime.new(2021, 6, 20, 17, 30, 0)
+)
+
+lesson14 = Lesson.create!(
+  student_id: user1.id,
+  teacher_id: user5.id,
+  language_id: language2.id, # Spanish
+  when: DateTime.new(2021, 6, 21, 16, 30, 0),
+  end_time: DateTime.new(2021, 6, 21, 17, 30, 0)
+)
+
 teacherToStudent1 = TeacherToStudent.create!(
   student_id: user1.id,
   teacher_id: user5.id
@@ -490,4 +507,36 @@ teacherProfile6 = TeacherProfile.create!(
   about_me: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
   me_as_teacher: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
   lessons_teaching_style: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+)
+
+feedback1 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user5.id,
+  lesson_id: lesson13.id,
+  body: "Brandon me sorprendió con su nivel de español, especialmente por su acento boricua\nMe siento muy orgullo al escucharlo hablar como nosotros puertorriqueños\nHasta la próxima Brandon",
+  date_written: DateTime.new(2021, 6, 20, 18, 25, 0),
+)
+
+feedback2 = FeedbackComment.create!(
+  student_id: user5.id,
+  teacher_id: user1.id,
+  lesson_id: lesson9.id,
+  body: "Guaynaa's English level is showing a lot of improvement since our very first class together\nHe is still nervous, but I know that with more practice he will be speaking fluently in no time\nSee you next time!",
+  date_written: DateTime.new(2021, 8, 16, 18, 20, 0),
+)
+
+feedback3 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user5.id,
+  lesson_id: lesson1.id,
+  body: "Brandon sigue hablando como un boricua\nDebido a la práctica conmigo, nunca va a perder el acento cuando habla español",
+  date_written: DateTime.new(2021, 6, 20, 18, 25, 0),
+)
+
+feedback4 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user5.id,
+  lesson_id: lesson14.id,
+  body: "Brandon entendió toda la jerga que le enseñé durante la clase de ayer",
+  date_written: DateTime.new(2021, 6, 21, 19, 52, 0),
 )

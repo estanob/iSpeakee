@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :follows, only: [:index, :create, :show]
     resources :lessons, only: [:index, :create, :show]
     resources :posts, only: [:index, :show, :create, :update, :destroy]
+    resources :feedback_comments, only: [:index, :show, :create, :update, :destroy]
   end
 
   delete '/language_to_students', to: 'language_to_students#destroy'

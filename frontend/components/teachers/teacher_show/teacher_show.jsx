@@ -29,7 +29,6 @@ const TeacherShow = props => {
   
   console.log("Teacher Profile", teacherProfile)
   
-  debugger
   return (
     <div className="teacher-show-container">
       <div className="teacher-about info-box">

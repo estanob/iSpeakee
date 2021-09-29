@@ -86,6 +86,120 @@
 /************************************************************************/
 /******/ ({
 
+/***/ "./frontend/actions/feedback_comment_actions.js":
+/*!******************************************************!*\
+  !*** ./frontend/actions/feedback_comment_actions.js ***!
+  \******************************************************/
+/*! exports provided: RECEIVE_CURRENT_USER, RECEIVE_ALL_FEEDBACK_COMMENTS, RECEIVE_FEEDBACK_COMMENT, REMOVE_FEEDBACK_COMMENT, RECEIVE_FEEDBACK_COMMENT_ERRORS, CLEAR_ERRORS, receiveCurrentUser, receiveErrors, clearErrors, fetchFeedbackComments, fetchFeedbackComment, createFeedbackComment, updateFeedbackComment, deleteFeedbackComment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_CURRENT_USER", function() { return RECEIVE_CURRENT_USER; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_ALL_FEEDBACK_COMMENTS", function() { return RECEIVE_ALL_FEEDBACK_COMMENTS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_FEEDBACK_COMMENT", function() { return RECEIVE_FEEDBACK_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "REMOVE_FEEDBACK_COMMENT", function() { return REMOVE_FEEDBACK_COMMENT; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "RECEIVE_FEEDBACK_COMMENT_ERRORS", function() { return RECEIVE_FEEDBACK_COMMENT_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CLEAR_ERRORS", function() { return CLEAR_ERRORS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveCurrentUser", function() { return receiveCurrentUser; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "receiveErrors", function() { return receiveErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "clearErrors", function() { return clearErrors; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFeedbackComments", function() { return fetchFeedbackComments; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFeedbackComment", function() { return fetchFeedbackComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFeedbackComment", function() { return createFeedbackComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateFeedbackComment", function() { return updateFeedbackComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFeedbackComment", function() { return deleteFeedbackComment; });
+/* harmony import */ var _util_feedback_comment_api_util__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../util/feedback_comment_api_util */ "./frontend/util/feedback_comment_api_util.js");
+
+var RECEIVE_CURRENT_USER = 'RECEIVE_CURRENT_USER';
+var RECEIVE_ALL_FEEDBACK_COMMENTS = 'RECEIVE_ALL_FEEDBACK_COMMENTS';
+var RECEIVE_FEEDBACK_COMMENT = 'RECEIVE_FEEDBACK_COMMENT';
+var REMOVE_FEEDBACK_COMMENT = 'REMOVE_FEEDBACK_COMMENT';
+var RECEIVE_FEEDBACK_COMMENT_ERRORS = 'RECEIVE_FEEDBACK_COMMENT_ERRORS';
+var CLEAR_ERRORS = 'CLEAR_ERRORS';
+var receiveCurrentUser = function receiveCurrentUser(currentUser) {
+  return {
+    type: RECEIVE_CURRENT_USER,
+    currentUser: currentUser
+  };
+};
+
+var receiveFeedbackComments = function receiveFeedbackComments(feedbackComments) {
+  return {
+    type: RECEIVE_ALL_FEEDBACK_COMMENTS,
+    feedbackComments: feedbackComments
+  };
+};
+
+var receiveFeedbackComment = function receiveFeedbackComment(feedbackComment) {
+  return {
+    type: RECEIVE_FEEDBACK_COMMENT,
+    feedbackComment: feedbackComment
+  };
+};
+
+var removeFeedbackComment = function removeFeedbackComment(feedbackCommentId) {
+  return {
+    type: REMOVE_FEEDBACK_COMMENT,
+    feedbackCommentId: feedbackCommentId
+  };
+};
+
+var receiveErrors = function receiveErrors(errors) {
+  return {
+    type: RECEIVE_FEEDBACK_COMMENT_ERRORS,
+    errors: errors
+  };
+};
+var clearErrors = function clearErrors() {
+  return {
+    type: CLEAR_ERRORS
+  };
+};
+var fetchFeedbackComments = function fetchFeedbackComments() {
+  return function (dispatch) {
+    return _util_feedback_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchFeedbackComments"]().then(function (feedbackComments) {
+      dispatch(receiveFeedbackComments(feedbackComments));
+    });
+  };
+};
+var fetchFeedbackComment = function fetchFeedbackComment(feedbackCommentId) {
+  return function (dispatch) {
+    return _util_feedback_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchFeedbackComment"](feedbackCommentId).then(function (feedbackComment) {
+      return dispatch(receiveFeedbackComment(feedbackComment));
+    });
+  };
+};
+var createFeedbackComment = function createFeedbackComment(feedbackComment) {
+  return function (dispatch) {
+    return _util_feedback_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["createFeedbackComment"](feedbackComment).then(function (createFeedbackComment) {
+      dispatch(receiveFeedbackComment(createFeedbackComment));
+      dispatch(clearErrors());
+    }).fail(function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var updateFeedbackComment = function updateFeedbackComment(feedbackComment) {
+  return function (dispatch) {
+    return _util_feedback_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["updateFeedbackComment"](feedbackComment).then(function (updatedFeedbackComment) {
+      dispatch(receiveFeedbackComment(updatedFeedbackComment));
+      dispatch(clearErrors());
+    }).fail(function (err) {
+      return dispatch(receiveErrors(err.responseJSON));
+    });
+  };
+};
+var deleteFeedbackComment = function deleteFeedbackComment(feedbackCommentId) {
+  return function (dispatch) {
+    return _util_feedback_comment_api_util__WEBPACK_IMPORTED_MODULE_0__["deleteFeedbackComment"](feedbackCommentId).then(function () {
+      return dispatch(removeFeedbackComment(feedbackCommentId));
+    });
+  };
+};
+
+/***/ }),
+
 /***/ "./frontend/actions/follow_actions.js":
 /*!********************************************!*\
   !*** ./frontend/actions/follow_actions.js ***!
@@ -692,7 +806,6 @@ var fetchTeacherProfiles = function fetchTeacherProfiles() {
 };
 var fetchTeacherProfile = function fetchTeacherProfile(teacherProfileId) {
   return function (dispatch) {
-    debugger;
     return _util_teacher_profile_api_util__WEBPACK_IMPORTED_MODULE_0__["fetchTeacherProfile"](teacherProfileId).then(function (teacherProfile) {
       return dispatch(receiveTeacherProfile(teacherProfile));
     });
@@ -1343,20 +1456,23 @@ function FeedbackIndex(props) {
       users = props.users,
       teacherToStudents = props.teacherToStudents,
       teacherProfiles = props.teacherProfiles,
+      feedbackComments = props.feedbackComments,
       fetchUsers = props.fetchUsers,
       fetchTeacherToStudents = props.fetchTeacherToStudents,
-      fetchTeacherProfiles = props.fetchTeacherProfiles;
+      fetchTeacherProfiles = props.fetchTeacherProfiles,
+      fetchFeedback = props.fetchFeedback;
   session = session ? session : '';
   users = users ? users : [];
   teacherToStudents = teacherToStudents ? teacherToStudents : [];
   teacherProfiles = teacherProfiles ? teacherProfiles : [];
+  feedbackComments = feedbackComments ? feedbackComments : [];
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUsers();
     fetchTeacherToStudents();
     fetchTeacherProfiles();
+    fetchFeedback();
   }, []);
   console.log("Feedback Index Props", props);
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-feedback info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lesson Feedback"));
@@ -1374,10 +1490,12 @@ function FeedbackIndex(props) {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_redux__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react-redux */ "./node_modules/react-redux/es/index.js");
-/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
-/* harmony import */ var _actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/teacher_profile_actions */ "./frontend/actions/teacher_profile_actions.js");
-/* harmony import */ var _actions_teacher_to_student_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/teacher_to_student_actions */ "./frontend/actions/teacher_to_student_actions.js");
-/* harmony import */ var _feedback_index__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./feedback_index */ "./frontend/components/feedback/feedback_index.jsx");
+/* harmony import */ var _actions_feedback_comment_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../actions/feedback_comment_actions */ "./frontend/actions/feedback_comment_actions.js");
+/* harmony import */ var _actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../actions/profile_actions */ "./frontend/actions/profile_actions.js");
+/* harmony import */ var _actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../actions/teacher_profile_actions */ "./frontend/actions/teacher_profile_actions.js");
+/* harmony import */ var _actions_teacher_to_student_actions__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../actions/teacher_to_student_actions */ "./frontend/actions/teacher_to_student_actions.js");
+/* harmony import */ var _feedback_index__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./feedback_index */ "./frontend/components/feedback/feedback_index.jsx");
+
 
 
 
@@ -1389,30 +1507,34 @@ var mSTP = function mSTP(state) {
   var users = state.entities.users ? Object.values(state.entities.users) : [];
   var teacherToStudents = state.entities.teacherToStudents ? Object.values(state.entities.teacherToStudents) : [];
   var teacherProfiles = state.entities.teacherProfiles ? Object.values(state.entities.teacherProfiles) : [];
+  var feedbackComments = state.entities.feedbackComments ? Object.values(state.entities.feedbackComments) : [];
   return {
     session: session,
     users: users,
     teacherToStudents: teacherToStudents,
-    teacherProfiles: teacherProfiles
+    teacherProfiles: teacherProfiles,
+    feedbackComments: feedbackComments
   };
 };
 
 var mDTP = function mDTP(dispatch) {
-  debugger;
   return {
     fetchUsers: function fetchUsers() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_1__["fetchAllUsers"])());
+      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllUsers"])());
     },
     fetchTeacherToStudents: function fetchTeacherToStudents() {
-      return dispatch(Object(_actions_teacher_to_student_actions__WEBPACK_IMPORTED_MODULE_3__["fetchTeacherToStudents"])());
+      return dispatch(Object(_actions_teacher_to_student_actions__WEBPACK_IMPORTED_MODULE_4__["fetchTeacherToStudents"])());
     },
     fetchTeacherProfiles: function fetchTeacherProfiles() {
-      return dispatch(Object(_actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchTeacherProfiles"])());
+      return dispatch(Object(_actions_teacher_profile_actions__WEBPACK_IMPORTED_MODULE_3__["fetchTeacherProfiles"])());
+    },
+    fetchFeedback: function fetchFeedback() {
+      return dispatch(Object(_actions_feedback_comment_actions__WEBPACK_IMPORTED_MODULE_1__["fetchFeedbackComments"])());
     }
   };
 };
 
-/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_feedback_index__WEBPACK_IMPORTED_MODULE_4__["default"]));
+/* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_feedback_index__WEBPACK_IMPORTED_MODULE_5__["default"]));
 
 /***/ }),
 
@@ -3623,7 +3745,6 @@ var TeacherShow = function TeacherShow(props) {
     id: "line-separator"
   });
   console.log("Teacher Profile", teacherProfile);
-  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-show-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4091,6 +4212,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _follows_reducer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./follows_reducer */ "./frontend/reducers/follows_reducer.js");
 /* harmony import */ var _teacher_to_students_reducer__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./teacher_to_students_reducer */ "./frontend/reducers/teacher_to_students_reducer.js");
 /* harmony import */ var _teacher_profiles_reducer__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./teacher_profiles_reducer */ "./frontend/reducers/teacher_profiles_reducer.js");
+/* harmony import */ var _feedback_comments_reducer__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./feedback_comments_reducer */ "./frontend/reducers/feedback_comments_reducer.js");
+
 
 
 
@@ -4109,6 +4232,7 @@ var entitiesReducer = Object(redux__WEBPACK_IMPORTED_MODULE_0__["combineReducers
   teacherToStudents: _teacher_to_students_reducer__WEBPACK_IMPORTED_MODULE_8__["default"],
   lessons: _lessons_reducer__WEBPACK_IMPORTED_MODULE_5__["default"],
   posts: _posts_reducer__WEBPACK_IMPORTED_MODULE_6__["default"],
+  feedbackComments: _feedback_comments_reducer__WEBPACK_IMPORTED_MODULE_10__["default"],
   follows: _follows_reducer__WEBPACK_IMPORTED_MODULE_7__["default"],
   teacherProfiles: _teacher_profiles_reducer__WEBPACK_IMPORTED_MODULE_9__["default"]
 });
@@ -4166,6 +4290,46 @@ __webpack_require__.r(__webpack_exports__);
       return state;
   }
 });
+
+/***/ }),
+
+/***/ "./frontend/reducers/feedback_comments_reducer.js":
+/*!********************************************************!*\
+  !*** ./frontend/reducers/feedback_comments_reducer.js ***!
+  \********************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _actions_feedback_comment_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/feedback_comment_actions */ "./frontend/actions/feedback_comment_actions.js");
+
+
+var FeedbackCommentsReducer = function FeedbackCommentsReducer() {
+  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {};
+  var action = arguments.length > 1 ? arguments[1] : undefined;
+  Object.freeze(state);
+  var nextState = Object.assign({}, state);
+
+  switch (action.type) {
+    case _actions_feedback_comment_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_ALL_FEEDBACK_COMMENTS"]:
+      nextState = Object.assign({}, action.feedbackComments);
+      return action.feedbackComments;
+
+    case _actions_feedback_comment_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_FEEDBACK_COMMENT"]:
+      nextState[action.feedbackComment.id] = action.feedbackComment;
+      return nextState;
+
+    case _actions_feedback_comment_actions__WEBPACK_IMPORTED_MODULE_0__["REMOVE_FEEDBACK_COMMENT"]:
+      delete nextState[action.feedbackCommentId];
+      return nextState;
+
+    default:
+      return state;
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (FeedbackCommentsReducer);
 
 /***/ }),
 
@@ -4622,6 +4786,59 @@ var configureStore = function configureStore() {
 
 /***/ }),
 
+/***/ "./frontend/util/feedback_comment_api_util.js":
+/*!****************************************************!*\
+  !*** ./frontend/util/feedback_comment_api_util.js ***!
+  \****************************************************/
+/*! exports provided: fetchFeedbackComments, fetchFeedbackComment, createFeedbackComment, updateFeedbackComment, deleteFeedbackComment */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFeedbackComments", function() { return fetchFeedbackComments; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchFeedbackComment", function() { return fetchFeedbackComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createFeedbackComment", function() { return createFeedbackComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "updateFeedbackComment", function() { return updateFeedbackComment; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "deleteFeedbackComment", function() { return deleteFeedbackComment; });
+var fetchFeedbackComments = function fetchFeedbackComments() {
+  return $.ajax({
+    url: '/api/feedback_comments',
+    method: 'GET'
+  });
+};
+var fetchFeedbackComment = function fetchFeedbackComment(feedbackCommentId) {
+  return $.ajax({
+    url: "/api/feedback_comments/".concat(feedbackCommentId),
+    method: 'GET'
+  });
+};
+var createFeedbackComment = function createFeedbackComment(feedbackComment) {
+  return $.ajax({
+    url: "/api/feedback_comments",
+    method: 'POST',
+    data: feedbackComment,
+    contentType: false,
+    processData: false
+  });
+};
+var updateFeedbackComment = function updateFeedbackComment(feedbackComment) {
+  return $.ajax({
+    url: "/api/feedback_comments/".concat(feedbackComment.id),
+    method: 'PATCH',
+    data: feedbackComment,
+    contentType: false,
+    processData: false
+  });
+};
+var deleteFeedbackComment = function deleteFeedbackComment(feedbackCommentId) {
+  return $.ajax({
+    url: "/api/feedback_comments/".concat(feedbackCommentId),
+    method: 'DELETE'
+  });
+};
+
+/***/ }),
+
 /***/ "./frontend/util/follow_api_util.js":
 /*!******************************************!*\
   !*** ./frontend/util/follow_api_util.js ***!
@@ -4989,7 +5206,6 @@ var fetchTeacherProfiles = function fetchTeacherProfiles() {
   });
 };
 var fetchTeacherProfile = function fetchTeacherProfile(teacherProfileId) {
-  debugger;
   return $.ajax({
     url: "/api/teacher_profiles/".concat(teacherProfileId),
     method: 'GET'

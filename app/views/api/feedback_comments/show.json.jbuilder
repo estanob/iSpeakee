@@ -1,0 +1,1 @@
+json.partial! 'feedback_comment', feedback_comment: @feedback_comment 

@@ -8,6 +8,7 @@ import PostsReducer from './posts_reducer';
 import FollowsReducer from './follows_reducer';
 import TeacherToStudentsReducer from './teacher_to_students_reducer';
 import TeacherProfilesReducer from './teacher_profiles_reducer';
+import FeedbackCommentsReducer from './feedback_comments_reducer';
 
 const entitiesReducer = combineReducers({
   user: UserReducer,
@@ -17,6 +18,7 @@ const entitiesReducer = combineReducers({
   teacherToStudents: TeacherToStudentsReducer,
   lessons: LessonsReducer,
   posts: PostsReducer,
+  feedbackComments: FeedbackCommentsReducer,
   follows: FollowsReducer,
   teacherProfiles: TeacherProfilesReducer,
 })

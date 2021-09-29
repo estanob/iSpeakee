@@ -27,7 +27,6 @@ export const fetchTeacherProfiles = () => dispatch => {
 };
 
 export const fetchTeacherProfile = teacherProfileId => dispatch => {
-  debugger
   return TeacherProfileAPIUtil.fetchTeacherProfile(teacherProfileId)
     .then(teacherProfile => dispatch(receiveTeacherProfile(teacherProfile)));
 };
