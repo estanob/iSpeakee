@@ -4,9 +4,6 @@ import StudiedLanguage from '../languages/studied_languages/studied_language';
 import FeedbackIndexContainer from '../feedback/feedback_index_container';
 
 const Profile = props => {
-  console.log("Profile Page Props")
-  console.log(props)
-
   let { 
     currentUser, 
     lineSeparator,
@@ -40,7 +37,6 @@ const Profile = props => {
   });
 
   let currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : [];
-  console.log("Current Languages before map", currentLanguages)
   let ownLanguages = [];
   let studiedLanguagesToStudent = [];
   let languageIds = [];
@@ -56,7 +52,6 @@ const Profile = props => {
     })
   })
 
-  console.log("Curr Langs after adding language name", currLangs)
 
   languageToStudents.forEach(lTS => {
     if (lTS.student_id === currentUser.id) {
@@ -77,15 +72,12 @@ const Profile = props => {
     )
   })
   
-  console.log("Own Languages", ownLanguages)
   
   let userStudiedLanguages = currentUser.studiedLanguages ? currentUser.studiedLanguages : [];
   userStudiedLanguages.forEach(language => {
     languageIds.push(language.language_id)
   })
-  console.log("User Studied Langauges", userStudiedLanguages)
 
-  console.log("currLangs", currLangs)
 
   currentLanguages.filter(curLang => {
     if (languageIds.includes(curLang.language_id)) {
@@ -99,11 +91,8 @@ const Profile = props => {
     )
   })
 
-  console.log("Studied Languages To Student", studiedLanguagesToStudent)
 
-  console.log("Language IDs", languageIds)
 
-  console.log("Current Languages", currentLanguages)
 
   useEffect(() => {
     fetchUser()

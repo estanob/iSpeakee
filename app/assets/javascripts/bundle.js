@@ -1069,7 +1069,6 @@ var Dashboard = function Dashboard(props) {
   var languageIds = [];
   var studiedLanguagesToStudent = [];
   var learningLanguageArr = [];
-  console.log("Dashboard Props", props);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchAllUsers();
@@ -1092,7 +1091,6 @@ var Dashboard = function Dashboard(props) {
   userStudiedLanguages.forEach(function (language) {
     languageIds.push(language.language_id);
   });
-  console.log("Pushed to language ids: ", languageIds);
   currentLanguages.filter(function (curLang) {
     if (languageIds.includes(curLang.language_id)) {
       studiedLanguagesToStudent.push(curLang);
@@ -1118,7 +1116,6 @@ var Dashboard = function Dashboard(props) {
       }
     });
   });
-  console.log("User Teacher Arr Did it work?", userTeacherArr);
   var userName = currentUser.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "display-name"
   }, "".concat(currentUser.display_name)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
@@ -1438,6 +1435,63 @@ var ErrorPage = function ErrorPage() {
 
 /***/ }),
 
+/***/ "./frontend/components/feedback/comments/feedback_comment.jsx":
+/*!********************************************************************!*\
+  !*** ./frontend/components/feedback/comments/feedback_comment.jsx ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FeedbackComment; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+
+
+function FeedbackComment(props) {
+  var comment = props.comment,
+      users = props.users;
+  comment = comment ? comment : {};
+  users = users ? users : [];
+  console.log("Feedback Comment Props", props);
+  var teacher = users.find(function (teacher) {
+    return teacher.id === comment.teacherId;
+  });
+  teacher = teacher ? teacher : {};
+  var teacherName = teacher ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      fontSize: '14px'
+    }
+  }, teacher.display_name) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    style: {
+      fontSize: '14px'
+    }
+  }, "".concat(teacher.firstName, " ").concat(teacher.lastName));
+  teacherName = teacherName ? teacherName : "";
+  console.log("This is the teacher that wrote the feedback:", teacher);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "feedback-container"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/teacher/".concat(teacher.id),
+    style: {
+      textDecoration: 'none',
+      color: 'black'
+    }
+  }, teacherName), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    style: {
+      fontSize: '10px',
+      color: "#777"
+    }
+  }, comment.dateWritten), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "comment-body"
+  }, comment.body));
+}
+;
+
+/***/ }),
+
 /***/ "./frontend/components/feedback/feedback_index.jsx":
 /*!*********************************************************!*\
   !*** ./frontend/components/feedback/feedback_index.jsx ***!
@@ -1450,6 +1504,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FeedbackIndex; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _comments_feedback_comment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments/feedback_comment */ "./frontend/components/feedback/comments/feedback_comment.jsx");
+
 
 function FeedbackIndex(props) {
   var session = props.session,
@@ -1466,16 +1522,37 @@ function FeedbackIndex(props) {
   teacherToStudents = teacherToStudents ? teacherToStudents : [];
   teacherProfiles = teacherProfiles ? teacherProfiles : [];
   feedbackComments = feedbackComments ? feedbackComments : [];
+  var studentFeedback = feedbackComments.filter(function (comment) {
+    return comment.studentId === session;
+  });
+  studentFeedback = studentFeedback.sort(function (a, b) {
+    return a.dateWritten > b.dateWritten ? -1 : 1;
+  });
+  studentFeedback = studentFeedback.slice(0, 4);
+  console.log("Student Feedback", studentFeedback);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUsers();
     fetchTeacherToStudents();
     fetchTeacherProfiles();
     fetchFeedback();
   }, []);
+  studentFeedback = studentFeedback.map(function (comment, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_feedback_comment__WEBPACK_IMPORTED_MODULE_1__["default"], {
+      comment: comment,
+      users: users,
+      key: i,
+      commentIdx: i
+    });
+  });
   console.log("Feedback Index Props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "teacher-feedback info-box box-shadow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lesson Feedback"));
+    className: "teacher-feedback info-box box-shadow",
+    style: {
+      padding: '30px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lesson Feedback"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "feedback-index-container"
+  }, studentFeedback));
 }
 
 /***/ }),
@@ -2936,8 +3013,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Profile = function Profile(props) {
-  console.log("Profile Page Props");
-  console.log(props);
   var currentUser = props.currentUser,
       lineSeparator = props.lineSeparator,
       miniRedLine = props.miniRedLine,
@@ -2963,7 +3038,6 @@ var Profile = function Profile(props) {
     }, "".concat(new Date(post.created_at).toLocaleString())));
   });
   var currentLanguages = currentUser.languagesLearning ? currentUser.languagesLearning : [];
-  console.log("Current Languages before map", currentLanguages);
   var ownLanguages = [];
   var studiedLanguagesToStudent = [];
   var languageIds = [];
@@ -2981,7 +3055,6 @@ var Profile = function Profile(props) {
       if (language.id === curLang.id) curLang.name = language.name;
     });
   });
-  console.log("Curr Langs after adding language name", currLangs);
   languageToStudents.forEach(function (lTS) {
     if (lTS.student_id === currentUser.id) {
       currLangs.forEach(function (currLang) {
@@ -3005,13 +3078,10 @@ var Profile = function Profile(props) {
       key: i
     });
   });
-  console.log("Own Languages", ownLanguages);
   var userStudiedLanguages = currentUser.studiedLanguages ? currentUser.studiedLanguages : [];
   userStudiedLanguages.forEach(function (language) {
     languageIds.push(language.language_id);
   });
-  console.log("User Studied Langauges", userStudiedLanguages);
-  console.log("currLangs", currLangs);
   currentLanguages.filter(function (curLang) {
     if (languageIds.includes(curLang.language_id)) {
       studiedLanguagesToStudent.push(curLang);
@@ -3025,9 +3095,6 @@ var Profile = function Profile(props) {
       key: i
     });
   });
-  console.log("Studied Languages To Student", studiedLanguagesToStudent);
-  console.log("Language IDs", languageIds);
-  console.log("Current Languages", currentLanguages);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchLanguageToStudents();

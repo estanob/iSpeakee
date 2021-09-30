@@ -1,9 +1,7 @@
 class Api::FeedbackCommentsController < ApplicationController
   def index
-    debugger
     @feedback_comments = FeedbackComment.all
     render :index
-    debugger
   end
 
   def show

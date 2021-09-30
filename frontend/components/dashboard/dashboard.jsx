@@ -10,9 +10,9 @@ const Dashboard = (props) => {
     languages,
     lessons,
     languageToStudents,
-    session, 
+    session,
     currentUser,
-    coinIcon, 
+    coinIcon,
     presentIcon,
     bookLessonIcon,
     teacherArrow,
@@ -20,7 +20,7 @@ const Dashboard = (props) => {
     iTalkiImg,
     levelDescriptions,
     lineSeparator,
-    fetchUser, 
+    fetchUser,
     fetchAllUsers,
     fetchLanguages,
     fetchLanguageToStudents,
@@ -48,7 +48,6 @@ const Dashboard = (props) => {
   let languageIds = [];
   let studiedLanguagesToStudent = [];
   let learningLanguageArr = [];
-  console.log("Dashboard Props", props)
 
   useEffect(() => {
     fetchUser()
@@ -76,7 +75,6 @@ const Dashboard = (props) => {
     languageIds.push(language.language_id)
   });
 
-  console.log("Pushed to language ids: ", languageIds)
 
   currentLanguages.filter(curLang => {
     if (languageIds.includes(curLang.language_id)) {
@@ -106,7 +104,6 @@ const Dashboard = (props) => {
     })
   })
 
-  console.log("User Teacher Arr Did it work?", userTeacherArr)
   
   let userName = currentUser.display_name ? <p className="display-name">{`${currentUser.display_name}`}</p> : <p className="display-name">{`${currentUser.firstName} ${currentUser.lastName}`}</p>;
 
