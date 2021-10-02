@@ -26,7 +26,7 @@ class Lesson < ApplicationRecord
     foreign_key: :teacher_id,
     class_name: :User
 
-  has_one :language,
+  belongs_to :language,
     foreign_key: :language_id,
     class_name: :Language
 end

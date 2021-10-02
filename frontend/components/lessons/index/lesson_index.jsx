@@ -117,7 +117,7 @@ export default function LessonIndex (props) {
     setLessonStatus('completed')
     setIndexContent('completed')
   }
-  
+
   return (
     <div className="lesson-index">
       <div className="lesson-index-buttons">
@@ -130,7 +130,6 @@ export default function LessonIndex (props) {
           className={lessonStatus === "upcoming" ? 'lesson-tab-selected' : ''} 
           onClick={() => setUpcoming()}>
             {`Upcoming • ${upcomingLessons.length}`}
-            {/* {`Upcoming • ${numUpcomingLessons}`} */}
         </button>
         <button 
           className={lessonStatus === "completed" ? 'lesson-tab-selected' : ''} 
@@ -138,12 +137,16 @@ export default function LessonIndex (props) {
             Completed
         </button>
       </div>
-      <div className="lessons-and-filter">
-        <ul className="lessons-ul">
-          {lessonIndexContent()}
-        </ul>
-        <div className="lesson-filter">
-          {dropdownMenu}
+      <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div className="lessons-and-filter" style={{ width: '960px' }}>
+          <div style={{ display: 'block', flex: '0 0 62.5%', minWidth: '768px', maxWidth: '62.5%' }}>
+            <ul className="lessons-ul">
+              {lessonIndexContent()}
+            </ul>
+          </div>
+          <div className="lesson-filter">
+            {dropdownMenu}
+          </div>
         </div>
       </div>
     </div>

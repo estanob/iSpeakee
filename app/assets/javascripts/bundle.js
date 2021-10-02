@@ -2113,12 +2113,27 @@ function LessonIndex(props) {
       return setCompleted();
     }
   }, "Completed")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "lessons-and-filter"
+    style: {
+      display: 'flex',
+      justifyContent: 'center'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lessons-and-filter",
+    style: {
+      width: '960px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'block',
+      flex: '0 0 62.5%',
+      minWidth: '768px',
+      maxWidth: '62.5%'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "lessons-ul"
-  }, lessonIndexContent()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, lessonIndexContent())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-filter"
-  }, dropdownMenu)));
+  }, dropdownMenu))));
 }
 ;
 
@@ -2187,6 +2202,18 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2197,12 +2224,17 @@ var LessonIndexItem = function LessonIndexItem(props) {
   users = users ? users : [];
   lesson = lesson ? lesson : {};
   currentDate = currentDate ? currentDate : '';
+  var theMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var lessonStartTime = new Date(lesson.when);
   var lessonEndTime = new Date(lesson.end_time);
+  var lessonDuration = (lessonEndTime - lessonStartTime) / 60000;
+  var language = lesson ? lesson.language : {};
   var lessonStatus = '';
   var teacher = users.find(function (user) {
     if (lesson.teacher_id === user.id) return user;
   });
+  var lessonMonth = theMonths[lessonStartTime.getMonth()];
+  var lessonDate = lessonStartTime.getDate();
   teacher = teacher ? teacher : {};
 
   function determineLessonStatus() {
@@ -2215,12 +2247,38 @@ var LessonIndexItem = function LessonIndexItem(props) {
     }
   }
 
-  var lessonTime = new Date(lesson.when).toLocaleString();
-  console.log("Lesson Index Item Props", props);
+  function convertStandardToMilitary(standardTime) {
+    var _standardTime$split = standardTime.split(" "),
+        _standardTime$split2 = _slicedToArray(_standardTime$split, 2),
+        time = _standardTime$split2[0],
+        modifier = _standardTime$split2[1];
+
+    var _time$split = time.split(":"),
+        _time$split2 = _slicedToArray(_time$split, 3),
+        hours = _time$split2[0],
+        minutes = _time$split2[1],
+        seconds = _time$split2[2];
+
+    if (hours === "12") {
+      hours = "00";
+    }
+
+    ;
+
+    if (modifier === "PM") {
+      hours = parseInt(hours, 10) + 12;
+    }
+
+    ;
+    return "".concat(hours, ":").concat(minutes);
+  }
+
+  ;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "lesson-index-item",
     to: "/lessons/".concat(lesson.id)
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-index-li-status",
     id: determineLessonStatus()
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
     className: "individual-lesson"
@@ -2228,9 +2286,25 @@ var LessonIndexItem = function LessonIndexItem(props) {
     style: {
       display: 'flex'
     }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'flex',
+      flex: '1 1',
+      paddingRight: '12px'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-date-no-year"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, lessonDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, lessonMonth)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-li-divider"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'grid'
+    }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "less-idx-itm-time-info"
-  }, lessonTime), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  }, convertStandardToMilitary(new Date(lesson.when).toLocaleTimeString())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "language-duration"
+  }, "".concat(language.name, " - ").concat(lessonDuration, " min")))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "less-idx-itm-teacher-name"
   }, "@".concat(teacher.username)))));
 };

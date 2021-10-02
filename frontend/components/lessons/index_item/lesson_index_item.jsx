@@ -7,13 +7,24 @@ const LessonIndexItem = props => {
   lesson = lesson ? lesson : {};
   currentDate = currentDate ? currentDate : '';
 
+  const theMonths = [
+    "Jan", "Feb", "Mar", "Apr", 
+    "May", "Jun", "Jul", "Aug", 
+    "Sep", "Oct", "Nov", "Dec"
+  ];
+
   let lessonStartTime = new Date (lesson.when);
   let lessonEndTime = new Date (lesson.end_time);
+  let lessonDuration = (lessonEndTime - lessonStartTime) / 60000;
+  let language = lesson ? lesson.language : {};
 
   let lessonStatus = '';
   let teacher = users.find(user => {
     if (lesson.teacher_id === user.id) return user
   });
+
+  let lessonMonth = theMonths[lessonStartTime.getMonth()];
+  let lessonDate = lessonStartTime.getDate();
 
   teacher = teacher ? teacher : {};
   
@@ -27,16 +38,41 @@ const LessonIndexItem = props => {
     }
   }
 
-  let lessonTime = new Date(lesson.when).toLocaleString();
+  function convertStandardToMilitary (standardTime) {
+    const [time, modifier] = standardTime.split(" ");
+    let [hours, minutes, seconds] = time.split(":");
+    if (hours === "12") {
+      hours = "00";
+    };
 
-  console.log("Lesson Index Item Props", props)
+    if (modifier === "PM") {
+      hours = parseInt(hours, 10) + 12;
+    };
+
+    return `${hours}:${minutes}`;
+  };
+
   return (
     <Link className="lesson-index-item" to={`/lessons/${lesson.id}`}>
-      <div id={determineLessonStatus()}></div>
+      <div className="lesson-index-li-status" id={determineLessonStatus()}></div>
       <li className="individual-lesson">
         <h1>{lessonStatus}</h1>
         <div style={{ display: 'flex' }}>
-          <p className="less-idx-itm-time-info">{lessonTime}</p>
+          <div style={{ display: 'flex', flex: '1 1', paddingRight: '12px' }}>
+            <div className="lesson-date-no-year">
+              <h2>{lessonDate}</h2>
+              <p>{lessonMonth}</p>
+            </div>
+            <div className="lesson-li-divider"></div>
+            <div style={{ display: 'grid' }}>
+              <p className="less-idx-itm-time-info">
+                {convertStandardToMilitary(new Date(lesson.when).toLocaleTimeString())}
+              </p>
+              <p className="language-duration">
+                {`${language.name} - ${lessonDuration} min`}
+              </p>
+            </div>
+          </div>
           <p className="less-idx-itm-teacher-name">{`@${teacher.username}`}</p>
         </div>
       </li>
