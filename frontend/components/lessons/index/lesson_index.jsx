@@ -139,7 +139,7 @@ export default function LessonIndex (props) {
       </div>
       <div style={{ display: 'flex', justifyContent: 'center' }}>
         <div className="lessons-and-filter" style={{ width: '960px' }}>
-          <div style={{ display: 'block', flex: '0 0 62.5%', minWidth: '768px', maxWidth: '62.5%' }}>
+          <div style={{ display: 'block', flex: '0 0 62.5%', maxWidth: '62.5%' }}>
             <ul className="lessons-ul">
               {lessonIndexContent()}
             </ul>

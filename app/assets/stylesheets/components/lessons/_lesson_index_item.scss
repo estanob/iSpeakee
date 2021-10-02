@@ -54,7 +54,9 @@
 
 .lesson-filter {
   // min-width: 768px;
+  display: block;
   max-width: 37.5%;
+  flex: 0 0 37.5%;
 }
 
 .lesson-date-no-year {

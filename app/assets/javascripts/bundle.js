@@ -2126,7 +2126,6 @@ function LessonIndex(props) {
     style: {
       display: 'block',
       flex: '0 0 62.5%',
-      minWidth: '768px',
       maxWidth: '62.5%'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
