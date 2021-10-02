@@ -1925,6 +1925,31 @@ var StudiedLanguage = function StudiedLanguage(props) {
 
 /***/ }),
 
+/***/ "./frontend/components/lessons/dropdown/lesson_dropdown.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/lessons/dropdown/lesson_dropdown.jsx ***!
+  \******************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LessonDropdown; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+function LessonDropdown(props) {
+  console.log("Lesson Dropdown Props", props);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "info-box box-shadow"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "lesson-filter-buttons"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "All my Languages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "All teachers")));
+}
+;
+
+/***/ }),
+
 /***/ "./frontend/components/lessons/index/lesson_index.jsx":
 /*!************************************************************!*\
   !*** ./frontend/components/lessons/index/lesson_index.jsx ***!
@@ -1937,7 +1962,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LessonIndex; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../index_item/lesson_index_item */ "./frontend/components/lessons/index_item/lesson_index_item.jsx");
+/* harmony import */ var _dropdown_lesson_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dropdown/lesson_dropdown */ "./frontend/components/lessons/dropdown/lesson_dropdown.jsx");
+/* harmony import */ var _index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../index_item/lesson_index_item */ "./frontend/components/lessons/index_item/lesson_index_item.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -1949,6 +1975,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -2008,7 +2035,7 @@ function LessonIndex(props) {
   });
   userLessons = [].concat(upcomingLessons, completedLessons);
   userLessons = userLessons.map(function (lesson, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
       users: users,
       fetchAllUsers: fetchAllUsers,
       currentDate: new Date(),
@@ -2017,7 +2044,7 @@ function LessonIndex(props) {
     });
   });
   upcomingLessons = upcomingLessons.map(function (lesson, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
       users: users,
       fetchAllUsers: fetchAllUsers,
       currentDate: new Date(),
@@ -2026,7 +2053,7 @@ function LessonIndex(props) {
     });
   });
   completedLessons = completedLessons.map(function (lesson, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_1__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
       users: users,
       fetchAllUsers: fetchAllUsers,
       currentDate: new Date(),
@@ -2034,6 +2061,7 @@ function LessonIndex(props) {
       key: i
     });
   });
+  var dropdownMenu = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_lesson_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"], null);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchAllUsers();
@@ -2090,9 +2118,7 @@ function LessonIndex(props) {
     className: "lessons-ul"
   }, lessonIndexContent()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-filter"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Lesson Filter will go here"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "filter-box"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filters")))));
+  }, dropdownMenu)));
 }
 ;
 
@@ -3676,7 +3702,7 @@ var Splash = function Splash() {
     className: "splash-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "iSpeakee"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Learn a new language today!")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeakee - 2021", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Inspired by iTalki"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "iSpeakee"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Become fluent in any language")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeakee - 2021", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Inspired by iTalki"));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Splash);

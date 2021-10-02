@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import LessonDropdown from '../dropdown/lesson_dropdown';
 import LessonIndexItem from '../index_item/lesson_index_item';
 
 export default function LessonIndex (props) {
@@ -84,6 +85,8 @@ export default function LessonIndex (props) {
     )
   });
 
+  let dropdownMenu = <LessonDropdown />;
+
   useEffect(() => {
     fetchUser()
     fetchAllUsers()
@@ -140,10 +143,7 @@ export default function LessonIndex (props) {
           {lessonIndexContent()}
         </ul>
         <div className="lesson-filter">
-          <h1>Lesson Filter will go here</h1>
-          <div className="filter-box">
-            <h1>Filters</h1>
-          </div>
+          {dropdownMenu}
         </div>
       </div>
     </div>

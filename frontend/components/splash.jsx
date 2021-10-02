@@ -7,7 +7,7 @@ const Splash = () => {
       <div className="splash-header">
         <h1>iSpeakee</h1>
         <p>
-          Learn a new language today!
+          Become fluent in any language
         </p>
       </div>
       <footer>
