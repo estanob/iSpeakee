@@ -2411,7 +2411,8 @@ var LessonShow = function LessonShow(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       padding: '0 30px',
-      display: 'flex'
+      display: 'flex',
+      marginBottom: '25px'
     }
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-show-details info-box box-shadow"

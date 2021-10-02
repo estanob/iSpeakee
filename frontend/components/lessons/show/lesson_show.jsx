@@ -128,7 +128,7 @@ const LessonShow = props => {
   console.log("Lesson Show Props", props)
   return (
     <div className="lesson-show-container">
-      <div style={{ padding: '0 30px', display: 'flex' }}>
+      <div style={{ padding: '0 30px', display: 'flex', marginBottom: '25px' }}>
         <div className="lesson-show-details info-box box-shadow">
           <div className="lesson-status" style={{ backgroundImage: lessonColor }}>
             <div className="lesson-show-first-line">
