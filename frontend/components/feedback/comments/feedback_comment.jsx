@@ -2,9 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 export default function FeedbackComment (props) {
-  let { comment, users } = props;
+  let { comment, users, inModal } = props;
   comment = comment ? comment : {};
   users = users ? users : [];
+  inModal = inModal ? inModal : false;
   console.log("Feedback Comment Props", props)
   
   let teacher = users.find(teacher => teacher.id === comment.teacherId);
@@ -13,8 +14,10 @@ export default function FeedbackComment (props) {
   teacherName = teacherName ? teacherName : "";
   console.log("This is the teacher that wrote the feedback:", teacher)
   
+  let modalOrNot = inModal === false ? "feedback-container" : "feedback-container-modal";
+  
   return (
-    <div className="feedback-container">
+    <div className={modalOrNot}>
       <Link to={`/teacher/${teacher.id}`}
         style={{ textDecoration: 'none', color: 'black' }}>
         {teacherName}

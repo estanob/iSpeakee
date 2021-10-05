@@ -1452,9 +1452,11 @@ __webpack_require__.r(__webpack_exports__);
 
 function FeedbackComment(props) {
   var comment = props.comment,
-      users = props.users;
+      users = props.users,
+      inModal = props.inModal;
   comment = comment ? comment : {};
   users = users ? users : [];
+  inModal = inModal ? inModal : false;
   console.log("Feedback Comment Props", props);
   var teacher = users.find(function (teacher) {
     return teacher.id === comment.teacherId;
@@ -1471,8 +1473,9 @@ function FeedbackComment(props) {
   }, "".concat(teacher.firstName, " ").concat(teacher.lastName));
   teacherName = teacherName ? teacherName : "";
   console.log("This is the teacher that wrote the feedback:", teacher);
+  var modalOrNot = inModal === false ? "feedback-container" : "feedback-container-modal";
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "feedback-container"
+    className: modalOrNot
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/teacher/".concat(teacher.id),
     style: {
@@ -1505,6 +1508,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _comments_feedback_comment__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./comments/feedback_comment */ "./frontend/components/feedback/comments/feedback_comment.jsx");
+/* harmony import */ var _modal_feedback_modal__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./modal/feedback_modal */ "./frontend/components/feedback/modal/feedback_modal.jsx");
+
 
 
 function FeedbackIndex(props) {
@@ -1536,12 +1541,14 @@ function FeedbackIndex(props) {
     fetchTeacherProfiles();
     fetchFeedback();
   }, []);
+  var comments = studentFeedback;
   studentFeedback = studentFeedback.map(function (comment, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_feedback_comment__WEBPACK_IMPORTED_MODULE_1__["default"], {
       comment: comment,
       users: users,
       key: i,
-      commentIdx: i
+      commentIdx: i,
+      inModal: false
     });
   });
   console.log("Feedback Index Props", props);
@@ -1556,7 +1563,10 @@ function FeedbackIndex(props) {
     className: "all-feedback-button"
   }, "View all ".concat(studentFeedback.length, " feedback"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "feedback-index-container"
-  }, studentFeedback));
+  }, studentFeedback), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_modal_feedback_modal__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    comments: comments,
+    users: users
+  }));
 }
 
 /***/ }),
@@ -1616,6 +1626,57 @@ var mDTP = function mDTP(dispatch) {
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Object(react_redux__WEBPACK_IMPORTED_MODULE_0__["connect"])(mSTP, mDTP)(_feedback_index__WEBPACK_IMPORTED_MODULE_5__["default"]));
+
+/***/ }),
+
+/***/ "./frontend/components/feedback/modal/feedback_modal.jsx":
+/*!***************************************************************!*\
+  !*** ./frontend/components/feedback/modal/feedback_modal.jsx ***!
+  \***************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return FeedbackModal; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../actions/modal_actions */ "./frontend/actions/modal_actions.js");
+/* harmony import */ var _comments_feedback_comment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../comments/feedback_comment */ "./frontend/components/feedback/comments/feedback_comment.jsx");
+
+
+
+function FeedbackModal(props) {
+  var comments = props.comments,
+      users = props.users;
+  comments = comments ? comments : [];
+  users = users ? users : [];
+  var closeButton = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "modal-close",
+    onClick: _actions_modal_actions__WEBPACK_IMPORTED_MODULE_1__["closeModal"]
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://scdn.italki.com/orion/static/media/cross_icon.ad79cc7a.svg",
+    alt: "close"
+  }));
+  console.log("Feedback Modal Props: ", props);
+  comments = comments.map(function (comment, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_feedback_comment__WEBPACK_IMPORTED_MODULE_2__["default"], {
+      comment: comment,
+      users: users,
+      commentIdx: i,
+      inModal: true
+    });
+  });
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "modal-background"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "feedback-modal"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "feedback-modal-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "".concat(comments.length, " Feedback")), closeButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    className: "feedback-modal-ul"
+  }, comments)));
+}
 
 /***/ }),
 

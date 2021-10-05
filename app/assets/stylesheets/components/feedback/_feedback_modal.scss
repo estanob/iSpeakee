@@ -1,0 +1,19 @@
+.feedback-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  height: auto;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+  background-color: white;
+  overflow-y: auto;
+}
+
+.feedback-modal-header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.feedback-modal-ul {
+  padding: 24px;
+}

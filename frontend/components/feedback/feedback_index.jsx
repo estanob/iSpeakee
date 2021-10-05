@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react';
 import FeedbackComment from './comments/feedback_comment';
+import FeedbackModal from './modal/feedback_modal';
 
 export default function FeedbackIndex (props) {
   let { 
@@ -33,9 +34,14 @@ export default function FeedbackIndex (props) {
     fetchFeedback()
   }, [])
 
+  let comments = studentFeedback;
+
   studentFeedback = studentFeedback.map(((comment, i) => {
     return (
-      <FeedbackComment comment={comment} users={users} key={i} commentIdx={i} />
+      <FeedbackComment 
+        comment={comment} 
+        users={users} 
+        key={i} commentIdx={i} inModal={false} />
     )
   }))
   
@@ -52,6 +58,7 @@ export default function FeedbackIndex (props) {
       <div className="feedback-index-container">
         {studentFeedback}
       </div>
+      <FeedbackModal comments={comments} users={users} />
     </div>
   )
 }
