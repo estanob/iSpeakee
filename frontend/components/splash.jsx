@@ -2,19 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Splash = () => {
+  const splashPic = <picture><source srcset="https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_web.webp" type="image/webp" media="(min-width: 768px)" /><source srcset="https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_mobile.webp" type="image/webp" media="(max-width: 767px)" /><source srcset="https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_web.jpg" type="image/jpeg" media="(min-width: 768px)" /><source srcset="https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_mobile.jpg" type="image/jpeg" media="(max-width: 767px)" /><img src="https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_web.jpg" width="750" height="640" alt="italki hero image" /></picture>;
   return (
     <div className="splash-body">
       <div className="splash-header">
-        <h1>iSpeakee</h1>
         <p>
           Become fluent in any language
         </p>
+        {splashPic}
       </div>
-      <footer>
-        © iSpeakee - 2021
-        <br />
-        Inspired by iTalki
-      </footer>
     </div>
   )
 }

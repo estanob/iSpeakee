@@ -1550,7 +1550,11 @@ function FeedbackIndex(props) {
     style: {
       padding: '30px'
     }
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lesson Feedback"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "feedback-header"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Lesson Feedback"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "all-feedback-button"
+  }, "View all ".concat(studentFeedback.length, " feedback"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "feedback-index-container"
   }, studentFeedback));
 }
@@ -1941,7 +1945,7 @@ __webpack_require__.r(__webpack_exports__);
 function LessonDropdown(props) {
   console.log("Lesson Dropdown Props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "info-box box-shadow"
+    className: "lesson-dropdown-container info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-filter-buttons"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "All my Languages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "All teachers")));
@@ -3772,11 +3776,33 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Splash = function Splash() {
+  var splashPic = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("picture", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    srcset: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_web.webp",
+    type: "image/webp",
+    media: "(min-width: 768px)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    srcset: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_mobile.webp",
+    type: "image/webp",
+    media: "(max-width: 767px)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    srcset: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_web.jpg",
+    type: "image/jpeg",
+    media: "(min-width: 768px)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
+    srcset: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_mobile.jpg",
+    type: "image/jpeg",
+    media: "(max-width: 767px)"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {
+    src: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_web.jpg",
+    width: "750",
+    height: "640",
+    alt: "italki hero image"
+  }));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash-body"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "splash-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "iSpeakee"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Become fluent in any language")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, "\xA9 iSpeakee - 2021", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "Inspired by iTalki"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Become fluent in any language"), splashPic));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Splash);

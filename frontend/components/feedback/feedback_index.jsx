@@ -43,7 +43,12 @@ export default function FeedbackIndex (props) {
   
   return (
     <div className="teacher-feedback info-box box-shadow" style={{ padding: '30px' }}>
-      <h2>Lesson Feedback</h2>
+      <div className="feedback-header">
+        <h2>Lesson Feedback</h2>
+        <button className="all-feedback-button">
+          {`View all ${studentFeedback.length} feedback`}
+        </button>
+      </div>
       <div className="feedback-index-container">
         {studentFeedback}
       </div>
