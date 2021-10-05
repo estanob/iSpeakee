@@ -3,26 +3,28 @@ import { closeModal } from '../../../actions/modal_actions';
 import FeedbackComment from '../comments/feedback_comment';
 
 export default function FeedbackModal (props) {
-  let { comments, users } = props;
+  let { comments, users, showModal } = props;
   
   comments = comments ? comments : [];
   users = users ? users : [];
+  showModal = showModal ? showModal : false;
   
   const closeButton = 
-    <button className="modal-close" onClick={closeModal}>
+    <button className="modal-close" onClick={() => showModal = false}>
       <img 
         src="https://scdn.italki.com/orion/static/media/cross_icon.ad79cc7a.svg" 
         alt="close" />
     </button>;
 
-  
   console.log("Feedback Modal Props: ", props)
   
   comments = comments.map((comment, i) => {
     return (
-      <FeedbackComment comment={comment} users={users} commentIdx={i} inModal={true} />
+      <FeedbackComment comment={comment} users={users} key={i} commentIdx={i} inModal={true} />
     )
   })
+  
+  if (!showModal) return null;
   
   return (
     <div className="modal-background">

@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import FeedbackComment from './comments/feedback_comment';
 import FeedbackModal from './modal/feedback_modal';
 
 export default function FeedbackIndex (props) {
+  let [showModal, setShowModal] = useState(false);
+
   let { 
     session,
     users,
@@ -51,14 +53,14 @@ export default function FeedbackIndex (props) {
     <div className="teacher-feedback info-box box-shadow" style={{ padding: '30px' }}>
       <div className="feedback-header">
         <h2>Lesson Feedback</h2>
-        <button className="all-feedback-button">
+        <button className="all-feedback-button" onClick={() => setShowModal(true)}>
           {`View all ${studentFeedback.length} feedback`}
         </button>
       </div>
       <div className="feedback-index-container">
         {studentFeedback}
       </div>
-      <FeedbackModal comments={comments} users={users} />
+      <FeedbackModal comments={comments} users={users} showModal={showModal} />
     </div>
   )
 }

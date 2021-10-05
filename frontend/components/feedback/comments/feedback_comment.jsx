@@ -16,12 +16,16 @@ export default function FeedbackComment (props) {
   
   let modalOrNot = inModal === false ? "feedback-container" : "feedback-container-modal";
   
-  return (
-    <div className={modalOrNot}>
+  let nameOfTeacher = inModal === false ? 
       <Link to={`/teacher/${teacher.id}`}
         style={{ textDecoration: 'none', color: 'black' }}>
         {teacherName}
-      </Link>
+      </Link> :
+      <h1>{teacherName}</h1>;
+  
+  return (
+    <div className={modalOrNot}>
+      {nameOfTeacher}
       <span style={{ fontSize: '10px', color: "#777" }}>
         {comment.dateWritten}
       </span>
