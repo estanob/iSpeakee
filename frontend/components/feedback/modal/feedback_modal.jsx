@@ -1,18 +1,15 @@
-import React, { useState } from 'react';
-import { closeModal } from '../../../actions/modal_actions';
+import React from 'react';
 import FeedbackComment from '../comments/feedback_comment';
 
 export default function FeedbackModal (props) {
-  let [modalDisplay, setModalDisplay] = useState(true);
-
-  let { comments, users, showModal } = props;
+  let { comments, users, showModal, closeModal } = props;
   
   comments = comments ? comments : [];
   users = users ? users : [];
   showModal = showModal ? showModal : false;
   
   const closeButton = 
-    <button className="modal-close" onClick={() => setModalDisplay(false)}>
+    <button className="modal-close" onClick={closeModal}>
       <img 
         src="https://scdn.italki.com/orion/static/media/cross_icon.ad79cc7a.svg" 
         alt="close" />
@@ -27,7 +24,6 @@ export default function FeedbackModal (props) {
   })
   
   if (!showModal) return null;
-  if (!modalDisplay) return null;
   
   return (
     <div className="modal-background">

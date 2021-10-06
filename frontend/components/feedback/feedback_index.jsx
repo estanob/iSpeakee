@@ -34,6 +34,7 @@ export default function FeedbackIndex (props) {
     fetchTeacherToStudents()
     fetchTeacherProfiles()
     fetchFeedback()
+    setShowModal(false)
   }, [])
 
   let comments = studentFeedback;
@@ -43,7 +44,9 @@ export default function FeedbackIndex (props) {
       <FeedbackComment 
         comment={comment} 
         users={users} 
-        key={i} commentIdx={i} inModal={false} />
+        key={i} 
+        commentIdx={i} 
+        inModal={false} />
     )
   }))
   
@@ -60,7 +63,11 @@ export default function FeedbackIndex (props) {
       <div className="feedback-index-container">
         {studentFeedback}
       </div>
-      <FeedbackModal comments={comments} users={users} showModal={showModal} />
+      <FeedbackModal 
+        comments={comments} 
+        users={users} 
+        showModal={showModal} 
+        closeModal={() => setShowModal(false)} />
     </div>
   )
 }
