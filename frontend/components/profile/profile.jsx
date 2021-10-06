@@ -102,13 +102,15 @@ const Profile = props => {
   return (
     <div className="profile-container">
       <div className="own-profile">
-        <div className="basic-info info-box box-shadow">
-          <div className="personal-info">
-            <h2>{`${currentUser.firstName} ${currentUser.lastName}`}</h2>
-            <p>{`${userPosts.length} Posts 0 Following 0 Followers`}</p>
+        <div style={{ display: 'grid' }}>
+          <div className="basic-info info-box box-shadow">
+            <div className="personal-info">
+              <h2>{`${currentUser.firstName} ${currentUser.lastName}`}</h2>
+              <p>{`${userPosts.length} Posts 0 Following 0 Followers`}</p>
+            </div>
+            <p>{`User ID: ${currentUser.id}`}</p>
           </div>
-          <p>{`User ID: ${currentUser.id}`}</p>
-          <div className="profile-teachers">
+          <div className="profile-teachers info-box box-shadow">
             <p>Teachers</p>
             <button>See all</button>
           </div>

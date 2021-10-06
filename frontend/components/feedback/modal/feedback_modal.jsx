@@ -19,14 +19,21 @@ export default function FeedbackModal (props) {
   
   comments = comments.map((comment, i) => {
     return (
-      <FeedbackComment comment={comment} users={users} key={i} commentIdx={i} inModal={true} />
+      <FeedbackComment 
+        comment={comment} 
+        users={users} 
+        key={i} 
+        commentIdx={i} 
+        inModal={true} />
     )
   })
   
   if (!showModal) return null;
   
   return (
-    <div className="modal-background">
+    <>
+      <div className="modal-background" onClick={closeModal}>
+      </div>
       <div className="feedback-modal">
         <div className="feedback-modal-header">
           <span>{`${comments.length} Feedback`}</span>
@@ -36,6 +43,6 @@ export default function FeedbackModal (props) {
           {comments}
         </ul>
       </div>
-    </div>
+    </>
   )
 }
