@@ -52,7 +52,6 @@ const Profile = props => {
     })
   })
 
-
   languageToStudents.forEach(lTS => {
     if (lTS.student_id === currentUser.id) {
       currLangs.forEach(currLang => {
