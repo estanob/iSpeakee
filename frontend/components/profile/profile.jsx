@@ -67,7 +67,11 @@ const Profile = props => {
 
   ownLanguages = currentLanguages.map((language, i) => {
     return (
-      <StudiedLanguage languages={languages} languageToStudent={language} levelDescriptions={levelDescriptions} key={i} />
+      <StudiedLanguage 
+        languages={languages} 
+        languageToStudent={language} 
+        levelDescriptions={levelDescriptions} 
+        key={i} />
     )
   })
   
@@ -86,18 +90,35 @@ const Profile = props => {
   
   learningLanguageArray = studiedLanguagesToStudent.map((language, i) => {
     return (
-      <StudiedLanguage languages={languages} languageToStudent={language} levelDescriptions={levelDescriptions} key={i} />
+      <StudiedLanguage 
+        languages={languages} 
+        languageToStudent={language} 
+        levelDescriptions={levelDescriptions} 
+        key={i} />
     )
   })
 
+  let selectedTeachers = currentUser ? currentUser.teachers : [];
+  selectedTeachers = selectedTeachers.sort(() => Math.random() - 0.5)
 
-
+  let displayedTeachers = selectedTeachers.slice(0, 4);
+  displayedTeachers = displayedTeachers.map(teacher => {
+    return (
+      <Link to={`/teacher/${teacher.teacher_id}`} style={{ textDecoration: 'none', color: 'black' }}>
+        <div id="teacher-id-link">
+          <span style={{ paddingTop: '28px' }}>{teacher.teacher_id}</span>
+        </div>
+      </Link>
+    )
+  })
 
   useEffect(() => {
     fetchUser()
     fetchLanguageToStudents()
     fetchLanguages()
   }, []);
+  
+  console.log("Profile props", props)
   
   return (
     <div className="profile-container">
@@ -111,8 +132,14 @@ const Profile = props => {
             <p>{`User ID: ${currentUser.id}`}</p>
           </div>
           <div className="profile-teachers info-box box-shadow">
-            <p>Teachers</p>
-            <button>See all</button>
+            <div id="teachers-links" style={{ display: 'flex', justifyContent: 'space-between' }}>
+              <p>{`Teachers • ${currentUser.teachers.length}`}</p>
+              <Link className="see-all-button" to="/contacts/teacher">See all</Link>
+            </div>
+            <div id="teacher-links-separator"></div>
+            <ul style={{ display: 'flex', justifyContent: 'space-between' }}>
+              {displayedTeachers}
+            </ul>
           </div>
         </div>
         <div>

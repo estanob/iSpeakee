@@ -15,8 +15,6 @@ export default function FeedbackModal (props) {
         alt="close" />
     </button>;
 
-  console.log("Feedback Modal Props: ", props)
-  
   comments = comments.map((comment, i) => {
     return (
       <FeedbackComment 

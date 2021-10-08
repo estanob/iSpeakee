@@ -3,9 +3,6 @@ import { Link, NavLink } from 'react-router-dom';
 import ProfileDropdown from '../profile_dropdown';
 
 const Navbar = (props) => {
-  console.log("Navbar Props")
-  console.log(props)
-
   const { session, logout } = props;
 
   function loggedIn() {

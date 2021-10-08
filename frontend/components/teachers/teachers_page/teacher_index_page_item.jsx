@@ -24,7 +24,6 @@ export default function TeacherIndexPageItem (props) {
   let teacherProfile = teacherProfiles.find(profile => profile.teacher_id === teacher.id);
   teacherProfile = teacherProfile ? teacherProfile : {};
   
-  console.log("Teacher Profile", teacherProfile)
   function setButton () {
     if (dotsButton === verticalDots) {
       dotsButton = horizontalDots;

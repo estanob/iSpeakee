@@ -27,8 +27,6 @@ const TeacherShow = props => {
   let teacherName = teacher.display_name ? teacher.display_name : `${teacher.firstName} ${teacher.lastName}`;
   const lineSeparator = <div id="line-separator"></div>;
   
-  console.log("Teacher Profile", teacherProfile)
-  
   return (
     <div className="teacher-show-container">
       <div className="teacher-about info-box">

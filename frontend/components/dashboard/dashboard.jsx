@@ -103,7 +103,6 @@ const Dashboard = (props) => {
       }
     })
   })
-
   
   let userName = currentUser.display_name ? <p className="display-name">{`${currentUser.display_name}`}</p> : <p className="display-name">{`${currentUser.firstName} ${currentUser.lastName}`}</p>;
 

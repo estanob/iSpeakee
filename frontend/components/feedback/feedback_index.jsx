@@ -27,8 +27,6 @@ export default function FeedbackIndex (props) {
   studentFeedback = studentFeedback.sort((a, b) => a.dateWritten > b.dateWritten ? -1 : 1)
   studentFeedback = studentFeedback.slice(0,4);
    
-  console.log("Student Feedback", studentFeedback)
-  
   useEffect(() => {
     fetchUsers()
     fetchTeacherToStudents()
@@ -49,8 +47,6 @@ export default function FeedbackIndex (props) {
         inModal={false} />
     )
   }))
-  
-  console.log("Feedback Index Props", props)
   
   return (
     <div className="teacher-feedback info-box box-shadow" style={{ padding: '30px' }}>

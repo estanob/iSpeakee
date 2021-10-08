@@ -1457,7 +1457,6 @@ function FeedbackComment(props) {
   comment = comment ? comment : {};
   users = users ? users : [];
   inModal = inModal ? inModal : false;
-  console.log("Feedback Comment Props", props);
   var teacher = users.find(function (teacher) {
     return teacher.id === comment.teacherId;
   });
@@ -1472,7 +1471,6 @@ function FeedbackComment(props) {
     }
   }, "".concat(teacher.firstName, " ").concat(teacher.lastName));
   teacherName = teacherName ? teacherName : "";
-  console.log("This is the teacher that wrote the feedback:", teacher);
   var modalOrNot = inModal === false ? "feedback-container" : "feedback-container-modal";
   var nameOfTeacher = inModal === false ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/teacher/".concat(teacher.id),
@@ -1552,7 +1550,6 @@ function FeedbackIndex(props) {
     return a.dateWritten > b.dateWritten ? -1 : 1;
   });
   studentFeedback = studentFeedback.slice(0, 4);
-  console.log("Student Feedback", studentFeedback);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUsers();
     fetchTeacherToStudents();
@@ -1570,7 +1567,6 @@ function FeedbackIndex(props) {
       inModal: false
     });
   });
-  console.log("Feedback Index Props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-feedback info-box box-shadow",
     style: {
@@ -1685,7 +1681,6 @@ function FeedbackModal(props) {
     src: "https://scdn.italki.com/orion/static/media/cross_icon.ad79cc7a.svg",
     alt: "close"
   }));
-  console.log("Feedback Modal Props: ", props);
   comments = comments.map(function (comment, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_comments_feedback_comment__WEBPACK_IMPORTED_MODULE_1__["default"], {
       comment: comment,
@@ -2836,8 +2831,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var Navbar = function Navbar(props) {
-  console.log("Navbar Props");
-  console.log(props);
   var session = props.session,
       logout = props.logout;
 
@@ -3290,11 +3283,32 @@ var Profile = function Profile(props) {
       key: i
     });
   });
+  var selectedTeachers = currentUser ? currentUser.teachers : [];
+  selectedTeachers = selectedTeachers.sort(function () {
+    return Math.random() - 0.5;
+  });
+  var displayedTeachers = selectedTeachers.slice(0, 4);
+  displayedTeachers = displayedTeachers.map(function (teacher) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      to: "/teacher/".concat(teacher.teacher_id),
+      style: {
+        textDecoration: 'none',
+        color: 'black'
+      }
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+      id: "teacher-id-link"
+    }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+      style: {
+        paddingTop: '28px'
+      }
+    }, teacher.teacher_id)));
+  });
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchLanguageToStudents();
     fetchLanguages();
   }, []);
+  console.log("Profile props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -3309,7 +3323,23 @@ var Profile = function Profile(props) {
     className: "personal-info"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(userPosts.length, " Posts 0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "User ID: ".concat(currentUser.id))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-teachers info-box box-shadow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "See all"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "teachers-links",
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Teachers \u2022 ".concat(currentUser.teachers.length)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    className: "see-all-button",
+    to: "/contacts/teacher"
+  }, "See all")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "teacher-links-separator"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    style: {
+      display: 'flex',
+      justifyContent: 'space-between'
+    }
+  }, displayedTeachers))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "language-info info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "Profile"), lineSeparator, miniRedLine, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lang-skills",
@@ -4032,7 +4062,6 @@ var TeacherShow = function TeacherShow(props) {
   var lineSeparator = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "line-separator"
   });
-  console.log("Teacher Profile", teacherProfile);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "teacher-show-container"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -4373,7 +4402,6 @@ function TeacherIndexPageItem(props) {
     return profile.teacher_id === teacher.id;
   });
   teacherProfile = teacherProfile ? teacherProfile : {};
-  console.log("Teacher Profile", teacherProfile);
 
   function setButton() {
     if (dotsButton === verticalDots) {
