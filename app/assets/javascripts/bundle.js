@@ -1402,6 +1402,69 @@ var mDTP = function mDTP(dispatch, ownProps) {
 
 /***/ }),
 
+/***/ "./frontend/components/dropdowns/languages_dropdown.jsx":
+/*!**************************************************************!*\
+  !*** ./frontend/components/dropdowns/languages_dropdown.jsx ***!
+  \**************************************************************/
+/*! exports provided: LanguagesDropdown */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LanguagesDropdown", function() { return LanguagesDropdown; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var LanguagesDropdown = function LanguagesDropdown() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "All my teachers"));
+};
+
+/***/ }),
+
+/***/ "./frontend/components/dropdowns/lesson_index_dropdowns.jsx":
+/*!******************************************************************!*\
+  !*** ./frontend/components/dropdowns/lesson_index_dropdowns.jsx ***!
+  \******************************************************************/
+/*! exports provided: LessonIndexDropdowns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LessonIndexDropdowns", function() { return LessonIndexDropdowns; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _languages_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./languages_dropdown */ "./frontend/components/dropdowns/languages_dropdown.jsx");
+/* harmony import */ var _teachers_dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./teachers_dropdown */ "./frontend/components/dropdowns/teachers_dropdown.jsx");
+
+
+
+var LessonIndexDropdowns = function LessonIndexDropdowns() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "info-box"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_dropdown__WEBPACK_IMPORTED_MODULE_1__["LanguagesDropdown"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_teachers_dropdown__WEBPACK_IMPORTED_MODULE_2__["TeachersDropdown"], null));
+};
+
+/***/ }),
+
+/***/ "./frontend/components/dropdowns/teachers_dropdown.jsx":
+/*!*************************************************************!*\
+  !*** ./frontend/components/dropdowns/teachers_dropdown.jsx ***!
+  \*************************************************************/
+/*! exports provided: TeachersDropdown */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TeachersDropdown", function() { return TeachersDropdown; });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+var TeachersDropdown = function TeachersDropdown() {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "All teachers"));
+};
+
+/***/ }),
+
 /***/ "./frontend/components/error_page.jsx":
 /*!********************************************!*\
   !*** ./frontend/components/error_page.jsx ***!
@@ -2052,8 +2115,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return LessonIndex; });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _dropdown_lesson_dropdown__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../dropdown/lesson_dropdown */ "./frontend/components/lessons/dropdown/lesson_dropdown.jsx");
-/* harmony import */ var _index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../index_item/lesson_index_item */ "./frontend/components/lessons/index_item/lesson_index_item.jsx");
+/* harmony import */ var _dropdowns_lesson_index_dropdowns__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../dropdowns/lesson_index_dropdowns */ "./frontend/components/dropdowns/lesson_index_dropdowns.jsx");
+/* harmony import */ var _dropdown_lesson_dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../dropdown/lesson_dropdown */ "./frontend/components/lessons/dropdown/lesson_dropdown.jsx");
+/* harmony import */ var _index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../index_item/lesson_index_item */ "./frontend/components/lessons/index_item/lesson_index_item.jsx");
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
 function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
@@ -2069,6 +2133,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
+
 function LessonIndex(props) {
   var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('all'),
       _useState2 = _slicedToArray(_useState, 2),
@@ -2078,7 +2143,9 @@ function LessonIndex(props) {
   var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('all'),
       _useState4 = _slicedToArray(_useState3, 2),
       indexContent = _useState4[0],
-      setIndexContent = _useState4[1];
+      setIndexContent = _useState4[1]; // const [teacherLanguages, setTeacherLanguages] = useSate('all');
+  // const [whichTeacher, setWhichTeacher] = useState('all');
+
 
   var session = props.session,
       currentUser = props.currentUser,
@@ -2125,7 +2192,7 @@ function LessonIndex(props) {
   });
   userLessons = [].concat(upcomingLessons, completedLessons);
   userLessons = userLessons.map(function (lesson, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
       users: users,
       fetchAllUsers: fetchAllUsers,
       currentDate: new Date(),
@@ -2134,7 +2201,7 @@ function LessonIndex(props) {
     });
   });
   upcomingLessons = upcomingLessons.map(function (lesson, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
       users: users,
       fetchAllUsers: fetchAllUsers,
       currentDate: new Date(),
@@ -2143,7 +2210,7 @@ function LessonIndex(props) {
     });
   });
   completedLessons = completedLessons.map(function (lesson, i) {
-    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_3__["default"], {
       users: users,
       fetchAllUsers: fetchAllUsers,
       currentDate: new Date(),
@@ -2151,7 +2218,7 @@ function LessonIndex(props) {
       key: i
     });
   });
-  var dropdownMenu = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_lesson_dropdown__WEBPACK_IMPORTED_MODULE_1__["default"], null);
+  var dropdownMenu = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_lesson_dropdown__WEBPACK_IMPORTED_MODULE_2__["default"], null);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
     fetchUser();
     fetchAllUsers();
@@ -2222,7 +2289,7 @@ function LessonIndex(props) {
     className: "lessons-ul"
   }, lessonIndexContent())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-filter"
-  }, dropdownMenu))));
+  }, dropdownMenu, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdowns_lesson_index_dropdowns__WEBPACK_IMPORTED_MODULE_1__["LessonIndexDropdowns"], null)))));
 }
 ;
 
@@ -3321,7 +3388,13 @@ var Profile = function Profile(props) {
     className: "basic-info info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "personal-info"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(userPosts.length, " Posts 0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "User ID: ".concat(currentUser.id))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h2", null, "".concat(currentUser.firstName, " ").concat(currentUser.lastName)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      display: 'flex'
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+    to: "/posts/".concat(currentUser.id)
+  }, "".concat(userPosts.length, " Posts"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "".concat(userPosts.length, " Posts 0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "User ID: ".concat(currentUser.id))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "profile-teachers info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "teachers-links",

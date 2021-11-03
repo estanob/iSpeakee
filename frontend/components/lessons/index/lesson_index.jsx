@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
+import { LessonIndexDropdowns } from '../../dropdowns/lesson_index_dropdowns';
 import LessonDropdown from '../dropdown/lesson_dropdown';
 import LessonIndexItem from '../index_item/lesson_index_item';
 
 export default function LessonIndex (props) {
-  let [lessonStatus, setLessonStatus] = useState('all')
-  let [indexContent, setIndexContent] = useState('all')
+  const [lessonStatus, setLessonStatus] = useState('all');
+  const [indexContent, setIndexContent] = useState('all');
+  // const [teacherLanguages, setTeacherLanguages] = useSate('all');
+  // const [whichTeacher, setWhichTeacher] = useState('all');
   let { 
     session,
     currentUser,
@@ -146,6 +149,7 @@ export default function LessonIndex (props) {
           </div>
           <div className="lesson-filter">
             {dropdownMenu}
+            <LessonIndexDropdowns />
           </div>
         </div>
       </div>

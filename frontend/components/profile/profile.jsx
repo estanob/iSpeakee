@@ -127,6 +127,9 @@ const Profile = props => {
           <div className="basic-info info-box box-shadow">
             <div className="personal-info">
               <h2>{`${currentUser.firstName} ${currentUser.lastName}`}</h2>
+              <div style={{ display: 'flex' }}>
+                <Link to={`/posts/${currentUser.id}`}>{`${userPosts.length} Posts`}</Link>
+              </div>
               <p>{`${userPosts.length} Posts 0 Following 0 Followers`}</p>
             </div>
             <p>{`User ID: ${currentUser.id}`}</p>
