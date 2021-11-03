@@ -154,7 +154,12 @@ export default function LessonIndex (props) {
           </div>
           <div className="lesson-filter">
             {dropdownMenu}
-            <LessonIndexDropdowns languages={userLanguages} teachers={userTeachers} whichTeacher={setWhichTeacher} whichLanguages={setWhichLanguages} />
+            <LessonIndexDropdowns 
+              user={currentUser} 
+              languages={userLanguages} 
+              teachers={userTeachers} 
+              whichTeacher={setWhichTeacher} 
+              whichLanguages={setWhichLanguages} />
           </div>
         </div>
       </div>

@@ -102,9 +102,9 @@ const Profile = props => {
   selectedTeachers = selectedTeachers.sort(() => Math.random() - 0.5)
 
   let displayedTeachers = selectedTeachers.slice(0, 4);
-  displayedTeachers = displayedTeachers.map(teacher => {
+  displayedTeachers = displayedTeachers.map((teacher, i) => {
     return (
-      <Link to={`/teacher/${teacher.teacher_id}`} style={{ textDecoration: 'none', color: 'black' }}>
+      <Link key={i} to={`/teacher/${teacher.teacher_id}`} style={{ textDecoration: 'none', color: 'black' }}>
         <div id="teacher-id-link">
           <span style={{ paddingTop: '28px' }}>{teacher.teacher_id}</span>
         </div>

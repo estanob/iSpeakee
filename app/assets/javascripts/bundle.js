@@ -1416,10 +1416,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 var LanguagesDropdown = function LanguagesDropdown(props) {
-  var setLanguage = props.setLanguage,
+  var user = props.user,
+      setLanguage = props.setLanguage,
       languages = props.languages;
+  user = user ? user : {};
   languages = languages ? languages : [];
-  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "All my languages"));
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: setLanguage('all')
+  }, "All my languages"));
 };
 
 /***/ }),
@@ -1443,13 +1447,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var LessonIndexDropdowns = function LessonIndexDropdowns(props) {
   var whichLanguages = props.whichLanguages,
-      whichTeacher = props.whichTeacher;
+      whichTeacher = props.whichTeacher,
+      user = props.user,
+      languages = props.languages;
+  user = user ? user : {};
+  languages = languages ? languages : [];
   console.log("Lesson Index Dropdown Props:", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "info-box"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_dropdown__WEBPACK_IMPORTED_MODULE_1__["LanguagesDropdown"], {
+    user: user,
     setLanguage: whichLanguages
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_teachers_dropdown__WEBPACK_IMPORTED_MODULE_2__["TeachersDropdown"], {
+    user: user,
     setTeacher: whichTeacher
   }));
 };
@@ -1470,8 +1480,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 var TeachersDropdown = function TeachersDropdown(props) {
-  var setTeacher = props.setTeacher,
+  var user = props.user,
+      setTeacher = props.setTeacher,
       userTeachers = props.userTeachers;
+  user = user ? user : {};
   userTeachers = userTeachers ? userTeachers : [];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     onClick: setTeacher('all')
@@ -2316,6 +2328,7 @@ function LessonIndex(props) {
   }, lessonIndexContent())), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-filter"
   }, dropdownMenu, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdowns_lesson_index_dropdowns__WEBPACK_IMPORTED_MODULE_1__["LessonIndexDropdowns"], {
+    user: currentUser,
     languages: userLanguages,
     teachers: userTeachers,
     whichTeacher: setWhichTeacher,
@@ -3386,8 +3399,9 @@ var Profile = function Profile(props) {
     return Math.random() - 0.5;
   });
   var displayedTeachers = selectedTeachers.slice(0, 4);
-  displayedTeachers = displayedTeachers.map(function (teacher) {
+  displayedTeachers = displayedTeachers.map(function (teacher, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      key: i,
       to: "/teacher/".concat(teacher.teacher_id),
       style: {
         textDecoration: 'none',

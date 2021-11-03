@@ -1,8 +1,9 @@
 import React from 'react'
 
 export const TeachersDropdown = (props) => {
-  let { setTeacher, userTeachers } = props;
+  let { user, setTeacher, userTeachers } = props;
 
+  user = user ? user : {};
   userTeachers = userTeachers ? userTeachers : [];
   
   return (
