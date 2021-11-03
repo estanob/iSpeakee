@@ -6,8 +6,8 @@ import LessonIndexItem from '../index_item/lesson_index_item';
 export default function LessonIndex (props) {
   const [lessonStatus, setLessonStatus] = useState('all');
   const [indexContent, setIndexContent] = useState('all');
-  // const [teacherLanguages, setTeacherLanguages] = useSate('all');
-  // const [whichTeacher, setWhichTeacher] = useState('all');
+  const [whichLanguages, setWhichLanguages] = useState('all');
+  const [whichTeacher, setWhichTeacher] = useState('all');
   let { 
     session,
     currentUser,
@@ -32,6 +32,9 @@ export default function LessonIndex (props) {
   lessons.forEach(lesson => {
     if (lesson.student_id === session) userLessons.push(lesson)
   });
+
+  const userTeachers = currentUser ? currentUser.teachers : [];
+  const userLanguages = currentUser ? currentUser.languagesLearning : [];
 
   let dateNow = new Date();
   let numUpcomingLessons = 0;
@@ -121,6 +124,8 @@ export default function LessonIndex (props) {
     setIndexContent('completed')
   }
 
+  console.log("Lesson Index Props:", props)
+  
   return (
     <div className="lesson-index">
       <div className="lesson-index-buttons">
@@ -149,7 +154,7 @@ export default function LessonIndex (props) {
           </div>
           <div className="lesson-filter">
             {dropdownMenu}
-            <LessonIndexDropdowns />
+            <LessonIndexDropdowns languages={userLanguages} teachers={userTeachers} whichTeacher={setWhichTeacher} whichLanguages={setWhichLanguages} />
           </div>
         </div>
       </div>

@@ -1,9 +1,13 @@
 import React from 'react'
 
-export const LanguagesDropdown = () => {
+export const LanguagesDropdown = (props) => {
+  let { setLanguage, languages } = props;
+
+  languages = languages ? languages : [];
+  
   return (
     <div>
-      <h1>All my teachers</h1>
+      <button>All my languages</button>
     </div>
   );
 };
