@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { LessonIndexDropdowns } from '../../dropdowns/lesson_index_dropdowns';
-import LessonDropdown from '../dropdown/lesson_dropdown';
 import LessonIndexItem from '../index_item/lesson_index_item';
 
 export default function LessonIndex (props) {
@@ -13,8 +12,10 @@ export default function LessonIndex (props) {
     currentUser,
     users,
     lessons,
+    languages,
     fetchAllUsers,
     fetchLessons,
+    fetchLanguages,
     currentDate,
     currentTime,
   } = props;
@@ -25,6 +26,7 @@ export default function LessonIndex (props) {
   currentUser = currentUser ? currentUser : {};
   users = users ? users : [];
   lessons = lessons ? lessons : [];
+  languages = languages ? languages : [];
   let userLessons = [];
   let upcomingLessons = [];
   let completedLessons = [];
@@ -56,6 +58,13 @@ export default function LessonIndex (props) {
   completedLessons.sort((a, b) => (a.when > b.when) ? -1 : 1)
 
   userLessons = [].concat(upcomingLessons, completedLessons)
+  
+  const lessonLanguageIds = [];
+  userLessons.forEach(lesson => {
+    if (!lessonLanguageIds.includes(lesson.language_id)) {
+      lessonLanguageIds.push(lesson.language_id)
+    };
+  });
   
   userLessons = userLessons.map((lesson, i) => {
     return (
@@ -90,11 +99,11 @@ export default function LessonIndex (props) {
     )
   });
 
-  let dropdownMenu = <LessonDropdown />;
 
   useEffect(() => {
     fetchAllUsers()
     fetchLessons()
+    fetchLanguages()
   }, []);
 
   const lessonIndexContent = () => {
@@ -123,8 +132,8 @@ export default function LessonIndex (props) {
   }
 
   console.log("Lesson Index Props:", props)
-  console.log("Which Languages", whichLanguages)
-  console.log("Which Teacher", whichTeacher)
+  // console.log("Which Languages", whichLanguages)
+  // console.log("Which Teacher", whichTeacher)
   
   return (
     <div className="lesson-index">
@@ -153,10 +162,13 @@ export default function LessonIndex (props) {
             </ul>
           </div>
           <div className="lesson-filter">
-            {dropdownMenu}
             <LessonIndexDropdowns 
               user={currentUser} 
-              languages={userLanguages} 
+              users={users}
+              languages={languages} 
+              userLanguages={currentUser.studiedLanguages} 
+              lessonLanguageIds={lessonLanguageIds}
+              userLessons={userLessons} 
               teachers={userTeachers} 
               whichTeacher={setWhichTeacher} 
               whichLanguages={setWhichLanguages} />
