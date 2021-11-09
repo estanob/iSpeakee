@@ -1,27 +1,34 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { LanguagesDropdownList } from './languages_dropdown_list';
 
 export const LanguagesDropdown = (props) => {
+  const [isDropdownOpened, setIsDropdownOpened] = useState(false);
   let { user, setLanguage, languages } = props;
 
   user = user ? user : {};
   languages = languages ? languages : [];
   
-  const optionsList = 
-    <div id="languages-options">
-    {/* <div className="hidden" id="languages-options"> */}
-      <div className="languages-options-dropdown">
-        <ul>
-          <li><p>Hello</p></li>
-          <li><p>World</p></li>
-        </ul>
-      </div>
-    </div>;
+  let isClicked = isDropdownOpened ? 'clicked' : 'unClicked';
   
+  function toggleOpen () {
+    $('#languages-options').removeClass('hidden')
+    setIsDropdownOpened(true)
+  }
+  
+  function clickedOpen () {
+    if (isDropdownOpened) {
+      return (
+        <LanguagesDropdownList />
+      )
+    }
+  }
+
   return (
     <div>
-      <button onClick={() => $('#languages-options').removeClass('hidden')}>All my languages</button>
+      <button className={isClicked} onClick={toggleOpen}>All my languages</button>
+      {/* <button className={isClicked} onClick={() => $('#languages-options').removeClass('hidden')}>All my languages</button> */}
       {/* <button onClick={() => setLanguage('all')}>All my languages</button> */}
-      {optionsList}
+      {clickedOpen()}
     </div>
   );
 };

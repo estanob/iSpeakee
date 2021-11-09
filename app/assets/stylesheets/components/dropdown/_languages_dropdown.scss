@@ -1,6 +1,10 @@
 #languages-options {
-  background-color: black;
-  filter: brightness(50%);
+  position: absolute;
+  &.languages-options-list {
+    z-index: 500;
+    height: 50px;
+    width: 30px;
+  }
 }
 
 .languages-options-dropdown {
