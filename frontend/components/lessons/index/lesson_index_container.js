@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import { fetchLessons } from '../../../actions/lesson_actions';
-import { fetchAllUsers, fetchUser } from '../../../actions/profile_actions';
+import { fetchAllUsers } from '../../../actions/profile_actions';
 import LessonIndex from './lesson_index';
 
 const mSTP = state => {
@@ -20,7 +20,6 @@ const mSTP = state => {
 
 const mDTP = (dispatch, ownProps) => {
   return {
-    fetchUser: () => dispatch(fetchUser(parseInt(ownProps.match.params.id))),
     fetchAllUsers: () => dispatch(fetchAllUsers()),
     fetchLessons: () => dispatch(fetchLessons()),
   };

@@ -1421,9 +1421,16 @@ var LanguagesDropdown = function LanguagesDropdown(props) {
       languages = props.languages;
   user = user ? user : {};
   languages = languages ? languages : [];
+  var optionsList = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    id: "languages-options"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "languages-options-dropdown"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "World")))));
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: setLanguage('all')
-  }, "All my languages"));
+    onClick: function onClick() {
+      return $('#languages-options').removeClass('hidden');
+    }
+  }, "All my languages"), optionsList);
 };
 
 /***/ }),
@@ -1454,7 +1461,7 @@ var LessonIndexDropdowns = function LessonIndexDropdowns(props) {
   languages = languages ? languages : [];
   console.log("Lesson Index Dropdown Props:", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "info-box"
+    className: "info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_dropdown__WEBPACK_IMPORTED_MODULE_1__["LanguagesDropdown"], {
     user: user,
     setLanguage: whichLanguages
@@ -1486,7 +1493,9 @@ var TeachersDropdown = function TeachersDropdown(props) {
   user = user ? user : {};
   userTeachers = userTeachers ? userTeachers : [];
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
-    onClick: setTeacher('all')
+    onClick: function onClick() {
+      return setTeacher('all');
+    }
   }, "All teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", null));
 };
 
@@ -2119,7 +2128,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function LessonDropdown(props) {
-  console.log("Lesson Dropdown Props", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-dropdown-container info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2186,7 +2194,6 @@ function LessonIndex(props) {
       currentUser = props.currentUser,
       users = props.users,
       lessons = props.lessons,
-      fetchUser = props.fetchUser,
       fetchAllUsers = props.fetchAllUsers,
       fetchLessons = props.fetchLessons,
       currentDate = props.currentDate,
@@ -2257,7 +2264,6 @@ function LessonIndex(props) {
   });
   var dropdownMenu = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_dropdown_lesson_dropdown__WEBPACK_IMPORTED_MODULE_2__["default"], null);
   Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
-    fetchUser();
     fetchAllUsers();
     fetchLessons();
   }, []);
@@ -2288,6 +2294,8 @@ function LessonIndex(props) {
   };
 
   console.log("Lesson Index Props:", props);
+  console.log("Which Languages", whichLanguages);
+  console.log("Which Teacher", whichTeacher);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-index"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2374,9 +2382,6 @@ var mSTP = function mSTP(state) {
 
 var mDTP = function mDTP(dispatch, ownProps) {
   return {
-    fetchUser: function fetchUser() {
-      return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchUser"])(parseInt(ownProps.match.params.id)));
-    },
     fetchAllUsers: function fetchAllUsers() {
       return dispatch(Object(_actions_profile_actions__WEBPACK_IMPORTED_MODULE_2__["fetchAllUsers"])());
     },

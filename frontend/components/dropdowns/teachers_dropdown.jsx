@@ -8,7 +8,7 @@ export const TeachersDropdown = (props) => {
   
   return (
     <div>
-      <button onClick={setTeacher('all')}>All teachers</button>
+      <button onClick={() => setTeacher('all')}>All teachers</button>
       <ul>
 
       </ul>

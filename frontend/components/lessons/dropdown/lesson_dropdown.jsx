@@ -2,8 +2,6 @@ import React from 'react';
 
 export default function LessonDropdown (props) {
 
-  console.log("Lesson Dropdown Props", props)
-
   return (
     <div className="lesson-dropdown-container info-box box-shadow">
       <h1>Filters</h1>

@@ -13,7 +13,6 @@ export default function LessonIndex (props) {
     currentUser,
     users,
     lessons,
-    fetchUser,
     fetchAllUsers,
     fetchLessons,
     currentDate,
@@ -94,7 +93,6 @@ export default function LessonIndex (props) {
   let dropdownMenu = <LessonDropdown />;
 
   useEffect(() => {
-    fetchUser()
     fetchAllUsers()
     fetchLessons()
   }, []);
@@ -125,6 +123,8 @@ export default function LessonIndex (props) {
   }
 
   console.log("Lesson Index Props:", props)
+  console.log("Which Languages", whichLanguages)
+  console.log("Which Teacher", whichTeacher)
   
   return (
     <div className="lesson-index">
