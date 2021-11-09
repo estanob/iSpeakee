@@ -1498,17 +1498,20 @@ var LanguagesDropdownList = function LanguagesDropdownList(props) {
   });
   languageButtons = languageButtons.map(function (lang, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "dropdown-button",
       key: i
     }, lang.name);
-  }); // if (!displayOn) return null;
-
+  });
+  if (!displayOn) return null;
   console.log("Languages Dropdown List props:", props);
   console.log("Language Buttons:", languageButtons);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     id: "languages-options",
     className: "languages-options-list box-shadow hidden",
     onMouseLeave: closeDisplay
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "All my languages"), languageButtons, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "World"));
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "dropdown-button"
+  }, "All my languages"), languageButtons);
 };
 
 /***/ }),

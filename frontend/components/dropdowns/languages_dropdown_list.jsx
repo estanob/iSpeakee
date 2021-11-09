@@ -20,13 +20,13 @@ export const LanguagesDropdownList = (props) => {
 
   languageButtons = languageButtons.map((lang, i) => {
     return (
-      <button key={i}>
+      <button className="dropdown-button" key={i}>
         {lang.name}
       </button>
     )
   })
   
-  // if (!displayOn) return null;
+  if (!displayOn) return null;
   
   console.log("Languages Dropdown List props:", props)
   console.log("Language Buttons:", languageButtons)
@@ -36,10 +36,8 @@ export const LanguagesDropdownList = (props) => {
       id="languages-options" 
       className="languages-options-list box-shadow hidden" 
       onMouseLeave={closeDisplay}>
-      <button>All my languages</button>
+      <button className="dropdown-button">All my languages</button>
       {languageButtons}
-      <p>Hello</p>
-      <p>World</p>
     </ul>
   );
 };
