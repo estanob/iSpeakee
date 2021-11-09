@@ -7,6 +7,8 @@ export const LessonIndexDropdowns = (props) => {
     whichLanguages, 
     whichTeacher,
     user,
+    users,
+    teachers,
     languages,
     userLanguages,
     userLessons,
@@ -14,7 +16,9 @@ export const LessonIndexDropdowns = (props) => {
   } = props;
 
   user = user ? user : {};
+  users = users ? users : [];
   languages = languages ? languages : [];
+  teachers = teachers ? teachers : [];
   userLanguages = userLanguages ? userLanguages : [];
   userLessons = userLessons ? userLessons : [];
   lessonLanguageIds = lessonLanguageIds ? lessonLanguageIds : [];
@@ -33,8 +37,10 @@ export const LessonIndexDropdowns = (props) => {
         languages={languages} />
       <TeachersDropdown 
         user={user} 
+        allUsers={users} 
         setTeacher={whichTeacher}
         userLessons={userLessons}
+        teacherRelations={teachers}
         languages={languages} />
     </div>
   );

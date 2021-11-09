@@ -134,6 +134,7 @@ export default function LessonIndex (props) {
   console.log("Lesson Index Props:", props)
   // console.log("Which Languages", whichLanguages)
   // console.log("Which Teacher", whichTeacher)
+  console.log("Lesson Index User Teachers:", userTeachers)
   
   return (
     <div className="lesson-index">

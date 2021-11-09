@@ -10,6 +10,18 @@
   }
 }
 
+#teachers-options {
+  position: absolute;
+  &.languages-options-list {
+    display: flex;
+    flex-flow: column;
+    z-index: 500;
+    height: 250px;
+    width: 300px;
+    background-color: white;
+  }
+}
+
 .languages-options-dropdown {
   left: 50%;
   top: 50%;

@@ -16,7 +16,7 @@ export const LanguagesDropdown = (props) => {
   userLanguages = userLanguages ? userLanguages : [];
   lessonLanguageIds = lessonLanguageIds ? lessonLanguageIds : [];
   
-  let isClicked = isDropdownOpened ? 'clicked' : 'unClicked';
+  let isClicked = isDropdownOpened ? 'filter-button clicked' : 'filter-button unClicked';
   
   function toggleOpen () {
     setIsDropdownOpened(true)
