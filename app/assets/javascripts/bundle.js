@@ -1554,7 +1554,7 @@ var LessonIndexDropdowns = function LessonIndexDropdowns(props) {
   lessonTeacherIds = lessonTeacherIds ? lessonTeacherIds : [];
   console.log("Lesson Index Dropdown Props:", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "info-box box-shadow"
+    className: "lesson-index-dropdowns info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Filters"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_dropdown__WEBPACK_IMPORTED_MODULE_1__["LanguagesDropdown"], {
     user: user,
     setLanguage: whichLanguages,
@@ -1676,8 +1676,8 @@ var TeachersDropdownList = function TeachersDropdownList(props) {
       key: i
     }, "".concat(teacher.firstName, " ").concat(teacher.lastName));
   });
-  console.log("Teachers Dropdown List Props:", props); // if (!displayOn) return null;
-
+  console.log("Teachers Dropdown List Props:", props);
+  if (!displayOn) return null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     id: "teachers-options",
     className: "languages-options-list box-shadow hidden",

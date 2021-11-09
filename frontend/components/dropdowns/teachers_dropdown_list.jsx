@@ -28,7 +28,7 @@ export const TeachersDropdownList = (props) => {
   
   console.log("Teachers Dropdown List Props:", props)
   
-  // if (!displayOn) return null;
+  if (!displayOn) return null;
   
   return (
     <ul 

@@ -28,7 +28,7 @@ export const LessonIndexDropdowns = (props) => {
   console.log("Lesson Index Dropdown Props:", props)
 
   return (
-    <div className="info-box box-shadow">
+    <div className="lesson-index-dropdowns info-box box-shadow">
       <h1>Filters</h1>
       <LanguagesDropdown 
         user={user} 
