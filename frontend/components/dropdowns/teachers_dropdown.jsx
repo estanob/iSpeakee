@@ -9,12 +9,14 @@ export const TeachersDropdown = (props) => {
     teacherRelations,
     setTeacher, 
     userTeachers,
+    lessonTeacherIds,
    } = props;
 
   user = user ? user : {};
   allUsers = allUsers ? allUsers : [];
   teacherRelations = teacherRelations ? teacherRelations : [];
   userTeachers = userTeachers ? userTeachers : [];
+  lessonTeacherIds = lessonTeacherIds ? lessonTeacherIds : [];
 
   let isClicked = isDropdownOpened ? 'filter-button clicked' : 'filter-button unClicked';
   
@@ -35,6 +37,8 @@ export const TeachersDropdown = (props) => {
       <button className={isClicked} onClick={toggleOpen}>All teachers</button>
       <>
         <TeachersDropdownList 
+          users={allUsers}
+          lessonTeacherIds={lessonTeacherIds}
           displayOn={isDropdownOpened}
           closeDisplay={toggleClose} />
       </>

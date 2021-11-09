@@ -1542,7 +1542,8 @@ var LessonIndexDropdowns = function LessonIndexDropdowns(props) {
       languages = props.languages,
       userLanguages = props.userLanguages,
       userLessons = props.userLessons,
-      lessonLanguageIds = props.lessonLanguageIds;
+      lessonLanguageIds = props.lessonLanguageIds,
+      lessonTeacherIds = props.lessonTeacherIds;
   user = user ? user : {};
   users = users ? users : [];
   languages = languages ? languages : [];
@@ -1550,6 +1551,7 @@ var LessonIndexDropdowns = function LessonIndexDropdowns(props) {
   userLanguages = userLanguages ? userLanguages : [];
   userLessons = userLessons ? userLessons : [];
   lessonLanguageIds = lessonLanguageIds ? lessonLanguageIds : [];
+  lessonTeacherIds = lessonTeacherIds ? lessonTeacherIds : [];
   console.log("Lesson Index Dropdown Props:", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "info-box box-shadow"
@@ -1565,6 +1567,7 @@ var LessonIndexDropdowns = function LessonIndexDropdowns(props) {
     allUsers: users,
     setTeacher: whichTeacher,
     userLessons: userLessons,
+    lessonTeacherIds: lessonTeacherIds,
     teacherRelations: teachers,
     languages: languages
   }));
@@ -1609,11 +1612,13 @@ var TeachersDropdown = function TeachersDropdown(props) {
       allUsers = props.allUsers,
       teacherRelations = props.teacherRelations,
       setTeacher = props.setTeacher,
-      userTeachers = props.userTeachers;
+      userTeachers = props.userTeachers,
+      lessonTeacherIds = props.lessonTeacherIds;
   user = user ? user : {};
   allUsers = allUsers ? allUsers : [];
   teacherRelations = teacherRelations ? teacherRelations : [];
   userTeachers = userTeachers ? userTeachers : [];
+  lessonTeacherIds = lessonTeacherIds ? lessonTeacherIds : [];
   var isClicked = isDropdownOpened ? 'filter-button clicked' : 'filter-button unClicked';
 
   function toggleOpen() {
@@ -1631,6 +1636,8 @@ var TeachersDropdown = function TeachersDropdown(props) {
     className: isClicked,
     onClick: toggleOpen
   }, "All teachers"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_teachers_dropdown_list__WEBPACK_IMPORTED_MODULE_1__["TeachersDropdownList"], {
+    users: allUsers,
+    lessonTeacherIds: lessonTeacherIds,
     displayOn: isDropdownOpened,
     closeDisplay: toggleClose
   })));
@@ -1652,8 +1659,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 var TeachersDropdownList = function TeachersDropdownList(props) {
-  var displayOn = props.displayOn,
+  var users = props.users,
+      lessonTeacherIds = props.lessonTeacherIds,
+      displayOn = props.displayOn,
       closeDisplay = props.closeDisplay;
+  users = users ? users : [];
+  lessonTeacherIds = lessonTeacherIds ? lessonTeacherIds : [];
+  var teacherButtons = [];
+  users.forEach(function (teacher) {
+    if (lessonTeacherIds.includes(teacher.id)) teacherButtons.push(teacher);
+  });
+  console.log("Teacher Buttons:", teacherButtons);
+  teacherButtons = teacherButtons.map(function (teacher, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      className: "dropdown-button",
+      key: i
+    }, "".concat(teacher.firstName, " ").concat(teacher.lastName));
+  });
   console.log("Teachers Dropdown List Props:", props); // if (!displayOn) return null;
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
@@ -1662,7 +1684,7 @@ var TeachersDropdownList = function TeachersDropdownList(props) {
     onMouseLeave: closeDisplay
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: "dropdown-button"
-  }, "All teachers"));
+  }, "All teachers"), teacherButtons);
 };
 
 /***/ }),
@@ -2386,6 +2408,12 @@ function LessonIndex(props) {
 
     ;
   });
+  var lessonTeacherIds = [];
+  userLessons.forEach(function (lesson) {
+    if (!lessonTeacherIds.includes(lesson.teacher_id)) {
+      lessonTeacherIds.push(lesson.teacher_id);
+    }
+  });
   userLessons = userLessons.map(function (lesson, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_2__["default"], {
       users: users,
@@ -2447,7 +2475,6 @@ function LessonIndex(props) {
   console.log("Lesson Index Props:", props); // console.log("Which Languages", whichLanguages)
   // console.log("Which Teacher", whichTeacher)
 
-  console.log("Lesson Index User Teachers:", userTeachers);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "lesson-index"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
@@ -2493,6 +2520,7 @@ function LessonIndex(props) {
     languages: languages,
     userLanguages: currentUser.studiedLanguages,
     lessonLanguageIds: lessonLanguageIds,
+    lessonTeacherIds: lessonTeacherIds,
     userLessons: userLessons,
     teachers: userTeachers,
     whichTeacher: setWhichTeacher,

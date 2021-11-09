@@ -65,6 +65,13 @@ export default function LessonIndex (props) {
       lessonLanguageIds.push(lesson.language_id)
     };
   });
+
+  const lessonTeacherIds = [];
+  userLessons.forEach(lesson => {
+    if (!lessonTeacherIds.includes(lesson.teacher_id)) {
+      lessonTeacherIds.push(lesson.teacher_id)
+    }
+  })
   
   userLessons = userLessons.map((lesson, i) => {
     return (
@@ -134,7 +141,6 @@ export default function LessonIndex (props) {
   console.log("Lesson Index Props:", props)
   // console.log("Which Languages", whichLanguages)
   // console.log("Which Teacher", whichTeacher)
-  console.log("Lesson Index User Teachers:", userTeachers)
   
   return (
     <div className="lesson-index">
@@ -169,6 +175,7 @@ export default function LessonIndex (props) {
               languages={languages} 
               userLanguages={currentUser.studiedLanguages} 
               lessonLanguageIds={lessonLanguageIds}
+              lessonTeacherIds={lessonTeacherIds}
               userLessons={userLessons} 
               teachers={userTeachers} 
               whichTeacher={setWhichTeacher} 
