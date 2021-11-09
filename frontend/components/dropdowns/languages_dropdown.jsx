@@ -11,24 +11,33 @@ export const LanguagesDropdown = (props) => {
   let isClicked = isDropdownOpened ? 'clicked' : 'unClicked';
   
   function toggleOpen () {
-    $('#languages-options').removeClass('hidden')
     setIsDropdownOpened(true)
+    $('#languages-options').removeClass('hidden')
   }
   
-  function clickedOpen () {
-    if (isDropdownOpened) {
-      return (
-        <LanguagesDropdownList />
-      )
-    }
+  function toggleClose () {
+    setIsDropdownOpened(false)
+    $('#languages-options').addClass('hidden')
   }
+  
+  // function clickedOpen () {
+  //   if (isDropdownOpened) {
+  //     return (
+  //       <LanguagesDropdownList />
+  //     )
+  //   } else {
+  //     return null
+  //   }
+  // }
 
   return (
     <div>
       <button className={isClicked} onClick={toggleOpen}>All my languages</button>
+      {/* <button className={isClicked} onClick={() => toggleOpen()}>All my languages</button> */}
       {/* <button className={isClicked} onClick={() => $('#languages-options').removeClass('hidden')}>All my languages</button> */}
       {/* <button onClick={() => setLanguage('all')}>All my languages</button> */}
-      {clickedOpen()}
+      {/* {clickedOpen()} */}
+      <><LanguagesDropdownList displayOn={isDropdownOpened} closeDisplay={toggleClose} /></>
     </div>
   );
 };

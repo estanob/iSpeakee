@@ -1,8 +1,9 @@
 #languages-options {
   position: absolute;
   &.languages-options-list {
+    display: grid;
     z-index: 500;
-    height: 400px;
+    height: 250px;
     width: 300px;
     background-color: white;
   }

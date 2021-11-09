@@ -1443,20 +1443,31 @@ var LanguagesDropdown = function LanguagesDropdown(props) {
   var isClicked = isDropdownOpened ? 'clicked' : 'unClicked';
 
   function toggleOpen() {
-    $('#languages-options').removeClass('hidden');
     setIsDropdownOpened(true);
+    $('#languages-options').removeClass('hidden');
   }
 
-  function clickedOpen() {
-    if (isDropdownOpened) {
-      return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_dropdown_list__WEBPACK_IMPORTED_MODULE_1__["LanguagesDropdownList"], null);
-    }
-  }
+  function toggleClose() {
+    setIsDropdownOpened(false);
+    $('#languages-options').addClass('hidden');
+  } // function clickedOpen () {
+  //   if (isDropdownOpened) {
+  //     return (
+  //       <LanguagesDropdownList />
+  //     )
+  //   } else {
+  //     return null
+  //   }
+  // }
+
 
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: isClicked,
     onClick: toggleOpen
-  }, "All my languages"), clickedOpen());
+  }, "All my languages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_dropdown_list__WEBPACK_IMPORTED_MODULE_1__["LanguagesDropdownList"], {
+    displayOn: isDropdownOpened,
+    closeDisplay: toggleClose
+  })));
 };
 
 /***/ }),
@@ -1475,15 +1486,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 var LanguagesDropdownList = function LanguagesDropdownList(props) {
-  function closeList() {
-    $('#languages-options').addClass('hidden');
-  }
-
+  var displayOn = props.displayOn,
+      closeDisplay = props.closeDisplay;
+  if (!displayOn) return null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     id: "languages-options",
     className: "languages-options-list box-shadow hidden",
-    onMouseLeave: closeList
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "World")));
+    onMouseLeave: closeDisplay
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "Hello"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "World"));
 };
 
 /***/ }),
