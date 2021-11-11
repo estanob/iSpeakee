@@ -6,7 +6,15 @@
 }
 
 .navbar-links {
+  width: 25%;
   display: flex;
+  justify-content: space-between;
   float: right;
   margin-top: -10px;
+}
+
+.navbar-logged-out {
+  display: flex;
+  justify-content: space-between;
+  width: 100px;
 }

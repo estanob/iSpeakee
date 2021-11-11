@@ -16,7 +16,7 @@ const Navbar = (props) => {
       )
     } else {
       return (
-        <div>
+        <div className="navbar-logged-out">
           <Link to="/login">
             Login
           </Link>

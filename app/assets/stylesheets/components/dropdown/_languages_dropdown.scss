@@ -4,8 +4,9 @@
     display: flex;
     flex-flow: column;
     z-index: 500;
-    height: 150px;
+    height: 25%;
     width: 300px;
+    overflow: auto;
     background-color: white;
   }
 }
@@ -16,8 +17,9 @@
     display: flex;
     flex-flow: column;
     z-index: 500;
-    height: 150px;
+    height: 25%;
     width: 300px;
+    overflow: auto;
     background-color: white;
   }
 }
@@ -46,6 +48,8 @@
   background: transparent;
   border: none;
   text-align: left;
+  line-height: 22px;
+  font-size: 14px;
 }
 
 .dropdown-button:hover {
