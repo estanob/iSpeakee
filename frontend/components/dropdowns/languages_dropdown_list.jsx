@@ -6,6 +6,7 @@ export const LanguagesDropdownList = (props) => {
     closeDisplay,
     languages,
     userLanguages,
+    setDisplay,
     lessonLanguageIds,
   } = props;
   
@@ -20,7 +21,7 @@ export const LanguagesDropdownList = (props) => {
 
   languageButtons = languageButtons.map((lang, i) => {
     return (
-      <button className="dropdown-button" key={i}>
+      <button onClick={() => setDisplay(lang.name)} className="dropdown-button" key={i}>
         {lang.name}
       </button>
     )
@@ -36,7 +37,7 @@ export const LanguagesDropdownList = (props) => {
       id="languages-options" 
       className="languages-options-list box-shadow hidden" 
       onMouseLeave={closeDisplay}>
-      <button className="dropdown-button">All my languages</button>
+      <button onClick={() => setDisplay('All my languages')} className="dropdown-button">All my languages</button>
       {languageButtons}
     </ul>
   );

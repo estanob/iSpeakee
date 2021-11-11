@@ -1435,6 +1435,11 @@ var LanguagesDropdown = function LanguagesDropdown(props) {
       isDropdownOpened = _useState2[0],
       setIsDropdownOpened = _useState2[1];
 
+  var _useState3 = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])('All my languages'),
+      _useState4 = _slicedToArray(_useState3, 2),
+      languageFilterDisplay = _useState4[0],
+      setLanguageFilterDisplay = _useState4[1];
+
   var user = props.user,
       setLanguage = props.setLanguage,
       languages = props.languages,
@@ -1459,11 +1464,12 @@ var LanguagesDropdown = function LanguagesDropdown(props) {
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
     className: isClicked,
     onClick: toggleOpen
-  }, "All my languages"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_dropdown_list__WEBPACK_IMPORTED_MODULE_1__["LanguagesDropdownList"], {
+  }, languageFilterDisplay), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react__WEBPACK_IMPORTED_MODULE_0___default.a.Fragment, null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_languages_dropdown_list__WEBPACK_IMPORTED_MODULE_1__["LanguagesDropdownList"], {
     languages: languages,
     userLanguages: userLanguages,
     lessonLanguageIds: lessonLanguageIds,
     displayOn: isDropdownOpened,
+    setDisplay: setLanguageFilterDisplay,
     closeDisplay: toggleClose
   })));
 };
@@ -1488,6 +1494,7 @@ var LanguagesDropdownList = function LanguagesDropdownList(props) {
       closeDisplay = props.closeDisplay,
       languages = props.languages,
       userLanguages = props.userLanguages,
+      setDisplay = props.setDisplay,
       lessonLanguageIds = props.lessonLanguageIds;
   languages = languages ? languages : [];
   userLanguages = userLanguages ? userLanguages : [];
@@ -1498,6 +1505,9 @@ var LanguagesDropdownList = function LanguagesDropdownList(props) {
   });
   languageButtons = languageButtons.map(function (lang, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+      onClick: function onClick() {
+        return setDisplay(lang.name);
+      },
       className: "dropdown-button",
       key: i
     }, lang.name);
@@ -1510,6 +1520,9 @@ var LanguagesDropdownList = function LanguagesDropdownList(props) {
     className: "languages-options-list box-shadow hidden",
     onMouseLeave: closeDisplay
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: function onClick() {
+      return setDisplay('All my languages');
+    },
     className: "dropdown-button"
   }, "All my languages"), languageButtons);
 };
