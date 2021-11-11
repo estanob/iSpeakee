@@ -8,7 +8,8 @@ import { AuthRoute, ProtectedRoute } from '../util/route_util';
 import NavbarContainer from '../components/navbar/navbar_container';
 import DashboardContainer from './dashboard/dashboard_container';
 import Splash from '../components/splash';
-import LoginFormContainer from './session_form/login_form_container';
+import LoginModalContainer from './session_form/login_modal_container';
+// import LoginFormContainer from './session_form/login_form_container';
 import SignupFormContainer from './session_form/sign_up_form_container';
 import LessonShowContainer from './lessons/show/lesson_show_container';
 import LessonIndexContainer from './lessons/index/lesson_index_container';
@@ -40,7 +41,8 @@ const App = () => {
         <ProtectedRoute path='/user/:id' component={ProfileContainer}/>
         
         <AuthRoute exact path="/" component={Splash} />
-        <AuthRoute path="/login" component={LoginFormContainer} />
+        <AuthRoute path="/login" component={LoginModalContainer} />
+        {/* <AuthRoute path="/login" component={LoginFormContainer} /> */}
         <AuthRoute path="/signup" component={SignupFormContainer} />
 
         <Route path='/404' component={ErrorPage} />

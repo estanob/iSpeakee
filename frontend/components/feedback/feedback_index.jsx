@@ -25,6 +25,7 @@ export default function FeedbackIndex (props) {
 
   let studentFeedback = feedbackComments.filter(comment => comment.studentId === session);
   studentFeedback = studentFeedback.sort((a, b) => a.dateWritten > b.dateWritten ? -1 : 1)
+  const totalFeedback = studentFeedback;
   studentFeedback = studentFeedback.slice(0,4);
    
   useEffect(() => {
@@ -53,14 +54,15 @@ export default function FeedbackIndex (props) {
       <div className="feedback-header">
         <h2>Lesson Feedback</h2>
         <button className="all-feedback-button" onClick={() => setShowModal(true)}>
-          {`View all ${studentFeedback.length} feedback`}
+          {`View all ${totalFeedback.length} feedback`}
         </button>
       </div>
       <div className="feedback-index-container">
         {studentFeedback}
       </div>
       <FeedbackModal 
-        comments={comments} 
+        comments={totalFeedback} 
+        // comments={comments} 
         users={users} 
         showModal={showModal} 
         closeModal={() => setShowModal(false)} />
