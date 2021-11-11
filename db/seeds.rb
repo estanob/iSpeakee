@@ -99,6 +99,78 @@ user10 = User.create!(
   display_name: "健仁蓋伊"
 )
 
+user11 = User.create!(
+  first_name: "Giorgio",
+  last_name: "Armani",
+  username: "armanigiorgio",
+  password: "123456",
+  display_name: ""
+)
+
+user12 = User.create!(
+  first_name: "Leonardo",
+  last_name: "da Vinci",
+  username: "davincileonardo",
+  password: "123456",
+  display_name: ""
+)
+
+user13 = User.create!(
+  first_name: "Gabrielle 'Coco'",
+  last_name: "Chanel",
+  username: "cocochanel",
+  password: "123456",
+  display_name: "Coco"
+)
+
+user14 = User.create!(
+  first_name: "Victor",
+  last_name: "Hugo",
+  username: "hugovictor",
+  password: "123456",
+  display_name: ""
+)
+
+user15 = User.create!(
+  first_name: "Emmanuel",
+  last_name: "Macron",
+  username: "macronemm",
+  password: "123456",
+  display_name: ""
+)
+
+user16 = User.create!(
+  first_name: "Claude",
+  last_name: "Monet",
+  username: "cmonet",
+  password: "123456",
+  display_name: ""
+)
+
+user17 = User.create!(
+  first_name: "Vicente",
+  last_name: "Ydrach",
+  username: "chente",
+  password: "123456",
+  display_name: "Chente"
+)
+
+user18 = User.create!(
+  first_name: "Jonathan",
+  last_name: "Tehau",
+  username: "tehau",
+  password: "123456",
+  display_name: ""
+)
+
+user19 = User.create!(
+  first_name: "Jon",
+  last_name: "Kortajarena",
+  username: "jonkort",
+  password: "123456",
+  display_name: ""
+)
+
 language1 = Language.create!(
   name: "Italian"
 )
@@ -138,10 +210,22 @@ language10 = Language.create!(
   name: "Filipino (Tagalog)"
 )
 
+language11 = Language.create!(
+  name: "French"
+)
+
+language12 = Language.create!(
+  name: "German"
+)
+
+language13 = Language.create!(
+  name: "Basque/Euskera"
+)
+
 languageToStudent1 = LanguageToStudent.create!(
   language_id: language1.id,
   student_id: user1.id,
-  level: 2
+  level: 3
 )
 
 languageToStudent2 = LanguageToStudent.create!(
@@ -204,10 +288,40 @@ languageToStudent11 = LanguageToStudent.create!(
   level: 6
 )
 
-languageToStudent11 = LanguageToStudent.create!(
+languageToStudent12 = LanguageToStudent.create!(
   language_id: language6.id,
   student_id: user1.id,
   level: 7
+)
+
+languageToStudent13 = LanguageToStudent.create!(
+  language_id: language11.id,
+  student_id: user1.id,
+  level: 1
+)
+
+languageToStudent14 = LanguageToStudent.create!(
+  language_id: language13.id,
+  student_id: user1.id,
+  level: 1
+)
+
+languageToStudent15 = LanguageToStudent.create!(
+  language_id: language13.id,
+  student_id: user19.id,
+  level: 7
+)
+
+languageToStudent16 = LanguageToStudent.create!(
+  language_id: language2.id,
+  student_id: user19.id,
+  level: 7
+)
+
+languageToStudent17 = LanguageToStudent.create!(
+  language_id: language6.id,
+  student_id: user19.id,
+  level: 3
 )
 
 post1 = Post.create!(
@@ -262,6 +376,26 @@ follow6 = Follow.create!(
 
 follow7 = Follow.create!(
   followee_id: user5.id,
+  follower_id: user1.id
+)
+
+follow8 = Follow.create!(
+  followee_id: user1.id,
+  follower_id: user18.id
+)
+
+follow9 = Follow.create!(
+  followee_id: user18.id,
+  follower_id: user1.id
+)
+
+follow10 = Follow.create!(
+  followee_id: user1.id,
+  follower_id: user19.id
+)
+
+follow11 = Follow.create!(
+  followee_id: user19.id,
   follower_id: user1.id
 )
 
@@ -377,6 +511,150 @@ lesson14 = Lesson.create!(
   end_time: DateTime.new(2021, 6, 21, 17, 30, 0)
 )
 
+lesson15 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user11.id,
+  language_id: language1.id, # Italian
+  when: DateTime.new(2021, 7, 25, 16, 0, 0),
+  end_time: DateTime.new(2021, 7, 25, 17, 0, 0)
+)
+
+lesson16 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user11.id,
+  language_id: language1.id, # Italian
+  when: DateTime.new(2021, 8, 1, 16, 0, 0),
+  end_time: DateTime.new(2021, 8, 1, 17, 0, 0)
+)
+
+lesson17 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user11.id,
+  language_id: language1.id, # Italian
+  when: DateTime.new(2021, 8, 15, 16, 0, 0),
+  end_time: DateTime.new(2021, 8, 15, 17, 0, 0)
+)
+
+lesson18 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user11.id,
+  language_id: language1.id, # Italian
+  when: DateTime.new(2021, 10, 31, 16, 0, 0),
+  end_time: DateTime.new(2021, 10, 31, 17, 0, 0)
+)
+
+lesson19 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user15.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2021, 9, 19, 17, 30, 0),
+  end_time: DateTime.new(2021, 9, 19, 18, 30, 0)
+)
+
+lesson20 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user18.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2021, 11, 15, 18, 0, 0),
+  end_time: DateTime.new(2021, 11, 15, 19, 0, 0)
+)
+
+lesson21 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user18.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2021, 11, 24, 18, 0, 0),
+  end_time: DateTime.new(2021, 11, 24, 19, 30, 0)
+)
+
+lesson22 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user18.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2021, 11, 14, 18, 0, 0),
+  end_time: DateTime.new(2021, 11, 14, 19, 30, 0)
+)
+
+lesson23 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user18.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2021, 12, 31, 18, 0, 0),
+  end_time: DateTime.new(2021, 12, 31, 19, 30, 0)
+)
+
+lesson24 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user18.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2022, 2, 22, 18, 0, 0),
+  end_time: DateTime.new(2022, 2, 22, 19, 0, 0)
+)
+
+lesson25 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user18.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2022, 3, 12, 18, 0, 0),
+  end_time: DateTime.new(2022, 3, 12, 19, 0, 0)
+)
+
+lesson26 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user19.id,
+  language_id: language13.id, # Euskera
+  when: DateTime.new(2021, 8, 1, 19, 0, 0),
+  end_time: DateTime.new(2021, 8, 1, 20, 0, 0)
+)
+
+lesson27 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user19.id,
+  language_id: language13.id, # Euskera
+  when: DateTime.new(2021, 8, 2, 19, 0, 0),
+  end_time: DateTime.new(2021, 8, 2, 20, 0, 0)
+)
+
+lesson28 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user19.id,
+  language_id: language13.id, # Euskera
+  when: DateTime.new(2021, 12, 25, 19, 0, 0),
+  end_time: DateTime.new(2021, 12, 25, 20, 0, 0)
+)
+
+lesson29 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user15.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2021, 11, 2, 17, 0, 0),
+  end_time: DateTime.new(2021, 11, 2, 18, 0, 0)
+)
+
+lesson30 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user15.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2021, 11, 3, 17, 0, 0),
+  end_time: DateTime.new(2021, 11, 3, 18, 0, 0)
+)
+
+lesson31 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user15.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2021, 11, 30, 19, 0, 0),
+  end_time: DateTime.new(2021, 11, 30, 19, 45, 0)
+)
+
+lesson32 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user15.id,
+  language_id: language11.id, # French
+  when: DateTime.new(2022, 1, 12, 19, 0, 0),
+  end_time: DateTime.new(2022, 1, 12, 20, 30, 0)
+)
+
 teacherToStudent1 = TeacherToStudent.create!(
   student_id: user1.id,
   teacher_id: user5.id
@@ -427,6 +705,26 @@ teacherToStudent10 = TeacherToStudent.create!(
   teacher_id: user10.id
 )
 
+teacherToStudent10 = TeacherToStudent.create!(
+  student_id: user1.id,
+  teacher_id: user19.id
+)
+
+teacherToStudent10 = TeacherToStudent.create!(
+  student_id: user19.id,
+  teacher_id: user1.id
+)
+
+teacherToStudent11 = TeacherToStudent.create!(
+  student_id: user1.id,
+  teacher_id: user18.id
+)
+
+teacherToStudent12 = TeacherToStudent.create!(
+  student_id: user18.id,
+  teacher_id: user1.id
+)
+
 studiedLanguage1 = StudiedLanguage.create!(
   student_id: user1.id,
   language_id: language1.id,
@@ -465,6 +763,16 @@ studiedLanguage7 = StudiedLanguage.create!(
 studiedLanguage8 = StudiedLanguage.create!(
   student_id: user4.id,
   language_id: language7.id,
+)
+
+studiedLanguage9 = StudiedLanguage.create!(
+  student_id: user1.id,
+  language_id: language11.id,
+)
+
+studiedLanguage10 = StudiedLanguage.create!(
+  student_id: user1.id,
+  language_id: language13.id,
 )
 
 teacherProfile1 = TeacherProfile.create!(
@@ -509,6 +817,20 @@ teacherProfile6 = TeacherProfile.create!(
   lessons_teaching_style: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
 )
 
+teacherProfile7 = TeacherProfile.create!(
+  teacher_id: user18.id,
+  about_me: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  me_as_teacher: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+  lessons_teaching_style: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+)
+
+teacherProfile8 = TeacherProfile.create!(
+  teacher_id: user19.id,
+  about_me: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+  me_as_teacher: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?",
+  lessons_teaching_style: "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat."
+)
+
 feedback1 = FeedbackComment.create!(
   student_id: user1.id,
   teacher_id: user5.id,
@@ -539,4 +861,52 @@ feedback4 = FeedbackComment.create!(
   lesson_id: lesson14.id,
   body: "Brandon entendió toda la jerga que le enseñé durante la clase de ayer",
   date_written: DateTime.new(2021, 6, 21, 19, 52, 0),
+)
+
+feedback5 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user11.id,
+  lesson_id: lesson15.id,
+  body: "Brandon parla molto bene l'italiano. Ha l'accento toscano",
+  date_written: DateTime.new(2021, 7, 25, 19, 42, 0),
+)
+
+feedback6 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user11.id,
+  lesson_id: lesson18.id,
+  body: "L'italiano di Brandon è migliorato, non ha avuto errori in questa lezione",
+  date_written: DateTime.new(2021, 10, 31, 19, 35, 0),
+)
+
+feedback7 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user15.id,
+  lesson_id: lesson19.id,
+  body: "Brandon's French listening is pretty good, and today was his first French class ever. À la prochaine!",
+  date_written: DateTime.new(2021, 9, 20, 05, 57, 0),
+)
+
+feedback8 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user15.id,
+  lesson_id: lesson25.id,
+  body: "Brandon's French level is good enough to have a very basic conversation. À la prochaine!",
+  date_written: DateTime.new(2022, 3, 12, 19, 57, 0),
+)
+
+feedback9 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user19.id,
+  lesson_id: lesson27.id,
+  body: "Brandon tu pronunciación de Euskera es bastante buena. Estoy muy sorprendido. Agur hasta la próxima!",
+  date_written: DateTime.new(2022, 3, 12, 19, 57, 0),
+)
+
+feedback10 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user15.id,
+  lesson_id: lesson29.id,
+  body: "Brandon, your French pronunciation is so good for your first month of studying! À la prochaine!!!",
+  date_written: DateTime.new(2021, 11, 2, 18, 27, 0),
 )
