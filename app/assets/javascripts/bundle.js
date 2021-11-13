@@ -1684,6 +1684,9 @@ var TeachersDropdownList = function TeachersDropdownList(props) {
     if (lessonTeacherIds.includes(teacher.id)) teacherButtons.push(teacher);
   });
   console.log("Teacher Buttons:", teacherButtons);
+  teacherButtons = teacherButtons.sort(function (a, b) {
+    return a.firstName < b.firstName ? -1 : 1;
+  });
   teacherButtons = teacherButtons.map(function (teacher, i) {
     return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
       className: "dropdown-button",
@@ -1762,7 +1765,7 @@ function FeedbackComment(props) {
     return teacher.id === comment.teacherId;
   });
   teacher = teacher ? teacher : {};
-  var teacherName = teacher ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+  var teacherName = teacher.display_name ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     style: {
       fontSize: '14px'
     }
@@ -1771,7 +1774,7 @@ function FeedbackComment(props) {
       fontSize: '14px'
     }
   }, "".concat(teacher.firstName, " ").concat(teacher.lastName));
-  teacherName = teacherName ? teacherName : "";
+  teacherName = teacherName ? teacherName : '';
   var modalOrNot = inModal === false ? "feedback-container" : "feedback-container-modal";
   var nameOfTeacher = inModal === false ? /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/teacher/".concat(teacher.id),

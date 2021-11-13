@@ -18,6 +18,7 @@ export const TeachersDropdownList = (props) => {
 
   console.log("Teacher Buttons:", teacherButtons)
   
+  teacherButtons = teacherButtons.sort((a, b) => a.firstName < b.firstName ? -1 : 1)
   teacherButtons = teacherButtons.map((teacher, i) => {
     return (
       <button className="dropdown-button" key={i}>

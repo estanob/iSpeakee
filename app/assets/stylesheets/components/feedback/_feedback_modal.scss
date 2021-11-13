@@ -3,11 +3,13 @@
   z-index: 100;
   top: 30%;
   left: 50%;
-  height: auto;
+  width: 50%;
+  height: 50%;
   transform: translate(-50%, -50%);
   border-radius: 4px;
   background-color: white;
-  overflow-y: auto;
+  overflow: auto;
+  // overflow-y: auto;
 }
 
 .feedback-modal-header {

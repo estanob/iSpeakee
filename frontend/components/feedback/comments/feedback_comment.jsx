@@ -9,8 +9,8 @@ export default function FeedbackComment (props) {
   
   let teacher = users.find(teacher => teacher.id === comment.teacherId);
   teacher = teacher ? teacher : {};
-  let teacherName = teacher ? <p style={{ fontSize: '14px' }}>{teacher.display_name}</p> : <p style={{ fontSize: '14px' }}>{`${teacher.firstName} ${teacher.lastName}`}</p>;
-  teacherName = teacherName ? teacherName : "";
+  let teacherName = teacher.display_name ? <p style={{ fontSize: '14px' }}>{teacher.display_name}</p> : <p style={{ fontSize: '14px' }}>{`${teacher.firstName} ${teacher.lastName}`}</p>;
+  teacherName = teacherName ? teacherName : '';
   
   let modalOrNot = inModal === false ? "feedback-container" : "feedback-container-modal";
   
@@ -20,7 +20,7 @@ export default function FeedbackComment (props) {
         {teacherName}
       </Link> :
       <h1>{teacherName}</h1>;
-  
+      
   return (
     <div className={modalOrNot}>
       {nameOfTeacher}

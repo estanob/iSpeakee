@@ -655,6 +655,30 @@ lesson32 = Lesson.create!(
   end_time: DateTime.new(2022, 1, 12, 20, 30, 0)
 )
 
+lesson33 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user10.id,
+  language_id: language3.id, # Mandarin
+  when: DateTime.new(2021, 8, 9, 1, 0, 0),
+  end_time: DateTime.new(2021, 8, 9, 2, 30, 0)
+)
+
+lesson34 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user10.id,
+  language_id: language3.id, # Mandarin
+  when: DateTime.new(2021, 9, 1, 1, 0, 0),
+  end_time: DateTime.new(2021, 9, 1, 2, 30, 0)
+)
+
+lesson35 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user10.id,
+  language_id: language3.id, # Mandarin
+  when: DateTime.new(2021, 12, 9, 14, 0, 0),
+  end_time: DateTime.new(2021, 12, 9, 15, 0, 0)
+)
+
 teacherToStudent1 = TeacherToStudent.create!(
   student_id: user1.id,
   teacher_id: user5.id
@@ -909,4 +933,20 @@ feedback10 = FeedbackComment.create!(
   lesson_id: lesson29.id,
   body: "Brandon, your French pronunciation is so good for your first month of studying! À la prochaine!!!",
   date_written: DateTime.new(2021, 11, 2, 18, 27, 0),
+)
+
+feedback11 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user10.id,
+  lesson_id: lesson33.id,
+  body: "Brandon的中文講的起流利的，而且他的口音人很像我們台灣人的",
+  date_written: DateTime.new(2021, 8, 9, 3, 7, 0),
+)
+
+feedback12 = FeedbackComment.create!(
+  student_id: user1.id,
+  teacher_id: user10.id,
+  lesson_id: lesson33.id,
+  body: "台灣口音起標準，真的很厲害",
+  date_written: DateTime.new(2021, 9, 1, 2, 55, 0),
 )
