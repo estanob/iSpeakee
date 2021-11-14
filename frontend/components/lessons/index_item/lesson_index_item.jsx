@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
 const LessonIndexItem = props => {
-  let { users, lesson, currentDate } = props;
+  let { users, lesson, currentDate, fetchAllUsers } = props;
   users = users ? users : [];
   lesson = lesson ? lesson : {};
   currentDate = currentDate ? currentDate : '';
 
+  useEffect(() => {
+    fetchAllUsers()
+  }, [])
+  
   const theMonths = [
     "Jan", "Feb", "Mar", "Apr", 
     "May", "Jun", "Jul", "Aug", 
@@ -52,6 +56,8 @@ const LessonIndexItem = props => {
     return `${hours}:${minutes}`;
   };
 
+  console.log("Lesson Index Item Props:", props)
+  
   return (
     <Link className="lesson-index-item" to={`/lessons/${lesson.id}`}>
       <div className="lesson-index-li-status" id={determineLessonStatus()}></div>

@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import StudiedLanguage from '../languages/studied_languages/studied_language';
 import MyTeachersIndex from '../teachers/my_teachers_index';
 import TeacherIndexItem from '../teachers/teacher_index_item';
+import LessonIndexItem from '../lessons/index_item/lesson_index_item';
 
 const Dashboard = (props) => {
   let { 
@@ -94,6 +95,31 @@ const Dashboard = (props) => {
     )
   })
 
+  let upcomingLessons = [];
+  lessons.forEach(lesson => {
+    const lessonTime = new Date(lesson.when);
+    const dateNow = new Date ();
+    if (lesson.student_id === session && lessonTime > dateNow) {
+      upcomingLessons.push(lesson)
+    }
+  })
+  upcomingLessons = upcomingLessons.sort((a, b) => (a.when < b.when) ? - 1 : 1)
+  upcomingLessons = upcomingLessons.slice(0, 3)
+  
+  upcomingLessons = upcomingLessons.map((lesson, i) => {
+    return (
+      <LessonIndexItem 
+        users={users}
+        fetchAllUsers={fetchAllUsers}
+        currentDate={new Date ()}
+        lesson={lesson}
+        key={i} />
+    )
+  })
+
+  upcomingLessons = upcomingLessons ? upcomingLessons : [];
+  console.log("Upcoming Lessons", upcomingLessons)
+  
   let userTeacherArr = [];
   let teacherRelations = currentUser.teachers ? currentUser.teachers : [];
   teacherRelations.forEach(relation => {
@@ -106,6 +132,7 @@ const Dashboard = (props) => {
   
   let userName = currentUser.display_name ? <p className="display-name">{`${currentUser.display_name}`}</p> : <p className="display-name">{`${currentUser.firstName} ${currentUser.lastName}`}</p>;
 
+  debugger
   return (
     <div style={{ margin: '0 auto' }}>
       <div className="user-dashboard">
@@ -180,7 +207,10 @@ const Dashboard = (props) => {
             </div>
           </div>
           <div className="languages-learning info-box box-shadow">
-            <h1>Upcoming Lesson</h1>
+            {/* <h1>Upcoming Lesson</h1> */}
+            <ul style={{ paddingTop: '10px' }}>
+              {upcomingLessons}
+            </ul>
           </div>
           <div className="my-teachers info-box box-shadow">
             <div id="my-teachers-container">

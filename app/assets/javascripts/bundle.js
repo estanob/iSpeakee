@@ -1023,6 +1023,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _languages_studied_languages_studied_language__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../languages/studied_languages/studied_language */ "./frontend/components/languages/studied_languages/studied_language.jsx");
 /* harmony import */ var _teachers_my_teachers_index__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../teachers/my_teachers_index */ "./frontend/components/teachers/my_teachers_index.jsx");
 /* harmony import */ var _teachers_teacher_index_item__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../teachers/teacher_index_item */ "./frontend/components/teachers/teacher_index_item.jsx");
+/* harmony import */ var _lessons_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../lessons/index_item/lesson_index_item */ "./frontend/components/lessons/index_item/lesson_index_item.jsx");
+
 
 
 
@@ -1108,6 +1110,30 @@ var Dashboard = function Dashboard(props) {
       key: i
     });
   });
+  var upcomingLessons = [];
+  lessons.forEach(function (lesson) {
+    var lessonTime = new Date(lesson.when);
+    var dateNow = new Date();
+
+    if (lesson.student_id === session && lessonTime > dateNow) {
+      upcomingLessons.push(lesson);
+    }
+  });
+  upcomingLessons = upcomingLessons.sort(function (a, b) {
+    return a.when < b.when ? -1 : 1;
+  });
+  upcomingLessons = upcomingLessons.slice(0, 3);
+  upcomingLessons = upcomingLessons.map(function (lesson, i) {
+    return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_lessons_index_item_lesson_index_item__WEBPACK_IMPORTED_MODULE_5__["default"], {
+      users: users,
+      fetchAllUsers: fetchAllUsers,
+      currentDate: new Date(),
+      lesson: lesson,
+      key: i
+    });
+  });
+  upcomingLessons = upcomingLessons ? upcomingLessons : [];
+  console.log("Upcoming Lessons", upcomingLessons);
   var userTeacherArr = [];
   var teacherRelations = currentUser.teachers ? currentUser.teachers : [];
   teacherRelations.forEach(function (relation) {
@@ -1122,6 +1148,7 @@ var Dashboard = function Dashboard(props) {
   }, "".concat(currentUser.display_name)) : /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
     className: "display-name"
   }, "".concat(currentUser.firstName, " ").concat(currentUser.lastName));
+  debugger;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     style: {
       margin: '0 auto'
@@ -1199,7 +1226,11 @@ var Dashboard = function Dashboard(props) {
     className: "completed-text"
   }, "Completed Lessons"))))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "languages-learning info-box box-shadow"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Upcoming Lesson")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+    style: {
+      paddingTop: '10px'
+    }
+  }, upcomingLessons)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "my-teachers info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     id: "my-teachers-container"
@@ -2004,7 +2035,11 @@ function FeedbackModal(props) {
     className: "feedback-modal"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "feedback-modal-header"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "".concat(comments.length, " Feedback")), closeButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    style: {
+      marginLeft: '40%'
+    }
+  }, "".concat(comments.length, " Feedback")), closeButton), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
     className: "feedback-modal-ul"
   }, comments)));
 }
@@ -2636,10 +2671,14 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 var LessonIndexItem = function LessonIndexItem(props) {
   var users = props.users,
       lesson = props.lesson,
-      currentDate = props.currentDate;
+      currentDate = props.currentDate,
+      fetchAllUsers = props.fetchAllUsers;
   users = users ? users : [];
   lesson = lesson ? lesson : {};
   currentDate = currentDate ? currentDate : '';
+  Object(react__WEBPACK_IMPORTED_MODULE_0__["useEffect"])(function () {
+    fetchAllUsers();
+  }, []);
   var theMonths = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
   var lessonStartTime = new Date(lesson.when);
   var lessonEndTime = new Date(lesson.end_time);
@@ -2690,6 +2729,7 @@ var LessonIndexItem = function LessonIndexItem(props) {
   }
 
   ;
+  console.log("Lesson Index Item Props:", props);
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     className: "lesson-index-item",
     to: "/lessons/".concat(lesson.id)

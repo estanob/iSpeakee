@@ -34,7 +34,7 @@ export default function FeedbackModal (props) {
       </div>
       <div className="feedback-modal">
         <div className="feedback-modal-header">
-          <span>{`${comments.length} Feedback`}</span>
+          <span style={{ marginLeft: '40%' }}>{`${comments.length} Feedback`}</span>
           {closeButton}
         </div>
         <ul className="feedback-modal-ul">
