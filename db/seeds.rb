@@ -679,6 +679,14 @@ lesson35 = Lesson.create!(
   end_time: DateTime.new(2021, 12, 9, 15, 0, 0)
 )
 
+lesson36 = Lesson.create!(
+  student_id: user1.id, 
+  teacher_id: user19.id,
+  language_id: language13.id, # French
+  when: DateTime.new(2022, 2, 22, 19, 30, 0),
+  end_time: DateTime.new(2022, 2, 22, 21, 0, 0)
+)
+
 teacherToStudent1 = TeacherToStudent.create!(
   student_id: user1.id,
   teacher_id: user5.id
@@ -729,24 +737,34 @@ teacherToStudent10 = TeacherToStudent.create!(
   teacher_id: user10.id
 )
 
-teacherToStudent10 = TeacherToStudent.create!(
+teacherToStudent11 = TeacherToStudent.create!(
   student_id: user1.id,
   teacher_id: user19.id
 )
 
-teacherToStudent10 = TeacherToStudent.create!(
+teacherToStudent12 = TeacherToStudent.create!(
   student_id: user19.id,
   teacher_id: user1.id
 )
 
-teacherToStudent11 = TeacherToStudent.create!(
+teacherToStudent13 = TeacherToStudent.create!(
   student_id: user1.id,
   teacher_id: user18.id
 )
 
-teacherToStudent12 = TeacherToStudent.create!(
+teacherToStudent14 = TeacherToStudent.create!(
   student_id: user18.id,
   teacher_id: user1.id
+)
+
+teacherToStudent15 = TeacherToStudent.create!(
+  student_id: user1.id,
+  teacher_id: user15.id
+)
+
+teacherToStudent16 = TeacherToStudent.create!(
+  student_id: user1.id,
+  teacher_id: user11.id
 )
 
 studiedLanguage1 = StudiedLanguage.create!(
@@ -946,7 +964,7 @@ feedback11 = FeedbackComment.create!(
 feedback12 = FeedbackComment.create!(
   student_id: user1.id,
   teacher_id: user10.id,
-  lesson_id: lesson33.id,
+  lesson_id: lesson35.id,
   body: "台灣口音起標準，真的很厲害",
   date_written: DateTime.new(2021, 9, 1, 2, 55, 0),
 )

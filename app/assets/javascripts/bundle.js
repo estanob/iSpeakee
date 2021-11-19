@@ -990,12 +990,6 @@ var App = function App() {
     exact: true,
     path: "/",
     component: _components_splash__WEBPACK_IMPORTED_MODULE_5__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
-    path: "/login",
-    component: _session_form_login_modal_container__WEBPACK_IMPORTED_MODULE_6__["default"]
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_util_route_util__WEBPACK_IMPORTED_MODULE_2__["AuthRoute"], {
-    path: "/signup",
-    component: _session_form_sign_up_form_container__WEBPACK_IMPORTED_MODULE_7__["default"]
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Route"], {
     path: "/404",
     component: _error_page__WEBPACK_IMPORTED_MODULE_17__["default"]
@@ -3193,13 +3187,34 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_router_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-router-dom */ "./node_modules/react-router-dom/esm/react-router-dom.js");
 /* harmony import */ var _profile_dropdown__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../profile_dropdown */ "./frontend/components/profile_dropdown.jsx");
+/* harmony import */ var _session_form_login_modal__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../session_form/login_modal */ "./frontend/components/session_form/login_modal.jsx");
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
 
 
 
 
 var Navbar = function Navbar(props) {
-  var session = props.session,
-      logout = props.logout;
+  var _useState = Object(react__WEBPACK_IMPORTED_MODULE_0__["useState"])(false),
+      _useState2 = _slicedToArray(_useState, 2),
+      modalShown = _useState2[0],
+      setModalShown = _useState2[1];
+
+  var login = props.login,
+      session = props.session,
+      logout = props.logout,
+      demoLogin = props.demoLogin;
 
   function loggedIn() {
     if (session) {
@@ -3210,9 +3225,11 @@ var Navbar = function Navbar(props) {
     } else {
       return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
         className: "navbar-logged-out"
-      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
-        to: "/login"
-      }, "Login"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
+      }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+        onClick: function onClick() {
+          return setModalShown(true);
+        }
+      }, "Login Modal"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
         to: "/signup"
       }, "Sign up"));
     }
@@ -3237,7 +3254,12 @@ var Navbar = function Navbar(props) {
     href: "https://linkedin.com/in/estanob"
   }, "LinkedIn"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("a", {
     href: "https://angel.co/u/brandon-estano"
-  }, "AngelList"), loggedIn()));
+  }, "AngelList"), loggedIn()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_form_login_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
+    demoLogin: demoLogin,
+    displayModal: modalShown,
+    login: login,
+    logout: logout
+  }));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (Navbar);
@@ -3270,6 +3292,12 @@ var mDTP = function mDTP(dispatch) {
   return {
     logout: function logout() {
       return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["logout"])());
+    },
+    login: function login(user) {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["login"])(user));
+    },
+    demoLogin: function demoLogin() {
+      return dispatch(Object(_actions_session_actions__WEBPACK_IMPORTED_MODULE_1__["demoLogin"])());
     }
   };
 };
@@ -3994,9 +4022,19 @@ var LoginModal = function LoginModal(props) {
   }
 
   ;
+  if (!displayModal) return null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "login-form-container"
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to iSpeakee!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    style: {
+      height: '100%',
+      backgroundColor: 'black',
+      filter: 'brightness(50%)'
+    }
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to iSpeakee!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    style: {
+      zIndex: '500'
+    },
     className: "login_form_div",
     onSubmit: submitHandler
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
@@ -4348,19 +4386,19 @@ __webpack_require__.r(__webpack_exports__);
 
 var Splash = function Splash() {
   var splashPic = /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("picture", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
-    srcset: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_web.webp",
+    srcSet: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_web.webp",
     type: "image/webp",
     media: "(min-width: 768px)"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
-    srcset: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_mobile.webp",
+    srcSet: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_mobile.webp",
     type: "image/webp",
     media: "(max-width: 767px)"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
-    srcset: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_web.jpg",
+    srcSet: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_web.jpg",
     type: "image/jpeg",
     media: "(min-width: 768px)"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("source", {
-    srcset: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_mobile.jpg",
+    srcSet: "https://scdn.italki.com/ng/static/image/milkway/homepage/topImg/hero_mobile.jpg",
     type: "image/jpeg",
     media: "(max-width: 767px)"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("img", {

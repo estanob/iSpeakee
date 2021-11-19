@@ -40,10 +40,10 @@ const App = () => {
         <ProtectedRoute path="/contacts/teacher" component={TeacherIndexContainer} />
         <ProtectedRoute path='/user/:id' component={ProfileContainer}/>
         
-        <AuthRoute exact path="/" component={Splash} />
-        <AuthRoute path="/login" component={LoginModalContainer} />
+        {/* <AuthRoute path="/login" component={LoginModalContainer} /> */}
         {/* <AuthRoute path="/login" component={LoginFormContainer} /> */}
-        <AuthRoute path="/signup" component={SignupFormContainer} />
+        {/* <AuthRoute path="/signup" component={SignupFormContainer} /> */}
+        <AuthRoute exact path="/" component={Splash} />
 
         <Route path='/404' component={ErrorPage} />
         <Redirect to="/404" />

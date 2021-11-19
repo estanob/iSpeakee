@@ -9,11 +9,14 @@ const LoginModal = props => {
     e.preventDefault();
     login(user);
   };
+
+  if (!displayModal) return null;
   
   return (
     <div className="login-form-container">
+      <div style={{ height: '100%', backgroundColor: 'black', filter: 'brightness(50%)' }}></div>
       <h1>Welcome to iSpeakee!</h1>
-      <form className="login_form_div" onSubmit={submitHandler}>
+      <form style={{ zIndex: '500' }} className="login_form_div" onSubmit={submitHandler}>
         <input 
           type="text"
           name="username"
