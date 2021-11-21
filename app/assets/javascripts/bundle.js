@@ -3257,6 +3257,9 @@ var Navbar = function Navbar(props) {
   }, "AngelList"), loggedIn()), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_session_form_login_modal__WEBPACK_IMPORTED_MODULE_3__["default"], {
     demoLogin: demoLogin,
     displayModal: modalShown,
+    closeModal: function closeModal() {
+      return setModalShown(false);
+    },
     login: login,
     logout: logout
   }));
@@ -4014,7 +4017,8 @@ var LoginModal = function LoginModal(props) {
 
   var displayModal = props.displayModal,
       login = props.login,
-      demoLogin = props.demoLogin;
+      demoLogin = props.demoLogin,
+      closeModal = props.closeModal;
 
   function submitHandler(e) {
     e.preventDefault();
@@ -4024,14 +4028,11 @@ var LoginModal = function LoginModal(props) {
   ;
   if (!displayModal) return null;
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    className: "login-form-container"
+    className: "login-form-container",
+    onClick: closeModal
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
-    style: {
-      height: '100%',
-      backgroundColor: 'black',
-      filter: 'brightness(50%)'
-    }
-  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to iSpeakee!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+    className: "login-form-child"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Welcome to iSpeakee!"), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
     style: {
       zIndex: '500'
     },
@@ -4063,7 +4064,7 @@ var LoginModal = function LoginModal(props) {
     className: "session-submit",
     type: "submit",
     value: "Login"
-  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No acount yet? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Sign up")));
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "No acount yet? ", /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", null, "Sign up"))));
 };
 
 /* harmony default export */ __webpack_exports__["default"] = (LoginModal);

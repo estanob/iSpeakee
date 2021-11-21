@@ -52,6 +52,7 @@ const Navbar = (props) => {
       <LoginModal 
         demoLogin={demoLogin}
         displayModal={modalShown} 
+        closeModal={() => setModalShown(false)}
         login={login} 
         logout={logout} />
     </div>
