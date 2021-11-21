@@ -1,3 +1,4 @@
+import React from 'react';
 import { connect } from 'react-redux';
 import { demoLogin, login, logout } from '../../actions/session_actions';
 import Navbar from './navbar';

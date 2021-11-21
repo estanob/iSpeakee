@@ -15,9 +15,22 @@
   z-index: 500;
   top: 50%;
   left: 50%;
-  width: 200px;
+  width: 520px;
   height: 300px;
   transform: translate(-50%, -50%);
   border-radius: 4px;
   background-color: white;
+  padding-left: 32px;
+  padding-right: 32px;
+}
+
+.login-form-child > h1 {
+  padding-top: 56px;
+  padding-bottom: 8px;
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.login-form-div {
+  display: grid;
 }

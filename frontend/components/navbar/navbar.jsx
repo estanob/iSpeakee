@@ -5,7 +5,8 @@ import LoginModal from '../session_form/login_modal';
 
 const Navbar = (props) => {
   let [modalShown, setModalShown] = useState(false);
-  const { login, session, logout, demoLogin } = props;
+  let { login, session, logout, demoLogin, closeButton, } = props;
+  closeButton = closeButton ? closeButton : {};
 
   function loggedIn() {
     if (session) {
@@ -51,8 +52,9 @@ const Navbar = (props) => {
       </div>
       <LoginModal 
         demoLogin={demoLogin}
-        displayModal={modalShown} 
+        displayModal={modalShown}
         closeModal={() => setModalShown(false)}
+        closeButton={closeButton}
         login={login} 
         logout={logout} />
     </div>

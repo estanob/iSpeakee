@@ -79,7 +79,7 @@ class SessionForm extends React.Component {
     
     return (
       <div className="login-form-container">
-        <form className="login_form_div">
+        <form className="login-form-div">
           {this.props.formType === 'login' && err.length > 0 &&
             <div className="modal-errors" onClick={this.props.closeModal}>
               {err}
