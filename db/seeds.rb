@@ -941,7 +941,7 @@ feedback9 = FeedbackComment.create!(
   student_id: user1.id,
   teacher_id: user19.id,
   lesson_id: lesson27.id,
-  body: "Brandon tu pronunciación de Euskera es bastante buena. Estoy muy sorprendido. Agur hasta la próxima!",
+  body: "Brandon tu pronunciación de Euskera es bastante buena. Estoy muy sorprendido. Agur, hasta la próxima!",
   date_written: DateTime.new(2022, 3, 12, 19, 57, 0),
 )
 
@@ -957,7 +957,7 @@ feedback11 = FeedbackComment.create!(
   student_id: user1.id,
   teacher_id: user10.id,
   lesson_id: lesson33.id,
-  body: "Brandon的中文講的起流利的，而且他的口音人很像我們台灣人的",
+  body: "Brandon的中文講的超流利的，而且他的口音很像我們台灣人的",
   date_written: DateTime.new(2021, 8, 9, 3, 7, 0),
 )
 
@@ -965,6 +965,6 @@ feedback12 = FeedbackComment.create!(
   student_id: user1.id,
   teacher_id: user10.id,
   lesson_id: lesson35.id,
-  body: "台灣口音起標準，真的很厲害",
+  body: "台灣口音超標準，真的很厲害",
   date_written: DateTime.new(2021, 9, 1, 2, 55, 0),
 )

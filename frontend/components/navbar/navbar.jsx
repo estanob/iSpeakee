@@ -5,8 +5,21 @@ import LoginModal from '../session_form/login_modal';
 
 const Navbar = (props) => {
   let [modalShown, setModalShown] = useState(false);
-  let { login, session, logout, demoLogin, closeButton, } = props;
+  let { 
+    login, 
+    session, 
+    logout, 
+    demoLogin, 
+    closeButton, 
+    linkedIn, 
+    github, 
+    angelList, 
+  } = props;
+
   closeButton = closeButton ? closeButton : {};
+  linkedIn = linkedIn ? linkedIn : {};
+  github = github ? github : {};
+  angelList = angelList ? angelList : {};
 
   function loggedIn() {
     if (session) {
@@ -29,6 +42,8 @@ const Navbar = (props) => {
     }
   };
 
+  console.log("Navbar Props:", props)
+  
   return (
     <div className="header-navbar">
       <div className="app-logo">
@@ -40,13 +55,13 @@ const Navbar = (props) => {
       </div>
       <div className="navbar-links">
         <a href="https://github.com/estanob">
-          Github
+          {github}
         </a>
         <a href="https://linkedin.com/in/estanob">
-          LinkedIn
+          {linkedIn}
         </a>
         <a href="https://angel.co/u/brandon-estano">
-          AngelList
+          {angelList}
         </a>
         {loggedIn()}
       </div>

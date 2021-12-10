@@ -21,12 +21,16 @@ import ProfileContainer from './profile/profile_container';
 import TeacherIndexContainer from './teachers/teachers_page/teacher_index_container';
 import TeacherShowContainer from './teachers/teacher_show/teacher_show_container';
 import ErrorPage from './error_page';
+// import ReactNotification, { store } from 'react-notifications-component';
+// import 'react-notifications-component/dist/theme.css';
 
 const App = () => {
   return (
     <div style={{ display: 'grid', backgroundColor: '#fafafc' }}>
       <header className="inner-header">
         <NavbarContainer />
+        {/* <ReactNotification />
+        <NotificationsPage /> */}
       </header>
       <Switch>
         <ProtectedRoute path='/dashboard' component={DashboardContainer} />
@@ -56,5 +60,24 @@ const App = () => {
     </div>
   );
 };
+
+// function NotificationsPage() {
+//   const handleOnClickDefault = () => {
+//     store.addNotification({
+//       title: "This is a test notification",
+//       message: "This is a notification",
+//       type: "success",
+
+//     })
+//   }
+
+//   return (
+//     <div>
+//       <button onClick={handleOnClickDefault}>
+//         default
+//       </button>
+//     </div>
+//   )
+// }
 
 export default App;

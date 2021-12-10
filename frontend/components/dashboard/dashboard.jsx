@@ -226,9 +226,6 @@ const Dashboard = (props) => {
                 bookLessonIcon={bookLessonIcon} />
             </ul>
           </div>
-          <Link to="/languages" className="languages-link">
-            Languages
-          </Link>
         </div>
       </div>
     </div>
