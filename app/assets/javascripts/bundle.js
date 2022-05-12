@@ -745,6 +745,7 @@ var demoLogin = function demoLogin() {
 };
 var logout = function logout() {
   return function (dispatch) {
+    debugger;
     return _util_session_api_util__WEBPACK_IMPORTED_MODULE_0__["logout"]().then(function (user) {
       dispatch(logoutCurrentUser(null));
     });
@@ -1180,7 +1181,7 @@ var Dashboard = function Dashboard(props) {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(react_router_dom__WEBPACK_IMPORTED_MODULE_1__["Link"], {
     to: "/posts/".concat(session),
     className: "profile-link"
-  }, "".concat(currentUser.posts.length, " Posts")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+  }, "".concat(currentUser.posts ? currentUser.posts.length : 0, " Posts")), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "0 Following 0 Followers"))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
     className: "dashboard-wallet-balance info-box box-shadow"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
     className: "dashboard-ispeakee-balance left-title"
@@ -5156,12 +5157,14 @@ __webpack_require__.r(__webpack_exports__);
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_SESSION_ERRORS"]:
+      debugger;
       return action.errors;
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
       return {};
 
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["CLEAR_ERRORS"]:
+      debugger;
       return [];
 
     default:
@@ -5664,6 +5667,8 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../actions/session_actions */ "./frontend/actions/session_actions.js");
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 var UserReducer = function UserReducer() {
@@ -5674,8 +5679,9 @@ var UserReducer = function UserReducer() {
 
   switch (action.type) {
     case _actions_session_actions__WEBPACK_IMPORTED_MODULE_0__["RECEIVE_CURRENT_USER"]:
-      newState = Object.assign({}, action.user);
-      return newState;
+      // newState = Object.assign({}, action.user);
+      // return newState;
+      return Object.assign({}, state, _defineProperty({}, action.currentUser.id, action.currentUser));
 
     default:
       return state;

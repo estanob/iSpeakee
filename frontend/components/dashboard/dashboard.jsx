@@ -144,7 +144,7 @@ const Dashboard = (props) => {
             </Link>
             <div className="social-media-info">
               <Link to={`/posts/${session}`} className="profile-link">
-                {`${currentUser.posts.length} Posts`}
+                {`${currentUser.posts ? currentUser.posts.length : 0} Posts`}
               </Link>
               <p>{`0 Following 0 Followers`}</p>
             </div>

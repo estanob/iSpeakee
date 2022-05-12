@@ -6,14 +6,14 @@ import LoginModal from '../session_form/login_modal';
 const Navbar = (props) => {
   let [modalShown, setModalShown] = useState(false);
   let { 
-    login, 
-    session, 
-    logout, 
-    demoLogin, 
-    closeButton, 
-    linkedIn, 
-    github, 
-    angelList, 
+    login,
+    session,
+    logout,
+    demoLogin,
+    closeButton,
+    linkedIn,
+    github,
+    angelList,
   } = props;
 
   closeButton = closeButton ? closeButton : {};
